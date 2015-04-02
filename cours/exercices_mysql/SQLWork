@@ -1,0 +1,72 @@
+1 = recuperer tous les acteurs de chaque film.
+SELECT DISTINCT CONCAT( actors.firstname,  " ", actors.lastname ) 
+FROM  `actors` 
+JOIN actors_movies ON actors_movies.actors_id = actors.id
+
+
+
+2 = Liste des films du réalisateur Peter jackson
+SELECT movies.title
+FROM  `movies` 
+JOIN directors_movies ON directors_movies.movies_id = movies.id
+WHERE directors_movies.directors_id = ( 
+SELECT id
+FROM directors
+WHERE CONCAT( firstname,  ' ', lastname ) =  'Peter Jackson' ) 
+
+
+
+
+3 = Commentaires actifs (state=2)
+SELECT id
+FROM comments
+WHERE state =2
+
+4 = liste des films appartenant a la catégorie fantastique et dont date de sortie (daterelease) > today
+SELECT movies.title FROM `movies` JOIN categories on movies.categories_id=categories.id where categories.title='Fantastique' AND movies.date_release > NOW()
+
+
+5 = ttes les séances diffusées apres 17h au cinéma UGC paris 2eme
+ SELECT movies.title FROM `sessions` JOIN cinema on sessions.cinema_id=cinema.id JOIN movies ON sessions.movies_id=movies.id WHERE cinema.title='UGC' and cinema.ville='Paris 2eme' AND HOUR(sessions.date_session)>17
+
+
+6 = Liste des films francais (languages) du distributeur warner bros en vost de 2010 à cette année
+SELECT movies.title,movies.date_release FROM `movies` WHERE languages='fr' AND distributeur='Warner_Bros' AND bo='VOST' AND YEAR(date_release)>2010
+ 
+7 = moyenne en durée des films joués par Yann McKellen
+SELECT avg(duree) FROM `movies` JOIN actors_movies ON movies_id=movies.id JOIN actors ON actors.id=actors_movies.actors_id WHERE actors.firstname='Ian' AND  actors.lastname='McKellen'
+ 
+8 = nombre d'acteurs habitant a NY
+SELECT COUNT(id) FROM `actors` WHERE city='New York'
+
+ 
+9 = nombre de films qui n'ont pas d'images
+SELECT COUNT(id) FROM `movies` WHERE image=''
+ 
+10 = tous les films qui ont un tag 'golum'
+SELECT movies.title FROM `movies` JOIN tags_movies ON movies.id=tags_movies.movies_id JOIN tags ON tags_movies.tags_id=tags.id WHERE tags.word='Gollum'
+ 
+
+
+11 = nombre de commentaires par film actif (visible=1) et cover=1
+SELECT movies_id,count(id) FROM `comments` GROUP BY movies_id
+
+
+12 = moyenne des notes des commentaires des films de tarantino
+SELECT avg(comments.note) FROM `comments` JOIN movies ON comments.movies_id=movies.id JOIN directors_movies ON movies.id=directors_movies.movies_id JOIN directors ON directors_movies.directors_id=directors.id WHERE directors.firstname='Quentin' AND directors.lastname='Tarantino'
+
+
+
+13 = toutes les séances des cinés du 2ème arrondissement de paris ou du 5eme qui diffusent au moins un film
+SELECT sessions.id FROM `sessions` JOIN cinema ON sessions.cinema_id=cinema.id JOIN cinema_movies ON cinema.id=cinema_movies.cinemas_id WHERE ville="Paris 2eme" AND ville="Paris 5eme"
+
+
+
+
+14 = le film qui a le plus de commentaires et dont le synopsis comporte le mot clé "gandalf"
+SELECT movies.title FROM `movies` JOIN comments ON movies.id=comments.movies_id WHERE movies.synopsis LIKE '%gandalf%' GROUP BY comments.movies_id ORDER BY count(comments.movies_id) DESC LIMIT 1
+
+
+15 = age de chaque réalisateur
+SELECT concat(directors.firstname," ",directors.lastname),TIMESTAMPDIFF(YEAR,dob,CURDATE()) as age FROM `directors` 
+

@@ -1,0 +1,32 @@
+1 = les films sortis du 28/02/2012 à aout 2013 avec synopsis non vide et une image qui respect le regex URL
+SELECT movies.title,movies.date_release FROM `movies` WHERE synopsis!='' AND date_release>"2012-02-28" AND date_release<"2013-09-01" AND image REGEXP "^(https?://|www\\.)[\.A-Za-z0-9\-]+\\.[a-zA-Z]{2,4}"
+
+2 = Le nombre de films dont le prix est supérieur à 10 euros et dont la ref est de 3 caractères
+SELECT movies.title FROM `movies` WHERE price>10 AND char_length(movies.ref)=3
+
+
+3 = Le nom du realisateur avec le plus de film
+SELECT directors.lastname FROM `directors` JOIN directors_movies ON directors_movies.directors_id=directors.id  GROUP BY directors.id ORDER BY count(directors.id) DESC LIMIT 1
+
+
+4 = Le nom des utilisateurs lyonnais du 5eme triés par ordre de connection DESC
+SELECT users.username FROM users WHERE zipcode='69005' ORDER BY last_login DESC
+
+
+5 = Le nombre de tags des films réalisés par christopher nolan
+SELECT count(tags.id) FROM `tags` JOIN tags_movies ON tags_movies.tags_id=tags.id  JOIN movies ON movies.id=tags_movies.movies_id
+JOIN directors_movies ON directors_movies.movies_id=movies.id
+JOIN directors ON directors.id=directors_movies.directors_id WHERE directors.firstname="Christopher" AND directors.lastname="Nolan"
+
+
+6 = La catégorie qui a le plus grand nombre de minutes de durée 
+SELECT (Select categories.title FROM categories where id=categories_id),sum(duree)*60 as Minutes from movies where categories_id!=""  group by categories_id ORDER BY Minutes DESC LIMIT 1
+
+
+7 = Le nombre de films sortis il y a plus de 15 jours dont la note de presse est inférieure à 3 triée par date de création
+SELECT count(movies.id) FROM movies WHERE TO_DAYS(NOW()) -TO_DAYS(date_release) >15 AND note_presse<3 ORDER BY date_created ASC
+
+
+8 = La prochaine séance qui sortira le plus proche dans le temps + cinéma et film
+SELECT sessions.date_session,movies.title,cinema.title FROM sessions JOIN movies ON movies.id=sessions.movies_id
+JOIN cinema ON sessions.cinema_id=cinema.id WHERE date_session>NOW() ORDER BY date_session DESC LIMIT 1

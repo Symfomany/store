@@ -1,0 +1,15 @@
+store_backend_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: StoreBackendBundle:Default:index }
+
+
+#Nom de la route
+store_backend_index:
+    path: /dashboard #chemin / URI de la route
+    defaults: { _controller: StoreBackendBundle:Main:index }
+    # Le Controlleur et L'action appelée
+
+store_backend_statics:
+    resource: "@StoreBackendBundle/Resources/config/statics.yml"
+    prefix:   /
+
