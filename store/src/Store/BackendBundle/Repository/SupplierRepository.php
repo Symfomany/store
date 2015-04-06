@@ -12,4 +12,38 @@ use Doctrine\ORM\EntityRepository;
  */
 class SupplierRepository extends EntityRepository
 {
+
+    /**
+     * Count All Supplier
+     * SELECT COUNT(s0_.id) AS sclr0
+     * FROM product p1_
+     *
+     * INNER JOIN product_supplier p2_
+     * ON p1_.id = p2_.product_id
+     *
+     * INNER JOIN supplier s0_
+     * ON s0_.id = p2_.supplier_id
+     *
+     * WHERE p1_.jeweler_id = 1
+     *
+     * GROUP BY p1_.jeweler_id
+     * @return mixed
+     */
+    public function getCountByUser($user = null){
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                 SELECT COUNT(s) AS nb
+                 FROM StoreBackendBundle:Product p
+                 JOIN p.supplier s
+                 WHERE p.jeweler = :user
+                 GROUP BY p.jeweler"
+            )
+            ->setParameter('user', $user);
+
+        // debug here... $query->getSQL()
+        //exit(var_dump($query->getSQL()));
+
+        return $query->getOneOrNullResult();
+    }
 }

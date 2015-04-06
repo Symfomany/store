@@ -23,11 +23,11 @@ class SecurityController extends Controller{
 
 
 //        $em = $this->getDoctrine()->getManager();
-//        $user = $em->getRepository('StoreBackendBundle:Jeweler')->find(1);
+//        $user = $em->getRepository('StoreBackendBundle:Jeweler')->find(2);
 //
 //        $factory = $this->get('security.encoder_factory');
 //        $encoder = $factory->getEncoder($user);
-//        $password = $encoder->encodePassword('admin', $user->getSalt());
+//        $password = $encoder->encodePassword('troiswa', $user->getSalt());
 //        $user->setPassword($password);
 //        $em->persist($user);
 //        $em->flush();

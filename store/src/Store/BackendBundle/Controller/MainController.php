@@ -17,15 +17,23 @@ class MainController extends Controller{
      * Page Dashboard on Backend
      */
     public function indexAction(){
-        $em = $this->getDoctrine()->getManager();
+        // Récupérer l'utilisateur
+        $user = $this->getUser();
 
-        $nbprod = $em->getRepository('StoreBackendBundle:Product')
-            ->getCountProducts();
+        // Récupérer Doctrine Manager
+        $em = $this->getDoctrine()->getManager();
+        $nbprod = $em->getRepository('StoreBackendBundle:Product')->getCountByUser($user);
+        $nbsupp = $em->getRepository('StoreBackendBundle:Supplier')->getCountByUser($user);
+        $nbcms = $em->getRepository('StoreBackendBundle:CMS')->getCountByUser($user);
+        $nbcomm = $em->getRepository('StoreBackendBundle:Comment')->getCountByUser($user);
 
         // je retourne la vue index de mon dossier Main
         return $this->render('StoreBackendBundle:Main:index.html.twig',
             array(
-                'nbprod' => $nbprod
+                'nbprod' => $nbprod,
+                'nbsupp' => $nbsupp,
+                'nbcms' => $nbcms,
+                'nbcomm' => $nbcomm,
             )
         );
     }

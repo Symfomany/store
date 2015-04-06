@@ -87,28 +87,6 @@ class Message
         return $this->id;
     }
 
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     * @return Comment
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return integer 
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
 
     /**
      * Set note
@@ -223,5 +201,74 @@ class Message
     public function getProduct()
     {
         return $this->product;
+    }
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     * @return Message
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+
+        return $this;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string 
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * Set jeweler
+     *
+     * @param \Store\BackendBundle\Entity\Jeweler $jeweler
+     * @return Message
+     */
+    public function setJeweler(\Store\BackendBundle\Entity\Jeweler $jeweler = null)
+    {
+        $this->jeweler = $jeweler;
+
+        return $this;
+    }
+
+    /**
+     * Get jeweler
+     *
+     * @return \Store\BackendBundle\Entity\Jeweler 
+     */
+    public function getJeweler()
+    {
+        return $this->jeweler;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Store\BackendBundle\Entity\User $user
+     * @return Message
+     */
+    public function setUser(\Store\BackendBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Store\BackendBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

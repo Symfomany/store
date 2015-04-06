@@ -69,19 +69,19 @@
                     <ul class="list-group no-margin">
                         <!-- Without left and right borders, extra small horizontal padding, without background, no border radius -->
                         <li class="list-group-item no-border-hr padding-xs-hr no-bg no-border-radius">
-                            Bijoux <span class="label label-pa-purple pull-right">{{ nbprod }}</span>
+                            Bijoux <span class="label label-pa-purple pull-right">{{ nbprod.nb|default('0') }} crées</span>
                         </li> <!-- / .list-group-item -->
                         <!-- Without left and right borders, extra small horizontal padding, without background -->
                         <li class="list-group-item no-border-hr padding-xs-hr no-bg">
-                            Fournisseurs <span class="label label-danger pull-right">128</span>
+                            Fournisseurs <span class="label label-danger pull-right">{{ nbsupp.nb|default('0') }} utilisés</span>
                         </li>
                         <!-- Without left and right borders, extra small horizontal padding, without background -->
                         <li class="list-group-item no-border-hr padding-xs-hr no-bg">
-                            Pages <span class="label label-danger pull-right">128</span>
+                            Pages <span class="label label-danger pull-right">{{ nbcms.nb|default('0') }} écrites</span>
                         </li> <!-- / .list-group-item -->
                         <!-- Without left and right borders, without bottom border, extra small horizontal padding, without background -->
                         <li class="list-group-item no-border-hr no-border-b padding-xs-hr no-bg">
-                            Commentaires <span class="label label-success pull-right">12</span>
+                            Commentaires <span class="label label-success pull-right">{{ nbcomm.nb|default('0') }} réagis</span>
                         </li> <!-- / .list-group-item -->
                     </ul>
                 </div> <!-- /.stat-cell -->

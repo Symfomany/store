@@ -17,11 +17,16 @@ class ProductRepository extends EntityRepository
      * Count All Product
      * @return mixed
      */
-    public function getCountProducts(){
-        return $this->getEntityManager()
+    public function getCountByUser($user = null){
+        $query = $this->getEntityManager()
             ->createQuery(
-                'SELECT COUNT(p) FROM StoreBackendBundle:Product p'
+                "
+                 SELECT COUNT(p) AS nb
+                 FROM StoreBackendBundle:Product p
+                 WHERE p.jeweler = :user"
             )
-            ->getSingleScalarResult();
+            ->setParameter('user', $user);
+
+        return $query->getOneOrNullResult();
     }
 }

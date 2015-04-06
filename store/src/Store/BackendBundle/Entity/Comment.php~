@@ -24,13 +24,6 @@ class Comment
     /**
      * @var integer
      *
-     * @ORM\Column(name="user_id", type="integer", nullable=true)
-     */
-    private $userId;
-
-    /**
-     * @var integer
-     *
      * @ORM\Column(name="note", type="integer", nullable=true)
      */
     private $note;
@@ -65,6 +58,16 @@ class Comment
      * })
      */
     private $product;
+    
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
 
 
     /**
@@ -85,28 +88,6 @@ class Comment
         return $this->id;
     }
 
-    /**
-     * Set userId
-     *
-     * @param integer $userId
-     * @return Comment
-     */
-    public function setUserId($userId)
-    {
-        $this->userId = $userId;
-
-        return $this;
-    }
-
-    /**
-     * Get userId
-     *
-     * @return integer 
-     */
-    public function getUserId()
-    {
-        return $this->userId;
-    }
 
     /**
      * Set note
@@ -221,5 +202,28 @@ class Comment
     public function getProduct()
     {
         return $this->product;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Store\BackendBundle\Entity\User $user
+     * @return Comment
+     */
+    public function setUser(\Store\BackendBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Store\BackendBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
     }
 }

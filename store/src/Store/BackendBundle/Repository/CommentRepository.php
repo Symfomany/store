@@ -12,4 +12,24 @@ use Doctrine\ORM\EntityRepository;
  */
 class CommentRepository extends EntityRepository
 {
+
+    /**
+     * Count Comment
+     * @return mixed
+     */
+    public function getCountByUser($user = null){
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                 SELECT COUNT(c) AS nb
+                 FROM StoreBackendBundle:Comment c
+                 JOIN c.product p
+                 WHERE p.jeweler = :user
+                 GROUP BY p.jeweler
+                "
+            )
+            ->setParameter('user', $user);
+
+        return $query->getOneOrNullResult();
+    }
 }

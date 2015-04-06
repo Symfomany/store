@@ -35,10 +35,12 @@ class JewelerRepository extends EntityRepository implements UserProviderInterfac
             ->setParameter('locked', 0)
             ->getQuery();
 
+
         try {
             // La méthode Query::getSingleResult() lance une exception
             // s'il n'y a pas d'entrée correspondante aux critères
             $user = $q->getSingleResult();
+
         } catch (NoResultException $e) {
             throw new UsernameNotFoundException(sprintf('Unable to find an active admin AcmeUserBundle:User object identified by "%s".', $username), 0, $e);
         }
