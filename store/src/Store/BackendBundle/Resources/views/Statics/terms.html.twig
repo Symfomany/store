@@ -1,0 +1,1 @@
+<h1>Mentions Légales</h1>

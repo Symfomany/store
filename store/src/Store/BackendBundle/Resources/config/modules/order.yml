@@ -1,0 +1,14 @@
+
+# Page List of Product
+store_backend_order_list:
+  path: /list
+  defaults: { _controller: StoreBackendBundle:Order:list }
+
+# Page View a Product
+store_backend_order_view:
+  path: /view/{id}/{name}
+  defaults: { _controller: StoreBackendBundle:Order:view }
+  requirements:
+    id: \d+
+    name: "[a-zA-Z0-9-]{3,30}"
+    _method: GET

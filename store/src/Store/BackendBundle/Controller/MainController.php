@@ -17,9 +17,17 @@ class MainController extends Controller{
      * Page Dashboard on Backend
      */
     public function indexAction(){
+        $em = $this->getDoctrine()->getManager();
+
+        $nbprod = $em->getRepository('StoreBackendBundle:Product')
+            ->getCountProducts();
 
         // je retourne la vue index de mon dossier Main
-        return $this->render('StoreBackendBundle:Main:index.html.twig');
+        return $this->render('StoreBackendBundle:Main:index.html.twig',
+            array(
+                'nbprod' => $nbprod
+            )
+        );
     }
 
 

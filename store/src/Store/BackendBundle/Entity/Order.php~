@@ -1,0 +1,259 @@
+<?php
+
+namespace Store\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Order
+ *
+ * @ORM\Table(name="order")
+ * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\OrderRepository")
+ */
+class Order
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="address", type="text", nullable=true)
+     */
+    private $address;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="date", type="date", nullable=true)
+     */
+    private $date;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="status", type="integer", nullable=true)
+     */
+    private $status;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="total", type="float", nullable=true)
+     */
+    private $total;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="date_created", type="datetime", nullable=true)
+     */
+    private $dateCreated;
+
+
+    /**
+     * @var \Product
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * })
+     */
+    private $user;
+
+    /**
+     * @var \Product
+     *
+     * @ORM\ManyToOne(targetEntity="Jeweler")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="jeweler_id", referencedColumnName="id")
+     * })
+     */
+    private $jeweler;
+
+
+    /**
+     * Constructor
+     */
+    public function __construct(){
+        $this->dateCreated = new \DateTime('now');
+        $this->status = 1;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set address
+     *
+     * @param string $address
+     * @return Order
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+
+        return $this;
+    }
+
+    /**
+     * Get address
+     *
+     * @return string 
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * Set date
+     *
+     * @param \DateTime $date
+     * @return Order
+     */
+    public function setDate($date)
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    /**
+     * Get date
+     *
+     * @return \DateTime 
+     */
+    public function getDate()
+    {
+        return $this->date;
+    }
+
+    /**
+     * Set status
+     *
+     * @param integer $status
+     * @return Order
+     */
+    public function setStatus($status)
+    {
+        $this->status = $status;
+
+        return $this;
+    }
+
+    /**
+     * Get status
+     *
+     * @return integer 
+     */
+    public function getStatus()
+    {
+        return $this->status;
+    }
+
+    /**
+     * Set dateCreated
+     *
+     * @param \DateTime $dateCreated
+     * @return Order
+     */
+    public function setDateCreated($dateCreated)
+    {
+        $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreated
+     *
+     * @return \DateTime 
+     */
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
+    }
+
+    /**
+     * Set user
+     *
+     * @param \Store\BackendBundle\Entity\User $user
+     * @return Order
+     */
+    public function setUser(\Store\BackendBundle\Entity\User $user = null)
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * Get user
+     *
+     * @return \Store\BackendBundle\Entity\User 
+     */
+    public function getUser()
+    {
+        return $this->user;
+    }
+
+    /**
+     * Set jeweler
+     *
+     * @param \Store\BackendBundle\Entity\Jeweler $jeweler
+     * @return Order
+     */
+    public function setJeweler(\Store\BackendBundle\Entity\Jeweler $jeweler = null)
+    {
+        $this->jeweler = $jeweler;
+
+        return $this;
+    }
+
+    /**
+     * Get jeweler
+     *
+     * @return \Store\BackendBundle\Entity\Jeweler 
+     */
+    public function getJeweler()
+    {
+        return $this->jeweler;
+    }
+
+    /**
+     * Set total
+     *
+     * @param float $total
+     * @return Order
+     */
+    public function setTotal($total)
+    {
+        $this->total = $total;
+
+        return $this;
+    }
+
+    /**
+     * Get total
+     *
+     * @return float 
+     */
+    public function getTotal()
+    {
+        return $this->total;
+    }
+}

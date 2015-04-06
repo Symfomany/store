@@ -3,3 +3,21 @@ store_backend_statics_contact:
     path:     /contact #chemin vers l'URI
     defaults: { _controller: StoreBackendBundle:Statics:contact }
     # NomduBundle:NomduControlleur:Nomdel'Action
+
+# Page Static About
+store_backend_statics_about:
+    path:     /about #chemin vers l'URI
+    defaults: { _controller: StoreBackendBundle:Statics:about }
+    # NomduBundle:NomduControlleur:Nomdel'Action
+
+# Page Static Terms
+store_backend_statics_terms:
+    path:     /terms #chemin vers l'URI
+    defaults: { _controller: StoreBackendBundle:Statics:terms }
+    # NomduBundle:NomduControlleur:Nomdel'Action
+
+# Page Static Concept
+store_backend_statics_concept:
+    path:     /concept #chemin vers l'URI
+    defaults: { _controller: StoreBackendBundle:Statics:concept }
+    # NomduBundle:NomduControlleur:Nomdel'Action

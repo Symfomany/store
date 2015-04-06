@@ -13,8 +13,10 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class StaticsController extends Controller{
 
+
     /**
-     * Page Contact
+     * Pages contact
+     * @return \Symfony\Component\HttpFoundation\Response
      */
     public function contactAction(){
 
@@ -22,6 +24,35 @@ class StaticsController extends Controller{
         return $this->render('StoreBackendBundle:Statics:contact.html.twig');
     }
 
+    /**
+     * Page About
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function aboutAction(){
+
+        //je retourne la vue contact contenu dans le dossier Statics de mon bundle StoreBackendBundle
+        return $this->render('StoreBackendBundle:Statics:about.html.twig');
+    }
+
+    /**
+     * Pages Mentions Légales
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function termsAction(){
+
+        //je retourne la vue contact contenu dans le dossier Statics de mon bundle StoreBackendBundle
+        return $this->render('StoreBackendBundle:Statics:terms.html.twig');
+    }
+
+    /**
+     * Page Concept
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function conceptAction(){
+
+        //je retourne la vue contact contenu dans le dossier Statics de mon bundle StoreBackendBundle
+        return $this->render('StoreBackendBundle:Statics:concept.html.twig');
+    }
 
 }
 

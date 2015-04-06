@@ -1,0 +1,231 @@
+<?php
+
+namespace Store\BackendBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Business
+ *
+ * @ORM\Table(name="business")
+ * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\BusinessRepository")
+ */
+class Business
+{
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id", type="integer", nullable=false)
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    private $id;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="type", type="integer", nullable=true)
+     */
+    private $type;
+
+    /**
+     * @var float
+     *
+     * @ORM\Column(name="amount", type="float", precision=10, scale=0, nullable=true)
+     */
+    private $amount;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="message", type="string", length=300, nullable=true)
+     */
+    private $message;
+
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="active", type="boolean", nullable=true)
+     */
+    private $active;
+
+    /**
+     * @var \DateTime
+     */
+    private $dateExpired;
+
+    /**
+     * @var \DateTime
+     */
+    private $dateCreated;
+
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Product", mappedBy="category")
+     */
+    private $product;
+
+
+    /**
+     * Initialize my object
+     */
+    public function __construct(){
+        $this->dateExpired = new \DateTime('now');
+        $this->dateCreated = new \DateTime('now');
+        $this->active = 1;
+        $this->amount = 0;
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     * @return Business
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer 
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Set amount
+     *
+     * @param float $amount
+     * @return Business
+     */
+    public function setAmount($amount)
+    {
+        $this->amount = $amount;
+
+        return $this;
+    }
+
+    /**
+     * Get amount
+     *
+     * @return float 
+     */
+    public function getAmount()
+    {
+        return $this->amount;
+    }
+
+    /**
+     * Set message
+     *
+     * @param string $message
+     * @return Business
+     */
+    public function setMessage($message)
+    {
+        $this->message = $message;
+
+        return $this;
+    }
+
+    /**
+     * Get message
+     *
+     * @return string 
+     */
+    public function getMessage()
+    {
+        return $this->message;
+    }
+
+    /**
+     * Set dateExpired
+     *
+     * @param \DateTime $dateExpired
+     * @return Business
+     */
+    public function setDateExpired($dateExpired)
+    {
+        $this->dateExpired = $dateExpired;
+
+        return $this;
+    }
+
+    /**
+     * Get dateExpired
+     *
+     * @return \DateTime 
+     */
+    public function getDateExpired()
+    {
+        return $this->dateExpired;
+    }
+
+    /**
+     * Set active
+     *
+     * @param boolean $active
+     * @return Business
+     */
+    public function setActive($active)
+    {
+        $this->active = $active;
+
+        return $this;
+    }
+
+    /**
+     * Get active
+     *
+     * @return boolean 
+     */
+    public function getActive()
+    {
+        return $this->active;
+    }
+
+
+
+    /**
+     * Set dateCreated
+     *
+     * @param \DateTime $dateCreated
+     * @return Business
+     */
+    public function setDateCreated($dateCreated)
+    {
+        $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreated
+     *
+     * @return \DateTime 
+     */
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
+    }
+}

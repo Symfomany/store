@@ -1,0 +1,14 @@
+
+# Page List of Categories
+store_backend_category_list:
+  path: /list
+  defaults: { _controller: StoreBackendBundle:Category:list }
+
+# Page View of Categories
+store_backend_category_view:
+  path: /view/{id}/{name}
+  defaults: { _controller: StoreBackendBundle:Category:view }
+  requirements:
+    id: \d+
+    name: "[a-zA-Z0-9-]{3,30}"
+    _method: GET
