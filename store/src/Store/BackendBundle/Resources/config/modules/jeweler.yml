@@ -1,5 +1,10 @@
 
-# Page List of Product
+# Page My Account
 store_backend_jeweler_myaccount:
   path: /my-account
   defaults: { _controller: StoreBackendBundle:Jeweler:myaccount }
+
+# Page My Parameters
+store_backend_jeweler_myparameters:
+  path: /my-parameters
+  defaults: { _controller: StoreBackendBundle:Jeweler:myparameters }

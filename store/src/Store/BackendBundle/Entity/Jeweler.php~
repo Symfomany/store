@@ -4,17 +4,18 @@ namespace Store\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\Role;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Core\User\EquatableInterface;
 
 
 /**
- * Jeweler
- *
+ * Jeweler Class
+ * Use AdvancedUserInterface
  * @ORM\Table(name="jeweler", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\JewelerRepository")
  */
-class Jeweler implements UserInterface, \Serializable
+class Jeweler implements  AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
@@ -81,12 +82,6 @@ class Jeweler implements UserInterface, \Serializable
      */
     private $enabled;
 
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="is_active", type="boolean", nullable=true)
-     */
-    private $isActive;
 
     /**
      * @var boolean
@@ -834,5 +829,41 @@ class Jeweler implements UserInterface, \Serializable
         $this->username = $username;
 
         return $this;
+    }
+
+    /**
+     * Verification is Account is not expired
+     * @return bool
+     */
+    public function isAccountNonExpired()
+    {
+        return $this->accountnonexpired;
+    }
+
+    /**
+     * Verification is Account is not locked
+     * @return bool
+     */
+    public function isAccountNonLocked()
+    {
+        return $this->accountnonlocked;
+    }
+
+    /**
+     * Verification account  credentials is not expired
+     * @return bool
+     */
+    public function isCredentialsNonExpired()
+    {
+        return $this->credentialsExpired;
+    }
+
+    /**
+     * Verification account is not enabled
+     * @return bool|int
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
     }
 }

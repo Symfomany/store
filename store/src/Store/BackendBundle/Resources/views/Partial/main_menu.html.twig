@@ -34,11 +34,11 @@
         <div>
             <div class="text-bg"><span class="text-slim">Bienvenue,</span> <span class="text-semibold">{{ app.user.username }}</span></div>
 
-            <img src="https://placekitten.com/g/150/150" alt="" class="">
+            <img src="{{ app.user.image }}" alt="" class="">
             <div class="btn-group">
                 <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a>
-                <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
-                <a href="#" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-cog"></i></a>
+                <a href="{{ path('store_backend_jeweler_myaccount') }}" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>
+                <a href="{{ path('store_backend_jeweler_myparameters') }}" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-cog"></i></a>
                 <a href="{{ path('store_backend_logout') }}" class="btn btn-xs btn-danger btn-outline dark"><i class="fa fa-power-off"></i></a>
             </div>
             <a href="#" class="close">&times;</a>

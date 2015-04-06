@@ -22,6 +22,24 @@ class JewelerController extends Controller{
         return $this->render('StoreBackendBundle:Jeweler:myaccount.html.twig');
     }
 
+    /**
+     * My parameters
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function myparametersAction(){
+
+        return $this->render('StoreBackendBundle:Jeweler:myparameters.html.twig');
+    }
+
+    /**
+     * My parameters
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function mymessagesAction(){
+
+        return $this->render('StoreBackendBundle:Jeweler:mymessages.html.twig');
+    }
+
 }
 
 
