@@ -13,6 +13,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
  */
 class JewelerController extends Controller{
 
+    /**
+     * My Account
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function myaccountAction(){
+
+        return $this->render('StoreBackendBundle:Jeweler:myaccount.html.twig');
+    }
 
 }
 

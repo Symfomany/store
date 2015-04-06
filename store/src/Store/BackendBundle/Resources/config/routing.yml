@@ -25,6 +25,11 @@ store_backend_categories:
     resource: "@StoreBackendBundle/Resources/config/modules/category.yml"
     prefix:   /categories
 
+#Pages Jeweler
+store_backend_jewelers:
+    resource: "@StoreBackendBundle/Resources/config/modules/jeweler.yml"
+    prefix:   /jewelers
+
 #Pages CMS
 store_backend_cms:
     resource: "@StoreBackendBundle/Resources/config/modules/cms.yml"
