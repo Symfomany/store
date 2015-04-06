@@ -8,3 +8,8 @@ store_backend_jeweler_myaccount:
 store_backend_jeweler_myparameters:
   path: /my-parameters
   defaults: { _controller: StoreBackendBundle:Jeweler:myparameters }
+
+# Page My Messages
+store_backend_jeweler_mymessages:
+  path: /my-messages
+  defaults: { _controller: StoreBackendBundle:Jeweler:mymessages }
