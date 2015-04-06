@@ -64,7 +64,7 @@ class Business
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Product", mappedBy="category")
+     * @ORM\ManyToMany(targetEntity="Product", mappedBy="business")
      */
     private $product;
 
@@ -77,6 +77,7 @@ class Business
         $this->dateCreated = new \DateTime('now');
         $this->active = 1;
         $this->amount = 0;
+        $this->product = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -227,5 +228,38 @@ class Business
     public function getDateCreated()
     {
         return $this->dateCreated;
+    }
+
+    /**
+     * Add product
+     *
+     * @param \Store\BackendBundle\Entity\Product $product
+     * @return Business
+     */
+    public function addProduct(\Store\BackendBundle\Entity\Product $product)
+    {
+        $this->product[] = $product;
+
+        return $this;
+    }
+
+    /**
+     * Remove product
+     *
+     * @param \Store\BackendBundle\Entity\Product $product
+     */
+    public function removeProduct(\Store\BackendBundle\Entity\Product $product)
+    {
+        $this->product->removeElement($product);
+    }
+
+    /**
+     * Get product
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getProduct()
+    {
+        return $this->product;
     }
 }

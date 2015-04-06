@@ -18,12 +18,15 @@
 
     <div id="main-wrapper">
 
-        {# Inclusion de ma vue partielle main naviguation#}
-        {{ include('StoreBackendBundle:Partial:main_navigation.html.twig') }}
+        {% if app.user.id is defined %}
+            {# Inclusion de ma vue partielle main naviguation#}
+            {{ include('StoreBackendBundle:Partial:main_navigation.html.twig') }}
+        {% endif %}
 
-        {# Inclusion de ma vue partielle main menu #}
-        {{ include('StoreBackendBundle:Partial:main_menu.html.twig') }}
-
+        {% if app.user.id is defined %}
+            {# Inclusion de ma vue partielle main menu #}
+            {{ include('StoreBackendBundle:Partial:main_menu.html.twig') }}
+        {% endif %}
 
         <div id="content-wrapper">
 

@@ -3,14 +3,19 @@
 namespace Store\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Security\Core\Role\Role;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\EquatableInterface;
+
 
 /**
- * Jeweler
- *
+ * Jeweler Class
+ * Use AdvancedUserInterface
  * @ORM\Table(name="jeweler", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\JewelerRepository")
  */
-class Jeweler
+class Jeweler implements  AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
@@ -27,6 +32,13 @@ class Jeweler
      * @ORM\Column(name="email", type="string", length=150, nullable=true)
      */
     private $email;
+    
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="username", type="string", length=150, nullable=true)
+     */
+    private $username;
 
     /**
      * @var string
@@ -69,6 +81,7 @@ class Jeweler
      * @ORM\Column(name="enabled", type="boolean", nullable=true)
      */
     private $enabled;
+
 
     /**
      * @var boolean
@@ -191,6 +204,8 @@ class Jeweler
         $this->enabled = 1;
         $this->locked = 0;
         $this->expired = 0;
+        $this->salt = md5(uniqid(null, true));
+
     }
 
     /**
@@ -730,5 +745,125 @@ class Jeweler
     public function getMeta()
     {
         return $this->meta;
+    }
+
+    /**
+     * Returns the roles granted to the user.
+     *
+     * <code>
+     * public function getRoles()
+     * {
+     *     return array('ROLE_USER');
+     * }
+     * </code>
+     *
+     * Alternatively, the roles might be stored on a ``roles`` property,
+     * and populated in any number of different ways when the user object
+     * is created.
+     *
+     * @return Role[] The user roles
+     */
+    public function getRoles()
+    {
+        return array('ROLE_ADMIN');
+    }
+
+    /**
+     * Returns the username used to authenticate the user.
+     *
+     * @return string The username
+     */
+    public function getUsername()
+    {
+        return $this->username;
+    }
+
+    /**
+     * Removes sensitive data from the user.
+     *
+     * This is important if, at any given point, sensitive information like
+     * the plain-text password is stored on this object.
+     */
+    public function eraseCredentials()
+    {
+    }
+
+    /**
+     * @see \Serializable::serialize()
+     */
+    public function serialize()
+    {
+        return serialize(array(
+            $this->id,
+        ));
+    }
+
+    /**
+     * @see \Serializable::unserialize()
+     */
+    public function unserialize($serialized)
+    {
+        list (
+            $this->id,
+            ) = unserialize($serialized);
+    }
+
+    /**
+     * @param UserInterface $user
+     * @return bool
+     */
+    public function isEqualTo(UserInterface $user)
+    {
+        return $this->username === $user->getUsername();
+    }
+
+
+    /**
+     * Set username
+     *
+     * @param string $username
+     * @return Jeweler
+     */
+    public function setUsername($username)
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * Verification is Account is not expired
+     * @return bool
+     */
+    public function isAccountNonExpired()
+    {
+        return $this->accountnonexpired;
+    }
+
+    /**
+     * Verification is Account is not locked
+     * @return bool
+     */
+    public function isAccountNonLocked()
+    {
+        return $this->accountnonlocked;
+    }
+
+    /**
+     * Verification account  credentials is not expired
+     * @return bool
+     */
+    public function isCredentialsNonExpired()
+    {
+        return $this->credentialsExpired;
+    }
+
+    /**
+     * Verification account is not enabled
+     * @return bool|int
+     */
+    public function isEnabled()
+    {
+        return $this->enabled;
     }
 }

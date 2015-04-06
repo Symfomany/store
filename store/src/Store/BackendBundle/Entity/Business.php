@@ -64,7 +64,7 @@ class Business
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Product", mappedBy="category")
+     * @ORM\ManyToMany(targetEntity="Product", mappedBy="business")
      */
     private $product;
 

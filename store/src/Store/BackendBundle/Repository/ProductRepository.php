@@ -20,7 +20,7 @@ class ProductRepository extends EntityRepository
     public function getCountProducts(){
         return $this->getEntityManager()
             ->createQuery(
-                'SELECT COUNT(p) AS nb FROM StoreBackendBundle:Product p'
+                'SELECT COUNT(p) FROM StoreBackendBundle:Product p'
             )
             ->getSingleScalarResult();
     }
