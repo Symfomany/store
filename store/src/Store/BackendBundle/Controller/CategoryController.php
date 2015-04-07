@@ -32,7 +32,6 @@ class CategoryController extends Controller{
      */
     public function viewAction($id, $name){
 
-
         // je retourne ma vue view de Categorie où je transmet l'id en vue
         return $this->render('StoreBackendBundle:Category:view.html.twig',
             array(

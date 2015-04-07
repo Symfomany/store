@@ -15,45 +15,34 @@
 
 
     <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-9">
 
-        <!-- 5. $UPLOADS_CHART =============================================================================
+        <!-- 5. $ORDER CHART =============================================================================
 
-                        Uploads chart
+                        ORDER CHART
         -->
         <!-- Javascript -->
         <script>
             init.push(function () {
                 var uploads_data = [
-                    { month: '2014-01-31', v: 40 },
-                    { month: '2014-02-28', v: 10 },
-                    { month: '2014-03-31', v: 15 },
-                    { month: '2014-04-30', v: 12 },
-                    { month: '2014-05-31', v: 5  },
-                    { month: '2014-06-30', v: 15  },
-                    { month: '2014-07-31', v: 18 },
-                    { month: '2014-08-30', v: 14 },
-                    { month: '2014-09-31', v: 10 },
-                    { month: '2014-10-30', v: 20 },
-                    { month: '2014-11-31', v: 15 },
-                    { month: '2014-12-30', v: 17 },
+                    {% for stat in statorder %}
+                        { period: '{{ stat.d }}', v: {{ stat.nb|default(0) }} },
+                    {% endfor %}
                 ];
                 Morris.Line({
                     element: 'hero-graph',
                     data: uploads_data,
-                    xkey: 'month',
+                    xkey: 'period',
                     ykeys: ['v'],
-                    labels: ['Value'],
+                    labels: ['Nb. de commande'],
                     lineColors: ['#fff'],
                     lineWidth: 2,
-                    pointSize: 4,
-                    gridLineColor: 'rgba(255,255,255,.5)',
+                    pointSize: 3,
+                    gridLineColor: 'rgba(255,255,255,.8)',
                     resize: true,
                     gridTextColor: '#fff',
-                    xLabels: "day",
-                    xLabelFormat: function(d) {
-                        return ['Jan','Fev','Mar','Avr','Mai','Juin','Juil','Aout','Sep','Oct','Nov', 'Dec'][d.getMonth()] + ' ' + d.getDate();
-                    }
+                    xLabels: "period"
+
                 });
             });
         </script>
@@ -62,7 +51,7 @@
         <div class="stat-panel">
             <div class="stat-row">
                 <!-- Small horizontal padding, bordered, without right border, top aligned text -->
-                <div class="stat-cell col-sm-4 padding-sm-hr bordered no-border-r valign-top">
+                <div class="stat-cell col-sm-3 padding-sm-hr bordered no-border-r valign-top">
                     <!-- Small padding, without top padding, extra small horizontal padding -->
                     <h4 class="padding-sm no-padding-t padding-xs-hr"><i class="fa fa-bar-chart-o text-primary"></i>&nbsp;&nbsp;Vos chiffres</h4>
                     <!-- Without margin -->
@@ -86,7 +75,7 @@
                     </ul>
                 </div> <!-- /.stat-cell -->
                 <!-- Primary background, small padding, vertically centered text -->
-                <div class="stat-cell col-sm-8 bg-primary padding-sm valign-middle">
+                <div class="stat-cell col-sm-9 bg-info padding-sm valign-middle">
                     <div id="hero-graph" class="graph" style="height: 230px;"></div>
                 </div>
             </div>
@@ -182,7 +171,7 @@
     </div>
     <!-- /6. $EASY_PIE_CHARTS -->
 
-    <div class="col-md-4">
+    <div class="col-md-3">
         <div class="row">
 
             <!-- 7. $EARNED_TODAY_STAT_PANEL ===================================================================
@@ -196,11 +185,11 @@
                         <!-- Stat panel bg icon -->
                         <i class="fa fa-trophy bg-icon"></i>
                         <!-- Extra large text -->
-                        <span class="text-xlg"><strong>54841 €</strong></span><br>
+                        <span class="text-xlg"><strong>{{ ca|default(0) }} €</strong></span><br>
                         <!-- Big text -->
                         <span class="text-bg">Chiffre d'affaire</span><br>
                         <!-- Small text -->
-                        <span class="text-sm"><a href="#">Depuis votre inscription</a></span>
+                        <span class="text-sm"><a href="#">Depuis votre inscription <i>({{ app.user.dateCreated|date("d/m/Y") }})</i></a></span>
                     </div> <!-- /.stat-cell -->
                 </div> <!-- /.stat-panel -->
             </div>

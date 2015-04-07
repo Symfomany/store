@@ -26,14 +26,26 @@ class MainController extends Controller{
         $nbsupp = $em->getRepository('StoreBackendBundle:Supplier')->getCountByUser($user);
         $nbcms = $em->getRepository('StoreBackendBundle:CMS')->getCountByUser($user);
         $nbcomm = $em->getRepository('StoreBackendBundle:Comment')->getCountByUser($user);
+        $ca = $em->getRepository('StoreBackendBundle:Order')->getCA($user);
+
+
+
+        $statorder[] = $em->getRepository('StoreBackendBundle:Order')->getNbOrderByMonth($user, new \DateTime('now'));
+        $statorder[] = $em->getRepository('StoreBackendBundle:Order')->getNbOrderByMonth($user, new \DateTime('-1 month'));
+        $statorder[] = $em->getRepository('StoreBackendBundle:Order')->getNbOrderByMonth($user, new \DateTime('-2 month'));
+        $statorder[] = $em->getRepository('StoreBackendBundle:Order')->getNbOrderByMonth($user, new \DateTime('-3 month'));
+        $statorder[] = $em->getRepository('StoreBackendBundle:Order')->getNbOrderByMonth($user, new \DateTime('-4 month'));
+        $statorder[] = $em->getRepository('StoreBackendBundle:Order')->getNbOrderByMonth($user, new \DateTime('-5 month'));
 
         // je retourne la vue index de mon dossier Main
         return $this->render('StoreBackendBundle:Main:index.html.twig',
             array(
+                'ca' => $ca,
                 'nbprod' => $nbprod,
                 'nbsupp' => $nbsupp,
                 'nbcms' => $nbcms,
                 'nbcomm' => $nbcomm,
+                'statorder' => $statorder,
             )
         );
     }

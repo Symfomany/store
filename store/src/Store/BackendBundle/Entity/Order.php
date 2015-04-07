@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Order
  *
- * @ORM\Table(name="order")
+ * @ORM\Table(name="orders")
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\OrderRepository")
  */
 class Order
@@ -38,9 +38,9 @@ class Order
     /**
      * @var float
      *
-     * @ORM\Column(name="status", type="integer", nullable=true)
+     * @ORM\Column(name="state", type="integer", nullable=true)
      */
-    private $status;
+    private $state;
 
     /**
      * @var float
@@ -83,7 +83,7 @@ class Order
      */
     public function __construct(){
         $this->dateCreated = new \DateTime('now');
-        $this->status = 1;
+        $this->state = 1;
     }
 
     /**
@@ -143,26 +143,26 @@ class Order
     }
 
     /**
-     * Set status
+     * Set $state
      *
-     * @param integer $status
+     * @param integer $state
      * @return Order
      */
-    public function setStatus($status)
+    public function setState($state)
     {
-        $this->status = $status;
+        $this->state = $state;
 
         return $this;
     }
 
     /**
-     * Get status
+     * Get state
      *
      * @return integer 
      */
-    public function getStatus()
+    public function getState()
     {
-        return $this->status;
+        return $this->state;
     }
 
     /**

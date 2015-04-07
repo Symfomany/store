@@ -66,7 +66,7 @@ class Product
     /**
      * @var integer
      *
-     * @ORM\Column(name="taxe", type="integer", nullable=true)
+     * @ORM\Column(name="taxe", type="float", nullable=true)
      */
     private $taxe;
 
@@ -234,7 +234,7 @@ class Product
         $this->active = 1;
         $this->dateActive = new \DateTime('now');
         $this->cover = 0;
-        $this->taxe = 1;
+        $this->taxe = 20;
         $this->shop = 1;
         $this->quantity = 1;
         $this->dateCreated = new \DateTime('now');

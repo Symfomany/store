@@ -12,4 +12,56 @@ use Doctrine\ORM\EntityRepository;
  */
 class OrderRepository extends EntityRepository
 {
+
+
+    /**
+     * get CA of User
+     * @param $user
+     */
+    public function getCA($user){
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                 SELECT TRUNCATE(SUM(o.total), 2) AS total
+                 FROM StoreBackendBundle:Order o
+                 WHERE o.jeweler = :user
+                 AND o.state = :state
+                    "
+            )
+            ->setParameter('user', $user)
+            ->setParameter('state', 1);
+
+        return $query->getSingleScalarResult();
+    }
+
+
+    /**
+     * Get Nb Order BY Month
+     */
+    public function getNbOrderByMonth($user, $dateBegin = null){
+
+        if(!$dateBegin){
+            $dateBegin = new \Datetime('now');
+        }
+
+            $query = $this->getEntityManager()
+                ->createQuery(
+                    "
+                 SELECT COUNT(o) AS nb, DATE_FORMAT(:dateBegin, '%Y-%m') AS d
+                 FROM StoreBackendBundle:Order o
+                 WHERE o.jeweler = :user
+                 AND MONTH(o.dateCreated) = :month
+                 AND YEAR(o.dateCreated) = :year
+                    "
+                )
+                ->setParameter('user', $user)
+                ->setParameter('dateBegin', $dateBegin->format('Y-m-d'))
+                ->setParameter('month', $dateBegin->format('m'))
+                ->setParameter('year', $dateBegin->format('Y'));
+
+            //exit(var_dump($query->getSingleResult()));
+
+            return $query->getSingleResult();
+    }
+
 }
