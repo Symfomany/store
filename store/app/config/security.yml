@@ -1,7 +1,14 @@
-# you can read more about security in the related section of the documentation
-# http://symfony.com/doc/current/book/security.html
+###
+# Begin
+###
 security:
-    # http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
+
+
+
+###
+# 1. Encoders to handle encoding with algorythms the password
+###
+# http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
 #    encoders:
 #        Symfony\Component\Security\Core\User\User: plaintext
 
@@ -11,12 +18,24 @@ security:
         iterations: 10
         encode_as_base64: true
 
+
+
+
+###
+# 2. Define all roles or users for Authorisation
+###
     # http://symfony.com/doc/current/book/security.html#hierarchical-roles
     role_hierarchy:
         ROLE_USER:       ROLE_USER
         ROLE_ADMIN:       [ROLE_ADMIN, ROLE_USER]
         ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
 
+
+
+
+###
+# 3. Define all providers for Authentification
+###
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
        backend:
@@ -29,6 +48,10 @@ security:
 
 
 
+
+###
+# 4. Define firewalls for areas of my app
+###
     # the main part of the security, where you can set up firewalls
     # for specific sections of your app
     firewalls:
@@ -56,6 +79,12 @@ security:
             #anonymous: ~
             #http_basic:
             #    realm: "Secured Demo Area"
+
+
+
+###
+# 5. Define all access control between firewall & roles
+###
 
     # with these settings you can restrict or allow access for different parts
     # of your application based on roles, ip, host or methods

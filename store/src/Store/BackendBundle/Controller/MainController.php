@@ -22,14 +22,17 @@ class MainController extends Controller{
 
         // Récupérer Doctrine Manager
         $em = $this->getDoctrine()->getManager();
+
+        // Stats of counters
         $nbprod = $em->getRepository('StoreBackendBundle:Product')->getCountByUser($user);
         $nbsupp = $em->getRepository('StoreBackendBundle:Supplier')->getCountByUser($user);
         $nbcms = $em->getRepository('StoreBackendBundle:CMS')->getCountByUser($user);
         $nbcomm = $em->getRepository('StoreBackendBundle:Comment')->getCountByUser($user);
+
+        // Turn Over
         $ca = $em->getRepository('StoreBackendBundle:Order')->getCA($user);
 
-
-
+        // Chart in last 6 months
         $statorder[] = $em->getRepository('StoreBackendBundle:Order')->getNbOrderByMonth($user, new \DateTime('now'));
         $statorder[] = $em->getRepository('StoreBackendBundle:Order')->getNbOrderByMonth($user, new \DateTime('-1 month'));
         $statorder[] = $em->getRepository('StoreBackendBundle:Order')->getNbOrderByMonth($user, new \DateTime('-2 month'));

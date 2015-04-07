@@ -82,6 +82,8 @@ class Order
      * Constructor
      */
     public function __construct(){
+        $date = new \DateTime('+2 days');
+        $this->date = $date->format('Y-m-d');
         $this->dateCreated = new \DateTime('now');
         $this->state = 1;
     }

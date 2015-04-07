@@ -75,6 +75,7 @@ class Business
     public function __construct(){
         $this->dateExpired = new \DateTime('now');
         $this->dateCreated = new \DateTime('now');
+        $this->type = 1;
         $this->active = 1;
         $this->amount = 0;
         $this->product = new \Doctrine\Common\Collections\ArrayCollection();

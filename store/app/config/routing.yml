@@ -2,6 +2,12 @@ store_backend:
     resource: "@StoreBackendBundle/Resources/config/routing.yml"
     prefix:   /administration
 
+
+###
+# Authentification Backend & Frontend
+###
+
+
 #Login Backend
 store_backend_login:
     path: /login

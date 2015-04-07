@@ -66,6 +66,7 @@ doctrine:
         entity_managers:
           default:
             auto_mapping: true
+            #Custom AST for DQL
             dql:
               numeric_functions:
                   round: Store\BackendBundle\Doctrine\Extensions\Round
