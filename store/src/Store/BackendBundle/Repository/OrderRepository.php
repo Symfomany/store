@@ -13,6 +13,26 @@ use Doctrine\ORM\EntityRepository;
 class OrderRepository extends EntityRepository
 {
 
+    /**
+     * Get Orders of User
+     * @param int $user
+     * @return array
+     */
+    public function getOrderByUser($user){
+
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                    SELECT o
+                    FROM StoreBackendBundle:Order o
+                    WHERE o.jeweler = :user
+                    "
+            )
+            ->setParameter('user', $user);
+
+        return $query->getResult();
+    }
+
 
     /**
      * get CA of User

@@ -6,6 +6,68 @@
 {% endblock  %}
 
 {% block content %}
+
+    <table class="table table-bordered table-primary">
+        <thead>
+        <th>Id</th>
+        <th>User</th>
+        <th>Detail</th>
+        <th>Addresse</th>
+        <th>Date de livraison</th>
+        <th>Total</th>
+        <th>Date de création</th>
+        <th>ETat</th>
+        <th>Actions</th>
+        </thead>
+        <tbody>
+
+        {% for order in orders %}
+            <tr>
+                <td>
+                    <a href="">{{ order.id }}</a>
+                </td>
+             <td>
+                <a href="">{{ order.user.email }}</a>
+             </td>
+                <td>
+                    <ul>
+                        {%  for detail in order.detail %}
+                            {{ detail.product.title }} ({{ detail.quantity }}) <br/>
+                            {{ detail.price }} €
+                        {%  endfor %}
+                    </ul>
+                </td>
+
+              <td>
+                {{ order.address }}
+             </td>
+                <td>
+                    {{ order.date|date('d/m/Y H:i:s') }}
+                </td>
+                <td>
+                    {{ order.total }}
+                </td>
+                <td>
+                    {{ order.dateCreated|date('d/m/Y H:i:s') }}
+                </td>
+                <td>
+                    {{ order.state }}
+                </td>
+             <td>
+                     <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Actions&nbsp;<i class="fa fa-caret-down"></i></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="fa fa-search"></i> Voir</a></li>
+                            <li><a href="#"><i class="fa fa-pencil"></i> Editer</a></li>
+                            <li><a href="#"><i class="fa fa-times"></i> Supprimer</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+
+        </tbody>
+    </table>
 {% endblock %}
 
 

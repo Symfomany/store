@@ -19,8 +19,12 @@ class CategoryController extends Controller{
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function listAction(){
+        $em = $this->getDoctrine()->getManager();
+        $categories = $em->getRepository('StoreBackendBundle:Category')->getCategoryByUser(1);
 
-        return $this->render('StoreBackendBundle:Category:list.html.twig');
+        return $this->render('StoreBackendBundle:Category:list.html.twig', array(
+            'categories' => $categories
+        ));
     }
 
 

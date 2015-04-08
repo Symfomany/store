@@ -12,18 +12,11 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class OrderDetail
 {
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="id", type="integer", nullable=false)
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
-     */
-    private $id;
+
 
     /**
      * @var \Order
-     *
+     * @ORM\Id
      * @ORM\ManyToOne(targetEntity="Order")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="order_id", referencedColumnName="id")
@@ -33,8 +26,8 @@ class OrderDetail
 
     /**
      * @var \Product
-     *
-     * @ORM\ManyToOne(targetEntity="Product")
+     * @ORM\Id
+     * @ORM\ManyToOne(targetEntity="Product", inversedBy="detail")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      * })
@@ -64,15 +57,6 @@ class OrderDetail
         $this->quantity = 1;
     }
 
-    /**
-     * Get id
-     *
-     * @return integer 
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set quantity

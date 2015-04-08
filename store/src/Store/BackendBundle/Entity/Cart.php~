@@ -46,6 +46,17 @@ class Cart
      */
     private $dateCreated;
 
+
+
+
+    /**
+     * Initialize my object
+     */
+    public function __construct(){
+        $this->dateCreated = new \DateTime('now');
+    }
+
+
     /**
      * Get id
      *

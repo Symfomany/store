@@ -14,6 +14,27 @@ class ProductRepository extends EntityRepository
 {
 
     /**
+     * Get Products of User
+     * @param int $user
+     * @return array
+     */
+    public function getProductByUser($user){
+
+        $query = $this->getEntityManager()
+                ->createQuery(
+                    "
+                    SELECT p
+                    FROM StoreBackendBundle:Product p
+                    WHERE p.jeweler = :user
+                    "
+                )
+            ->setParameter('user', $user);
+
+        return $query->getResult();
+    }
+
+
+    /**
      * Count All Product
      * @return mixed
      */

@@ -123,6 +123,7 @@ class Cms
         $this->dateCreated = new \DateTime('now');
         $this->dateUpdated = new \DateTime('now');
         $this->dateActive = new \DateTime('now');
+        $this->view = 0;
         $this->active = 1;
         $this->state = 1;
         $this->product = new \Doctrine\Common\Collections\ArrayCollection();

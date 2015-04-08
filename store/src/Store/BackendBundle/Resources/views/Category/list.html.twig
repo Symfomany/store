@@ -6,6 +6,24 @@
 {% endblock  %}
 
 {% block content %}
+    <table class="table table-bordered table-primary">
+        <thead>
+            <th>Id</th>
+            <th>Titre</th>
+            <th>Description</th>
+            <th>Nb.de produits affectés</th>
+        </thead>
+        <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td><a href="">{{ category.id }}</a></td>
+                    <td><a href="">{{ category.title }}</a></td>
+                    <td>{{ category.description }}</td>
+                    <td><span class="badge badge-info"><strong>{{ category.product|length }}</strong></span> produits</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}
 
 

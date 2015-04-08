@@ -19,8 +19,12 @@ class OrderController extends Controller{
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function listAction(){
+        $em = $this->getDoctrine()->getManager();
+        $orders = $em->getRepository('StoreBackendBundle:Order')->getOrderByUser(1);
 
-        return $this->render('StoreBackendBundle:Order:list.html.twig');
+        return $this->render('StoreBackendBundle:Order:list.html.twig', array(
+            'orders' => $orders
+        ));
     }
 
     /**

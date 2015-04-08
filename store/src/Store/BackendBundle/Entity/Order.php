@@ -77,6 +77,16 @@ class Order
      */
     private $jeweler;
 
+    /**
+     * @var \Product
+     *
+     * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="order")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     * })
+     */
+    private $detail;
+
 
     /**
      * Constructor
@@ -257,5 +267,38 @@ class Order
     public function getTotal()
     {
         return $this->total;
+    }
+
+    /**
+     * Add detail
+     *
+     * @param \Store\BackendBundle\Entity\OrderDetail $detail
+     * @return Order
+     */
+    public function addDetail(\Store\BackendBundle\Entity\OrderDetail $detail)
+    {
+        $this->detail[] = $detail;
+
+        return $this;
+    }
+
+    /**
+     * Remove detail
+     *
+     * @param \Store\BackendBundle\Entity\OrderDetail $detail
+     */
+    public function removeDetail(\Store\BackendBundle\Entity\OrderDetail $detail)
+    {
+        $this->detail->removeElement($detail);
+    }
+
+    /**
+     * Get detail
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getDetail()
+    {
+        return $this->detail;
     }
 }

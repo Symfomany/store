@@ -202,6 +202,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
         $this->dateCreated = new \DateTime('now');
         $this->type = 1;
         $this->enabled = 1;
+        $this->accountnonexpired = 1;
+        $this->accountnonlocked = 1;
+        $this->credentialsExpired = 1;
         $this->locked = 0;
         $this->expired = 0;
         $this->salt = md5(uniqid(null, true));

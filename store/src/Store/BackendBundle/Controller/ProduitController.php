@@ -20,7 +20,12 @@ class ProduitController extends Controller{
      */
     public function listAction(){
 
-        return $this->render('StoreBackendBundle:Product:list.html.twig');
+        $em = $this->getDoctrine()->getManager();
+        $products = $em->getRepository('StoreBackendBundle:Product')->getProductByUser(1);
+
+        return $this->render('StoreBackendBundle:Product:list.html.twig', array(
+            'products' => $products
+        ));
     }
 
     /**

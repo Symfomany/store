@@ -12,4 +12,24 @@ use Doctrine\ORM\EntityRepository;
  */
 class CategoryRepository extends EntityRepository
 {
+    /**
+     * Get Products of User
+     * @param int $user
+     * @return array
+     */
+    public function getCategoryByUser($user){
+
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                    SELECT c
+                    FROM StoreBackendBundle:Category c
+                    WHERE c.jeweler = :user
+                    "
+            )
+            ->setParameter('user', $user);
+
+        return $query->getResult();
+    }
+
 }
