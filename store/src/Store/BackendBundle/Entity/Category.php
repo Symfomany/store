@@ -233,4 +233,14 @@ class Category
     {
         return $this->jeweler;
     }
+
+
+    /**
+     * Retourne le titre
+     */
+    public function __toString(){
+        return $this->title;
+    }
+
+
 }

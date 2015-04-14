@@ -109,4 +109,12 @@ class Tag
     {
         return $this->product;
     }
+
+
+    /**
+     * Retourne le mot clefs
+     */
+    public function __toString(){
+        return $this->word;
+    }
 }

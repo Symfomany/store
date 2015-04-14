@@ -136,4 +136,13 @@ class Cart
     {
         return $this->user;
     }
+
+    /**
+     * Retourne le contenu
+     * @return \DateTime
+     */
+    public function __toString(){
+        return $this->content;
+    }
+
 }

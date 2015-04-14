@@ -301,4 +301,11 @@ class Order
     {
         return $this->detail;
     }
+
+    /**
+     * Retourne le title
+     */
+    public function __toString(){
+        return $this->id;
+    }
 }

@@ -32,4 +32,26 @@ class CategoryRepository extends EntityRepository
         return $query->getResult();
     }
 
+
+    /**
+     * Retourne le nb de catégorie de mon bijoutier
+     * @param $user
+     * @return mixed
+     * @throws \Doctrine\ORM\NonUniqueResultException
+     */
+    public function getCountByUser($user = null){
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                 SELECT COUNT(c) AS nb
+                 FROM StoreBackendBundle:Category c
+                 WHERE c.jeweler = :user"
+            )
+            ->setParameter('user', $user);
+
+        // retourne 1 résultat ou null
+        return $query->getOneOrNullResult();
+    }
+
+
 }

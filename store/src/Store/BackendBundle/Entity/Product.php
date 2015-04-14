@@ -835,4 +835,11 @@ class Product
     {
         return $this->meta;
     }
+
+    /**
+     * Retourne le title
+     */
+    public function __toString(){
+        return $this->title;
+    }
 }

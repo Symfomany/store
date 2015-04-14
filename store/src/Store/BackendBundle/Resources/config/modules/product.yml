@@ -10,5 +10,15 @@ store_backend_product_view:
   defaults: { _controller: StoreBackendBundle:Produit:view }
   requirements:
     id: \d+
-    name: "[a-zA-Z0-9-]{3,30}"
     _method: GET
+
+# Remove a Product
+store_backend_product_remove:
+  path: /remove/{id}
+  defaults: { _controller: StoreBackendBundle:Produit:remove }
+
+
+# Page New a Product
+store_backend_product_new:
+  path: /new
+  defaults: { _controller: StoreBackendBundle:Produit:new }

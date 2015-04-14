@@ -14,6 +14,26 @@ class CmsRepository extends EntityRepository
 {
 
     /**
+     * Get CMS of User
+     * @param int $user
+     * @return array
+     */
+    public function getCmsByUser($user){
+
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                    SELECT c
+                    FROM StoreBackendBundle:Cms c
+                    WHERE c.jeweler = :user
+                    "
+            )
+            ->setParameter('user', $user);
+
+        return $query->getResult();
+    }
+
+    /**
      * Count All CMS
      * @return mixed
      */

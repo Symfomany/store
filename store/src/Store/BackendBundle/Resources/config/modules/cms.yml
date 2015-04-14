@@ -10,5 +10,4 @@ store_backend_cms_view:
   defaults: { _controller: StoreBackendBundle:CMS:view }
   requirements:
     id: \d+
-    name: "[a-zA-Z0-9-]{3,30}"
     _method: GET

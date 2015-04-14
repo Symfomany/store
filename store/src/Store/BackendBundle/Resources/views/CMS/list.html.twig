@@ -6,6 +6,42 @@
 {% endblock  %}
 
 {% block content %}
+<table class="table table-bordered table-primary">
+    <thead>
+        <th>Id</th>
+        <th>Titre</th>
+        <th>Résumé</th>
+        <th>Etat</th>
+        <th>Nb. produits affectés</th>
+        <th>Date de création</th>
+        <th>Actions</th>
+    </thead>
+    <tbody>
+
+    {% for page in cms %}
+
+        <tr>
+            <td>{{ page.id }}</td>
+            <td><a href="{{ path('store_backend_cms_view', {"id" : page.id, "name" : page.title}) }}">{{ page.title }}</a></td>
+            <td>{{ page.summary }}</td>
+            <td>{% if page.state == 1 %}<i class="fa fa-check"></i>{% else %}<i class="fa fa-times"></i>{% endif %}</td>
+            <td><i class="badge badge-info">{{ page.product|length }}</i>  produits associés</td>
+            <td>{{ page.dateCreated|date('d/m/Y') }}</td>
+            <td>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Actions&nbsp;<i class="fa fa-caret-down"></i></button>
+                    <ul class="dropdown-menu">
+                        <li><a href="#"><i class="fa fa-search"></i> Voir</a></li>
+                        <li><a href="#"><i class="fa fa-pencil"></i> Editer</a></li>
+                        <li><a href="#"><i class="fa fa-times"></i> Supprimer</a></li>
+                    </ul>
+                </div>
+            </td>
+        </tr>
+
+    {% endfor %}
+    </tbody>
+    </table>
 {% endblock %}
 
 

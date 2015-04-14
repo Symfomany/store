@@ -18,6 +18,60 @@ use Doctrine\ORM\NoResultException;
 class JewelerRepository extends EntityRepository implements UserProviderInterface
 {
 
+
+    /**
+     * @param null $user
+     * @return array
+     */
+    public function getJewelersofUser($user = null){
+
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                 SELECT j
+                 FROM StoreBackendBundle:Product p
+                 JOIN p.jeweler j
+                 GROUP BY j.id
+                 WHERE p.jeweler = :user"
+            )
+            ->setParameter('user', $user);
+
+        return $query->getResult();
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     /**
      * Load Active User by Username or Email
      * @param string $username

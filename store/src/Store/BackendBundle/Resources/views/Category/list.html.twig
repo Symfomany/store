@@ -12,6 +12,7 @@
             <th>Titre</th>
             <th>Description</th>
             <th>Nb.de produits affectés</th>
+            <th>Actions</th>
         </thead>
         <tbody>
             {% for category in categories %}
@@ -20,6 +21,18 @@
                     <td><a href="">{{ category.title }}</a></td>
                     <td>{{ category.description }}</td>
                     <td><span class="badge badge-info"><strong>{{ category.product|length }}</strong></span> produits</td>
+                    <td>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-primary dropdown-toggle"
+                                    data-toggle="dropdown">
+                                <i class="fa fa-cogs"></i> Actions&nbsp;<i class="fa fa-caret-down"></i></button>
+                            <ul class="dropdown-menu">
+                                <li><a href="#"><i class="fa fa-search"></i> Voir</a></li>
+                                <li><a href="#"><i class="fa fa-pencil"></i> Editer</a></li>
+                                <li><a href="#"><i class="fa fa-times"></i> Supprimer</a></li>
+                            </ul>
+                        </div>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

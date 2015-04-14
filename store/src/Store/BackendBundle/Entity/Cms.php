@@ -448,4 +448,11 @@ class Cms
     {
         return $this->view;
     }
+
+    /**
+     * Retourne le titre
+     */
+    public function __toString(){
+        return $this->title;
+    }
 }

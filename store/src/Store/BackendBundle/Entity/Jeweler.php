@@ -869,4 +869,15 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     {
         return $this->enabled;
     }
+
+    /**
+     * Convertis un objet jeweler en chaine de charactères
+     * @return string
+     */
+    public function __toString(){
+
+        return $this->title;
+    }
+
+
 }

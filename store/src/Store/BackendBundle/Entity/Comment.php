@@ -226,4 +226,11 @@ class Comment
     {
         return $this->user;
     }
+
+    /**
+     * Retourne le contenu
+     */
+    public function __toString(){
+        $this->content;
+    }
 }

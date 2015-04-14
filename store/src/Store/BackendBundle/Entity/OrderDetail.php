@@ -149,4 +149,6 @@ class OrderDetail
     {
         return $this->product;
     }
+
+
 }

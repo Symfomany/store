@@ -311,4 +311,13 @@ class User
     {
         return $this->fid;
     }
+
+
+    /**
+     * Retourne le nom et prenom
+     */
+    public function __toString(){
+
+        return $this->firstname ." ". $this->lastname;
+    }
 }

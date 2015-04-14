@@ -12,33 +12,32 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
-
     /**
-     * Get Products of User
-     * @param int $user
-     * @return array
+     * Get all product of an user
+     * @return mixed
      */
-    public function getProductByUser($user){
-
+    public function getProductByUser($user = null){
         $query = $this->getEntityManager()
-                ->createQuery(
-                    "
-                    SELECT p
-                    FROM StoreBackendBundle:Product p
-                    WHERE p.jeweler = :user
-                    "
-                )
-            ->setParameter('user', $user);
+            ->createQuery(
+                "
+                 SELECT p
+                 FROM StoreBackendBundle:Product p
+                 WHERE p.jeweler = :jew"
+            )
+            ->setParameter('jew', $user);
 
         return $query->getResult();
     }
 
-
     /**
      * Count All Product
+     * SELECT COUNT(id)
+     * FROM `product`
+     * WHERE `jeweler_id` = 1
      * @return mixed
      */
     public function getCountByUser($user = null){
+        // compte le nb de produits pour 1 bijoutier
         $query = $this->getEntityManager()
             ->createQuery(
                 "
@@ -48,6 +47,7 @@ class ProductRepository extends EntityRepository
             )
             ->setParameter('user', $user);
 
+        // retourne 1 résultat ou null
         return $query->getOneOrNullResult();
     }
 }

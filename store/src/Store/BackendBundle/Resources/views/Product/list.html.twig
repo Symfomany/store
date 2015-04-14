@@ -7,6 +7,13 @@
 
 {% block content %}
 
+    <div class="row">
+        <a href="{{ path('store_backend_product_new') }}" class=" pull-right btn btn-primary btn-lg btn-rounded">
+            <i class="fa fa-plus"></i> Ajouter un produit
+        </a>
+    </div>
+    <hr />
+
     <table class="table table-bordered table-primary">
         <thead>
             <th>Id</th>
@@ -26,7 +33,7 @@
                 <tr>
                     <td><a href="">{{ product.id }}</a></td>
                     <td>{{ product.ref }}</td>
-                    <td><a href="">{{ product.title }}</a></td>
+                    <td><a href="{{ path('store_backend_product_view', {'name' : product.slug , 'id': product.id } ) }}"> {{ product.title }}</a></td>
                     <td><strong>{{ product.price }}€</strong></td>
                     <td>{{ product.quantity }}</td>
                     <td>{% if product.active == 1 %} <i class="fa fa-check"></i> {% else %} <i class="fa fa-times"></i> {% endif %}</td>
@@ -39,7 +46,7 @@
                             <ul class="dropdown-menu">
                                 <li><a href="#"><i class="fa fa-search"></i> Voir</a></li>
                                 <li><a href="#"><i class="fa fa-pencil"></i> Editer</a></li>
-                                <li><a href="#"><i class="fa fa-times"></i> Supprimer</a></li>
+                                <li><a href="{{ path('store_backend_product_remove', {'id': product.id}) }}"><i class="fa fa-times"></i> Supprimer</a></li>
                             </ul>
                         </div>
                     </td>
@@ -48,4 +55,5 @@
 
         </tbody>
     </table>
+
 {% endblock %}

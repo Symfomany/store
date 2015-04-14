@@ -1,2 +1,30 @@
-<h1>Voir le produit: {{ id }}</h1>
-<p>Nom de produit: {{ name }}</p>
+{% extends "StoreBackendBundle::layout.html.twig" %}
+
+
+{% block titlepage %}
+    <i class="fa  fa-bookmark"></i>Un produit
+{% endblock  %}
+
+{% block content %}
+    <h1>Nom de produit: {{ product.title }}</h1>
+    <p>Résumé: {{ product.summary }}</p>
+    <p>Description: {{ product.description }}</p>
+    <p>Quantité: {{ product.quantity }}</p>
+    <p>Prix: {{ product.price }}</p>
+
+        <h3>Catégories associés:</h3>
+        <ul>
+            {% for category in product.category %}
+                <li> {{ category.title }}</li>
+            {% endfor %}
+        </ul>
+
+        <h3>Tags associés:</h3>
+        <ul>
+            {% for tag in product.tag %}
+                <li> {{ tag.word }}</li>
+            {% endfor %}
+        </ul>
+
+
+{% endblock %}

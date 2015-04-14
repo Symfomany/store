@@ -6,4 +6,39 @@
 {% endblock  %}
 
 {% block content %}
+    <table class="table table-bordered table-primary">
+        <thead>
+        <th>Id</th>
+        <th>Nom</th>
+        <th>Description</th>
+        <th>Image</th>
+        <th>Date de création</th>
+        <th>Etat</th>
+        <th>Nb de produits Produits</th>
+        <th>Actions</th>
+        </thead>
+    <tbody>
+        {% for supplier in suppliers %}
+            <tr>
+                <td>{{ supplier.id }}</td>
+                <td>{{ supplier.name }}</td>
+                <td>{{ supplier.description }}</td>
+                <td><img src="{{ supplier.image }}" />></td>
+                <td>{{ supplier.dateCreated|date('d/m/Y') }}</td>
+                <td>{% if supplier.active == 1 %}<i class="fa fa-check"></i>{% else %}<i class="fa fa-times"></i>{% endif %}</td>
+                <td><span class="badge badge-info">{{ supplier.product|length }}</span>  produits</td>
+                    <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Actions&nbsp;<i class="fa fa-caret-down"></i></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="#"><i class="fa fa-search"></i> Voir</a></li>
+                            <li><a href="#"><i class="fa fa-pencil"></i> Editer</a></li>
+                            <li><a href="#"><i class="fa fa-times"></i> Supprimer</a></li>
+                        </ul>
+                    </div>
+                </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    </table>
 {% endblock %}

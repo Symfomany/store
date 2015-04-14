@@ -19,8 +19,12 @@ class SupplierController extends Controller{
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function listAction(){
+        $em = $this->getDoctrine()->getManager();
+        $suppliers = $em->getRepository('StoreBackendBundle:Supplier')->getSupplierByUser(1);
 
-        return $this->render('StoreBackendBundle:Supplier:list.html.twig');
+        return $this->render('StoreBackendBundle:Supplier:list.html.twig', array(
+            "suppliers" => $suppliers
+        ));
     }
 
     /**

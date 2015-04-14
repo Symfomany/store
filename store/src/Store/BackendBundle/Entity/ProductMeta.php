@@ -395,4 +395,12 @@ class ProductMeta
     {
         return $this->product;
     }
+
+
+    /**
+     * Retourne le title
+     */
+    public function __toString(){
+        return $this->id;
+    }
 }

@@ -14,6 +14,34 @@ class SupplierRepository extends EntityRepository
 {
 
     /**
+     * Get Supplier of User
+     * @param int $user
+     * @return array
+     */
+    public function getSupplierByUser($user){
+
+        /*
+         *  Récupère les fournisseurs des produits
+         *  où la boutique des produits est égal à mon paramètre
+         *
+         */
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                 SELECT s
+                 FROM StoreBackendBundle:Supplier s
+                 JOIN s.product p
+                 WHERE p.jeweler = :user
+                 GROUP BY p.jeweler
+                    "
+            )
+            ->setParameter('user', $user);
+
+        return $query->getResult();
+    }
+
+
+    /**
      * Count All Supplier
      * SELECT COUNT(s0_.id) AS sclr0
      * FROM product p1_

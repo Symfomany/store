@@ -1,0 +1,68 @@
+{% extends "::base.html.twig" %}
+
+{% block classname %}theme-default main-menu-animated{% endblock %}
+
+{# Stylesheets #}
+{% block stylesheets %}
+  {{ parent() }}
+  <link href="{{ asset('assets/backend/stylesheets/pixel-admin.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('assets/backend/stylesheets/widgets.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('assets/backend/stylesheets/rtl.min.css') }} " rel="stylesheet" type="text/css">
+  <link href="{{ asset('assets/backend/stylesheets/themes.min.css') }}" rel="stylesheet" type="text/css">
+{% endblock %}
+
+{% block body %}
+
+    {#ini.push() tableau pour pousser tout le jquery#}
+    <script>var init = [];</script>
+
+    <div id="main-wrapper">
+
+        {% if app.user.id is defined %}
+            {# Inclusion de ma vue partielle main naviguation#}
+            {{ include('StoreBackendBundle:Partial:main_navigation.html.twig') }}
+        {% endif %}
+
+        {% if app.user.id is defined %}
+            {# Inclusion de ma vue partielle main menu #}
+            {{ include('StoreBackendBundle:Partial:main_menu.html.twig') }}
+        {% endif %}
+
+        <div id="content-wrapper">
+
+            {#Titre de la page#}
+            <div class="page-header">
+
+                <div class="row">
+                    <!-- Page header, center on small screens -->
+                    <h1 class="col-xs-12 col-sm-4 text-center text-left-sm">
+                        {% block titlepage %} {% endblock %}</h1>
+                </div>
+            </div> <!-- / .page-header -->
+
+
+            {# Le block où vont ecrire nos vues filles #}
+            {% block content %}
+            {% endblock %}
+        </div> <!--fermeture content-wrapper -->
+
+        <div id="main-menu-bg"></div>
+
+    </div> <!-- fermeture main-wrapper -->
+
+
+{% endblock %}
+
+
+{#Javascript files#}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/backend/javascripts/pixel-admin.min.js') }}"></script>
+
+    <script type="text/javascript">
+        init.push(function () {
+            // Javascript code here
+        })
+        window.PixelAdmin.start(init);
+    </script>
+{% endblock%}

@@ -6,5 +6,10 @@
 {% endblock  %}
 
 {% block content %}
+    <h3>{{ cms.title }}</h3>
+    <p><i>{{ cms.summary}}</i></p>
+    <p>{{ cms.description }}</p>
+    <p>{{ cms.image }}</p>
+    <p>{{ cms.dateActive|date('d/m/Y') }}</p>
 {% endblock %}
 
