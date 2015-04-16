@@ -8,7 +8,7 @@
 {% block content %}
 
     <div class="row">
-        <a href="{{ path('store_backend_product_new') }}" class=" pull-right btn btn-primary btn-lg btn-rounded">
+        <a href="{{ path('store_backend_product_new') }}" class=" pull-right btn btn-primary btn-lg">
             <i class="fa fa-plus"></i> Ajouter un produit
         </a>
     </div>
@@ -33,7 +33,7 @@
                 <tr>
                     <td><a href="">{{ product.id }}</a></td>
                     <td>{{ product.ref }}</td>
-                    <td><a href="{{ path('store_backend_product_view', {'name' : product.slug , 'id': product.id } ) }}"> {{ product.title }}</a></td>
+                    <td><a href="{{ path('store_backend_product_view', {'name' : product.title , 'id': product.id } ) }}"> {{ product.title }}</a></td>
                     <td><strong>{{ product.price }}€</strong></td>
                     <td>{{ product.quantity }}</td>
                     <td>{% if product.active == 1 %} <i class="fa fa-check"></i> {% else %} <i class="fa fa-times"></i> {% endif %}</td>

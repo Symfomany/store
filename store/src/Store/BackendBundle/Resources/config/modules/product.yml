@@ -17,7 +17,6 @@ store_backend_product_remove:
   path: /remove/{id}
   defaults: { _controller: StoreBackendBundle:Produit:remove }
 
-
 # Page New a Product
 store_backend_product_new:
   path: /new

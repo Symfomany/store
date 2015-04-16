@@ -18,8 +18,7 @@ class CategoryRepository extends EntityRepository
      * @return array
      */
     public function getCategoryByUser($user){
-
-        $query = $this->getEntityManager()
+       /* $query = $this->getEntityManager()
             ->createQuery(
                 "
                     SELECT c
@@ -28,9 +27,40 @@ class CategoryRepository extends EntityRepository
                     "
             )
             ->setParameter('user', $user);
+       */
+
+        /*
+         * J'appel la méthode getCategoryByUserBuilder()
+         * qui me retourne un objet QueryBuilder
+         * Je le transforme ensuite en Objet Query
+         *
+         */
+        $query = $this->getCategoryByUserBuilder($user)->getQuery();
 
         return $query->getResult();
     }
+
+    /**
+     * DQL Syntax with Form
+     * @param int $user
+     * @return array
+     */
+    public function getCategoryByUserBuilder($user){
+
+        /**
+         * Le formulaire ProductType attend un objet createQueryBuilder()
+         *  ET NON PAS l'objet createQuery()
+         */
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->where('c.jeweler = :user')
+            ->orderBy('c.title', 'ASC')
+            ->setParameter('user', $user);
+
+        return $queryBuilder;
+    }
+
+
+
 
 
     /**

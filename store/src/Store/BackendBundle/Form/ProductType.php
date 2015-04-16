@@ -3,6 +3,10 @@
 namespace Store\BackendBundle\Form;
 
 
+use Doctrine\ORM\EntityRepository;
+use Store\BackendBundle\Entity\Product;
+use Store\BackendBundle\Repository\CategoryRepository;
+use Store\BackendBundle\Repository\ProductRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -19,6 +23,19 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 class ProductType extends AbstractType
 {
 
+    /**
+     * @var $user
+     */
+    protected $user;
+
+
+    /**
+     * User param
+     * @param $user
+     */
+    public function __construct($user = null){
+        $this->user = $user;
+    }
 
     /**
      * Methode qui va consrtuire mon formulaire
@@ -49,12 +66,24 @@ class ProductType extends AbstractType
                 'pattern' => '[A-Z]{4}-[0-9]{2}-[A-Z]{1}'
             )
         ));
-        $builder->add('category',null,  array(
-            'label' => 'Catégorie(s) associée(s)',
+
+        //methode numéro 2
+        $builder->add('category', 'entity',
+        array (
+            'label' => 'Catégorie',
             'attr' => array(
                 'class' => 'form-control',
-            )
+            ),
+            'class' => 'StoreBackendBundle:Category',
+            'property' => 'title',
+            'multiple' => true, // choix multiple
+            'expanded' => true, // checkbox plutot que liste déroulante
+            'query_builder' => function(CategoryRepository $er)
+            {
+                return $er->getCategoryByUserBuilder($this->user);
+            },
         ));
+
         $builder->add('summary', null, array(
             'label' => "Petit résumé",
             'required'  => true,
@@ -71,6 +100,15 @@ class ProductType extends AbstractType
                 'placeholder' => 'Description longue du bijoux',
             )
         ));
+        $builder->add('composition', null, array(
+            'label' => "Composition de votre bijoux",
+            'required'  => true,
+            'attr' => array(
+                'class' => 'form-control',
+                'placeholder' => 'Composition du bijoux',
+            )
+        ));
+
         $builder->add('price', 'money', array(
             'label' => "Prix HT en €",
             'required'  => true,
@@ -113,6 +151,10 @@ class ProductType extends AbstractType
             'attr' => array(
                 'class' => 'form-control',
             )
+        ));
+        $builder->add('dateActive', 'date', array (
+            'widget' => 'choice',
+            'pattern' => '{{ day }}-{{ month }}-{{ year }',
         ));
         $builder->add('tag', null, array(
             'label' => "Tag(s) associé(s) au produit",

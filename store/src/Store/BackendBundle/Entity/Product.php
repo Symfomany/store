@@ -3,12 +3,16 @@
 namespace Store\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * Product
- *
  * @ORM\Table(name="product", indexes={@ORM\Index(name="jeweler_id", columns={"jeweler_id"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\ProductRepository")
+ * @UniqueEntity(fields="ref", message="Votre référence de bijoux est déjà existant")
+ * @UniqueEntity(fields="title", message="Votre titre de bijoux est déjà existant")
  */
 class Product
 {
@@ -23,56 +27,106 @@ class Product
 
     /**
      * @var string
-     *
+     * @Assert\Regex(pattern="/[A-Z]{4}-[0-9]{2}-[A-Z]{1}/",
+ *                              message="La référence n'est pas valide")
+     * @Assert\NotBlank(
+     *     message = "La référence ne doit pas etre vide"
+     * )
      * @ORM\Column(name="ref", type="string", length=30, nullable=true)
      */
     private $ref;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "La titre ne doit pas etre vide"
+     * )
+     * @Assert\Length(
+     *      min = "4",
+     *      max = "300",
+     *      minMessage = "Votre titre doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre titre ne peut pas être plus long que {{ limit }} caractères"
+     * )
      * @ORM\Column(name="title", type="string", length=150, nullable=true)
      */
     private $title;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "La résumé ne doit pas etre vide"
+     * )
+     * @Assert\Length(
+     *      min = "10",
+     *      max = "500",
+     *      minMessage = "Votre résumé doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre résumé ne peut pas être plus long que {{ limit }} caractères"
+     * )
      * @ORM\Column(name="summary", type="text", nullable=true)
      */
     private $summary;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "La description ne doit pas etre vide"
+     * )
+     * @Assert\Length(
+     *      min = "15",
+     *      max = "500",
+     *      minMessage = "La description doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "La description ne peut pas être plus long que {{ limit }} caractères"
+     * )
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "La composition ne doit pas etre vide"
+     * )
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "500",
+     *      minMessage = "La composition doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "La composition ne peut pas être plus long que {{ limit }} caractères"
+     * )
      * @ORM\Column(name="composition", type="text", nullable=true)
      */
     private $composition;
 
     /**
-     * @var float
-     *
+     * @Assert\NotBlank(
+     *     message = "Le prix ne doit pas etre vide"
+     * )
+     * @Assert\Range(
+     *      min = 10,
+     *      max = 5000,
+     *      minMessage = "Votre bijoux doit avoir la valeur maximum de {{ limit }} €",
+     *      maxMessage = "Votre bijoux doit avoir la valeur maximum de {{ limit }} €",
+     * )
      * @ORM\Column(name="price", type="float", precision=10, scale=0, nullable=true)
      */
     private $price;
 
     /**
-     * @var integer
-     *
+     * @Assert\Choice(choices = {"5.5", "19.6", "20"},
+     *                          message = "Choisissez une taxe valide")
      * @ORM\Column(name="taxe", type="float", nullable=true)
      */
     private $taxe;
 
     /**
-     * @var integer
-     *
+     * @Assert\NotBlank(
+     *     message = "Le prix ne doit pas etre vide"
+     * )
+     * @Assert\Range(
+     *      min = 1,
+     *      max = 200,
+     *      minMessage = "Votre bijoux doit avoir la quantité minimum de {{ limit }} €",
+     *      maxMessage = "Votre bijoux doit avoir la quantité maximum de {{ limit }} €",
+     * )
      * @ORM\Column(name="quantity", type="integer", nullable=true)
      */
     private $quantity;
@@ -161,6 +215,12 @@ class Product
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
+     * @Assert\Count(
+     *      min = "1",
+     *      max = "10",
+     *      minMessage = "Vous devez spécifier au moins une catégorie",
+     *      maxMessage = "Vous ne pouvez pas spécifier plus de {{ limit }} catégorie"
+     * )
      * @ORM\ManyToMany(targetEntity="Category", inversedBy="product")
      * @ORM\JoinTable(name="product_category",
      *   joinColumns={
@@ -174,8 +234,13 @@ class Product
     private $category;
 
     /**
+     * @Assert\Count(
+     *      min = "1",
+     *      max = "10",
+     *      minMessage = "Vous devez spécifier au moins une catégorie",
+     *      maxMessage = "Vous ne pouvez pas spécifier plus de {{ limit }} catégorie"
+     * )
      * @var \Doctrine\Common\Collections\Collection
-     *
      * @ORM\ManyToMany(targetEntity="Cms", inversedBy="product")
      * @ORM\JoinTable(name="product_cms",
      *   joinColumns={
@@ -227,16 +292,20 @@ class Product
 
 
     /**
-     * Constructor
+     * Constructeur qui initialise les propriété de mon objet Product
+     * Initialisation de mes attributs de mon objet
      */
     public function __construct()
     {
-        $this->active = 1;
+        $this->active = true;
+        $this->cover = false;
         $this->dateActive = new \DateTime('now');
-        $this->cover = 0;
         $this->taxe = 20;
-        $this->shop = 1;
+        $this->shop = true;
         $this->quantity = 1;
+        $this->price = 0;
+
+
         $this->dateCreated = new \DateTime('now');
         $this->dateUpdated = new \DateTime('now');
         $this->business = new \Doctrine\Common\Collections\ArrayCollection();

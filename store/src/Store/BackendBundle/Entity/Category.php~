@@ -3,6 +3,7 @@
 namespace Store\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Category
@@ -23,7 +24,9 @@ class Category
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "La référence ne doit pas etre vide"
+     * )
      * @ORM\Column(name="title", type="string", length=300, nullable=true)
      */
     private $title;
@@ -233,4 +236,14 @@ class Category
     {
         return $this->jeweler;
     }
+
+
+    /**
+     * Retourne le titre
+     */
+    public function __toString(){
+        return $this->title;
+    }
+
+
 }

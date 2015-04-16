@@ -3,6 +3,7 @@
 namespace Store\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * Category
@@ -23,7 +24,9 @@ class Category
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "La référence ne doit pas etre vide"
+     * )
      * @ORM\Column(name="title", type="string", length=300, nullable=true)
      */
     private $title;
@@ -243,4 +246,32 @@ class Category
     }
 
 
+    /**
+     * @var \DateTime
+     */
+    private $dateCreated;
+
+
+    /**
+     * Set dateCreated
+     *
+     * @param \DateTime $dateCreated
+     * @return Category
+     */
+    public function setDateCreated($dateCreated)
+    {
+        $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreated
+     *
+     * @return \DateTime 
+     */
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
+    }
 }

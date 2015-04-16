@@ -4,8 +4,10 @@
 namespace Store\BackendBundle\Controller;
 
 // J'inclue la classe Controller de Symfony pour pouvoir hériter de cette classe
+use Store\BackendBundle\Entity\Product;
 use Store\BackendBundle\Form\ProductType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 
 /**
@@ -60,14 +62,49 @@ class ProduitController extends Controller{
 
     /**
      * Page Action
+     * Je recupere l'objet Request qui contient toutes mes données en GET, POST ...
      */
-    public function newAction(){
+    public function newAction(Request $request){
 
-        // je crée un formulaire de produit
-        $form = $this->createForm(new ProductType());
+        //je créer une nouvel objet de mon entité Product
+        $product = new Product();
+
+        $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
+
+        //je recupere un jeweler (marchand) numéro 1
+        $jeweler = $em->getRepository('StoreBackendBundle:Jeweler')->find(1);
+        $product->setJeweler($jeweler); //j'associe mon jeweler 1 à mon produit
+
+        // A chaque fois que je crée un objet d'une classe , je dois user la classe
+
+        // je crée un formulaire de produit en associant avec mon produit
+        $form = $this->createForm(new ProductType(1),$product,
+            array(
+            'attr' => array(
+                'method' => 'post',
+                'novalidate' => "novalidate",
+                'action' => $this->generateUrl('store_backend_product_new')
+                //action de formulaire pointe vers cette même action de controlleur
+            )
+        ));
+
+        // Je fusionne ma requête  avec mon formulaire
+        $form->handleRequest($request);
+
+        // Si la totalité du formulaire est valide
+        if($form->isValid()){
+            $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
+            $em->persist($product); //j'enregistre mon objet product dans doctrine
+            $em->flush(); //j'envoi ma requete d'insert à ma table product
+
+            return $this->redirectToRoute('store_backend_product_list'); //redirection selon la route
+        }
+
 
         return $this->render('StoreBackendBundle:Product:new.html.twig',
-            array('form' => $form->createView())
+            array(
+                'form' => $form->createView()
+            )
         );
     }
 

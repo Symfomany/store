@@ -12,3 +12,8 @@ store_backend_category_view:
     id: \d+
     name: "[a-zA-Z0-9-]{3,30}"
     _method: GET
+
+# Page New a Category
+store_backend_category_new:
+  path: /new
+  defaults: { _controller: StoreBackendBundle:Category:new }

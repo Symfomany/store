@@ -6,6 +6,14 @@
 {% endblock  %}
 
 {% block content %}
+
+    <div class="row">
+        <a href="{{ path('store_backend_category_new') }}" class=" pull-right btn btn-primary btn-lg">
+            <i class="fa fa-plus"></i> Ajouter une catégorie
+        </a>
+    </div>
+    <hr />
+
     <table class="table table-bordered table-primary">
         <thead>
             <th>Id</th>
