@@ -45,7 +45,7 @@
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Actions&nbsp;<i class="fa fa-caret-down"></i></button>
                             <ul class="dropdown-menu">
                                 <li><a href="#"><i class="fa fa-search"></i> Voir</a></li>
-                                <li><a href="#"><i class="fa fa-pencil"></i> Editer</a></li>
+                                <li><a href="{{ path('store_backend_product_edit', {'id' : product.id}) }}"><i class="fa fa-pencil"></i> Editer</a></li>
                                 <li><a href="{{ path('store_backend_product_remove', {'id': product.id}) }}"><i class="fa fa-times"></i> Supprimer</a></li>
                             </ul>
                         </div>

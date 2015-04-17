@@ -41,10 +41,10 @@ security:
        backend:
           entity: { class: StoreBackendBundle:Jeweler }
 
-#       in_memory:
-#          memory:
-#              users:
-#                  admin@gmail.com: { password: 403926033d001b5279df37cbbe5287b7c7c267fa, roles: [ 'ROLE_ADMIN' ] }
+#        in_memory:
+#            memory:
+#                users:
+#                    admin@gmail.com: { password: d033e22ae348aeb5660fc2140aec35850c4da997, roles: [ 'ROLE_ADMIN' ] }
 
 
 

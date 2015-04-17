@@ -80,10 +80,76 @@ class ProduitController extends Controller{
         // je crée un formulaire de produit en associant avec mon produit
         $form = $this->createForm(new ProductType(1),$product,
             array(
+            'validation_groups' => 'new',
             'attr' => array(
                 'method' => 'post',
                 'novalidate' => "novalidate",
                 'action' => $this->generateUrl('store_backend_product_new')
+                //action de formulaire pointe vers cette même action de controlleur
+            )
+        ));
+
+        // Je fusionne ma requête  avec mon formulaire
+        $form->handleRequest($request);
+
+        // Si la totalité du formulaire est valide
+        if($form->isValid()){
+
+            // j'upload mon fichier en faisant appel a la methode upload()
+            $product->upload();
+
+            $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
+            $em->persist($product); //j'enregistre mon objet product dans doctrine
+            $em->flush(); //j'envoi ma requete d'insert à ma table product
+
+            //je créer un message flash avec pour clef "success"
+            // et un message de confirmation
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Votre produit a bien été crée'
+            );
+
+            //je récupere la quantité du produit enregistrer
+            $quantity = $product->getQuantity();
+
+            if($quantity == 1){
+                //je créer un message flash avec pour clef "success"
+                // et un message de confirmation
+                $this->get('session')->getFlashBag()->add(
+                    'warning',
+                    'Votre bijou est un produit unique !'
+                );
+            }
+
+
+
+            return $this->redirectToRoute('store_backend_product_list'); //redirection selon la route
+        }
+
+
+        return $this->render('StoreBackendBundle:Product:new.html.twig',
+            array(
+                'form' => $form->createView()
+            )
+        );
+    }
+    /**
+     * Page Action
+     * Je recupere l'objet Request qui contient toutes mes données en GET, POST ...
+     */
+    public function editAction(Request $request,Product $id){
+        $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
+
+
+        // je crée un formulaire de produit en associant avec mon produit
+        $form = $this->createForm(new ProductType(1),$product,
+            array(
+            'validation_groups' => 'edit',
+            'attr' => array(
+                'method' => 'post',
+                'novalidate' => "novalidate",
+                'action' => $this->generateUrl('store_backend_product_edit',
+                    array('id' => $id))
                 //action de formulaire pointe vers cette même action de controlleur
             )
         ));
@@ -101,7 +167,7 @@ class ProduitController extends Controller{
         }
 
 
-        return $this->render('StoreBackendBundle:Product:new.html.twig',
+        return $this->render('StoreBackendBundle:Product:edit.html.twig',
             array(
                 'form' => $form->createView()
             )

@@ -17,6 +17,11 @@ store_backend_product_remove:
   path: /remove/{id}
   defaults: { _controller: StoreBackendBundle:Produit:remove }
 
+# Edit a Product
+store_backend_product_edit:
+  path: /edit/{id}
+  defaults: { _controller: StoreBackendBundle:Produit:edit }
+
 # Page New a Product
 store_backend_product_new:
   path: /new
