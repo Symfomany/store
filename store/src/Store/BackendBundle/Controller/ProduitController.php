@@ -42,10 +42,10 @@ class ProduitController extends Controller{
      * @param $id
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function viewAction($id, $name){
+    public function viewAction($id, $name)
+    {
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
-
 
         //Je récupère tous les produits de ma base de données avec la methode findAll()
         $product = $em->getRepository('StoreBackendBundle:Product')->find($id);
@@ -57,6 +57,51 @@ class ProduitController extends Controller{
             )
         );
 
+    }
+
+    /**
+     * Activate a product
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function activateAction(Product $id, $action){
+        // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
+        $em = $this->getDoctrine()->getManager();
+
+        $id->setActive($action);
+        $em->persist($id);
+        $em->flush();
+
+        //je créer un message flash avec pour clef "success"
+        // et un message de confirmation
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            'Votre produit a bien été modifié'
+        );
+
+        return $this->redirectToRoute('store_backend_product_list'); //redirection selon la route
+    }
+    /**
+     * Cover a product
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function coverAction(Product $id, $action){
+        // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
+        $em = $this->getDoctrine()->getManager();
+
+        $id->setCover($action);
+        $em->persist($id);
+        $em->flush();
+
+        //je créer un message flash avec pour clef "success"
+        // et un message de confirmation
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            'Votre produit a bien été modifié'
+        );
+
+        return $this->redirectToRoute('store_backend_product_list'); //redirection selon la route
     }
 
 
@@ -138,18 +183,15 @@ class ProduitController extends Controller{
      * Je recupere l'objet Request qui contient toutes mes données en GET, POST ...
      */
     public function editAction(Request $request,Product $id){
-        $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
-
-
         // je crée un formulaire de produit en associant avec mon produit
-        $form = $this->createForm(new ProductType(1),$product,
+        $form = $this->createForm(new ProductType(1),$id,
             array(
             'validation_groups' => 'edit',
             'attr' => array(
                 'method' => 'post',
                 'novalidate' => "novalidate",
                 'action' => $this->generateUrl('store_backend_product_edit',
-                    array('id' => $id))
+                    array('id' => $id->getId()))
                 //action de formulaire pointe vers cette même action de controlleur
             )
         ));
@@ -160,7 +202,7 @@ class ProduitController extends Controller{
         // Si la totalité du formulaire est valide
         if($form->isValid()){
             $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
-            $em->persist($product); //j'enregistre mon objet product dans doctrine
+            $em->persist($id); //j'enregistre mon objet product dans doctrine
             $em->flush(); //j'envoi ma requete d'insert à ma table product
 
             return $this->redirectToRoute('store_backend_product_list'); //redirection selon la route

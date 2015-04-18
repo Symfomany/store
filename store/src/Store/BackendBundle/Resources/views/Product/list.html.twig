@@ -22,7 +22,7 @@
             <th>Prix</th>
             <th>Quantité</th>
             <th>Actif</th>
-            <th>Date actif</th>
+            <th>Page d'Acceuil</th>
             <th>Pages CMS</th>
             <th>Fournisseurs</th>
             <th>Actions</th>
@@ -36,9 +36,28 @@
                     <td><a href="{{ path('store_backend_product_view', {'name' : product.title , 'id': product.id } ) }}"> {{ product.title }}</a></td>
                     <td><strong>{{ product.price }}€</strong></td>
                     <td>{{ product.quantity }}</td>
-                    <td>{% if product.active == 1 %} <i class="fa fa-check"></i> {% else %} <i class="fa fa-times"></i> {% endif %}</td>
-                    <td>{{ product.dateActive|date('d/m/Y') }}</td>
-                    <td><span class="badge badge-info">{{ product.cms|length }}</span> pages cms</td>
+                    <td>
+                    {% if product.active == 1 %}
+                        <a href="{{ path('store_backend_product_activate', {'id': product.id, 'action' : 0}) }}" >
+                            <i class="fa fa-check"></i>
+                        </a>
+                    {% else %}
+                        <a href="{{ path('store_backend_product_activate', {'id': product.id, 'action' : 1}) }}" >
+                            <i class="fa fa-times"></i>
+                        </a>
+                    {% endif %}
+                    </td>
+                    <td>
+                        {% if product.cover == 1 %}
+                            <a href="{{ path('store_backend_product_cover', {'id': product.id, 'action' : 0}) }}" >
+                                <i class="fa fa-star"></i>
+                            </a>
+                        {% else %}
+                            <a href="{{ path('store_backend_product_cover', {'id': product.id, 'action' : 1}) }}" >
+                                <i class="fa fa-star-o"></i>
+                            </a>
+                        {% endif %}
+                    </td>                    <td><span class="badge badge-info">{{ product.cms|length }}</span> pages cms</td>
                     <td><span class="badge badge-info">{{ product.supplier|length }}</span> fournisseurs</td>
                     <td>
                         <div class="btn-group">
