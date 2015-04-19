@@ -12,7 +12,12 @@
             <i class="fa fa-plus"></i> Ajouter une catégorie
         </a>
     </div>
+
     <hr />
+
+    <div class="alert alert-info alert-dark">
+        {{ categories.getTotalItemCount }} catégories trouvés
+    </div>
 
     <table class="table table-bordered table-primary">
         <thead>
@@ -35,9 +40,8 @@
                                     data-toggle="dropdown">
                                 <i class="fa fa-cogs"></i> Actions&nbsp;<i class="fa fa-caret-down"></i></button>
                             <ul class="dropdown-menu">
-                                <li><a href="#"><i class="fa fa-search"></i> Voir</a></li>
-                                <li><a href="#"><i class="fa fa-pencil"></i> Editer</a></li>
-                                <li><a href="#"><i class="fa fa-times"></i> Supprimer</a></li>
+                                <li><a href="{{ path('store_backend_category_edit', {"id" : category.id}) }}"><i class="fa fa-pencil"></i> Editer</a></li>
+                                <li><a href="{{ path('store_backend_category_remove', {"id" : category.id}) }}"><i class="fa fa-times"></i> Supprimer</a></li>
                             </ul>
                         </div>
                     </td>
@@ -45,6 +49,12 @@
             {% endfor %}
         </tbody>
     </table>
+
+
+    <div class="navigation">
+        {{ knp_pagination_render(categories) }}
+    </div>
+
 {% endblock %}
 
 

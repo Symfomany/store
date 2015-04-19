@@ -30,7 +30,7 @@ class Product
     /**
      * @var string
      * @Assert\Regex(pattern="/[A-Z]{4}-[0-9]{2}-[A-Z]{1}/",
- *                              message="La référence n'est pas valide",
+     *                          message="La référence n'est pas valide",
      *                          groups={"new", "edit"}
      * )
      * @Assert\NotBlank(
@@ -77,7 +77,7 @@ class Product
      * )
      * @Assert\Length(
      *      min = "15",
-     *      max = "500",
+     *      max = "5000",
      *      minMessage = "La description doit faire au moins {{ limit }} caractères",
      *      maxMessage = "La description ne peut pas être plus long que {{ limit }} caractères",
      *      groups={"new", "edit"}
@@ -109,9 +109,9 @@ class Product
      *     groups={"new", "edit"}
      * )
      * @Assert\Range(
-     *      min = 10,
+     *      min = 2,
      *      max = 5000,
-     *      minMessage = "Votre bijoux doit avoir la valeur maximum de {{ limit }} €",
+     *      minMessage = "Votre bijoux doit avoir la valeur minimum de {{ limit }} €",
      *      maxMessage = "Votre bijoux doit avoir la valeur maximum de {{ limit }} €",
      *      groups={"new", "edit"}
      * )
@@ -120,7 +120,7 @@ class Product
     private $price;
 
     /**
-     * @Assert\Choice(choices = {"5.5", "19.6", "20"},
+     * @Assert\Choice(choices = {"2.1","5.5","10", "19.6", "20"},
      *                message = "Choisissez une taxe valide",
      *                groups={"new", "edit"}
      * )
@@ -136,8 +136,8 @@ class Product
      * @Assert\Range(
      *      min = 1,
      *      max = 200,
-     *      minMessage = "Votre bijoux doit avoir la quantité minimum de {{ limit }} €",
-     *      maxMessage = "Votre bijoux doit avoir la quantité maximum de {{ limit }} €",
+     *      minMessage = "Votre bijoux doit avoir la quantité minimum de {{ limit }} unité",
+     *      maxMessage = "Votre bijoux doit avoir la quantité maximum de {{ limit }} unité",
      *      groups={"new", "edit"}
      * )
      * @ORM\Column(name="quantity", type="integer", nullable=true)
@@ -153,8 +153,11 @@ class Product
 
     /**
      * @var \DateTime
-     *
-     * @ORM\Column(name="date_active", type="datetime", nullable=true)
+     * @Assert\DateTime(
+     *     message = "La date est invalide",
+     *     groups={"new", "edit"}
+     * )
+     *  @ORM\Column(name="date_active", type="datetime", nullable=true)
      */
     private $dateActive;
 
@@ -235,7 +238,7 @@ class Product
      *      maxMessage = "Vous ne pouvez pas spécifier plus de {{ limit }} catégorie",
      *      groups={"new", "edit"}
      * )
-     * @ORM\ManyToMany(targetEntity="Category", inversedBy="product")
+     * @ORM\ManyToMany(targetEntity="Category", inversedBy="product", cascade={"persist"})
      * @ORM\JoinTable(name="product_category",
      *   joinColumns={
      *     @ORM\JoinColumn(name="product_id", referencedColumnName="id")
@@ -799,7 +802,9 @@ class Product
      */
     public function addCategory(\Store\BackendBundle\Entity\Category $category)
     {
-        $this->category[] = $category;
+        if(!$this->category->contains($category)){
+            $this->category[] = $category;
+        }
 
         return $this;
     }
@@ -830,9 +835,11 @@ class Product
      * @param \Store\BackendBundle\Entity\Cms $cms
      * @return Product
      */
-    public function addCm(\Store\BackendBundle\Entity\Cms $cms)
+    public function addCms(\Store\BackendBundle\Entity\Cms $cms)
     {
-        $this->cms[] = $cms;
+        if(!$this->cms->contains($cms)) {
+            $this->cms[] = $cms;
+        }
 
         return $this;
     }
@@ -842,7 +849,7 @@ class Product
      *
      * @param \Store\BackendBundle\Entity\Cms $cms
      */
-    public function removeCm(\Store\BackendBundle\Entity\Cms $cms)
+    public function removeCms(\Store\BackendBundle\Entity\Cms $cms)
     {
         $this->cms->removeElement($cms);
     }

@@ -8,14 +8,8 @@
     <script type="text/javascript">
         init.push(function () {
 
-            $('textarea').summernote({
-                height: 200,
-                tabsize: 2,
-                codemirror: {
-                    theme: 'monokai'
-                }
+            $("textarea").markdown({ iconlibrary: 'fa' });
 
-            });
         });
     </script>
 {% endblock %}
@@ -25,7 +19,8 @@
 {% endblock  %}
 
 {% block content %}
-    {{ form(form) }}
+    {{ include('StoreBackendBundle:Category:_form.html.twig') }}
+
 {% endblock %}
 
 

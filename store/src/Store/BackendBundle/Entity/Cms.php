@@ -2,13 +2,21 @@
 
 namespace Store\BackendBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+
+use Symfony\Component\Validator\Constraints as Assert;
+use Store\BackendBundle\Validator\Constraints as StoreAssert;
+
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * Cms
  *
  * @ORM\Table(name="cms", indexes={@ORM\Index(name="jeweler_id", columns={"jeweler_id"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\CmsRepository")
+ * @UniqueEntity(fields="title", message="Votre titre de bijoux est déjà existant", groups={"new"})
  */
 class Cms
 {
@@ -23,42 +31,88 @@ class Cms
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="title", type="string", length=300, nullable=true)
+     * @Assert\NotBlank(
+     *     message = "La titre ne doit pas etre vide",
+     *     groups={"new", "edit"}
+     * )
+     * @Assert\Length(
+     *      min = "4",
+     *      max = "300",
+     *      minMessage = "Votre titre doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre titre ne peut pas être plus long que {{ limit }} caractères",
+     *      groups={"new", "edit"}
+     * )     * @ORM\Column(name="title", type="string", length=300, nullable=true)
      */
     private $title;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "La résumé ne doit pas etre vide",
+     *     groups={"new", "edit"}
+     * )
+     * @StoreAssert\StripTagLength(groups={"new", "edit"})
      * @ORM\Column(name="summary", type="text", nullable=true)
      */
     private $summary;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "La description ne doit pas etre vide",
+     *     groups={"new", "edit"}
+     * )
+     * @Assert\Length(
+     *      min = "15",
+     *      max = "5000",
+     *      minMessage = "La description doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "La description ne peut pas être plus long que {{ limit }} caractères",
+     *      groups={"new", "edit"}
+     * )
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
+
     /**
-     * @var string
-     *
-     * @ORM\Column(name="image", type="string", length=300, nullable=true)
+     * @ORM\Column(name="image", type="string", nullable=true)
      */
     private $image;
 
+
+    /**
+     * Attribut qui représentera mon fichier uploadé
+     * @Assert\Image(
+     *     minWidth = 100,
+     *     maxWidth = 3000,
+     *     minHeight = 100,
+     *     maxHeight = 2500,
+     *     maxWidthMessage= "La largeur est trop grande",
+     *     minWidthMessage = "La largeur est trop petite",
+     *     maxHeightMessage = "La hauteur est trop grande",
+     *     minHeightMessage = "La largeur est trop petite",
+     *     groups={"new", "edit"}
+     * )
+     */
+    protected $file;
+
+
     /**
      * @var string
-     *
+     * @Assert\Regex(pattern="/(<iframe.*?>.*?<\/iframe>)/",
+     *                          message="La vidéo n'est pas valide",
+     *                          groups={"new", "edit"}
+     * )
      * @ORM\Column(name="video", type="string", length=300, nullable=true)
      */
     private $video;
 
     /**
      * @var integer
-     *
+     * @Assert\Choice(choices = {"0","1","2"},
+     *                message = "Choisissez un état valide",
+     *                groups={"new", "edit"}
+     * )
      * @ORM\Column(name="state", type="integer", nullable=true)
      */
     private $state;
@@ -393,28 +447,43 @@ class Cms
         return $this->jeweler;
     }
 
-    /**
-     * Add product
-     *
-     * @param \Store\BackendBundle\Entity\Product $product
-     * @return Cms
-     */
-    public function addProduct(\Store\BackendBundle\Entity\Product $product)
-    {
-        $this->product[] = $product;
+//    /**
+//     * Add product
+//     *
+//     * @param \Store\BackendBundle\Entity\Product $product
+//     * @return Cms
+//     */
+//    public function addProduct(\Store\BackendBundle\Entity\Product $product)
+//    {
+//        $this->product[] = $product;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Remove product
+//     *
+//     * @param \Store\BackendBundle\Entity\Product $product
+//     */
+//    public function removeProduct(\Store\BackendBundle\Entity\Product $product)
+//    {
+//        $this->product->removeElement($product);
+//    }
 
-        return $this;
+
+    /**
+     * Override to control all product
+     * @param ArrayCollection $products
+     */
+    public function setProduct(ArrayCollection $products)
+    {
+        foreach ($products as $product) {
+            $product->addCms($this);
+        }
+
+        $this->product = $products;
     }
 
-    /**
-     * Remove product
-     *
-     * @param \Store\BackendBundle\Entity\Product $product
-     */
-    public function removeProduct(\Store\BackendBundle\Entity\Product $product)
-    {
-        $this->product->removeElement($product);
-    }
 
     /**
      * Get product
@@ -455,4 +524,91 @@ class Cms
     public function __toString(){
         return $this->title;
     }
+
+
+
+    /**
+     * Retourne le chemin absolue de mon image
+     * @return null|string
+     */
+    public function getAbsolutePath()
+    {
+        return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
+    }
+
+
+    /**
+     * Retourne le chemin de l'image depuis le dossier web
+     * @return null|string
+     */
+    public function getWebPath()
+    {
+        return null === $this->image ? null : $this->getUploadDir().'/'.$this->image;
+    }
+
+    /**
+     * Retourne le cheùin de mon image depuis l'entité
+     * @return string
+     */
+    protected function getUploadRootDir()
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    /**
+     * Retourne le dossier d'upload et sous dossier product
+     * @return string
+     */
+    protected function getUploadDir()
+    {
+        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
+        // le document/image dans la vue.
+        return 'uploads/cms';
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Mecanisme d'upload
+     * + déplacement du fichier uploadé dans le bon dossier
+     */
+    public function upload()
+    {
+        // la propriété « file » peut être vide si le champ n'est pas requis
+        if (null === $this->file) {
+            return;
+        }
+
+        // utilisez le nom de fichier original ici mais
+        // vous devriez « l'assainir » pour au moins éviter
+        // quelconques problèmes de sécurité
+
+        // Déplacer le fichier uploadé dans le bon répertoir
+        // uploads/product/
+        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+
+        // je stocke le nom du fichier uploadé dans mon
+        //attribut image
+        $this->image = $this->file->getClientOriginalName();
+
+        // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
+        $this->file = null;
+    }
+
 }

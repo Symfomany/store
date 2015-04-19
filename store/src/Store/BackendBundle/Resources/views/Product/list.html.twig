@@ -8,11 +8,15 @@
 {% block content %}
 
     <div class="row">
-        <a href="{{ path('store_backend_product_new') }}" class=" pull-right btn btn-primary btn-lg">
+        <a href="{{ path('store_backend_product_new') }}" class=" pull-right btn btn-success btn-lg">
             <i class="fa fa-plus"></i> Ajouter un produit
         </a>
     </div>
     <hr />
+
+    <div class="alert alert-info alert-dark">
+        {{ products.getTotalItemCount }} produit trouvés
+    </div>
 
     <table class="table table-bordered table-primary">
         <thead>
@@ -23,6 +27,7 @@
             <th>Quantité</th>
             <th>Actif</th>
             <th>Page d'Acceuil</th>
+            <th>Catégories</th>
             <th>Pages CMS</th>
             <th>Fournisseurs</th>
             <th>Actions</th>
@@ -57,7 +62,9 @@
                                 <i class="fa fa-star-o"></i>
                             </a>
                         {% endif %}
-                    </td>                    <td><span class="badge badge-info">{{ product.cms|length }}</span> pages cms</td>
+                    </td>
+                    <td><span class="badge badge-info">{{ product.category|length }}</span> catégories</td>
+                    <td><span class="badge badge-info">{{ product.cms|length }}</span> pages cms</td>
                     <td><span class="badge badge-info">{{ product.supplier|length }}</span> fournisseurs</td>
                     <td>
                         <div class="btn-group">
@@ -74,5 +81,9 @@
 
         </tbody>
     </table>
+
+    <div class="navigation">
+        {{ knp_pagination_render(products) }}
+    </div>
 
 {% endblock %}

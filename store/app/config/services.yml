@@ -4,6 +4,13 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+    kernel.listener.find_object:
+        class: Store\BackendBundle\Listener\FindObjectListener
+        arguments: ["@security.context"]
+
+    security.access.object_voter:
+          class:      Store\BackendBundle\Security\Authorization\Voter\ObjectVoter
+          arguments:  [@service_container]
+          public:     false
+          tags:
+            -    { name: security.voter }

@@ -3,7 +3,9 @@
 ###
 security:
 
-
+    access_decision_manager:
+            # La valeur de « Strategy » peut être : affirmative, unanimous ou consensus
+            strategy: unanimous
 
 ###
 # 1. Encoders to handle encoding with algorythms the password

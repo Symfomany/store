@@ -77,13 +77,9 @@ class ProductType extends AbstractType
             )
         ));
 
-        //methode numéro 2
         $builder->add('category', 'entity',
         array (
             'label' => 'Catégorie',
-            'attr' => array(
-                'class' => 'form-control',
-            ),
             'class' => 'StoreBackendBundle:Category',
             'property' => 'title',
             'multiple' => true, // choix multiple
@@ -118,7 +114,6 @@ class ProductType extends AbstractType
                 'placeholder' => 'Composition du bijoux',
             )
         ));
-
         $builder->add('price', 'money', array(
             'label' => "Prix HT en €",
             'required'  => true,
@@ -128,7 +123,7 @@ class ProductType extends AbstractType
             )
         ));
         $builder->add('taxe', 'choice', array(
-            'choices'   => array('5' => '5', '19.6' => '19.6', '20' => '20'),
+            'choices'   => array('2.1' => '2.1','5' => '5', '10' => '10', '19.6' => '19.6', '20' => '20'),
             'required'  => true, // liste déroulante obligatoire
             'preferred_choices' => array('20'), // champs choisi par défault
             'label' => "Taxe appliquée",
@@ -162,9 +157,15 @@ class ProductType extends AbstractType
                 'class' => 'form-control',
             )
         ));
-        $builder->add('dateActive', 'date', array (
-            'widget' => 'choice',
-            'pattern' => '{{ day }}-{{ month }}-{{ year }',
+        $builder->add('dateActive', 'datetime', array (
+            'label' => "Date d'activation",
+            'attr' => array(
+                'class' => 'form-control',
+                'placeholder' => 'dd/mm/YYYY',
+            ),
+            'widget' => 'single_text',
+            'format' => 'dd/MM/yyyy',
+            'pattern' => '{{ day }}/{{ month }}/{{ year }',
         ));
         $builder->add('tag', null, array(
             'label' => "Tag(s) associé(s) au produit",

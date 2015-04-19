@@ -70,6 +70,17 @@ class Supplier
      */
     private $product;
 
+
+    /**
+     * @var \Product
+     *
+     * @ORM\ManyToOne(targetEntity="Jeweler")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="jeweler_id", referencedColumnName="id")
+     * })
+     */
+    private $jeweler;
+    
     /**
      * Constructor
      */
@@ -269,5 +280,28 @@ class Supplier
      */
     public function __toString(){
         return $this->name;
+    }
+
+    /**
+     * Set jeweler
+     *
+     * @param \Store\BackendBundle\Entity\Jeweler $jeweler
+     * @return Supplier
+     */
+    public function setJeweler(\Store\BackendBundle\Entity\Jeweler $jeweler = null)
+    {
+        $this->jeweler = $jeweler;
+
+        return $this;
+    }
+
+    /**
+     * Get jeweler
+     *
+     * @return \Store\BackendBundle\Entity\Jeweler 
+     */
+    public function getJeweler()
+    {
+        return $this->jeweler;
     }
 }

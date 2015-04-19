@@ -1,8 +1,5 @@
 {% extends "StoreBackendBundle::layout.html.twig" %}
 
-{# cette fonction form_theme va me chercher un thème de formulaire #}
-{% form_theme form 'StoreBackendBundle:Partial:form.html.twig' %}
-
 
 {% block javascripts %}
 
@@ -10,20 +7,10 @@
 
     <script type="text/javascript">
         init.push(function () {
-
-            $('textarea').summernote({
-                height: 200,
-                tabsize: 2,
-                codemirror: {
-                    theme: 'monokai'
-                }
-
-            });
+            $("textarea").markdown({ iconlibrary: 'fa' });
         });
     </script>
 {% endblock %}
-
-
 
 {% block titlepage %}
     <i class="fa fa-pencil"></i> Edition de produit

@@ -2,14 +2,18 @@
 
 namespace Store\BackendBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 
 /**
  * Category
  *
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\CategoryRepository")
+ * @UniqueEntity(fields="title", message="Votre titre de catégorie est déjà existant", groups={"new"})
  */
 class Category
 {
@@ -25,7 +29,15 @@ class Category
     /**
      * @var string
      * @Assert\NotBlank(
-     *     message = "La référence ne doit pas etre vide"
+     *     message = "La titre ne doit pas etre vide",
+     *     groups={"new", "edit"}
+     * )
+     * @Assert\Length(
+     *      min = "4",
+     *      max = "300",
+     *      minMessage = "Votre titre doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre titre ne peut pas être plus long que {{ limit }} caractères",
+     *      groups={"new", "edit"}
      * )
      * @ORM\Column(name="title", type="string", length=300, nullable=true)
      */
@@ -33,7 +45,17 @@ class Category
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "La description ne doit pas etre vide",
+     *     groups={"new", "edit"}
+     * )
+     * @Assert\Length(
+     *      min = "15",
+     *      max = "5000",
+     *      minMessage = "La description doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "La description ne peut pas être plus long que {{ limit }} caractères",
+     *      groups={"new", "edit"}
+     * )
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
@@ -55,7 +77,7 @@ class Category
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Product", mappedBy="category")
+     * @ORM\ManyToMany(targetEntity="Product", mappedBy="category", cascade={"persist"})
      */
     private $product;
 
@@ -70,12 +92,35 @@ class Category
     private $jeweler;
 
     /**
+     * @ORM\Column(name="image", type="string", nullable=true)
+     */
+    private $image;
+
+
+    /**
+     * Attribut qui représentera mon fichier uploadé
+     * @Assert\Image(
+     *     minWidth = 100,
+     *     maxWidth = 3000,
+     *     minHeight = 100,
+     *     maxHeight = 2500,
+     *     maxWidthMessage= "La largeur est trop grande",
+     *     minWidthMessage = "La largeur est trop petite",
+     *     maxHeightMessage = "La hauteur est trop grande",
+     *     minHeightMessage = "La largeur est trop petite",
+     *     groups={"new", "edit"}
+     * )
+     */
+    protected $file;
+
+    
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->product = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->active = 1;
+        $this->active = true;
     }
 
 
@@ -182,29 +227,6 @@ class Category
     }
 
     /**
-     * Add product
-     *
-     * @param \Store\BackendBundle\Entity\Product $product
-     * @return Category
-     */
-    public function addProduct(\Store\BackendBundle\Entity\Product $product)
-    {
-        $this->product[] = $product;
-
-        return $this;
-    }
-
-    /**
-     * Remove product
-     *
-     * @param \Store\BackendBundle\Entity\Product $product
-     */
-    public function removeProduct(\Store\BackendBundle\Entity\Product $product)
-    {
-        $this->product->removeElement($product);
-    }
-
-    /**
      * Get product
      *
      * @return \Doctrine\Common\Collections\Collection 
@@ -213,6 +235,44 @@ class Category
     {
         return $this->product;
     }
+
+    /**
+     * Override to control all product
+     * @param ArrayCollection $products
+     */
+    public function setProduct(ArrayCollection $products)
+    {
+        foreach ($products as $product) {
+            $product->addCategory($this);
+        }
+
+        $this->product = $products;
+    }
+
+
+//    /**
+//     * Add product
+//     *
+//     * @param \Store\BackendBundle\Entity\Product $product
+//     * @return Category
+//     */
+//    public function addProduct(\Store\BackendBundle\Entity\Product $product)
+//    {
+//        $this->product[] = $product;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Remove product
+//     *
+//     * @param \Store\BackendBundle\Entity\Product $product
+//     */
+//    public function removeProduct(\Store\BackendBundle\Entity\Product $product)
+//    {
+//        $this->product->removeElement($product);
+//    }
+
 
     /**
      * Set jeweler
@@ -274,4 +334,113 @@ class Category
     {
         return $this->dateCreated;
     }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Category
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+
+    /**
+     * Retourne le chemin absolue de mon image
+     * @return null|string
+     */
+    public function getAbsolutePath()
+    {
+        return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
+    }
+
+
+    /**
+     * Retourne le chemin de l'image depuis le dossier web
+     * @return null|string
+     */
+    public function getWebPath()
+    {
+        return null === $this->image ? null : $this->getUploadDir().'/'.$this->image;
+    }
+
+    /**
+     * Retourne le cheùin de mon image depuis l'entité
+     * @return string
+     */
+    protected function getUploadRootDir()
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    /**
+     * Retourne le dossier d'upload et sous dossier product
+     * @return string
+     */
+    protected function getUploadDir()
+    {
+        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
+        // le document/image dans la vue.
+        return 'uploads/category';
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Mecanisme d'upload
+     * + déplacement du fichier uploadé dans le bon dossier
+     */
+    public function upload()
+    {
+        // la propriété « file » peut être vide si le champ n'est pas requis
+        if (null === $this->file) {
+            return;
+        }
+
+        // utilisez le nom de fichier original ici mais
+        // vous devriez « l'assainir » pour au moins éviter
+        // quelconques problèmes de sécurité
+
+        // Déplacer le fichier uploadé dans le bon répertoir
+        // uploads/product/
+        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+
+        // je stocke le nom du fichier uploadé dans mon
+        //attribut image
+        $this->image = $this->file->getClientOriginalName();
+
+        // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
+        $this->file = null;
+    }
+
 }

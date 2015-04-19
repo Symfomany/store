@@ -1,22 +1,25 @@
 {% extends "StoreBackendBundle::layout.html.twig" %}
 
+
 {% block javascripts %}
 
     {{ parent() }}
 
     <script type="text/javascript">
         init.push(function () {
+
             $("textarea").markdown({ iconlibrary: 'fa' });
         });
     </script>
 {% endblock %}
 
 {% block titlepage %}
-    <i class="fa fa-plus"></i> Création de produit
+    <i class="fa fa-pencil"></i> Editer la categorie
 {% endblock  %}
 
 {% block content %}
-
-    {{ include('StoreBackendBundle:Product:_form.html.twig') }}
+    {{ include('StoreBackendBundle:Category:_form.html.twig') }}
 
 {% endblock %}
+
+

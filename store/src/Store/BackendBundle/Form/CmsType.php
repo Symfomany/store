@@ -3,6 +3,9 @@
 namespace Store\BackendBundle\Form;
 
 
+use Doctrine\ORM\EntityRepository;
+use Store\BackendBundle\Entity\Product;
+use Store\BackendBundle\Repository\CategoryRepository;
 use Store\BackendBundle\Repository\ProductRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -12,12 +15,11 @@ use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 
 /**
- * Le suffixe Type est Obligatoire pour mes classe Formulaires
- * Class ProductType
+ * Class CmsType
  * Formulaire de création de produit
  * @package Store\BackendBundle\Form
  */
-class CategoryType extends AbstractType
+class CmsType extends AbstractType
 {
 
     /**
@@ -34,7 +36,6 @@ class CategoryType extends AbstractType
         $this->user = $user;
     }
 
-
     /**
      * Methode qui va consrtuire mon formulaire
      * @param FormBuilderInterface $builder
@@ -47,7 +48,7 @@ class CategoryType extends AbstractType
         // le 2eme argument à ma fonction add() est le type de mon champs
         // le 3eme argument c'est ùmes options à mon chamos
         $builder->add('title', null, array(
-            'label' => 'Titre de ma catégorie', //label de mon chmpa
+            'label' => 'Titre de mon bijoux', //label de mon chmpa
             'required'  => true,
             'attr' => array(
                 'class' => 'form-control',
@@ -55,9 +56,8 @@ class CategoryType extends AbstractType
                 'pattern' => '[a-zA-Z0-9- ]{5,}'
             )
         ));
-
         $builder->add('file', 'file', array(
-            'label' => 'Image de la catégorie',
+            'label' => 'Image de présentation',
             'required'  => false,
             'attr' => array(
                 'class' => 'form-control',
@@ -65,7 +65,21 @@ class CategoryType extends AbstractType
                 'capture' => 'capture'
             )
         ));
-
+        $builder->add('video', 'text', array(
+            'label' => 'Vidéo de présentation',
+            'required'  => false,
+            'attr' => array(
+                'class' => 'form-control',
+            )
+        ));
+        $builder->add('summary', null, array(
+            'label' => "Petit résumé",
+            'required'  => true,
+            'attr' => array(
+                    'class' => 'form-control',
+                    'placeholder' => 'Petit résumé du bijoux',
+             )
+        ));
         $builder->add('description', null, array(
             'label' => "Longue description",
             'required'  => true,
@@ -74,16 +88,25 @@ class CategoryType extends AbstractType
                 'placeholder' => 'Description longue du bijoux',
             )
         ));
-
-        $builder->add('position', null, array(
-            'label' => "Position",
-            'required'  => true,
+        $builder->add('state', 'choice', array(
+            'choices'   => array("1" => 'Inactif',"2" => 'En cours de relecture', "3" => 'Actif'),
+            'required'  => true, // liste déroulante obligatoire
+            'preferred_choices' => array("En cours de relecture"), // champs choisi par défault
+            'label' => "Etat",
             'attr' => array(
                 'class' => 'form-control',
-                'placeholder' => 'Position du bijoux',
             )
         ));
-
+        $builder->add('dateActive', 'datetime', array (
+            'label' => "Date d'activation",
+            'attr' => array(
+                'class' => 'form-control',
+                'placeholder' => 'dd/mm/YYYY',
+            ),
+            'widget' => 'single_text',
+            'format' => 'dd/MM/yyyy',
+            'pattern' => '{{ day }}/{{ month }}/{{ year }',
+        ));
 
         $builder->add('product', 'entity',
             array (
@@ -97,17 +120,12 @@ class CategoryType extends AbstractType
                 },
             ));
 
-        $builder->add('active', null, array(
-            'label' => "Catégorie active ?",
-            'required'  => false,
-        ));
 
         $builder->add('envoyer', 'submit', array(
             'attr' => array(
                 'class' => 'btn btn-primary btn-sm'
             )
         ));
-
 
     }
 
@@ -121,7 +139,7 @@ class CategoryType extends AbstractType
     {
         // je lis le formulaire à l'entité Product
         $resolver->setDefaults(array(
-            'data_class' => 'Store\BackendBundle\Entity\Category',
+            'data_class' => 'Store\BackendBundle\Entity\Cms',
         ));
     }
 
@@ -132,7 +150,7 @@ class CategoryType extends AbstractType
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'Store\BackendBundle\Entity\Category',
+            'data_class' => 'Store\BackendBundle\Entity\Cms',
         ));
     }
 
@@ -143,7 +161,7 @@ class CategoryType extends AbstractType
      */
     public function getName()
     {
-        return "store_backend_category";
+        return "store_backend_cms";
     }
 
 }

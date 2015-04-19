@@ -17,3 +17,13 @@ store_backend_category_view:
 store_backend_category_new:
   path: /new
   defaults: { _controller: StoreBackendBundle:Category:new }
+
+# Page Edit a Category
+store_backend_category_edit:
+  path: /edit/{id}
+  defaults: { _controller: StoreBackendBundle:Category:edit }
+
+# Page Rmove a Category
+store_backend_category_remove:
+  path: /remove/{id}
+  defaults: { _controller: StoreBackendBundle:Category:remove }

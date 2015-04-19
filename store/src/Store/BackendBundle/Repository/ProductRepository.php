@@ -1,7 +1,6 @@
 <?php
 
 namespace Store\BackendBundle\Repository;
-
 use Doctrine\ORM\EntityRepository;
 
 /**
@@ -12,6 +11,8 @@ use Doctrine\ORM\EntityRepository;
  */
 class ProductRepository extends EntityRepository
 {
+
+
     /**
      * Get all product of an user
      * @return mixed
@@ -49,5 +50,24 @@ class ProductRepository extends EntityRepository
 
         // retourne 1 résultat ou null
         return $query->getOneOrNullResult();
+    }
+
+    /**
+     * DQL Syntax with Form
+     * @param int $user
+     * @return array
+     */
+    public function getProductByUserBuilder($user){
+
+        /**
+         * Le formulaire ProductType attend un objet createQueryBuilder()
+         *  ET NON PAS l'objet createQuery()
+         */
+        $queryBuilder = $this->createQueryBuilder('c')
+            ->where('c.jeweler = :user')
+            ->orderBy('c.title', 'ASC')
+            ->setParameter('user', $user);
+
+        return $queryBuilder;
     }
 }

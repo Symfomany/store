@@ -2,12 +2,18 @@
 # Page List of CMS
 store_backend_cms_list:
   path: /list
-  defaults: { _controller: StoreBackendBundle:CMS:list }
+  defaults: { _controller: StoreBackendBundle:Cms:list }
 
 # Page View a CMS
 store_backend_cms_view:
   path: /view/{id}/{name}
-  defaults: { _controller: StoreBackendBundle:CMS:view }
+  defaults: { _controller: StoreBackendBundle:Cms:view }
   requirements:
     id: \d+
     _method: GET
+
+
+# Page new CMS
+store_backend_cms_new:
+  path: /new
+  defaults: { _controller: StoreBackendBundle:Cms:new }

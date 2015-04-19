@@ -1,0 +1,42 @@
+{{ form_start(form) }}
+
+<div class="row">
+    <div class="col-md-4">
+        {{ form_row(form.title) }}
+    </div>
+    <div class="col-md-3">
+        {{ form_row(form.file) }}
+    </div>
+    <div class="col-md-2">
+        {{ form_row(form.state) }}
+    </div>
+
+</div>
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(form.product) }}
+    </div>
+    <div class="col-md-6">
+        {{ form_row(form.video) }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-5">
+        {{ form_row(form.summary) }}
+    </div>
+    <div class="col-md-7">
+        {{ form_row(form.description) }}
+    </div>
+
+</div>
+
+
+
+{#{#btn envoyer#}
+    {{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-lg btn-primary'}}) }}
+
+{# ATTENTION: token à ne pas oublier #}
+    {{ form_widget(form._token) }}
+
+    {# Crée une balise fermante </form>#}
+{{ form_end(form, {'render_rest': false}) }}

@@ -6,7 +6,6 @@ namespace Store\BackendBundle\Controller;
 // J'inclue la classe Controller de Symfony pour pouvoir hériter de cette classe
 use Store\BackendBundle\Entity\Product;
 use Store\BackendBundle\Form\ProductType;
-use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -14,14 +13,15 @@ use Symfony\Component\HttpFoundation\Request;
  * Class ProduitController
  * @package Store\BackendBundle\Controller
  */
-class ProduitController extends Controller{
+class ProduitController extends AbstractController{
+
 
 
     /**
      * List my product
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction(){
+    public function listAction(Request $request){
 
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
@@ -29,9 +29,16 @@ class ProduitController extends Controller{
         //Je récupère tous les produits du jeweler numéro 1
         $products = $em->getRepository('StoreBackendBundle:Product')->getProductByUser(1);
 
+        //paginate to bundle
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $products,
+            $request->query->get('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
 
         return $this->render('StoreBackendBundle:Product:list.html.twig', array(
-            'products' => $products
+            'products' => $pagination
         ));
     }
 
@@ -44,6 +51,8 @@ class ProduitController extends Controller{
      */
     public function viewAction($id, $name)
     {
+        $this->permission('Product', $id);
+
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
 
@@ -65,6 +74,9 @@ class ProduitController extends Controller{
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function activateAction(Product $id, $action){
+
+        $this->permission('Product', $id);
+
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
 
@@ -87,6 +99,9 @@ class ProduitController extends Controller{
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function coverAction(Product $id, $action){
+
+        $this->permission('Product', $id);
+
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
 
@@ -183,6 +198,9 @@ class ProduitController extends Controller{
      * Je recupere l'objet Request qui contient toutes mes données en GET, POST ...
      */
     public function editAction(Request $request,Product $id){
+
+        $this->permission('Product', $id);
+
         // je crée un formulaire de produit en associant avec mon produit
         $form = $this->createForm(new ProductType(1),$id,
             array(
@@ -205,6 +223,11 @@ class ProduitController extends Controller{
             $em->persist($id); //j'enregistre mon objet product dans doctrine
             $em->flush(); //j'envoi ma requete d'insert à ma table product
 
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Votre produit a bien été edité'
+            );
+
             return $this->redirectToRoute('store_backend_product_list'); //redirection selon la route
         }
 
@@ -222,14 +245,22 @@ class ProduitController extends Controller{
      * @param $id
      */
     public function removeAction($id){
+
+        $this->permission('Product', $id);
+
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
-        $em = $this->
+        $em = $this->getDoctrine()->getManager();
 
         //Je récupère tous les produits de ma base de données avec la methode findAll()
         $product = $em->getRepository('StoreBackendBundle:Product')->find($id);
 
         $em->remove($product);
         $em->flush();
+
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            'Votre produit a bien été supprimé'
+        );
 
         return $this->redirectToRoute('store_backend_product_list');
 

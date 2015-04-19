@@ -69,6 +69,30 @@ class Category
      */
     private $jeweler;
 
+
+    /**
+     * @ORM\Column(name="image", type="string", nullable=true)
+     */
+    private $image;
+
+
+    /**
+     * Attribut qui représentera mon fichier uploadé
+     * @Assert\Image(
+     *     minWidth = 100,
+     *     maxWidth = 3000,
+     *     minHeight = 100,
+     *     maxHeight = 2500,
+     *     maxWidthMessage= "La largeur est trop grande",
+     *     minWidthMessage = "La largeur est trop petite",
+     *     maxHeightMessage = "La hauteur est trop grande",
+     *     minHeightMessage = "La largeur est trop petite",
+     *     groups={"new", "edit"}
+     * )
+     */
+    protected $file;
+
+    
     /**
      * Constructor
      */
@@ -246,4 +270,55 @@ class Category
     }
 
 
+    /**
+     * @var \DateTime
+     */
+    private $dateCreated;
+
+
+    /**
+     * Set dateCreated
+     *
+     * @param \DateTime $dateCreated
+     * @return Category
+     */
+    public function setDateCreated($dateCreated)
+    {
+        $this->dateCreated = $dateCreated;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreated
+     *
+     * @return \DateTime 
+     */
+    public function getDateCreated()
+    {
+        return $this->dateCreated;
+    }
+
+    /**
+     * Set image
+     *
+     * @param string $image
+     * @return Category
+     */
+    public function setImage($image)
+    {
+        $this->image = $image;
+
+        return $this;
+    }
+
+    /**
+     * Get image
+     *
+     * @return string 
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
 }

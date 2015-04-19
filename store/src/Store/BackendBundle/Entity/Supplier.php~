@@ -70,6 +70,17 @@ class Supplier
      */
     private $product;
 
+
+    /**
+     * @var \Product
+     *
+     * @ORM\ManyToOne(targetEntity="Jeweler")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="jeweler_id", referencedColumnName="id")
+     * })
+     */
+    private $jeweler;
+    
     /**
      * Constructor
      */
@@ -261,5 +272,13 @@ class Supplier
     public function getProduct()
     {
         return $this->product;
+    }
+
+
+    /**
+     * Retourne le title
+     */
+    public function __toString(){
+        return $this->name;
     }
 }

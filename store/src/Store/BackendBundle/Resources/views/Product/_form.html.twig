@@ -1,4 +1,6 @@
 
+
+
 {# Création du formulaire avec label , input et message d'erreurs #}
 {#{{ form(form) }}#}
 {#Sort tout le formulaire#}
@@ -18,13 +20,17 @@
 
     {# Fonction qui sort le label +  le widget + les errors #}
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-3">
         {{ form_row(form.ref) }} {# form_widget() + form_label() + form_errors() #}
     </div>
     <div class="col-md-6">
         {{ form_row(form.title) }}
     </div>
+    <div class="col-md-3">
+        {{ form_row(form.file) }}
+    </div>
 </div>
+<hr />
 
 <div class="row">
     <div class="col-md-4">
@@ -36,9 +42,7 @@
     <div class="col-md-4">
         {{ form_row(form.composition) }}
     </div>
-    <div class="col-md-3">
-        {{ form_row(form.file) }}
-    </div>
+
 </div>
 
 <div class="row">
