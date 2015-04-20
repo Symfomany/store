@@ -7,9 +7,8 @@
 
 {% block content %}
 
-
 <div class="row">
-    <a href="{{ path('store_backend_cms_new') }}" class=" pull-right btn btn-primary btn-lg">
+    <a href="{{ path('store_backend_cms_new') }}" class=" pull-right btn btn-success btn-lg">
         <i class="fa fa-plus"></i> Ajouter une page cms
     </a>
 </div>
@@ -27,6 +26,7 @@
         <th>Titre</th>
         <th>Résumé</th>
         <th>Etat</th>
+        <th>Active</th>
         <th>Nb. produits affectés</th>
         <th>Date de création</th>
         <th>Actions</th>
@@ -39,7 +39,33 @@
             <td>{{ page.id }}</td>
             <td><a href="{{ path('store_backend_cms_view', {"id" : page.id, "name" : page.title}) }}">{{ page.title }}</a></td>
             <td>{{ page.summary }}</td>
-            <td>{% if page.state == 1 %}<i class="fa fa-check"></i>{% else %}<i class="fa fa-times"></i>{% endif %}</td>
+            <td>
+                {% if page.state == 2 %}
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 2 }) }}" class="btn btn-success disabled">Lu</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 1 }) }}" class="btn btn-primary">En cours de lecture</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 0 }) }}" class="btn btn-danger">Non lu</a>
+                {% elseif page.state == 1 %}
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 2 }) }}" class="btn btn-success">Lu</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 1 }) }}" class="btn btn-primary disabled">En cours de lecture</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 0 }) }}" class="btn btn-danger">Non lu</a>
+                {% else %}
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 2 }) }}" class="btn btn-success">Lu</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 1 }) }}" class="btn btn-primary">En cours de lecture</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 0 }) }}" class="btn btn-danger disabled">Non lu</a>
+
+                {% endif %}
+            </td>
+            <td>
+                {% if page.active == 1 %}
+                    <a href="{{ path('store_backend_cms_activate', {'id': page.id, 'action' : 0}) }}" >
+                        <i class="fa fa-check"></i>
+                    </a>
+                {% else %}
+                    <a href="{{ path('store_backend_cms_activate', {'id': page.id, 'action' : 1}) }}" >
+                        <i class="fa fa-times"></i>
+                    </a>
+                {% endif %}
+            </td>
             <td><i class="badge badge-info">{{ page.product|length }}</i>  produits associés</td>
             <td>{{ page.dateCreated|date('d/m/Y') }}</td>
             <td>
@@ -47,8 +73,8 @@
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Actions&nbsp;<i class="fa fa-caret-down"></i></button>
                     <ul class="dropdown-menu">
                         <li><a href="#"><i class="fa fa-search"></i> Voir</a></li>
-                        <li><a href="#"><i class="fa fa-pencil"></i> Editer</a></li>
-                        <li><a href="#"><i class="fa fa-times"></i> Supprimer</a></li>
+                        <li><a href="{{ path('store_backend_cms_edit', {'id': page.id}) }}"><i class="fa fa-pencil"></i> Editer</a></li>
+                        <li><a href="{{ path('store_backend_cms_remove', {'id' : page.id}) }}"><i class="fa fa-times"></i> Supprimer</a></li>
                     </ul>
                 </div>
             </td>

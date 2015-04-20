@@ -12,3 +12,19 @@ store_backend_supplier_view:
     id: \d+
     name: "[a-zA-Z0-9-]{3,30}"
     _method: GET
+
+
+# Page new Supplier
+store_backend_supplier_new:
+  path: /new
+  defaults: { _controller: StoreBackendBundle:Supplier:new }
+
+# Page edit Supplier
+store_backend_supplier_edit:
+  path: /edit/{id}
+  defaults: { _controller: StoreBackendBundle:Supplier:edit }
+
+# Page remove Supplier
+store_backend_supplier_remove:
+  path: /remove/{id}
+  defaults: { _controller: StoreBackendBundle:Supplier:remove }

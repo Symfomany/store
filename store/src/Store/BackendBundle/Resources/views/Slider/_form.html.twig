@@ -1,0 +1,56 @@
+
+
+
+{# Création du formulaire avec label , input et message d'erreurs #}
+{#{{ form(form) }}#}
+{#Sort tout le formulaire#}
+{#{{ form(form) }}#}
+
+{# Créer une balise ouvrante <form> #}
+{{ form_start(form) }}
+
+    {# form_label() me sort juste le label d'un chamo #}
+    {#{{ form_label(form.ref) }}#}
+
+    {# form_widget() me sort juste l'inoput de mon champ #}
+    {#{{ form_widget(form.ref) }}#}
+
+    {# form_error() me sort juste les erreurs de mon champ #}
+    {#{{ form_errors(form.ref) }}#}
+
+    {# Fonction qui sort le label +  le widget + les errors #}
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(form.caption) }}
+    </div>
+    <div class="col-md-3">
+        {{ form_row(form.file) }}
+        {% if app.request.attributes.get('_route') == "store_backend_slider_edit" %}
+            {% if slide.image is not empty %}
+                <img src="{{ asset('uploads/slider/' ~ slide.image) }}" class="img-thumbnail" />
+            {% endif %}
+        {% endif %}
+    </div>
+</div>
+<hr />
+
+<div class="row">
+    <div class="col-md-6">
+        {{ form_row(form.product) }}
+    </div>
+    <div class="col-md-4">
+        {{ form_row(form.position) }}
+    </div>
+    <div class="col-md-2">
+        {{ form_row(form.active) }}
+    </div>
+</div>
+
+{#{#btn envoyer#}
+    {{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-lg btn-primary'}}) }}
+
+{# ATTENTION: token à ne pas oublier #}
+    {{ form_widget(form._token) }}
+
+    {# Crée une balise fermante </form>#}
+{{ form_end(form, {'render_rest': false}) }}

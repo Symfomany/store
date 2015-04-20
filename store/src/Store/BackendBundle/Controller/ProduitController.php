@@ -75,7 +75,6 @@ class ProduitController extends AbstractController{
      */
     public function activateAction(Product $id, $action){
 
-        $this->permission('Product', $id);
 
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
@@ -88,11 +87,14 @@ class ProduitController extends AbstractController{
         // et un message de confirmation
         $this->get('session')->getFlashBag()->add(
             'success',
-            'Votre produit a bien été modifié'
+            'Votre produit a bien été activé'
         );
 
         return $this->redirectToRoute('store_backend_product_list'); //redirection selon la route
     }
+
+
+
     /**
      * Cover a product
      * @param $id
@@ -219,6 +221,8 @@ class ProduitController extends AbstractController{
 
         // Si la totalité du formulaire est valide
         if($form->isValid()){
+            $id->upload();
+
             $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
             $em->persist($id); //j'enregistre mon objet product dans doctrine
             $em->flush(); //j'envoi ma requete d'insert à ma table product
@@ -234,7 +238,8 @@ class ProduitController extends AbstractController{
 
         return $this->render('StoreBackendBundle:Product:edit.html.twig',
             array(
-                'form' => $form->createView()
+                'form' => $form->createView(),
+                'product' => $id
             )
         );
     }

@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class CmsController
  * @package Store\BackendBundle\Controller
  */
-class CmsController extends Controller{
+class CmsController extends AbstractController{
 
 
     /**
@@ -44,6 +44,8 @@ class CmsController extends Controller{
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function viewAction($id, $name){
+
+        $this->permission('Cms', $id);
 
         $em = $this->getDoctrine()->getManager();
         $cms = $em->getRepository('StoreBackendBundle:Cms')->find(1);
@@ -102,6 +104,114 @@ class CmsController extends Controller{
             'form' => $form->createView()
         ));
     }
+
+
+    /**
+     * New category page
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function editAction(Request $request, Cms $id){
+        $this->permission('Cms', $id);
+
+        $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
+
+        // je crée un formulaire de produit
+        $form = $this->createForm(new CmsType(1), $id,  array(
+            'validation_groups' => 'new',
+            'attr' => array(
+                'method' => 'post',
+                'novalidate' => 'novalidate',
+                'action' => $this->generateUrl('store_backend_cms_edit', array('id' => $id->getId()))
+            )
+        ));
+
+        $form->handleRequest($request);
+
+        if($form->isValid()){
+            // j'upload mon fichier en faisant appel a la methode upload()
+            $id->upload();
+
+            $em->persist($id); //j'enregistre mon objet product dans doctrine
+            $em->flush(); //j'envoi ma requete d'insert à ma table product
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Votre page cms a bien été modifiée'
+            );
+            return $this->redirectToRoute('store_backend_cms_list'); //redirection selon la route
+        }
+
+        return $this->render('StoreBackendBundle:Cms:edit.html.twig', array(
+            'form' => $form->createView()
+        ));
+    }
+
+
+
+    /**
+     * Action de suppression
+     * @param $id
+     */
+    public function activateAction(Cms $id, $action){
+        $em = $this->getDoctrine()->getManager();
+        $id->setActive($action);
+        $em->persist($id);
+        $em->flush();
+
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            'Votre page a bien été modifiée'
+        );
+
+        return $this->redirectToRoute('store_backend_cms_list');
+    }
+
+
+    /**
+     * Action de suppression
+     * @param $id
+     */
+    public function stateAction(Cms $id, $action){
+        $em = $this->getDoctrine()->getManager();
+        $id->setState($action);
+        $em->persist($id);
+        $em->flush();
+
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            'Votre page a bien été modifiée'
+        );
+
+        return $this->redirectToRoute('store_backend_cms_list');
+    }
+
+
+    /**
+     * Action de suppression
+     * @param $id
+     */
+    public function removeAction($id){
+
+        $this->permission('Cms', $id);
+
+        // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
+        $em = $this->getDoctrine()->getManager();
+
+        //Je récupère tous les produits de ma base de données avec la methode findAll()
+        $cms = $em->getRepository('StoreBackendBundle:Cms')->find($id);
+
+        $em->remove($cms);
+        $em->flush();
+
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            'Votre page a bien été supprimé'
+        );
+
+        return $this->redirectToRoute('store_backend_cms_list');
+
+    }
+
 
 
 }

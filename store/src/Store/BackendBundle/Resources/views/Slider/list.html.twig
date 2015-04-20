@@ -1,0 +1,61 @@
+{% extends "StoreBackendBundle::layout.html.twig" %}
+
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript">
+        init.push(function () {
+            $("textarea").markdown({ iconlibrary: 'fa' });
+        });
+    </script>
+{% endblock %}
+
+{% block titlepage %}
+    <i class="fa fa-th"></i> Liste des slides
+{% endblock  %}
+
+{% block content %}
+
+    <div class="row">
+        <a href="{{ path('store_backend_slider_new') }}" class=" pull-right btn btn-success btn-lg">
+            <i class="fa fa-plus"></i> Ajouter un slide
+        </a>
+    </div>
+    <hr />
+
+<table class="table table-bordered table-primary">
+    <thead>
+    <th>Id</th>
+    <th>Produit associé</th>
+    <th>Légende</th>
+    <th>Image</th>
+    <th>Position</th>
+    <th>Actions</th>
+    </thead>
+    <tbody>
+        {% for slide in slides %}
+            <tr>
+                <td>{{ slide.id }}</td>
+                <td>{{ slide.product.title }}</td>
+                <td>{{ slide.caption }}</td>
+                <td>{{ slide.image }}</td>
+                <td>{{ slide.position }}</td>
+                <td>
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Actions&nbsp;<i class="fa fa-caret-down"></i></button>
+                        <ul class="dropdown-menu">
+                            <li><a href="{{ path('store_backend_slider_edit', {'id': slide.id}) }}"><i class="fa fa-pencil"></i> Editer</a></li>
+                            <li><a href="{{ path('store_backend_slider_remove', {'id' : slide.id}) }}"><i class="fa fa-times"></i> Supprimer</a></li>
+                        </ul>
+                    </div>
+                </td>
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+
+{% endblock %}

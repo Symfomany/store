@@ -1,57 +1,25 @@
-###
-# Begin
-###
+# you can read more about security in the related section of the documentation
+# http://symfony.com/doc/current/book/security.html
 security:
-
-
-
-###
-# 1. Encoders to handle encoding with algorythms the password
-###
-# http://symfony.com/doc/current/book/security.html#encoding-the-user-s-password
-#    encoders:
-#        Symfony\Component\Security\Core\User\User: plaintext
-
+    #
+    # Encodage dun mot de passe: stratégie
+    #
     encoders:
-      Store\BackendBundle\Entity\Jeweler:
-        algorithm:   sha512
-        iterations: 10
-        encode_as_base64: true
+        Symfony\Component\Security\Core\User\User: plaintext
 
-
-
-
-###
-# 2. Define all roles or users for Authorisation
-###
-    # http://symfony.com/doc/current/book/security.html#hierarchical-roles
+    #
+    # Role des utilisateurs
+    #
     role_hierarchy:
-        ROLE_USER:       ROLE_USER
-        ROLE_ADMIN:       [ROLE_ADMIN, ROLE_USER]
-        ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+        ROLE_JEWELER:       ROLE_JEWELER
 
-
-
-
-###
-# 3. Define all providers for Authentification
-###
     # http://symfony.com/doc/current/book/security.html#where-do-users-come-from-user-providers
     providers:
-       backend:
-          entity: { class: StoreBackendBundle:Jeweler }
+        in_memory:
+            memory:
+                users:
+                    admin@gmail.com: { password: admin, roles: [ 'ROLE_JEWELER' ] }
 
-#        in_memory:
-#            memory:
-#                users:
-#                    admin@gmail.com: { password: d033e22ae348aeb5660fc2140aec35850c4da997, roles: [ 'ROLE_ADMIN' ] }
-
-
-
-
-###
-# 4. Define firewalls for areas of my app
-###
     # the main part of the security, where you can set up firewalls
     # for specific sections of your app
     firewalls:
@@ -65,7 +33,7 @@ security:
             security: false
 
         # secures part of the application
-        backend:
+        demo_secured_area:
             pattern:    ^/administration
             form_login:
                 check_path: store_backend_login_check
@@ -80,15 +48,9 @@ security:
             #http_basic:
             #    realm: "Secured Demo Area"
 
-
-
-###
-# 5. Define all access control between firewall & roles
-###
-
     # with these settings you can restrict or allow access for different parts
     # of your application based on roles, ip, host or methods
     # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
-        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY, requires_channel: https }
-        - { path: ^/administration, roles: ROLE_ADMIN }
+        - { path: ^/administration, roles: ROLE_JEWELER }
+        - { path: ^/login, roles: IS_AUTHENTICATED_ANONYMOUSLY }

@@ -12,4 +12,22 @@ use Doctrine\ORM\EntityRepository;
  */
 class SliderRepository extends EntityRepository
 {
+
+    /**
+     * Get all slides of an user
+     * @return mixed
+     */
+    public function getSlidesByUser($user = null){
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                 SELECT s
+                 FROM StoreBackendBundle:Slider s
+                 JOIN s.product p
+                 WHERE p.jeweler = :jew"
+            )
+            ->setParameter('jew', $user);
+
+        return $query->getResult();
+    }
 }

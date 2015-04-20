@@ -28,6 +28,11 @@
     </div>
     <div class="col-md-3">
         {{ form_row(form.file) }}
+        {% if app.request.attributes.get('_route') == "store_backend_product_edit" %}
+            {% if product.imagepresentation is not empty %}
+                <img src="{{ asset('uploads/product/' ~ product.imagepresentation) }}" class="img-thumbnail" />
+            {% endif %}
+        {% endif %}
     </div>
 </div>
 <hr />

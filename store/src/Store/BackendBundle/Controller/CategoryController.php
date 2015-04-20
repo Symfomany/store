@@ -98,7 +98,7 @@ class CategoryController extends AbstractController{
             'attr' => array(
                 'method' => 'post',
                 'novalidate' => 'novalidate',
-                'action' => $this->generateUrl('store_backend_category_new')
+                'action' => $this->generateUrl('store_backend_category_edit', array('id' => $id->getId()))
             )
         ));
 
@@ -121,7 +121,8 @@ class CategoryController extends AbstractController{
         }
 
         return $this->render('StoreBackendBundle:Category:edit.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
+            'category' => $id
         ));
     }
 

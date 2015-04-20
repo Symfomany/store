@@ -81,9 +81,6 @@ class Order
      * @var \Product
      *
      * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="order")
-     * @ORM\JoinColumns({
-     *   @ORM\JoinColumn(name="product_id", referencedColumnName="id")
-     * })
      */
     private $detail;
 

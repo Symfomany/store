@@ -1,0 +1,25 @@
+{% extends "StoreBackendBundle::layout.html.twig" %}
+
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript">
+        init.push(function () {
+            $("textarea").markdown({ iconlibrary: 'fa' });
+
+        });
+    </script>
+{% endblock %}
+
+{% block titlepage %}
+    <i class="fa fa-plus"></i> Editer une fournisseur
+{% endblock  %}
+
+{% block content %}
+    {{ include('StoreBackendBundle:Supplier:_form.html.twig') }}
+
+{% endblock %}
+
+

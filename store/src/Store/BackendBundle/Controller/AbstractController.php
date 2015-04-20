@@ -23,15 +23,22 @@ abstract class AbstractController extends Controller{
      * @param $name
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function permission($object, $id){
+    public function permission($object, $id, $subobject = false){
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
 
         $object = $em->getRepository('StoreBackendBundle:'.$object)->find($id);
 
-        if($user->getId() != $object->getJeweler()->getId()){
-            throw new AccessDeniedException("Vous n'est aps authoriser à accéder à ce contenu");
+        if($subobject == false){
+            if($user->getId() != $object->getJeweler()->getId()){
+                throw new AccessDeniedException("Vous n'est aps authoriser à accéder à ce contenu");
+            }
+        }else{
+            if($user->getId() != $object->getProduct()->getJeweler()->getId()){
+                throw new AccessDeniedException("Vous n'est aps authoriser à accéder à ce contenu");
+            }
         }
+
 
     }
 

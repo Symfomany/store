@@ -17,3 +17,23 @@ store_backend_cms_view:
 store_backend_cms_new:
   path: /new
   defaults: { _controller: StoreBackendBundle:Cms:new }
+
+# Page edit CMS
+store_backend_cms_edit:
+  path: /edit/{id}
+  defaults: { _controller: StoreBackendBundle:Cms:edit }
+
+# Page remove CMS
+store_backend_cms_remove:
+  path: /remove/{id}
+  defaults: { _controller: StoreBackendBundle:Cms:remove }
+
+# Page activate CMS
+store_backend_cms_activate:
+  path: /activate/{id}/{action}
+  defaults: { _controller: StoreBackendBundle:Cms:activate }
+
+# Page state CMS
+store_backend_cms_state:
+  path: /state/{id}/{action}
+  defaults: { _controller: StoreBackendBundle:Cms:state }

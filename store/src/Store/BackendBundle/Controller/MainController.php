@@ -18,7 +18,7 @@ class MainController extends Controller{
      */
     public function indexAction(){
         // Récupérer l'utilisateur
-        $user = $this->getUser();
+        $user = 1;
 
         // Récupérer Doctrine Manager
         $em = $this->getDoctrine()->getManager();

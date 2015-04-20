@@ -1,33 +1,25 @@
 {{ form_start(form) }}
 
 <div class="row">
-    <div class="col-md-6">
-        {{ form_row(form.title) }}
+    <div class="col-md-4">
+        {{ form_row(form.name) }}
     </div>
     <div class="col-md-3">
         {{ form_row(form.file) }}
-        {% if app.request.attributes.get('_route') == "store_backend_category_edit" %}
-            {% if category.image is not empty %}
-                <img src="{{ asset('uploads/category/' ~ category.image) }}" class="img-thumbnail" />
-            {% endif %}
-        {% endif %}
-    </div>
-    <div class="col-md-3">
-        {{ form_row(form.active) }}
-    </div>
-</div>
-<div class="row">
-    <div class="col-md-4">
-        {{ form_row(form.description) }}
     </div>
     <div class="col-md-2">
-        {{ form_row(form.position) }}
+        {{ form_row(form.active) }}
     </div>
+
+</div>
+<div class="row">
     <div class="col-md-6">
         {{ form_row(form.product) }}
     </div>
+    <div class="col-md-6">
+        {{ form_row(form.description) }}
+    </div>
 </div>
-
 
 
 {#{#btn envoyer#}

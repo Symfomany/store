@@ -1,0 +1,22 @@
+{% extends "StoreBackendBundle::layout.html.twig" %}
+
+{% block javascripts %}
+
+    {{ parent() }}
+
+    <script type="text/javascript">
+        init.push(function () {
+            $("textarea").markdown({ iconlibrary: 'fa' });
+        });
+    </script>
+{% endblock %}
+
+{% block titlepage %}
+    <i class="fa fa-plus"></i> Editer un slide
+{% endblock  %}
+
+{% block content %}
+
+    {{ include('StoreBackendBundle:Slider:_form.html.twig') }}
+
+{% endblock %}

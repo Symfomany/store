@@ -47,6 +47,9 @@
         <li class="{% if app.request.attributes.get('_route') == "store_backend_supplier_list" %} active {% endif %}">
             <a href="{{ path('store_backend_supplier_list') }}"><i class="fa fa-truck"></i> Fournisseurs</a>
         </li>
+        <li class="{% if app.request.attributes.get('_route') == "store_backend_slider_list" %} active {% endif %}">
+            <a href="{{ path('store_backend_slider_list') }}"><i class="fa fa-video-camera"></i> Slider</a>
+        </li>
 
     </ul> <!-- / .navbar-nav -->
 

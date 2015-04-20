@@ -314,6 +314,12 @@ class Product
     private $meta;
 
     /**
+     * @ORM\OneToMany(targetEntity="Slider", mappedBy="product")
+     *
+     */
+    private $slide;
+
+    /**
      * @ORM\Column(name="imagepresentation", type="string", nullable=true)
      */
     private $imagepresentation;
@@ -872,8 +878,9 @@ class Product
      */
     public function addSupplier(\Store\BackendBundle\Entity\Supplier $supplier)
     {
-        $this->supplier[] = $supplier;
-
+        if(!$this->supplier->contains($supplier)) {
+            $this->supplier[] = $supplier;
+        }
         return $this;
     }
 
@@ -1071,7 +1078,7 @@ class Product
      * @param \Store\BackendBundle\Entity\Orders $order
      * @return Product
      */
-    public function addOrder(\Store\BackendBundle\Entity\Orders $order)
+    public function addOrder(\Store\BackendBundle\Entity\Order $order)
     {
         $this->order[] = $order;
 
@@ -1083,7 +1090,7 @@ class Product
      *
      * @param \Store\BackendBundle\Entity\Orders $order
      */
-    public function removeOrder(\Store\BackendBundle\Entity\Orders $order)
+    public function removeOrder(\Store\BackendBundle\Entity\Order $order)
     {
         $this->order->removeElement($order);
     }
@@ -1186,4 +1193,62 @@ class Product
 
 
 
+
+    /**
+     * Add cms
+     *
+     * @param \Store\BackendBundle\Entity\Cms $cms
+     * @return Product
+     */
+    public function addCm(\Store\BackendBundle\Entity\Cms $cms)
+    {
+        $this->cms[] = $cms;
+
+        return $this;
+    }
+
+    /**
+     * Remove cms
+     *
+     * @param \Store\BackendBundle\Entity\Cms $cms
+     */
+    public function removeCm(\Store\BackendBundle\Entity\Cms $cms)
+    {
+        $this->cms->removeElement($cms);
+    }
+
+    /**
+     * Add slide
+     *
+     * @param \Store\BackendBundle\Entity\Slider $slide
+     * @return Product
+     */
+    public function addSlide(\Store\BackendBundle\Entity\Slider $slide)
+    {
+        if(!$this->slide->contains($slide)){
+            $this->slide[] = $slide;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove slide
+     *
+     * @param \Store\BackendBundle\Entity\Slider $slide
+     */
+    public function removeSlide(\Store\BackendBundle\Entity\Slider $slide)
+    {
+        $this->slide->removeElement($slide);
+    }
+
+    /**
+     * Get slide
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSlide()
+    {
+        return $this->slide;
+    }
 }

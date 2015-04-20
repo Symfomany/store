@@ -2,7 +2,12 @@
 
 namespace Store\BackendBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+
+use Symfony\Component\Validator\Constraints as Assert;
+use Store\BackendBundle\Validator\Constraints as StoreAssert;
+
 
 /**
  * Supplier
@@ -23,15 +28,33 @@ class Supplier
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=300, nullable=true)
+     * @Assert\NotBlank(
+     *     message = "Le nom ne doit pas etre vide",
+     *     groups={"new", "edit"}
+     * )
+     * @Assert\Length(
+     *      min = "4",
+     *      max = "300",
+     *      minMessage = "Votre nom doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Votre nom ne peut pas être plus long que {{ limit }} caractères",
+     *      groups={"new", "edit"}
+     * )     * @ORM\Column(name="name", type="string", length=300, nullable=true)
      */
     private $name;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="description", type="text", nullable=true)
+     * @Assert\NotBlank(
+     *     message = "La description ne doit pas etre vide",
+     *     groups={"new", "edit"}
+     * )
+     * @Assert\Length(
+     *      min = "15",
+     *      max = "5000",
+     *      minMessage = "La description doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "La description ne peut pas être plus long que {{ limit }} caractères",
+     *      groups={"new", "edit"}
+     * )     * @ORM\Column(name="description", type="text", nullable=true)
      */
     private $description;
 
@@ -42,6 +65,25 @@ class Supplier
      */
     private $image;
 
+
+
+    /**
+     * Attribut qui représentera mon fichier uploadé
+     * @Assert\Image(
+     *     minWidth = 100,
+     *     maxWidth = 3000,
+     *     minHeight = 100,
+     *     maxHeight = 2500,
+     *     maxWidthMessage= "La largeur est trop grande",
+     *     minWidthMessage = "La largeur est trop petite",
+     *     maxHeightMessage = "La hauteur est trop grande",
+     *     minHeightMessage = "La largeur est trop petite",
+     *     groups={"new", "edit"}
+     * )
+     */
+    protected $file;
+
+    
     /**
      * @var boolean
      *
@@ -88,7 +130,7 @@ class Supplier
     {
         $this->dateCreated = new \DateTime('now');
         $this->dateUpdated = new \DateTime('now');
-        $this->active = 1;
+        $this->active = true;
         $this->product = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
@@ -241,28 +283,43 @@ class Supplier
         return $this->dateUpdated;
     }
 
-    /**
-     * Add product
-     *
-     * @param \Store\BackendBundle\Entity\Product $product
-     * @return Supplier
-     */
-    public function addProduct(\Store\BackendBundle\Entity\Product $product)
-    {
-        $this->product[] = $product;
-
-        return $this;
-    }
 
     /**
-     * Remove product
-     *
-     * @param \Store\BackendBundle\Entity\Product $product
+     * Override to control all product
+     * @param ArrayCollection $products
      */
-    public function removeProduct(\Store\BackendBundle\Entity\Product $product)
+    public function setProduct(ArrayCollection $products)
     {
-        $this->product->removeElement($product);
+        foreach ($products as $product) {
+            $product->addSupplier($this);
+        }
+
+        $this->product = $products;
     }
+
+
+//    /**
+//     * Add product
+//     *
+//     * @param \Store\BackendBundle\Entity\Product $product
+//     * @return Supplier
+//     */
+//    public function addProduct(\Store\BackendBundle\Entity\Product $product)
+//    {
+//        $this->product[] = $product;
+//
+//        return $this;
+//    }
+//
+//    /**
+//     * Remove product
+//     *
+//     * @param \Store\BackendBundle\Entity\Product $product
+//     */
+//    public function removeProduct(\Store\BackendBundle\Entity\Product $product)
+//    {
+//        $this->product->removeElement($product);
+//    }
 
     /**
      * Get product
@@ -304,4 +361,91 @@ class Supplier
     {
         return $this->jeweler;
     }
+
+
+    /**
+     * Retourne le chemin absolue de mon image
+     * @return null|string
+     */
+    public function getAbsolutePath()
+    {
+        return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
+    }
+
+
+    /**
+     * Retourne le chemin de l'image depuis le dossier web
+     * @return null|string
+     */
+    public function getWebPath()
+    {
+        return null === $this->image ? null : $this->getUploadDir().'/'.$this->image;
+    }
+
+    /**
+     * Retourne le cheùin de mon image depuis l'entité
+     * @return string
+     */
+    protected function getUploadRootDir()
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    /**
+     * Retourne le dossier d'upload et sous dossier product
+     * @return string
+     */
+    protected function getUploadDir()
+    {
+        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
+        // le document/image dans la vue.
+        return 'uploads/supplier';
+    }
+
+
+
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+    /**
+     * Mecanisme d'upload
+     * + déplacement du fichier uploadé dans le bon dossier
+     */
+    public function upload()
+    {
+        // la propriété « file » peut être vide si le champ n'est pas requis
+        if (null === $this->file) {
+            return;
+        }
+
+        // utilisez le nom de fichier original ici mais
+        // vous devriez « l'assainir » pour au moins éviter
+        // quelconques problèmes de sécurité
+
+        // Déplacer le fichier uploadé dans le bon répertoir
+        // uploads/product/
+        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+
+        // je stocke le nom du fichier uploadé dans mon
+        //attribut image
+        $this->image = $this->file->getClientOriginalName();
+
+        // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
+        $this->file = null;
+    }
+
 }

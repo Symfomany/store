@@ -1,0 +1,20 @@
+
+# Page List of Slider
+store_backend_slider_list:
+  path: /list
+  defaults: { _controller: StoreBackendBundle:Slider:list }
+
+# Page new Slide
+store_backend_slider_new:
+  path: /new
+  defaults: { _controller: StoreBackendBundle:Slider:new }
+
+# Page edit Slide
+store_backend_slider_edit:
+  path: /edit/{id}
+  defaults: { _controller: StoreBackendBundle:Slider:edit }
+
+# Page remove Slide
+store_backend_slider_remove:
+  path: /remove/{id}
+  defaults: { _controller: StoreBackendBundle:Slider:remove }
