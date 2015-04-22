@@ -25,6 +25,7 @@
     </div>
     <hr />
 
+{% if slides is not empty %}
 <table class="table table-bordered table-primary">
     <thead>
     <th>Id</th>
@@ -56,6 +57,11 @@
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+    <div class="alert alert-dark alert-warning">
+        Aucune slide de crée
+    </div>
+{% endif %}
 
 
 {% endblock %}

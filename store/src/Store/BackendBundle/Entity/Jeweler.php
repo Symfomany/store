@@ -2,11 +2,15 @@
 
 namespace Store\BackendBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\EquatableInterface;
+
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 
 /**
@@ -14,6 +18,8 @@ use Symfony\Component\Security\Core\User\EquatableInterface;
  * Use AdvancedUserInterface
  * @ORM\Table(name="jeweler", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\JewelerRepository")
+ * @UniqueEntity(fields="username", message="Votre login est déjà existant", groups={"suscribe"})
+ * @UniqueEntity(fields="email", message="Votre email est déjà existant", groups={"suscribe"})
  */
 class Jeweler implements  AdvancedUserInterface, \Serializable
 {
@@ -28,21 +34,49 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "L'email ne doit pas etre vide",
+     *     groups={"suscribe"}
+     * )
+     * @Assert\Email(
+     *     message = "'{{ value }}' n'est pas un email valide.",
+     *     checkMX = true,
+     *     groups={"suscribe"}
+     * )
      * @ORM\Column(name="email", type="string", length=150, nullable=true)
      */
     private $email;
     
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "Le login ne doit pas etre vide",
+     *     groups={"suscribe"}
+     * )
+     * @Assert\Length(
+     *      min = "3",
+     *      max = "50",
+     *      minMessage = "Le login doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "La login ne peut pas être plus long que {{ limit }} caractères",
+     *      groups={"suscribe"}
+     * )
      * @ORM\Column(name="username", type="string", length=150, nullable=true)
      */
     private $username;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "Le mot de passe ne doit pas etre vide",
+     *     groups={"suscribe"}
+     * )
+     * @Assert\Length(
+     *      min = "6",
+     *      max = "50",
+     *      minMessage = "Le mot de passe doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Le mot de passe ne peut pas être plus long que {{ limit }} caractères",
+     *      groups={"suscribe"}
+     * )
      * @ORM\Column(name="password", type="string", length=300, nullable=true)
      */
     private $password;
@@ -177,6 +211,13 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     /**
      * @var boolean
      *
+     * @ORM\Column(name="roles", type="string", nullable=true)
+     */
+    private $roles;
+
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="accountNonExpired", type="boolean", nullable=true)
      */
     private $accountnonexpired;
@@ -195,6 +236,22 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     private $dateCreated;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Groups", inversedBy="jeweler")
+     * @ORM\JoinTable(name="jeweler_groups",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="jeweler_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="groups_id", referencedColumnName="id")
+     *   }
+     * )
+     *
+     */
+    private $groups;
+
+
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -208,6 +265,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
         $this->locked = 0;
         $this->expired = 0;
         $this->salt = md5(uniqid(null, true));
+        $this->groups = new ArrayCollection();
 
     }
 
@@ -759,6 +817,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      *     return array('ROLE_USER');
      * }
      * </code>
+     *        return $this->groups->toArray();
      *
      * Alternatively, the roles might be stored on a ``roles`` property,
      * and populated in any number of different ways when the user object
@@ -768,7 +827,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      */
     public function getRoles()
     {
-        return array('ROLE_ADMIN');
+//        return array('ROLE_JEWELER');
+        //e retourne mon attrribut groups en tableau :
+        // ArrayCollection => Array
+        return $this->groups->toArray();
     }
 
     /**
@@ -789,9 +851,11 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      */
     public function eraseCredentials()
     {
+        return null;
     }
 
     /**
+     * Mis en session par le Token
      * @see \Serializable::serialize()
      */
     public function serialize()
@@ -802,6 +866,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
+     * Extraction des données mise en ession
      * @see \Serializable::unserialize()
      */
     public function unserialize($serialized)
@@ -820,7 +885,6 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
         return $this->username === $user->getUsername();
     }
 
-
     /**
      * Set username
      *
@@ -836,15 +900,24 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
     /**
      * Verification is Account is not expired
+     * Si le compte n'est pas expiré
      * @return bool
      */
     public function isAccountNonExpired()
     {
-        return $this->accountnonexpired;
+        $datecreated = $this->dateCreated;
+        $dateoldyear = new \DateTime('-1 year');
+
+        if($datecreated < $dateoldyear ){
+            return false;
+        }
+
+        return true;
     }
 
     /**
      * Verification is Account is not locked
+     * SI le compte n'est pas verouillé
      * @return bool
      */
     public function isAccountNonLocked()
@@ -854,6 +927,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
     /**
      * Verification account  credentials is not expired
+     * Si c'est droit on expirés
      * @return bool
      */
     public function isCredentialsNonExpired()
@@ -863,6 +937,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
     /**
      * Verification account is not enabled
+     * Si l'utilisateur a activer son compte
      * @return bool|int
      */
     public function isEnabled()
@@ -880,4 +955,87 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
 
+
+
+
+
+
+
+
+
+    /**
+     * Set roles
+     *
+     * @param string $roles
+     * @return Jeweler
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+
+
+    /**
+     * Add groups
+     *
+     * @param \Store\BackendBundle\Entity\Groups $groups
+     * @return Jeweler
+     */
+    public function addGroup(\Store\BackendBundle\Entity\Groups $groups)
+    {
+        $this->groups[] = $groups;
+
+        return $this;
+    }
+
+    /**
+     * Remove groups
+     *
+     * @param \Store\BackendBundle\Entity\Groups $groups
+     */
+    public function removeGroup(\Store\BackendBundle\Entity\Groups $groups)
+    {
+        $this->groups->removeElement($groups);
+    }
+
+    /**
+     * Get groups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGroups()
+    {
+        return $this->groups;
+    }
+
+    /**
+     * @Assert\Callback(groups={"suscribe"})
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+
+        if (($this->getUsername()  == $this->getPassword())) {
+            $context->addViolationAt(
+                'username',
+                'Votre login ne doit pas être identique que votre mot de passe',
+                array(),
+                null
+            );
+        }
+
+        if (($this->getUsername()  == $this->getEmail())) {
+            $context->addViolationAt(
+                'password',
+                'Votre email ne doit pas être identique que votre login',
+                array(),
+                null
+            );
+        }
+
+
+
+    }
 }

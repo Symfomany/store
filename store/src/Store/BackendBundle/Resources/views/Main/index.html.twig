@@ -14,9 +14,12 @@
 {% block content %}
 
 
-    <div class="row">
-        <div class="alert alert-warning"><i class="fa fa-warning"></i> <strong>2</strong> produits sont en rupture de stock</div>
-    </div>
+    {% if nbprodempty.nb > 0 %}
+        <div class="row">
+            <div class="alert alert-warning"><i class="fa fa-warning"></i> <strong>{{ nbprodempty.nb }}</strong> produits sont en rupture de stock</div>
+        </div>
+    {% endif %}
+
     <div class="row">
     <div class="col-md-9">
 
@@ -210,7 +213,7 @@
                 <div class="stat-panel">
                     <!-- Success background, bordered, without top and bottom borders, without left border, without padding, vertically and horizontally centered text, large text -->
                     <a href="#" class="stat-cell col-xs-5 bg-warning bordered no-border-vr no-border-l no-padding valign-middle text-center text-lg">
-                        <i class="fa fa-comments"></i>&nbsp;&nbsp;<strong>15</strong>
+                        <i class="fa fa-comments"></i>&nbsp;&nbsp;<strong>{{ nbcomm.nb|default('0') }}</strong>
                     </a> <!-- /.stat-cell -->
                     <!-- Without padding, extra small text -->
                     <div class="stat-cell col-xs-7 no-padding valign-middle">
@@ -219,21 +222,21 @@
                             <div class="stat-row">
                                 <!-- Success background, small padding, vertically aligned text -->
                                 <a href="#" class="stat-cell bg-warning padding-sm valign-middle">
-                                    5 Actifs
+                                    {{ lastcommentsactifs|length }} Actifs
                                     <i class="fa fa-check pull-right"></i>
                                 </a>
                             </div>
                             <div class="stat-row">
                                 <!-- Success darken background, small padding, vertically aligned text -->
                                 <a href="#" class="stat-cell bg-warning darken padding-sm valign-middle">
-                                    3 En cours
+                                    {{ lastcommentsencours|length }} En cours
                                     <i class="fa fa-dashboard pull-right"></i>
                                 </a>
                             </div>
                             <div class="stat-row">
                                 <!-- Success darker background, small padding, vertically aligned text -->
                                 <a href="#" class="stat-cell bg-warning darker padding-sm valign-middle">
-                                    2 Inactifs
+                                    {{ lastcommentsinactifs|length }} Inactifs
                                     <i class="fa fa-times pull-right"></i>
                                 </a>
                             </div>
@@ -256,7 +259,7 @@
                             <!-- Stat panel bg icon -->
                             <i class="fa fa-heart bg-icon"></i>
                             <!-- Extra large text -->
-                            <span class="text-xlg"><strong>18</strong></span><br>
+                            <span class="text-xlg"><strong>{{  nblikes.nb|default('0') }}</strong></span><br>
                             <!-- Big text -->
                             <span class="text-bg">Likes</span><br>
                             <!-- Small text -->
@@ -285,13 +288,13 @@
         <span class="panel-title"><i class="panel-title-icon fa fa-comment "></i>5 Derniers Commentaires</span>
         <ul class="nav nav-tabs nav-tabs-xs">
             <li class="active">
-                <a href="#dashboard-recent-comments" data-toggle="tab">Actifs</a>
+                <a href="#actifs-comments" data-toggle="tab">Actifs</a>
             </li>
             <li>
-                <a href="#dashboard-recent-threads" data-toggle="tab">En coursx</a>
+                <a href="#encours-comments" data-toggle="tab">En cours</a>
             </li>
             <li>
-                <a href="#dashboard-recent-inactifs" data-toggle="tab">Inactifs</a>
+                <a href="#inactifs-comments" data-toggle="tab">Inactifs</a>
             </li>
         </ul>
     </div> <!-- / .panel-heading -->
@@ -300,419 +303,76 @@
     <!-- Comments widget -->
 
     <!-- Without padding -->
-    <div class="widget-comments panel-body tab-pane no-padding fade active in" id="dashboard-recent-comments">
+    <div class="widget-comments panel-body tab-pane no-padding fade active in" id="actifs-comments">
         <!-- Panel padding, without vertical padding -->
             <div class="panel-padding no-padding-vr" style="overflow: hidden; width: auto; height: 300px;">
+                {% for comm in lastcommentsactifs %}
                 <div class="comment">
                     <div class="comment-body">
                         <div class="comment-by">
-                            <a href="#" title="">Denise Steiner</a> commented on <a href="#" title="">Article Name</a>
+                            <a href="#" title="">{{ comm.user.firstname }} {{ comm.user.lastname }}</a> a commenté sur <a href="#" title="">{{ comm.product.title }}</a>  le {{ comm.dateCreated|date('d/m/Y') }} à {{ comm.dateCreated|date('H:i') }}
                         </div>
                         <div class="comment-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        </div>
-                        <div class="comment-actions">
-                            <a href="#"><i class="fa fa-pencil"></i>Edit</a>
-                            <a href="#"><i class="fa fa-times"></i>Remove</a>
-                            <span class="pull-right">2 hours ago</span>
+                            {{ comm.content }}
                         </div>
                     </div> <!-- / .comment-body -->
                 </div> <!-- / .comment -->
+                {% else %}
+                    <div class="alert alert-warning alert-dark">
+                        Aucun commentaire actif pour le moment
+                    </div>
+                {% endfor %}
 
-                <div class="comment">
-                    <div class="comment-body">
-                        <div class="comment-by">
-                            <a href="#" title="">Michelle Bortz</a> commented on <a href="#" title="">Article Name</a>
-                        </div>
-                        <div class="comment-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        </div>
-                        <div class="comment-actions">
-                            <a href="#"><i class="fa fa-pencil"></i>Edit</a>
-                            <a href="#"><i class="fa fa-times"></i>Remove</a>
-                            <span class="pull-right">2 hours ago</span>
-                        </div>
-                    </div> <!-- / .comment-body -->
-                </div> <!-- / .comment -->
-
-                <div class="comment">
-                    <div class="comment-body">
-                        <div class="comment-by">
-                            <a href="#" title="">Robert Jang</a> commented on <a href="#" title="">Article Name</a>
-                        </div>
-                        <div class="comment-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        </div>
-                        <div class="comment-actions">
-                            <a href="#"><i class="fa fa-pencil"></i>Edit</a>
-                            <a href="#"><i class="fa fa-times"></i>Remove</a>
-                            <span class="pull-right">2 hours ago</span>
-                        </div>
-                    </div> <!-- / .comment-body -->
-                </div> <!-- / .comment -->
-
-                <div class="comment">
-                    <div class="comment-body">
-                        <div class="comment-by">
-                            <a href="#" title="">Timothy Owens</a> commented on <a href="#" title="">Article Name</a>
-                        </div>
-                        <div class="comment-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        </div>
-                        <div class="comment-actions">
-                            <a href="#"><i class="fa fa-pencil"></i>Edit</a>
-                            <a href="#"><i class="fa fa-times"></i>Remove</a>
-                            <span class="pull-right">2 hours ago</span>
-                        </div>
-                    </div> <!-- / .comment-body -->
-                </div> <!-- / .comment -->
-
-                <div class="comment">
-                    <div class="comment-body">
-                        <div class="comment-by">
-                            <a href="#" title="">Denise Steiner</a> commented on <a href="#" title="">Article Name</a>
-                        </div>
-                        <div class="comment-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        </div>
-                        <div class="comment-actions">
-                            <a href="#"><i class="fa fa-pencil"></i>Edit</a>
-                            <a href="#"><i class="fa fa-times"></i>Remove</a>
-                            <span class="pull-right">2 hours ago</span>
-                        </div>
-                    </div> <!-- / .comment-body -->
-                </div> <!-- / .comment -->
-
-                <div class="comment">
-                    <div class="comment-body">
-                        <div class="comment-by">
-                            <a href="#" title="">Michelle Bortz</a> commented on <a href="#" title="">Article Name</a>
-                        </div>
-                        <div class="comment-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        </div>
-                        <div class="comment-actions">
-                            <a href="#"><i class="fa fa-pencil"></i>Edit</a>
-                            <a href="#"><i class="fa fa-times"></i>Remove</a>
-                            <span class="pull-right">2 hours ago</span>
-                        </div>
-                    </div> <!-- / .comment-body -->
-                </div> <!-- / .comment -->
-
-                <div class="comment">
-                    <div class="comment-body">
-                        <div class="comment-by">
-                            <a href="#" title="">Robert Jang</a> commented on <a href="#" title="">Article Name</a>
-                        </div>
-                        <div class="comment-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        </div>
-                        <div class="comment-actions">
-                            <a href="#"><i class="fa fa-pencil"></i>Edit</a>
-                            <a href="#"><i class="fa fa-times"></i>Remove</a>
-                            <span class="pull-right">2 hours ago</span>
-                        </div>
-                    </div> <!-- / .comment-body -->
-                </div> <!-- / .comment -->
-
-                <div class="comment">
-                    <div class="comment-body">
-                        <div class="comment-by">
-                            <a href="#" title="">Timothy Owens</a> commented on <a href="#" title="">Article Name</a>
-                        </div>
-                        <div class="comment-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        </div>
-                        <div class="comment-actions">
-                            <a href="#"><i class="fa fa-pencil"></i>Edit</a>
-                            <a href="#"><i class="fa fa-times"></i>Remove</a>
-                            <span class="pull-right">2 hours ago</span>
-                        </div>
-                    </div> <!-- / .comment-body -->
-                </div> <!-- / .comment -->
-
-                <div class="comment">
-                    <div class="comment-body">
-                        <div class="comment-by">
-                            <a href="#" title="">Robert Jang</a> commented on <a href="#" title="">Article Name</a>
-                        </div>
-                        <div class="comment-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        </div>
-                        <div class="comment-actions">
-                            <a href="#"><i class="fa fa-pencil"></i>Edit</a>
-                            <a href="#"><i class="fa fa-times"></i>Remove</a>
-                            <span class="pull-right">2 hours ago</span>
-                        </div>
-                    </div> <!-- / .comment-body -->
-                </div> <!-- / .comment -->
-
-                <div class="comment">
-                    <div class="comment-body">
-                        <div class="comment-by">
-                            <a href="#" title="">Timothy Owens</a> commented on <a href="#" title="">Article Name</a>
-                        </div>
-                        <div class="comment-text">
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                        </div>
-                        <div class="comment-actions">
-                            <a href="#"><i class="fa fa-pencil"></i>Edit</a>
-                            <a href="#"><i class="fa fa-times"></i>Remove</a>
-                            <span class="pull-right">2 hours ago</span>
-                        </div>
-                    </div> <!-- / .comment-body -->
-                </div> <!-- / .comment -->
-            </div>
-        </div>
-
-    <!-- Threads widget -->
-
-    <!-- Without padding -->
-    <div class="widget-threads panel-body tab-pane no-padding fade" id="dashboard-recent-threads">
-            <div class="panel-padding no-padding-vr" style="overflow: hidden; width: auto; height: 300px;">
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Robert Jang</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Michelle Bortz</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Timothy Owens</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Denise Steiner</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Robert Jang</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Robert Jang</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Michelle Bortz</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Timothy Owens</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Denise Steiner</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Robert Jang</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Robert Jang</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Michelle Bortz</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Timothy Owens</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Denise Steiner</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Robert Jang</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
             </div>
         </div>
     <!-- Without padding -->
-    <div class="widget-threads panel-body tab-pane no-padding fade" id="dashboard-recent-inactifs">
+    <div class="widget-comments panel-body tab-pane no-padding fade  in" id="encours-comments">
+        <!-- Panel padding, without vertical padding -->
             <div class="panel-padding no-padding-vr" style="overflow: hidden; width: auto; height: 300px;">
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Robert Jang</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
+                {% for comm in lastcommentsencours %}
+                <div class="comment">
+                    <div class="comment-body">
+                        <div class="comment-by">
+                            <a href="#" title="">{{ comm.user.firstname }} {{ comm.user.lastname }}</a> a commenté sur <a href="#" title="">{{ comm.product.title }}</a>  le {{ comm.dateCreated|date('d/m/Y') }} à {{ comm.dateCreated|date('H:i') }}
+                        </div>
+                        <div class="comment-text">
+                            {{ comm.content }}
+                        </div>
+                    </div> <!-- / .comment-body -->
+                </div> <!-- / .comment -->
+                {% else %}
+                    <div class="alert alert-warning alert-dark">
+                        Aucun commentaire en cours de validation pour le moment
+                    </div>
+                {% endfor %}
 
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Michelle Bortz</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Timothy Owens</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Denise Steiner</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Robert Jang</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Robert Jang</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Michelle Bortz</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Timothy Owens</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Denise Steiner</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Robert Jang</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Robert Jang</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Michelle Bortz</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Timothy Owens</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Denise Steiner</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
-
-                <div class="thread">
-                    <div class="thread-body">
-                        <span class="thread-time">14h</span>
-                        <a href="#" class="thread-title">Lorem ipsum dolor sit amet</a>
-                        <div class="thread-info">started by <a href="#" title="">Robert Jang</a> in <a href="#" title="">Forum name</a></div>
-                    </div> <!-- / .thread-body -->
-                </div> <!-- / .thread -->
             </div>
         </div>
+        <!-- Without padding -->
+        <div class="widget-comments panel-body tab-pane no-padding fade in" id="inactifs-comments">
+            <!-- Panel padding, without vertical padding -->
+            <div class="panel-padding no-padding-vr" style="overflow: hidden; width: auto; height: 300px;">
+                {% for comm in lastcommentsinactifs %}
+                    <div class="comment">
+                        <div class="comment-body">
+                            <div class="comment-by">
+                                <a href="#" title="">
+                                    {{ comm.user.firstname }} {{ comm.user.lastname }}</a> a commenté sur  <a href="#" title="">{{ comm.product.title }}</a> le {{ comm.dateCreated|date('d/m/Y') }} à {{ comm.dateCreated|date('H:i') }}
+                            </div>
+                            <div class="comment-text">
+                                {{ comm.content }}
+                            </div>
+                        </div> <!-- / .comment-body -->
+                    </div> <!-- / .comment -->
+                {% else %}
+                    <div class="alert alert-warning alert-dark">
+                        Aucun commentaire inactif pour le moment
+                    </div>
+                {% endfor %}
+
+            </div>
+        </div>
+
     </div> <!-- / .panel-body -->
     </div>
     </div> <!-- / .widget-threads -->
@@ -730,44 +390,21 @@
                 <!-- Panel padding, without vertical padding -->
                 <div class="panel-padding no-padding-vr">
 
-                            <div class="ticket">
-                                <span class="label label-success ticket-label">Envoyé</span>
-                                <a href="#" title="" class="ticket-title">14 Rue de mandar 75002 Paris<span>[#1]</span></a>
-                                    <span class="ticket-info">
-                                        Commandé par <a href="#" title="">Boyer Julien</a> le 10/02/2014
-                                    </span>
-                            </div> <!-- / .ticket -->
+                            {% for order in orders %}
+                                <div class="ticket">
+                                    <span class="pull-right">{{ order.state|state|raw }}</span>
+                                    <a href="#" title="" class="ticket-title">{{ order.address }}<span>[#{{ order.id }}]</span></a>
+                                        <span class="ticket-info">
+                                            Commandé par <a href="#" title="">{{ order.user.firstname }} {{ order.user.lastname }}</a> le {{ order.dateCreated|date('d/m/Y') }}
+                                        </span>
+                                </div> <!-- / .ticket -->
+                            {% else %}
+                                <div class="alert alert-dark alert-warning">
+                                    Aucune commande pour le moment
+                                </div>
+                            {% endfor %}
 
-                            <div class="ticket">
-                                <span class="label label-info ticket-label">En cours</span>
-                                <a href="#" title="" class="ticket-title">14 Rue de la Madeleine 75003 Paris<span>[#2]</span></a>
-                                    <span class="ticket-info">
-                                        Commandé par <a href="#" title="">Boyer Julien</a> le 08/03/2014
-                                    </span>
-                            </div> <!-- / .ticket -->
 
-                            <div class="ticket">
-                                <span class="label label-warning ticket-label">En attente de paiement</span>
-                                <a href="#" title="" class="ticket-title">14 Rue de la Madeleine 75003 Paris<span>[#3]</span></a>
-                                    <span class="ticket-info">
-                                        Commandé par <a href="#" title="">Boyer Julien</a> le 08/03/2014
-                                    </span>
-                            </div> <!-- / .ticket -->
-
-                            <div class="ticket">
-                                <span class="label label-danger ticket-label">Annulé</span>
-                                <a href="#" title="" class="ticket-title">26 Rue de Lap 75004 Paris<span>[#4]</span></a>
-                                    <span class="ticket-info">
-                                        Commandé par <a href="#" title="">Boyer Florent</a> le 05/03/2014
-                                    </span>
-                            </div> <!-- / .ticket -->
-                            <div class="ticket">
-                                <span class="label label-danger ticket-label">Annulé</span>
-                                <a href="#" title="" class="ticket-title">14 Rue Mandar 75002 Paris<span>[#5]</span></a>
-                                    <span class="ticket-info">
-                                        Commandé par <a href="#" title=""></a> le 01/01/2014
-                                    </span>
-                            </div> <!-- / .ticket -->
 
 
                     </div>
@@ -785,48 +422,35 @@
     <div class="col-md-6">
         <div class="panel panel-dark panel-info">
             <div class="panel-heading">
-                <span class="panel-title"><i class="panel-title-icon fa fa-star"></i>Catégorie populaires</span>
+                <span class="panel-title"><i class="panel-title-icon fa fa-star"></i>5 Catégories populaires</span>
             </div> <!-- / .panel-heading -->
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>#</th>
-                    <th>Nom</th>
-                    <th>Nom de produits</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody class="valign-middle">
-                <tr>
-                    <td>1</td>
-                    <td>Colliers élégants</td>
-                    <td><i class="badge badge-info">5</i></td>
-                    <td><a href="" class="btn btn-xs btn-rounded btn-danger">Voir la catégorie</a></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Bracelets glamours</td>
-                    <td><i class="badge badge-info">3</i></td>
-                    <td><a href="" class="btn btn-xs btn-rounded btn-danger">Voir la catégorie</a></td>
+            {%  if bestcategories is not empty %}
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Nom</th>
+                        <th>Nom de produits</th>
+                        <th>Action</th>
+                    </tr>
+                    </thead>
+                    <tbody class="valign-middle">
+                    {% for category in bestcategories %}
+                        <tr>
+                            <td>{{ category.id }}</td>
+                            <td>{{ category.title }}</td>
+                            <td><i class="badge badge-info">{{ category.nb }}</i></td>
+                            <td><a href="" class="btn btn-xs btn-rounded btn-danger">Voir la catégorie</a></td>
+                        </tr>
+                    {% endfor %}
 
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Sautoirs design</td>
-                    <td><i class="badge badge-info">2</i></td>
-                    <td><a href="" class="btn btn-xs btn-rounded btn-danger">Voir la catégorie</a></td>
-
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>Boucles d'oreilles romantiques</td>
-                    <td><i class="badge badge-info">2</i></td>
-                    <td><a href="" class="btn btn-xs btn-rounded btn-danger">Voir la catégorie</a></td>
-
-                </tr>
-
-                </tbody>
-            </table>
+                    </tbody>
+                </table>
+            {% else %}
+                <div class="alert alert-dark alert-warning">
+                    Aucune catégorie de crée
+                </div>
+            {% endif %}
         </div> <!-- / .panel -->
     </div>
     <!-- /12. $NEW_USERS_TABLE -->
@@ -864,52 +488,21 @@
             <!-- Without vertical padding -->
             <div class="panel-body no-padding-vr ui-sortable">
 
-                <div class="task">
-                    <span class="label label-danger pull-right">Non lus</span>
-                    <div class="fa fa-arrows-v task-sort-icon"></div>
-                    <div class="action-checkbox">
-                        <label class="px-single"><span class="lbl"></span></label>
+                {% for message in messages %}
+                    <div class="task">
+                        <span class="pull-right">{{ message.state|state|raw }}</span>
+                        <div class="fa fa-arrows-v task-sort-icon"></div>
+                        <div class="action-checkbox">
+                            <label class="px-single"><span class="lbl"></span></label>
+                        </div>
+                        <a href="#" class="task-title">{{ message.title }}<span>{{ message.dateCreated|date('d/m/Y') }}</span></a>
+                    </div> <!-- / .task -->
+                {% else %}
+                    <div class="alert alert-dark alert-warning">
+                        Aucune message de crée
                     </div>
-                    <a href="#" class="task-title">Très beau collier<span>13/03/2015</span></a>
-                </div> <!-- / .task -->
+                {% endfor %}
 
-
-
-                <div class="task">
-                    <span class="label label-info pull-right">Lus</span>
-                    <div class="fa fa-arrows-v task-sort-icon"></div>
-                    <div class="action-checkbox">
-                        <label class="px-single"><span class="lbl"></span></label>
-                    </div>
-                    <a href="#" class="task-title">Magnifique bijoux!<span>20/02/2015</span></a>
-                </div> <!-- / .task -->
-
-                <div class="task">
-                    <span class="label label-info pull-right">Lus</span>
-                    <div class="fa fa-arrows-v task-sort-icon"></div>
-                    <div class="action-checkbox">
-                        <label class="px-single"><span class="lbl"></span></label>
-                    </div>
-                    <a href="#" class="task-title">Bracelet élégant<span>14/01/2015</span></a>
-                </div> <!-- / .task -->
-
-                <div class="task">
-                    <span class="label label-info pull-right">Lus</span>
-                    <div class="fa fa-arrows-v task-sort-icon"></div>
-                    <div class="action-checkbox">
-                        <label class="px-single"><span class="lbl"></span></label>
-                    </div>
-                    <a href="#" class="task-title">Belle boutique )<span>09/02/2014</span></a>
-                </div> <!-- / .task -->
-
-                <div class="task">
-                    <span class="label label-info pull-right">Lus</span>
-                    <div class="fa fa-arrows-v task-sort-icon"></div>
-                    <div class="action-checkbox">
-                        <label class="px-single"><span class="lbl"></span></label>
-                    </div>
-                    <a href="#" class="task-title">Vos bijoux sont extras!<span>14/08/2014</span></a>
-                </div> <!-- / .task -->
 
 
             </div> <!-- / .panel-body -->

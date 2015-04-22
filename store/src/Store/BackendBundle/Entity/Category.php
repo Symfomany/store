@@ -5,7 +5,6 @@ namespace Store\BackendBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
-use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 
 /**
@@ -13,7 +12,6 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  *
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\CategoryRepository")
- * @UniqueEntity(fields="title", message="Votre titre de catégorie est déjà existant", groups={"new"})
  */
 class Category
 {
@@ -441,6 +439,16 @@ class Category
 
         // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
         $this->file = null;
+    }
+
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            @unlink($file);
+        }
     }
 
 }

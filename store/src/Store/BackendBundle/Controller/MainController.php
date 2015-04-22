@@ -18,7 +18,7 @@ class MainController extends Controller{
      */
     public function indexAction(){
         // Récupérer l'utilisateur
-        $user = 1;
+        $user = $this->getUser();
 
         // Récupérer Doctrine Manager
         $em = $this->getDoctrine()->getManager();
@@ -31,6 +31,25 @@ class MainController extends Controller{
 
         // Turn Over
         $ca = $em->getRepository('StoreBackendBundle:Order')->getCA($user);
+
+        //nb de product à null
+        $nbprodempty = $em->getRepository('StoreBackendBundle:Product')->getNbProdEmpty($user);
+
+        //nb de product à null
+        $nblikes = $em->getRepository('StoreBackendBundle:Product')->getNbLikesByUser($user);
+
+        //5 last comments
+        $lastcommentsactifs = $em->getRepository('StoreBackendBundle:Comment')->getLastComments($user, 5, 2);
+        $lastcommentsencours = $em->getRepository('StoreBackendBundle:Comment')->getLastComments($user, 5, 1);
+        $lastcommentsinactifs = $em->getRepository('StoreBackendBundle:Comment')->getLastComments($user, 5, 0);
+
+        //commandes
+        $orders = $em->getRepository('StoreBackendBundle:Order')->getOrderByUser($user, 5);
+
+        $bestcategories = $em->getRepository('StoreBackendBundle:Category')->getBestCategoryByUser($user, 5);
+
+        //last messages
+        $messages = $em->getRepository('StoreBackendBundle:Message')->getLastMessagesByUser($user, 5);
 
         // Chart in last 6 months
         $statorder[] = $em->getRepository('StoreBackendBundle:Order')->getNbOrderByMonth($user, new \DateTime('now'));
@@ -45,6 +64,14 @@ class MainController extends Controller{
             array(
                 'ca' => $ca,
                 'nbprod' => $nbprod,
+                'nbprodempty' => $nbprodempty,
+                'lastcommentsactifs' => $lastcommentsactifs,
+                'lastcommentsencours' => $lastcommentsencours,
+                'lastcommentsinactifs' => $lastcommentsinactifs,
+                'bestcategories' => $bestcategories,
+                'messages' => $messages,
+                'orders' => $orders,
+                'nblikes' => $nblikes,
                 'nbsupp' => $nbsupp,
                 'nbcms' => $nbcms,
                 'nbcomm' => $nbcomm,

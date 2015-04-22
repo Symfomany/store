@@ -35,6 +35,16 @@ twig:
       resources:
           - 'StoreBackendBundle:Partial:form.html.twig'
 
+services:
+    twig.extension.text:
+       class: Twig_Extensions_Extension_Text
+       tags:
+           - { name: twig.extension }
+    store.backend.twig.extension:
+       class:  Store\BackendBundle\Twig\Extension\StoreBackendExtension
+       tags:
+           -  { name: twig.extension }
+
 # Assetic Configuration
 assetic:
     debug:          "%kernel.debug%"
@@ -101,3 +111,5 @@ knp_paginator:
     template:
         pagination: StoreBackendBundle:Partial:sliding.html.twig     # sliding pagination controls template
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+

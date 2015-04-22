@@ -18,7 +18,7 @@ class OrderRepository extends EntityRepository
      * @param int $user
      * @return array
      */
-    public function getOrderByUser($user){
+    public function getOrderByUser($user, $limit = null){
 
         $query = $this->getEntityManager()
             ->createQuery(
@@ -26,9 +26,11 @@ class OrderRepository extends EntityRepository
                     SELECT o
                     FROM StoreBackendBundle:Order o
                     WHERE o.jeweler = :user
+                    ORDER BY o.id DESC
                     "
             )
-            ->setParameter('user', $user);
+            ->setParameter('user', $user)
+            ->setMaxResults($limit);
 
         return $query->getResult();
     }

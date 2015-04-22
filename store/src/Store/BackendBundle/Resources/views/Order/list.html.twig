@@ -7,6 +7,7 @@
 
 {% block content %}
 
+    {% if orders is not empty %}
     <table class="table table-bordered table-primary">
         <thead>
         <th>Id</th>
@@ -68,6 +69,11 @@
 
         </tbody>
     </table>
+{% else %}
+    <div class="alert alert-danger alert-dark">
+        <strong>Attention</strong> Aucun résultat de trouvé
+    </div>
+{% endif %}
 {% endblock %}
 
 

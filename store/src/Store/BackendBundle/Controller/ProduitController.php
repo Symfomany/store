@@ -7,6 +7,7 @@ namespace Store\BackendBundle\Controller;
 use Store\BackendBundle\Entity\Product;
 use Store\BackendBundle\Form\ProductType;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 
 /**
@@ -16,6 +17,14 @@ use Symfony\Component\HttpFoundation\Request;
 class ProduitController extends AbstractController{
 
 
+    /**
+     * Has Roles to do action
+     */
+    protected function hasRoles(){
+        if (false === $this->get('security.context')->isGranted('ROLE_COMMERCIAL')) {
+            throw new AccessDeniedException("Vous n'avez pas les droits necessaire pour effectué cette opération");
+        }
+    }
 
     /**
      * List my product
@@ -23,11 +32,18 @@ class ProduitController extends AbstractController{
      */
     public function listAction(Request $request){
 
+//        $this->hasRoles();
+
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
 
+        //récupérer l'utilisateur courant connecté
+        $user = $this->getUser();
+
         //Je récupère tous les produits du jeweler numéro 1
-        $products = $em->getRepository('StoreBackendBundle:Product')->getProductByUser(1);
+        $products = $em->getRepository('StoreBackendBundle:Product')
+            ->getProductByUser($user);
+
 
         //paginate to bundle
         $paginator  = $this->get('knp_paginator');
@@ -131,16 +147,12 @@ class ProduitController extends AbstractController{
         //je créer une nouvel objet de mon entité Product
         $product = new Product();
 
-        $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
+        $user = $this->getUser();
 
-        //je recupere un jeweler (marchand) numéro 1
-        $jeweler = $em->getRepository('StoreBackendBundle:Jeweler')->find(1);
-        $product->setJeweler($jeweler); //j'associe mon jeweler 1 à mon produit
-
-        // A chaque fois que je crée un objet d'une classe , je dois user la classe
+        $product->setJeweler($user); //j'associe mon jeweler 1 à mon produit
 
         // je crée un formulaire de produit en associant avec mon produit
-        $form = $this->createForm(new ProductType(1),$product,
+        $form = $this->createForm(new ProductType($user),$product,
             array(
             'validation_groups' => 'new',
             'attr' => array(

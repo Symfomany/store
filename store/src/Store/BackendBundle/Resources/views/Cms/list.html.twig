@@ -20,6 +20,7 @@
     {{ cms.getTotalItemCount }} page cms trouvés
 </div>
 
+{% if  cms is not empty %}
 <table class="table table-bordered table-primary">
     <thead>
         <th>Id</th>
@@ -84,7 +85,11 @@
     </tbody>
     </table>
 
-
+{% else %}
+    <div class="alert alert-danger alert-dark">
+        <strong>Attention</strong> Aucun résultat de trouvé
+    </div>
+{% endif %}
 
     <div class="navigation">
         {{ knp_pagination_render(cms) }}

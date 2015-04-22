@@ -13,6 +13,34 @@ use Doctrine\ORM\EntityRepository;
 class CommentRepository extends EntityRepository
 {
 
+
+
+    /**
+     * get Last Comment
+     * SELECT COUNT(id)
+     * FROM `product`
+     * WHERE `jeweler_id` = 1
+     * @return mixed
+     */
+    public function getLastComments($user = null, $limit = 5, $state = 2){
+        // compte le nb de produits pour 1 bijoutier
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                 SELECT c
+                 FROM StoreBackendBundle:Comment c
+                 JOIN c.product p
+                 WHERE p.jeweler = :user
+                 AND c.state = :state
+                 ORDER BY c.id DESC"
+            )
+            ->setParameter('user', $user)
+            ->setParameter('state', $state)
+            ->setMaxResults($limit);
+
+        return $query->getResult();
+    }
+
     /**
      * Count Comment
      * @return mixed
@@ -29,6 +57,31 @@ class CommentRepository extends EntityRepository
                 "
             )
             ->setParameter('user', $user);
+
+        return $query->getOneOrNullResult();
+    }
+
+    /**
+     * Count All Product
+     * SELECT COUNT(id)
+     * FROM `product`
+     * WHERE `jeweler_id` = 1
+     * @return mixed
+     */
+    public function getNbCommentState($user = null, $state = 2){
+        // compte le nb de produits pour 1 bijoutier
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                SELECT COUNT(c) AS nb
+                 FROM StoreBackendBundle:Comment c
+                 JOIN c.product p
+                 WHERE p.jeweler = :user
+                 AND c.state = :state
+                 GROUP BY p.jeweler
+            ")
+            ->setParameter('user', $user)
+            ->setParameter('state', $state);
 
         return $query->getOneOrNullResult();
     }

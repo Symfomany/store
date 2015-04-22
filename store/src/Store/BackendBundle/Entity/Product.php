@@ -319,6 +319,23 @@ class Product
      */
     private $slide;
 
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\JoinTable(name="likes",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $likes;
+
+
     /**
      * @ORM\Column(name="imagepresentation", type="string", nullable=true)
      */
@@ -1191,7 +1208,15 @@ class Product
     }
 
 
-
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            @unlink($file);
+        }
+    }
 
 
     /**
@@ -1250,5 +1275,38 @@ class Product
     public function getSlide()
     {
         return $this->slide;
+    }
+
+    /**
+     * Add likes
+     *
+     * @param \Store\BackendBundle\Entity\User $likes
+     * @return Product
+     */
+    public function addLike(\Store\BackendBundle\Entity\User $likes)
+    {
+        $this->likes[] = $likes;
+
+        return $this;
+    }
+
+    /**
+     * Remove likes
+     *
+     * @param \Store\BackendBundle\Entity\User $likes
+     */
+    public function removeLike(\Store\BackendBundle\Entity\User $likes)
+    {
+        $this->likes->removeElement($likes);
+    }
+
+    /**
+     * Get likes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getLikes()
+    {
+        return $this->likes;
     }
 }

@@ -28,7 +28,6 @@ class CategoryRepository extends EntityRepository
             )
             ->setParameter('user', $user);
        */
-
         /*
          * J'appel la méthode getCategoryByUserBuilder()
          * qui me retourne un objet QueryBuilder
@@ -57,6 +56,29 @@ class CategoryRepository extends EntityRepository
             ->setParameter('user', $user);
 
         return $queryBuilder;
+    }
+
+    /**
+     * DQL Syntax with Form
+     * @param int $user
+     * @return array
+     */
+    public function getBestCategoryByUser($user, $limit = 5){
+        $query = $this->getEntityManager()
+        ->createQuery(
+            "
+                 SELECT c.id, c.title, COUNT(p) AS nb
+                 FROM StoreBackendBundle:Category c
+                 JOIN c.product p
+                 WHERE c.jeweler = :user
+                 GROUP BY c.id
+                 ORDER BY nb DESC"
+        )
+            ->setParameter('user', $user)
+            ->setMaxResults($limit);
+
+        // retourne 1 résultat ou null
+        return $query->getResult();
     }
 
 

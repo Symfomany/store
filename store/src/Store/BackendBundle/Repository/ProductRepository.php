@@ -53,6 +53,54 @@ class ProductRepository extends EntityRepository
     }
 
     /**
+     * Count All Product
+     * SELECT COUNT(id)
+     * FROM `product`
+     * WHERE `jeweler_id` = 1
+     * @return mixed
+     */
+    public function getNbProdEmpty($user = null){
+        // compte le nb de produits pour 1 bijoutier
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                 SELECT COUNT(p) AS nb
+                 FROM StoreBackendBundle:Product p
+                 WHERE p.quantity = 0
+                 AND p.jeweler = :user"
+            )
+            ->setParameter('user', $user);
+
+        // retourne 1 résultat ou null
+        return $query->getOneOrNullResult();
+    }
+
+
+    /**
+     * Count All Product
+     * SELECT COUNT(id)
+     * FROM `product`
+     * WHERE `jeweler_id` = 1
+     * @return mixed
+     */
+    public function getNbLikesByUser($user = null){
+        // compte le nb de produits pour 1 bijoutier
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                 SELECT COUNT(l) AS nb
+                 FROM StoreBackendBundle:Product p
+                 JOIN p.likes l
+                 WHERE p.jeweler = :user"
+            )
+            ->setParameter('user', $user);
+
+        // retourne 1 résultat ou null
+        return $query->getOneOrNullResult();
+    }
+
+
+    /**
      * DQL Syntax with Form
      * @param int $user
      * @return array

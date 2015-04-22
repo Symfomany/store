@@ -9,6 +9,12 @@
     <div class="row">
         <div class="col-md-5">
 
+            {% if error is not empty %}
+                <div class="alert alert-danger alert-dark">
+                    <i class="fa fa-warning"></i> {{ error.message }}
+                </div>
+            {% endif %}
+
             <form action="{{ path('store_backend_security_login_check') }}" method="post" class="panel form-horizontal">
                 <div class="panel-heading">
                     <span class="panel-title"><i class="fa fa-power-off"></i> Connectez-vous à votre compte</span>

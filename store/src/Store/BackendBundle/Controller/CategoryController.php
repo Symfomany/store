@@ -22,7 +22,12 @@ class CategoryController extends AbstractController{
      */
     public function listAction(Request $request){
         $em = $this->getDoctrine()->getManager();
-        $categories = $em->getRepository('StoreBackendBundle:Category')->getCategoryByUser(1);
+
+        //récupérer l'utilisateur courant connecté
+        $user = $this->getUser();
+
+        $categories = $em->getRepository('StoreBackendBundle:Category')
+            ->getCategoryByUser($user);
 
         //paginate to bundle
         $paginator  = $this->get('knp_paginator');
@@ -42,17 +47,15 @@ class CategoryController extends AbstractController{
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request){
-        $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
 
         $category = new Category();
 
-        //je recupere un jeweler (marchand) numéro 1
-        $jeweler = $em->getRepository('StoreBackendBundle:Jeweler')->find(1);
-        $category->setJeweler($jeweler); //j'associe mon jeweler 1 à mon produit
+        $user = $this->getUser();
 
+        $category->setJeweler($user); //j'associe mon jeweler 1 à mon produit
 
         // je crée un formulaire de produit
-        $form = $this->createForm(new CategoryType(1),$category,  array(
+        $form = $this->createForm(new CategoryType($user),$category,  array(
             'validation_groups' => 'new',
             'attr' => array(
                 'method' => 'post',
@@ -65,12 +68,13 @@ class CategoryController extends AbstractController{
 
         if($form->isValid()){
 
+            $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
+
             // j'upload mon fichier en faisant appel a la methode upload()
             $category->upload();
 
-
             $em->persist($category); //j'enregistre mon objet product dans doctrine
-                $em->flush(); //j'envoi ma requete d'insert à ma table product
+            $em->flush(); //j'envoie ma requete d'insert à ma table product
 
                 $this->get('session')->getFlashBag()->add(
                     'success',

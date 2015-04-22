@@ -6,7 +6,6 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-use Symfony\Component\Security\Core\User\EquatableInterface;
 
 
 /**
@@ -177,6 +176,13 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     /**
      * @var boolean
      *
+     * @ORM\Column(name="roles", type="string", nullable=true)
+     */
+    private $roles;
+
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="accountNonExpired", type="boolean", nullable=true)
      */
     private $accountnonexpired;
@@ -195,6 +201,23 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     private $dateCreated;
 
     /**
+     * @ORM\ManyToMany(targetEntity="Groups", inversedBy="jeweler")
+     * @ORM\JoinTable(name="jeweler_groups",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="jeweler_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="groups_id", referencedColumnName="id")
+     *   }
+     * )
+     *
+     */
+    private $groups;
+
+
+
+
+    /**
      * Constructor
      */
     public function __construct()
@@ -208,6 +231,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
         $this->locked = 0;
         $this->expired = 0;
         $this->salt = md5(uniqid(null, true));
+        $this->groups = new ArrayCollection();
 
     }
 
@@ -759,6 +783,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      *     return array('ROLE_USER');
      * }
      * </code>
+     *        return $this->groups->toArray();
      *
      * Alternatively, the roles might be stored on a ``roles`` property,
      * and populated in any number of different ways when the user object
@@ -768,7 +793,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      */
     public function getRoles()
     {
-        return array('ROLE_ADMIN');
+        return array('ROLE_JEWELER');
     }
 
     /**
@@ -789,9 +814,11 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      */
     public function eraseCredentials()
     {
+        return null;
     }
 
     /**
+     * Mis en session par le Token
      * @see \Serializable::serialize()
      */
     public function serialize()
@@ -802,6 +829,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
+     * Extraction des données mise en ession
      * @see \Serializable::unserialize()
      */
     public function unserialize($serialized)
@@ -820,7 +848,6 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
         return $this->username === $user->getUsername();
     }
 
-
     /**
      * Set username
      *
@@ -836,15 +863,24 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
     /**
      * Verification is Account is not expired
+     * Si le compte n'est pas expiré
      * @return bool
      */
     public function isAccountNonExpired()
     {
-        return $this->accountnonexpired;
+        $datecreated = $this->dateCreated;
+        $dateoldyear = new \DateTime('-1 year');
+
+        if($datecreated < $dateoldyear ){
+            return false;
+        }
+
+        return true;
     }
 
     /**
      * Verification is Account is not locked
+     * SI le compte n'est pas verouillé
      * @return bool
      */
     public function isAccountNonLocked()
@@ -854,6 +890,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
     /**
      * Verification account  credentials is not expired
+     * Si c'est droit on expirés
      * @return bool
      */
     public function isCredentialsNonExpired()
@@ -863,10 +900,77 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
     /**
      * Verification account is not enabled
+     * Si l'utilisateur a activer son compte
      * @return bool|int
      */
     public function isEnabled()
     {
         return $this->enabled;
+    }
+
+    /**
+     * Convertis un objet jeweler en chaine de charactères
+     * @return string
+     */
+    public function __toString(){
+
+        return $this->title;
+    }
+
+
+
+
+
+
+
+
+
+
+    /**
+     * Set roles
+     *
+     * @param string $roles
+     * @return Jeweler
+     */
+    public function setRoles($roles)
+    {
+        $this->roles = $roles;
+
+        return $this;
+    }
+
+
+
+    /**
+     * Add groups
+     *
+     * @param \Store\BackendBundle\Entity\Groups $groups
+     * @return Jeweler
+     */
+    public function addGroup(\Store\BackendBundle\Entity\Groups $groups)
+    {
+        $this->groups[] = $groups;
+
+        return $this;
+    }
+
+    /**
+     * Remove groups
+     *
+     * @param \Store\BackendBundle\Entity\Groups $groups
+     */
+    public function removeGroup(\Store\BackendBundle\Entity\Groups $groups)
+    {
+        $this->groups->removeElement($groups);
+    }
+
+    /**
+     * Get groups
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getGroups()
+    {
+        return $this->groups;
     }
 }

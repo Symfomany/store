@@ -18,6 +18,7 @@
     <div class="alert alert-info alert-dark">
         {{ categories.getTotalItemCount }} catégories trouvés
     </div>
+{% if categories is not empty %}
 
     <table class="table table-bordered table-primary">
         <thead>
@@ -49,7 +50,11 @@
             {% endfor %}
         </tbody>
     </table>
-
+{% else %}
+    <div class="alert alert-danger alert-dark">
+        <strong>Attention</strong> Aucun résultat de trouvé
+    </div>
+{% endif %}
 
     <div class="navigation">
         {{ knp_pagination_render(categories) }}

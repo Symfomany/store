@@ -20,7 +20,9 @@ class OrderController extends Controller{
      */
     public function listAction(){
         $em = $this->getDoctrine()->getManager();
-        $orders = $em->getRepository('StoreBackendBundle:Order')->getOrderByUser(1);
+        $user = $this->getUser();
+
+        $orders = $em->getRepository('StoreBackendBundle:Order')->getOrderByUser($user);
 
         return $this->render('StoreBackendBundle:Order:list.html.twig', array(
             'orders' => $orders

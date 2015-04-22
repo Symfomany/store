@@ -18,4 +18,11 @@ store_backend_security_login_check:
     path: /administration/login_check
     defaults: { _controller: StoreBackendBundle:Security:login }
 
+#Logout Backend
+store_backend_security_logout:
+    path: /administration/logout
 
+#Subscribe Jeweler Backend
+store_backend_security_subscribe:
+    path: /subscribe
+    defaults: { _controller: StoreBackendBundle:Security:subscribe }

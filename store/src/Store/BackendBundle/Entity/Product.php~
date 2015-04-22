@@ -314,10 +314,27 @@ class Product
     private $meta;
 
     /**
-     * @var boolean
      * @ORM\OneToMany(targetEntity="Slider", mappedBy="product")
-     **/
+     *
+     */
     private $slide;
+
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="User")
+     * @ORM\JoinTable(name="likes",
+     *   joinColumns={
+     *     @ORM\JoinColumn(name="product_id", referencedColumnName="id")
+     *   },
+     *   inverseJoinColumns={
+     *     @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     *   }
+     * )
+     */
+    private $likes;
+
 
     /**
      * @ORM\Column(name="imagepresentation", type="string", nullable=true)
@@ -1191,6 +1208,72 @@ class Product
     }
 
 
+    /**
+     * @ORM\PostRemove()
+     */
+    public function removeUpload()
+    {
+        if ($file = $this->getAbsolutePath()) {
+            @unlink($file);
+        }
+    }
 
 
+    /**
+     * Add cms
+     *
+     * @param \Store\BackendBundle\Entity\Cms $cms
+     * @return Product
+     */
+    public function addCm(\Store\BackendBundle\Entity\Cms $cms)
+    {
+        $this->cms[] = $cms;
+
+        return $this;
+    }
+
+    /**
+     * Remove cms
+     *
+     * @param \Store\BackendBundle\Entity\Cms $cms
+     */
+    public function removeCm(\Store\BackendBundle\Entity\Cms $cms)
+    {
+        $this->cms->removeElement($cms);
+    }
+
+    /**
+     * Add slide
+     *
+     * @param \Store\BackendBundle\Entity\Slider $slide
+     * @return Product
+     */
+    public function addSlide(\Store\BackendBundle\Entity\Slider $slide)
+    {
+        if(!$this->slide->contains($slide)){
+            $this->slide[] = $slide;
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove slide
+     *
+     * @param \Store\BackendBundle\Entity\Slider $slide
+     */
+    public function removeSlide(\Store\BackendBundle\Entity\Slider $slide)
+    {
+        $this->slide->removeElement($slide);
+    }
+
+    /**
+     * Get slide
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getSlide()
+    {
+        return $this->slide;
+    }
 }

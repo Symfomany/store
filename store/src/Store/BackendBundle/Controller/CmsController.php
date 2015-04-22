@@ -23,7 +23,8 @@ class CmsController extends AbstractController{
      */
     public function listAction(Request $request){
         $em = $this->getDoctrine()->getManager();
-        $cms = $em->getRepository('StoreBackendBundle:Cms')->getCmsByUser(1);
+        $user = $this->getUser();
+        $cms = $em->getRepository('StoreBackendBundle:Cms')->getCmsByUser($user);
 
         //paginate to bundle
         $paginator  = $this->get('knp_paginator');
@@ -66,16 +67,15 @@ class CmsController extends AbstractController{
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function newAction(Request $request){
-        $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
 
         $cms = new Cms();
+        $user = $this->getUser();
 
         //je recupere un jeweler (marchand) numéro 1
-        $jeweler = $em->getRepository('StoreBackendBundle:Jeweler')->find(1);
-        $cms->setJeweler($jeweler); //j'associe mon jeweler 1 à mon produit
+        $cms->setJeweler($user); //j'associe mon jeweler 1 à mon produit
 
         // je crée un formulaire de produit
-        $form = $this->createForm(new CmsType(1),$cms,  array(
+        $form = $this->createForm(new CmsType($user),$cms,  array(
             'validation_groups' => 'new',
             'attr' => array(
                 'method' => 'post',
@@ -87,6 +87,8 @@ class CmsController extends AbstractController{
         $form->handleRequest($request);
 
         if($form->isValid()){
+            $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
+
             // j'upload mon fichier en faisant appel a la methode upload()
             $cms->upload();
 

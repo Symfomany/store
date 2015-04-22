@@ -23,7 +23,9 @@ class SupplierController extends AbstractController{
      */
     public function listAction(Request $request){
         $em = $this->getDoctrine()->getManager();
-        $suppliers = $em->getRepository('StoreBackendBundle:Supplier')->getSupplierByUser(1);
+        $user = $this->getUser();
+
+        $suppliers = $em->getRepository('StoreBackendBundle:Supplier')->getSupplierByUser($user);
 
         //paginate to bundle
         $paginator  = $this->get('knp_paginator');

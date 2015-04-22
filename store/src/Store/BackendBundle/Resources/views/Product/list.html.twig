@@ -18,6 +18,7 @@
         {{ products.getTotalItemCount }} produit trouvés
     </div>
 
+    {% if products is not empty %}
     <table class="table table-bordered table-primary">
         <thead>
             <th>Id</th>
@@ -81,6 +82,11 @@
 
         </tbody>
     </table>
+        {% else %}
+        <div class="alert alert-danger alert-dark">
+            <strong>Attenion</strong> Aaucun résultat trouvé
+        </div>
+        {% endif %}
 
     <div class="navigation">
         {{ knp_pagination_render(products) }}

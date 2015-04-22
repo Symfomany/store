@@ -22,7 +22,8 @@ class SliderController extends AbstractController{
      */
     public function listAction(Request $request){
         $em = $this->getDoctrine()->getManager();
-        $slides = $em->getRepository('StoreBackendBundle:Slider')->getSlidesByUser(1);
+        $user = $this->getUser();
+        $slides = $em->getRepository('StoreBackendBundle:Slider')->getSlidesByUser($user);
 
         //paginate to bundle
         $paginator  = $this->get('knp_paginator');

@@ -12,4 +12,26 @@ use Doctrine\ORM\EntityRepository;
  */
 class MessageRepository extends EntityRepository
 {
+
+    /**
+     * DQL Syntax with Form
+     * @param int $user
+     * @return array
+     */
+    public function getLastMessagesByUser($user, $limit = 5){
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                 SELECT m
+                 FROM StoreBackendBundle:Message m
+                 WHERE m.jeweler = :user
+                 ORDER BY m.id DESC"
+            )
+            ->setParameter('user', $user)
+            ->setMaxResults($limit);
+
+        // retourne 1 résultat ou null
+        return $query->getResult();
+    }
+
 }
