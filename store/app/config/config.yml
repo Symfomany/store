@@ -40,10 +40,7 @@ services:
        class: Twig_Extensions_Extension_Text
        tags:
            - { name: twig.extension }
-    store.backend.twig.extension:
-       class:  Store\BackendBundle\Twig\Extension\StoreBackendExtension
-       tags:
-           -  { name: twig.extension }
+
 
 # Assetic Configuration
 assetic:

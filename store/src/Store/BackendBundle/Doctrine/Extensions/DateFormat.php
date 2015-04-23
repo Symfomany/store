@@ -37,10 +37,7 @@ class DateFormat extends FunctionNode
         ','.
         $sqlWalker->walkStringPrimary($this->formatChar).
         ')';
-
     }
-
-
     /**
      * Parsing date
      * @param Parser $parser

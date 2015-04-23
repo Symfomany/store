@@ -2,10 +2,16 @@
 
 namespace Store\BackendBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+
+use Symfony\Component\Validator\Constraints as Assert;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
+use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 
 /**
@@ -13,35 +19,63 @@ use Symfony\Component\Security\Core\User\UserInterface;
  * Use AdvancedUserInterface
  * @ORM\Table(name="jeweler", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\JewelerRepository")
+ * @UniqueEntity(fields="username", message="Votre login est déjà existant", groups={"suscribe"})
+ * @UniqueEntity(fields="email", message="Votre email est déjà existant", groups={"suscribe"})
  */
 class Jeweler implements  AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "L'email ne doit pas etre vide",
+     *     groups={"suscribe"}
+     * )
+     * @Assert\Email(
+     *     message = "'{{ value }}' n'est pas un email valide.",
+     *     checkMX = true,
+     *     groups={"suscribe"}
+     * )
      * @ORM\Column(name="email", type="string", length=150, nullable=true)
      */
     private $email;
     
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "Le login ne doit pas etre vide",
+     *     groups={"suscribe"}
+     * )
+     * @Assert\Length(
+     *      min = "3",
+     *      max = "50",
+     *      minMessage = "Le login doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "La login ne peut pas être plus long que {{ limit }} caractères",
+     *      groups={"suscribe"}
+     * )
      * @ORM\Column(name="username", type="string", length=150, nullable=true)
      */
     private $username;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "Le mot de passe ne doit pas etre vide",
+     *     groups={"suscribe"}
+     * )
+     * @Assert\Length(
+     *      min = "6",
+     *      max = "50",
+     *      minMessage = "Le mot de passe doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Le mot de passe ne peut pas être plus long que {{ limit }} caractères",
+     *      groups={"suscribe"}
+     * )
      * @ORM\Column(name="password", type="string", length=300, nullable=true)
      */
     private $password;
@@ -201,6 +235,13 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     private $dateCreated;
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_auth", type="datetime", nullable=true)
+     */
+    private $dateAuth;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Groups", inversedBy="jeweler")
      * @ORM\JoinTable(name="jeweler_groups",
      *   joinColumns={
@@ -213,7 +254,6 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      *
      */
     private $groups;
-
 
 
 
@@ -793,7 +833,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      */
     public function getRoles()
     {
-        return array('ROLE_JEWELER');
+//        return array('ROLE_JEWELER');
+        //e retourne mon attrribut groups en tableau :
+        // ArrayCollection => Array
+        return $this->groups->toArray();
     }
 
     /**
@@ -918,14 +961,6 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
 
-
-
-
-
-
-
-
-
     /**
      * Set roles
      *
@@ -972,5 +1007,33 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     public function getGroups()
     {
         return $this->groups;
+    }
+
+
+
+    /**
+     * @Assert\Callback(groups={"suscribe"})
+     * use Symfony\Component\Validator\Context\ExecutionContextInterface;
+     */
+    public function validate(ExecutionContextInterface $context)
+    {
+        if (($this->getUsername()  == $this->getPassword())) {
+            $context->addViolationAt(
+                'username',
+                'Votre login ne doit pas être identique à votre mot de passe',
+                array(),
+                null
+            );
+        }
+
+        if (($this->getUsername()  == $this->getEmail())) {
+            $context->addViolationAt(
+                'email',
+                'Votre email ne doit pas être identique à votre login',
+                array(),
+                null
+            );
+        }
+
     }
 }

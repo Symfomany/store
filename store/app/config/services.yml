@@ -4,13 +4,31 @@ parameters:
 #    parameter_name: value
 
 services:
-    kernel.listener.find_object:
-        class: Store\BackendBundle\Listener\FindObjectListener
-        arguments: ["@security.context"]
+     store.backend.twig.store_backend_extension:
+        # Notre classe qui va étendre Twig
+        class: Store\BackendBundle\Twig\Extensions\StoreBackendExtension
+        tags:
+            - { name: twig.extension }
 
-    security.access.object_voter:
-          class:      Store\BackendBundle\Security\Authorization\Voter\ObjectVoter
-          arguments:  [@service_container]
-          public:     false
-          tags:
-            -    { name: security.voter }
+
+
+
+
+
+
+#    store.backend.listener.authentification:
+#        class: Store\BackendBundle\Listener\AuthenticationListener
+#        arguments: ["@doctrine.orm.entity_manager", "@security.context"]
+#        tags:
+#          - { name: kernel.event_listener, event: security.interactive_login, method: onAuthenticationSuccess }
+
+#    kernel.listener.find_object:
+#        class: Store\BackendBundle\Listener\FindObjectListener
+#        arguments: ["@security.context"]
+#
+#    security.access.object_voter:
+#          class:      Store\BackendBundle\Security\Authorization\Voter\ObjectVoter
+#          arguments:  [@service_container]
+#          public:     false
+#          tags:
+#            -    { name: security.voter }

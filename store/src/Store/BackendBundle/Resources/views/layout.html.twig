@@ -18,6 +18,9 @@
 
     <div id="main-wrapper">
 
+        {# SI l'utilisateur est connecté #}
+
+        {# L'utilisateur est accessible depuis Twig #}
         {% if app.user.id is defined %}
             {# Inclusion de ma vue partielle main naviguation#}
             {{ include('StoreBackendBundle:Partial:main_navigation.html.twig') }}

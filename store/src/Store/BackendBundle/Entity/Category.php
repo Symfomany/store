@@ -75,7 +75,7 @@ class Category
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
-     * @ORM\ManyToMany(targetEntity="Product", mappedBy="category", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Product", mappedBy="category", cascade={"all"})
      */
     private $product;
 

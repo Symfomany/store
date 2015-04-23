@@ -58,7 +58,6 @@ class JewelerSubscribeType extends AbstractType
             'first_name' => 'mdp',
             'second_name' => 'mdp_conf',
             'invalid_message' => "Le mot de passe n'est pas le même",
-            'error_bubbling' => true,
             'first_options' =>
             array('label' => 'Mot de passe',
                 'attr' => array('value' => '',

@@ -9,30 +9,19 @@ use Store\BackendBundle\Form\ProductType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
-/**
- * Class ProduitController
- * @package Store\BackendBundle\Controller
- */
+
 class ProduitController extends AbstractController{
 
 
-    /**
-     * Has Roles to do action
-     */
-    protected function hasRoles(){
-        if (false === $this->get('security.context')->isGranted('ROLE_COMMERCIAL')) {
-            throw new AccessDeniedException("Vous n'avez pas les droits necessaire pour effectué cette opération");
-        }
-    }
 
-    /**
-     * List my product
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
     public function listAction(Request $request){
 
-//        $this->hasRoles();
+        //Methode numéro 1: restreindre l'accès au niveau de mon action de controlleur
+//        if (false === $this->get('security.context')->isGranted('ROLE_COMMERCIAL')) {
+//            throw new AccessDeniedException("Accès interdit pour ce type de contenu");
+//        }
 
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();

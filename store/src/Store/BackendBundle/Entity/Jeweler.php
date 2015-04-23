@@ -10,6 +10,7 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
 
 
@@ -25,13 +26,11 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 {
     /**
      * @var integer
-     *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
     /**
      * @var string
      * @Assert\NotBlank(
@@ -234,6 +233,13 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * @ORM\Column(name="date_created", type="datetime", nullable=true)
      */
     private $dateCreated;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_auth", type="datetime", nullable=true)
+     */
+    private $dateAuth;
 
     /**
      * @ORM\ManyToMany(targetEntity="Groups", inversedBy="jeweler")
@@ -955,14 +961,6 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
 
-
-
-
-
-
-
-
-
     /**
      * Set roles
      *
@@ -1011,16 +1009,18 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
         return $this->groups;
     }
 
+
+
     /**
      * @Assert\Callback(groups={"suscribe"})
+     * use Symfony\Component\Validator\Context\ExecutionContextInterface;
      */
     public function validate(ExecutionContextInterface $context)
     {
-
         if (($this->getUsername()  == $this->getPassword())) {
             $context->addViolationAt(
                 'username',
-                'Votre login ne doit pas être identique que votre mot de passe',
+                'Votre login ne doit pas être identique à votre mot de passe',
                 array(),
                 null
             );
@@ -1028,14 +1028,35 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
         if (($this->getUsername()  == $this->getEmail())) {
             $context->addViolationAt(
-                'password',
-                'Votre email ne doit pas être identique que votre login',
+                'email',
+                'Votre email ne doit pas être identique à votre login',
                 array(),
                 null
             );
         }
 
+    }
 
+    /**
+     * Set dateAuth
+     *
+     * @param \DateTime $dateAuth
+     * @return Jeweler
+     */
+    public function setDateAuth($dateAuth)
+    {
+        $this->dateAuth = $dateAuth;
 
+        return $this;
+    }
+
+    /**
+     * Get dateAuth
+     *
+     * @return \DateTime 
+     */
+    public function getDateAuth()
+    {
+        return $this->dateAuth;
     }
 }

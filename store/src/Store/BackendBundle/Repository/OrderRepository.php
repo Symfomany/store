@@ -13,6 +13,8 @@ use Doctrine\ORM\EntityRepository;
 class OrderRepository extends EntityRepository
 {
 
+
+
     /**
      * Get Orders of User
      * @param int $user
@@ -59,6 +61,7 @@ class OrderRepository extends EntityRepository
 
     /**
      * Get Nb Order BY Month
+     *
      */
     public function getNbOrderByMonth($user, $dateBegin = null){
 

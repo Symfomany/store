@@ -1,6 +1,6 @@
 <?php
 
-namespace Store\BackendBundle\Twig\Extension;
+namespace Store\BackendBundle\Twig\Extensions;
 
 /**
  * Class StoreBackendExtension
@@ -9,14 +9,31 @@ namespace Store\BackendBundle\Twig\Extension;
 class StoreBackendExtension extends \Twig_Extension
 {
     /**
-     * get All filters
+     * FOnction qui me retourne tous mes filtres crée
      * @return array
      */
     public function getFilters()
     {
+        //retourne un tableau de filtre crée
         return array(
+            // Twig_SimpleFilter :
+            // - 1er argument est le nom du filtre en TWIG
+            // - 2eme argument est le nom du filtre en TWIG
             new \Twig_SimpleFilter('state', array($this, 'state')),
-//            new \Twig_SimpleFilter('price', array($this, 'priceFilter')),
+
+        );
+    }
+
+
+
+
+
+
+
+
+
+
+
 //            new \Twig_SimpleFilter('ago', array($this, 'createdAgo')),
 //            new \Twig_SimpleFilter('begin', array($this, 'beginIn')),
 //            new \Twig_SimpleFilter('urldecode', array($this, 'urlDecode')),
@@ -27,8 +44,8 @@ class StoreBackendExtension extends \Twig_Extension
 //            new \Twig_SimpleFilter('jsondecode', array($this, 'jsonDecode')),
 //            new \Twig_SimpleFilter('thumb', array($this, 'thumb'))
 
-        );
-    }
+
+
 
 
     /**
@@ -99,7 +116,7 @@ class StoreBackendExtension extends \Twig_Extension
      * @param string $thousandsSep
      * @return string
      */
-    public function priceFilter($number, $decimals = 0, $decPoint = '.', $thousandsSep = ',')
+    public function price($number, $decimals = 0, $decPoint = '.', $thousandsSep = ',')
     {
         $price = number_format($number, $decimals, $decPoint, $thousandsSep);
         $price = '$' . $price;

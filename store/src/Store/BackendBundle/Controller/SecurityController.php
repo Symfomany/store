@@ -47,40 +47,52 @@ class SecurityController extends Controller{
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function subscribeAction(Request $request){
-
+        //je crée un nouveau jeweler
         $jeweler =  new Jeweler();
 
-        //Je crée mon formulaire d'inscription au jeweler
+        //Je crée mon formulaire d'inscription au jeweler que j'associe à mon nouveau jeweler
         $form = $this->createForm(new JewelerSubscribeType(), $jeweler, array(
             'validation_groups' => 'suscribe',
             'attr' => array(
                 'method' => 'post',
                 'novalidate' => 'novalidate',
-                'action' => $this->generateUrl('store_backend_category_new')
+                'action' => $this->generateUrl('store_backend_security_subscribe')
             )
         ));
 
+        // Je lie le formulaire à la requete
         $form->handleRequest($request);
 
+        // je valide mon formulaire
         if($form->isValid()){
-            $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
+
+            //1. je récupere la valeur mon champ password
             $password = $form['password']->getData();
 
-            //récupérer le service d'encodage de symfony 2
+            //récupérer le service d'encodage de la sécurité de Symfony 2
             $factory = $this->get('security.encoder_factory');
+
+            // 2. je récupere l'encoder de mon jeweler (sha512)
             $encoder = $factory->getEncoder($jeweler); //recupere l'encoder de l'entité jeweler contenu dans la sécurité
 
+            // 3. Avec l'encoder de sécurité, j'encode mon mot de passe et j'y ajoute le salt
             $password = $encoder->encodePassword($password, $jeweler->getSalt()); //récupérer le mot de passe
+
+            // 4. Je renseigne le mot de passe ancode de mon jeweler
             $jeweler->setPassword($password); //modifier le mot de passe encoder avec l'encodage
 
+            $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
 
-
-            // j'ajoute le groupe à l'utilisateur
+            //5. je récupere le role ROLE_JEWELER par les ROLES
+            // Je récupere le 1er groupe/role: ROLE_JEWELER
             $group = $em->getRepository('StoreBackendBundle:Groups')->find(1);
+
+            //J'associe mon jeweler au role ROLE_JEWELER
             $jeweler->addGroup($group);
 
             $em->persist($jeweler); //enregistrement
             $em->flush();
+
             $this->get('session')->getFlashBag()->add(
                 'success',
                 'Votre compte a bien été crée'
@@ -89,8 +101,9 @@ class SecurityController extends Controller{
                 'info',
                 'Vous pouvez vous connecter sur le back-office'
             );
-            return $this->redirectToRoute('store_backend_category_list'); //redirection selon la route
+            return $this->redirectToRoute('store_backend_security_login'); //redirection selon la route
         }
+
 
         return $this->render('StoreBackendBundle:Security:subscribe.html.twig',
             array(

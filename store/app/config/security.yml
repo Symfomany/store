@@ -24,10 +24,10 @@ security:
     # http://symfony.com/doc/current/book/security.html#hierarchical-roles
     role_hierarchy:
         ROLE_EDITOR:       ROLE_EDITOR
-        ROLE_COMMERCIAL:       ROLE_COMMERCIAL
-        ROLE_JEWELER:       [ROLE_JEWELER, ROLE_EDITOR, ROLE_COMMERCIAL]
-        ROLE_USER:       [ROLE_USER, ROLE_JEWELER]
-        ROLE_ADMIN:       [ROLE_ADMIN, ROLE_USER]
+        ROLE_COMMERCIAL:    ROLE_COMMERCIAL
+        ROLE_JEWELER:      [ROLE_JEWELER, ROLE_EDITOR, ROLE_COMMERCIAL]
+        ROLE_USER:         [ROLE_USER, ROLE_JEWELER]
+        ROLE_ADMIN:        [ROLE_ADMIN, ROLE_USER]
 
 
 ###
@@ -54,6 +54,12 @@ security:
         # secures part of the application
         store_backend:
             pattern:    ^/administration
+            #cookie: encrypter le contenu du cookie
+            remember_me:
+                key:      "%secret%"
+                lifetime: 31536000 # 365 jours en secondes
+                path:     /
+                domain:   ~ # Prend la valeur par défaut du domaine courant depuis $_SERVER
             form_login:
                 check_path: store_backend_security_login_check
                 login_path: store_backend_security_login
@@ -72,4 +78,5 @@ security:
     # of your application based on roles, ip, host or methods
     # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
+        - { path: ^/administration/products, roles: [ROLE_COMMERCIAL] }
         - { path: ^/administration, roles: [ROLE_JEWELER, ROLE_EDITOR, ROLE_COMMERCIAL] }
