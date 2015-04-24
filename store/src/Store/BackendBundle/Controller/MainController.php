@@ -17,8 +17,20 @@ class MainController extends Controller{
      * Page Dashboard on Backend
      */
     public function indexAction(){
+
+
+        // $this->get() => accède au conteneur de service
+        // et récupere le service store.backend.email
+//        $mail = $this->get('store.backend.email');
+//        $mail->send(); //appel de ma methode pour envoyer un email
+
+
         // Récupérer l'utilisateur
         $user = $this->getUser();
+
+//        $this->get('store_backend.email')->send($user, 'julien@meetserious.com',
+//            'StoreBackendBundle:Mail:welcome.html.twig', "Bienvenue :)", '<p>okay</p>');
+
 
         // Récupérer Doctrine Manager
         $em = $this->getDoctrine()->getManager();

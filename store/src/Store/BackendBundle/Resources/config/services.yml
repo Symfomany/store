@@ -1,4 +1,41 @@
 services:
-#    store_backend.example:
-#        class: Store\BackendBundle\Example
-#        arguments: [@service_id, "plain_value", %parameter%]
+
+    # Nom du Bundle Complet . Nom de la Classe
+    store.backend.email: #Nom du service
+        class: Store\BackendBundle\Email\Email #class du Service
+        arguments: ["@mailer", "@twig"]
+        # Service Swift Mailer
+        # Service Twig
+
+    # Nom de service
+    store.backend.notification:
+        # Classe avec Namespaces
+        class: Store\BackendBundle\Notification\Notification
+        # ARgument du constructeur de ma classe en service
+        arguments: ["@session"]
+
+
+    # Nom du service
+    store.backend.listener.authentification: #  Nom du service
+       #  Nom de ma classe avec namespaces
+       class: Store\BackendBundle\Listener\AuthentificationListener
+
+       #  Nom des services injecté en constructeur de ma classe
+       arguments: ["@doctrine.orm.entity_manager", "@security.context"]
+
+       # Etende le mecanisme de security au niveau de linteraction login
+       # avec un mecanisme d'écouteur
+       tags:
+         - { name: kernel.event_listener, event: security.interactive_login,method: onAuthenticationSuccess }
+
+#    store_backend.voter.email:
+#        class: Store\BackendBundle\Security\Authorization\Voter\OwnerVoter
+#        public:     false
+#        tags:
+#           - { name: security.voter }
+#    store.backend.listener.product.persist:
+#        class: Store\BackendBundle\Listener\ProductListener
+#        arguments: [@store_backend.email, @store.backend.notification]
+#        tags:
+#            - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }
+#            - { name: doctrine.event_listener, event: postPersist, method: postPerist }

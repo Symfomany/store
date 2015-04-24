@@ -175,6 +175,14 @@ class ProduitController extends AbstractController{
             //je récupere la quantité du produit enregistrer
             $quantity = $product->getQuantity();
 
+            // si ma quantité de produit est < 5
+            if($quantity < 5){
+                // $this->get() => accède au conteneur de service
+                // la methode notify sera executer avec un message de bienvenue
+                $this->get('store.backend.notification')
+                    ->notify('Attention, votre produit '.$product->getTitle().' est bientôt épuisé','danger');
+            }
+
             if($quantity == 1){
                 //je créer un message flash avec pour clef "success"
                 // et un message de confirmation
@@ -196,13 +204,13 @@ class ProduitController extends AbstractController{
             )
         );
     }
+
+
     /**
-     * Page Action
-     * Je recupere l'objet Request qui contient toutes mes données en GET, POST ...
      */
     public function editAction(Request $request,Product $id){
 
-        $this->permission('Product', $id);
+//        $this->permission('Product', $id);
 
         // je crée un formulaire de produit en associant avec mon produit
         $form = $this->createForm(new ProductType(1),$id,
@@ -227,6 +235,14 @@ class ProduitController extends AbstractController{
             $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
             $em->persist($id); //j'enregistre mon objet product dans doctrine
             $em->flush(); //j'envoi ma requete d'insert à ma table product
+
+            // si ma quantité de produit est < 5
+            if($id->getQuantity() < 5){
+                // $this->get() => accède au conteneur de service
+                // la methode notify sera executer avec un message de bienvenue
+                $this->get('store.backend.notification')
+                    ->notify('Attention, votre produit '.$id->getTitle().' est bientôt épuisé', 'danger');
+            }
 
             $this->get('session')->getFlashBag()->add(
                 'success',

@@ -30,7 +30,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
     /**
      * @var string
      * @Assert\NotBlank(
@@ -44,7 +44,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * )
      * @ORM\Column(name="email", type="string", length=150, nullable=true)
      */
-    private $email;
+    protected $email;
     
     /**
      * @var string
@@ -61,7 +61,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * )
      * @ORM\Column(name="username", type="string", length=150, nullable=true)
      */
-    private $username;
+    protected $username;
 
     /**
      * @var string
@@ -78,42 +78,42 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * )
      * @ORM\Column(name="password", type="string", length=300, nullable=true)
      */
-    private $password;
+    protected $password;
 
     /**
      * @var string
      *
      * @ORM\Column(name="title", type="string", length=300, nullable=true)
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text", nullable=true)
      */
-    private $description;
+    protected $description;
 
     /**
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=300, nullable=true)
      */
-    private $image;
+    protected $image;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="type", type="integer", nullable=true)
      */
-    private $type;
+    protected $type;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="enabled", type="boolean", nullable=true)
      */
-    private $enabled;
+    protected $enabled;
 
 
     /**
@@ -121,125 +121,125 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      *
      * @ORM\Column(name="locked", type="boolean", nullable=true)
      */
-    private $locked;
+    protected $locked;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="expired", type="boolean", nullable=true)
      */
-    private $expired;
+    protected $expired;
 
     /**
      * @var string
      *
      * @ORM\Column(name="salt", type="string", length=300, nullable=true)
      */
-    private $salt;
+    protected $salt;
 
     /**
      * @var string
      *
      * @ORM\Column(name="token", type="string", length=300, nullable=true)
      */
-    private $token;
+    protected $token;
 
     /**
      * @var string
      *
      * @ORM\Column(name="username_canonical", type="string", length=300, nullable=true)
      */
-    private $usernameCanonical;
+    protected $usernameCanonical;
 
     /**
      * @var string
      *
      * @ORM\Column(name="email_canonical", type="string", length=300, nullable=true)
      */
-    private $emailCanonical;
+    protected $emailCanonical;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="credentials_expired", type="boolean", nullable=true)
      */
-    private $credentialsExpired;
+    protected $credentialsExpired;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="credentials_expire_at", type="datetime", nullable=true)
      */
-    private $credentialsExpireAt;
+    protected $credentialsExpireAt;
 
     /**
      * @var string
      *
      * @ORM\Column(name="confirmation_token", type="string", length=300, nullable=true)
      */
-    private $confirmationToken;
+    protected $confirmationToken;
 
     /**
      * @var string
      *
      * @ORM\Column(name="password_requested_at", type="string", length=300, nullable=true)
      */
-    private $passwordRequestedAt;
+    protected $passwordRequestedAt;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="fid", type="integer", nullable=true)
      */
-    private $fid;
+    protected $fid;
 
     /**
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=30, nullable=true)
      */
-    private $slug;
+    protected $slug;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="accountNonLocked", type="boolean", nullable=true)
      */
-    private $accountnonlocked;
+    protected $accountnonlocked;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="roles", type="string", nullable=true)
      */
-    private $roles;
+    protected $roles;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="accountNonExpired", type="boolean", nullable=true)
      */
-    private $accountnonexpired;
+    protected $accountnonexpired;
 
     /**
      * @var boolean
      * @ORM\OneToOne(targetEntity="JewelerMeta", mappedBy="jeweler")
      **/
-    private $meta;
+    protected $meta;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_created", type="datetime", nullable=true)
      */
-    private $dateCreated;
+    protected $dateCreated;
 
     /**
      * @var \DateTime
-     *
      * @ORM\Column(name="date_auth", type="datetime", nullable=true)
      */
-    private $dateAuth;
+    protected $dateAuth;
+    
 
     /**
      * @ORM\ManyToMany(targetEntity="Groups", inversedBy="jeweler")
@@ -253,7 +253,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * )
      *
      */
-    private $groups;
+    protected $groups;
 
 
 

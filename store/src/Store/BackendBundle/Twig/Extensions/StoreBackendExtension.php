@@ -23,31 +23,6 @@ class StoreBackendExtension extends \Twig_Extension
 
         );
     }
-
-
-
-
-
-
-
-
-
-
-
-//            new \Twig_SimpleFilter('ago', array($this, 'createdAgo')),
-//            new \Twig_SimpleFilter('begin', array($this, 'beginIn')),
-//            new \Twig_SimpleFilter('urldecode', array($this, 'urlDecode')),
-//            new \Twig_SimpleFilter('notecomment', array($this, 'noteComment')),
-//            new \Twig_SimpleFilter('date_period', array($this, 'datePeriod')),
-//            new \Twig_SimpleFilter('truncatemonth', array($this, 'truncateMonth')),
-//            new \Twig_SimpleFilter('getQRCode', array($this, 'getQRCode')),
-//            new \Twig_SimpleFilter('jsondecode', array($this, 'jsonDecode')),
-//            new \Twig_SimpleFilter('thumb', array($this, 'thumb'))
-
-
-
-
-
     /**
      * State helper
      * @param $state

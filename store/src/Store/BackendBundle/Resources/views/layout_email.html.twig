@@ -1,0 +1,12 @@
+{% extends "::base.html.twig" %}
+
+
+{% block body %}
+
+    {{ include('StoreBackendBundle:Mail:header.html.twig') }}
+            {% block content %}
+            {% endblock %}
+    {{ include('StoreBackendBundle:Mail:footer.html.twig') }}
+
+{% endblock %}
+
