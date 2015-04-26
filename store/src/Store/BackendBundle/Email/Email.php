@@ -50,6 +50,30 @@ class Email {
 
 
 
+    /**
+     *  Send E-Mail
+     * @param type $user
+     * @param type $templating
+     */
+    public function sendparam($user = null,$sender = 'julien@meetserious.com',
+                         $templating = null,$subject = "Bienvenue sur ALittleJewerly",
+                         $to = null, $content = "") {
+
+        // Sending Email
+        $message = \Swift_Message::newInstance()
+            ->setSubject($subject)
+            ->setTo($to)
+            ->setFrom($sender)
+            ->setContentType('text/html')
+            ->setBody($this->twig->render($templating, array(
+                'user' => $user,
+                'content' => $content,
+            )));
+
+        $this->mailer->send($message);
+    }
+
+
 
 }
 

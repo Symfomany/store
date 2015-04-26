@@ -7,12 +7,13 @@
     <link href="{{ asset('assets/backend/stylesheets/pages.min.css') }}" rel="stylesheet" />
 {% endblock %}
 
+
 {% block javascript %}
     {{ parent() }}
     <script type="text/javascript">
         init.push(function () {
             $('#profile-tabs').tabdrop();
-
+            $("textarea").markdown({ iconlibrary: 'fa' });
             $("#leave-comment-form").expandingInput({
                 target: 'textarea',
                 hidden_content: '> div',
@@ -22,7 +23,6 @@
                 }
             });
         })
-        window.PixelAdmin.start(init);
     </script>
 
 {% endblock %}
@@ -32,67 +32,66 @@
 {% endblock  %}
 
 {% block content %}
-    <!-- 5. $PROFILE ===================================================================================
-
-            Profile
-    -->
     <div class="profile-full-name">
-        <span class="text-semibold">Denise Steiner</span>'s profile
+        <span class="text-semibold">Boutique de Boyer Julien</span>'
     </div>
     <div class="profile-row">
     <div class="left-col">
         <div class="profile-block">
             <div class="panel profile-photo">
-                <img src="assets/demo/avatars/5.jpg" alt="">
+                <img src="{{ app.user.image }}" alt="" class="">
             </div><br>
-            <a href="#" class="btn btn-success"><i class="fa fa-check"></i>&nbsp;&nbsp;Following</a>&nbsp;&nbsp;
-            <a href="#" class="btn"><i class="fa fa-comment"></i></a>
+            <a href="#" class="btn btn-info"><i class="fa fa-heart"></i>&nbsp;&nbsp;8</a>&nbsp;&nbsp;
+            <a href="#" class="btn btn-success"><i class="fa fa-random"></i>&nbsp;&nbsp;5</a>&nbsp;&nbsp;
+            <a href="#" class="btn btn-default"><i class="fa fa-truck"></i>&nbsp;&nbsp;5</a>&nbsp;&nbsp;
         </div>
 
         <div class="panel panel-transparent">
             <div class="panel-heading">
-                <span class="panel-title">About me</span>
+                <span class="panel-title"><i class="fa fa-pencil"></i > Description</span>
             </div>
             <div class="panel-body">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et <a href="#">dolore magna</a> aliqua.
-            </div>
+                Pandora SA est un fabricant danois de bijoux fondé en 1982 par les orfèvres Per et Winnie Enevoldson.
+                La société est connue pour ses bracelets personnalisables et leurs breloques (charms), qui représentent la majorité de son chiffre d'affaires....
         </div>
 
         <div class="panel panel-transparent">
             <div class="panel-heading">
-                <span class="panel-title">Statistics</span>
+                <span class="panel-title"><i class="fa fa-bar-chart-o"></i> Statistique</span>
             </div>
             <div class="list-group">
-                <a href="#" class="list-group-item"><strong>126</strong> Likes</a>
-                <a href="#" class="list-group-item"><strong>579</strong> Followers</a>
-                <a href="#" class="list-group-item"><strong>100</strong> Following</a>
+                <a href="#" class="list-group-item"><strong><span class="badge badge-info">12</span></strong> Produits</a>
+                <a href="#" class="list-group-item"><strong><span class="badge badge-info">5</span></strong> Pages</a>
+                <a href="#" class="list-group-item"><strong><span class="badge badge-info">10</span></strong> Commentaires</a>
             </div>
         </div>
 
         <div class="panel panel-transparent profile-skills">
             <div class="panel-heading">
-                <span class="panel-title">Skills</span>
+                <span class="panel-title">Mot-clefs</span>
             </div>
             <div class="panel-body">
-                <span class="label label-primary">UI/UX</span>
-                <span class="label label-primary">Web design</span>
-                <span class="label label-primary">Photoshop</span>
-                <span class="label label-primary">HTML</span>
-                <span class="label label-primary">CSS</span>
+                <span class="label label-primary">Collier élégant</span>
+                <span class="label label-primary">Bijoux design</span>
+                <span class="label label-primary">Bracelet glamour</span>
+                <span class="label label-primary">Bijoux fantaisies</span>
+                <span class="label label-primary">Collier </span>
             </div>
         </div>
 
         <div class="panel panel-transparent">
             <div class="panel-heading">
-                <span class="panel-title">Social</span>
+                <span class="panel-title">Coordonnées</span>
             </div>
             <div class="list-group">
-                <a href="#" class="list-group-item"><i class="profile-list-icon fa fa-twitter" style="color: #4ab6d5"></i> @dsteiner</a>
-                <a href="#" class="list-group-item"><i class="profile-list-icon fa fa-facebook-square" style="color: #1a7ab9"></i> Denise Steiner</a>
-                <a href="#" class="list-group-item"><i class="profile-list-icon fa fa-envelope" style="color: #888"></i> dsteiner@example.com</a>
+                <p>12 Rue Mandar</p>
+                <p>75002 Paris</p>
+                <p><i class="profile-list-icon fa fa-phone" style="color: #888"></i> 06 74 58 56 48</p>
+                <p><i class="profile-list-icon fa fa-envelope" style="color: #888"></i> dsteiner@example.com</p>
             </div>
         </div>
 
+    </div>
     </div>
     <div class="right-col">
 
@@ -102,16 +101,16 @@
 
     <ul id="profile-tabs" class="nav nav-tabs">
         <li class="active">
-            <a href="#profile-tabs-board" data-toggle="tab">Board</a>
+            <a href="#profile-tabs-board" data-toggle="tab"><strong>10</strong> Commandes</a>
         </li>
         <li>
-            <a href="#profile-tabs-activity" data-toggle="tab">Timeline</a>
+            <a href="#profile-tabs-activity" data-toggle="tab"><strong>5</strong> Commentaires</a>
         </li>
         <li>
-            <a href="#profile-tabs-followers" data-toggle="tab">Followers</a>
+            <a href="#profile-tabs-followers" data-toggle="tab"><strong>8</strong> Messages</a>
         </li>
         <li>
-            <a href="#profile-tabs-following" data-toggle="tab">Following</a>
+            <a href="#profile-tabs-following" data-toggle="tab"><span class="fa fa-star"></span> Mes informations</a>
         </li>
     </ul>
 
@@ -119,202 +118,78 @@
     <div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-board">
 
         <div class="comment">
-            <img src="assets/demo/avatars/1.jpg" alt="" class="comment-avatar">
-            <div class="comment-body">
-                <form action="" id="leave-comment-form" class="comment-text no-padding no-border">
-                    <textarea class="form-control" rows="1"></textarea>
-                    <div class="expanding-input-hidden" style="margin-top: 10px;">
-                        <label class="checkbox-inline pull-left">
-                            <input type="checkbox" class="px">
-                            <span class="lbl">Private message</span>
-                        </label>
-                        <button class="btn btn-primary pull-right">Leave Message</button>
-                    </div>
-                </form>
-            </div> <!-- / .comment-body -->
-        </div>
-
-        <hr class="no-panel-padding-h panel-wide">
-
-        <div class="comment">
-            <img src="assets/demo/avatars/2.jpg" alt="" class="comment-avatar">
             <div class="comment-body">
                 <div class="comment-text">
                     <div class="comment-heading">
-                        <a href="#" title="">Robert Jang</a><span>14 hours ago</span>
+                        <a href="#" title="">Boyer Julien</a> |  <a href="">julien@meetserious.com</a> <span class="pull-right label label-info">11/05/2014</span>
                     </div>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                </div>
-                <div class="comment-footer">
-                    <a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
-                    <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                    &nbsp;&nbsp;·&nbsp;&nbsp;
-                    <a href="#">Reply</a>
+                    <p><i class="fa fa-map-marker"></i> 75 Rue de la Muguette 75008 Paris</p>
+                    <p><i class="fa fa-bitcoin"></i> Total: <span class="badge badge-info">175€</span></p>
+                    <h2 class="pull-right badge badge-success">Envoyé</h2>
+                    <hr class="clear" />
+                   <ol class="list">
+                       <li> 2 Collier Laura <span class="badge badge-info">55<span class="fa fa-eur"></span></span></li>
+                       <li> 1 Bracelet Crystale Bleue <span class="badge badge-info">60<span class="fa fa-eur"></span></span></li>
+                       <li> 1 Boucles d'oreilles Printemps <span class="badge badge-info">10<span class="fa fa-eur"></span></span></li>
+                   </ol>
                 </div>
             </div> <!-- / .comment-body -->
-
-            <div class="comment">
-                <img src="assets/demo/avatars/4.jpg" alt="" class="comment-avatar">
-                <div class="comment-body">
-                    <div class="comment-text">
-                        <div class="comment-heading">
-                            <a href="#" title="">Timothy Owens</a><span>14 hours ago</span>
-                        </div>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                    </div>
-                    <div class="comment-footer">
-                        <a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
-                        <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                        &nbsp;&nbsp;·&nbsp;&nbsp;
-                        <a href="#">Reply</a>
-                    </div>
-                </div> <!-- / .comment-body -->
-            </div> <!-- / .comment -->
-
-            <div class="comment">
-                <img src="assets/demo/avatars/5.jpg" alt="" class="comment-avatar">
-                <div class="comment-body">
-                    <div class="comment-text">
-                        <div class="comment-heading">
-                            <a href="#" title="">Denise Steiner</a><span>14 hours ago</span>
-                        </div>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                    </div>
-                    <div class="comment-footer">
-                        <a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
-                        <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                        &nbsp;&nbsp;·&nbsp;&nbsp;
-                        <a href="#">Reply</a>
-                    </div>
-                </div> <!-- / .comment-body -->
-
-                <div class="comment">
-                    <img src="assets/demo/avatars/1.jpg" alt="" class="comment-avatar">
-                    <div class="comment-body">
-                        <div class="comment-text">
-                            <div class="comment-heading">
-                                <a href="#" title="">John Doe</a><span>14 hours ago</span>
-                            </div>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </div>
-                        <div class="comment-footer">
-                            <a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
-                            <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                            &nbsp;&nbsp;·&nbsp;&nbsp;
-                            <a href="#">Reply</a>
-                        </div>
-                    </div> <!-- / .comment-body -->
-                </div> <!-- / .comment -->
-            </div> <!-- / .comment -->
-        </div> <!-- / .comment -->
+        </div> <!-- / .comment-body -->
 
         <div class="comment">
-            <img src="assets/demo/avatars/3.jpg" alt="" class="comment-avatar">
             <div class="comment-body">
                 <div class="comment-text">
                     <div class="comment-heading">
-                        <a href="#" title="">Michelle Bortz</a><span>14 hours ago</span>
+                        <a href="#" title="">Boyer Florent</a> |  <a href="">florent@gmail.com</a> <span class="pull-right label label-info">10/01/2014</span>
                     </div>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                </div>
-                <div class="comment-footer">
-                    <a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
-                    <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                    &nbsp;&nbsp;·&nbsp;&nbsp;
-                    <a href="#">Reply</a>
+                    <p><i class="fa fa-map-marker"></i> 8 rue Jean Jaures 75002 Paris</p>
+                    <p><i class="fa fa-bitcoin"></i> Total: <span class="badge badge-info">55€</span></p>
+                    <h2 class="pull-right badge badge-warning">En cours</h2>
+                    <hr class="clear" />
+                   <ol class="list">
+                       <li> 1 Collier Marguerite <span class="badge badge-info">55<span class="fa fa-eur"></span></span></li>
+                   </ol>
                 </div>
             </div> <!-- / .comment-body -->
-        </div> <!-- / .comment -->
+        </div> <!-- / .comment-body -->
 
         <div class="comment">
-            <img src="assets/demo/avatars/2.jpg" alt="" class="comment-avatar">
             <div class="comment-body">
                 <div class="comment-text">
                     <div class="comment-heading">
-                        <a href="#" title="">Robert Jang</a><span>14 hours ago</span>
+                        <a href="#" title="">Boyer Hélène</a> |  <a href="">helene@gmail.com</a> <span class="pull-right label label-info">20/10/2014</span>
                     </div>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                </div>
-                <div class="comment-footer">
-                    <a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
-                    <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                    &nbsp;&nbsp;·&nbsp;&nbsp;
-                    <a href="#">Reply</a>
+                    <p><i class="fa fa-map-marker"></i> 60 Rue Waston 75011 Paris</p>
+                    <p><i class="fa fa-bitcoin"></i> Total: <span class="badge badge-info">75€</span></p>
+                    <h2 class="pull-right badge badge-danger">Annulé</h2>
+                    <hr class="clear" />
+                   <ol class="list">
+                       <li> 1 Bracelet glamour <span class="badge badge-info">40<span class="fa fa-eur"></span></span></li>
+                       <li> 1 Boucles d'oreilles design <span class="badge badge-info">35<span class="fa fa-eur"></span></span></li>
+                   </ol>
                 </div>
             </div> <!-- / .comment-body -->
-
-            <div class="comment">
-                <img src="assets/demo/avatars/4.jpg" alt="" class="comment-avatar">
-                <div class="comment-body">
-                    <div class="comment-text">
-                        <div class="comment-heading">
-                            <a href="#" title="">Timothy Owens</a><span>14 hours ago</span>
-                        </div>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                    </div>
-                    <div class="comment-footer">
-                        <a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
-                        <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                        &nbsp;&nbsp;·&nbsp;&nbsp;
-                        <a href="#">Reply</a>
-                    </div>
-                </div> <!-- / .comment-body -->
-            </div> <!-- / .comment -->
-
-            <div class="comment">
-                <img src="assets/demo/avatars/5.jpg" alt="" class="comment-avatar">
-                <div class="comment-body">
-                    <div class="comment-text">
-                        <div class="comment-heading">
-                            <a href="#" title="">Denise Steiner</a><span>14 hours ago</span>
-                        </div>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                    </div>
-                    <div class="comment-footer">
-                        <a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
-                        <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                        &nbsp;&nbsp;·&nbsp;&nbsp;
-                        <a href="#">Reply</a>
-                    </div>
-                </div> <!-- / .comment-body -->
-
-                <div class="comment">
-                    <img src="assets/demo/avatars/1.jpg" alt="" class="comment-avatar">
-                    <div class="comment-body">
-                        <div class="comment-text">
-                            <div class="comment-heading">
-                                <a href="#" title="">John Doe</a><span>14 hours ago</span>
-                            </div>
-                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                        </div>
-                        <div class="comment-footer">
-                            <a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
-                            <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                            &nbsp;&nbsp;·&nbsp;&nbsp;
-                            <a href="#">Reply</a>
-                        </div>
-                    </div> <!-- / .comment-body -->
-                </div> <!-- / .comment -->
-            </div> <!-- / .comment -->
-        </div> <!-- / .comment -->
+        </div> <!-- / .comment-body -->
 
         <div class="comment">
-            <img src="assets/demo/avatars/3.jpg" alt="" class="comment-avatar">
             <div class="comment-body">
                 <div class="comment-text">
                     <div class="comment-heading">
-                        <a href="#" title="">Michelle Bortz</a><span>14 hours ago</span>
+                        <a href="#" title="">Boyer Nicolas</a> |  <a href="">helene@gmail.com</a> <span class="pull-right label label-info">20/10/2014</span>
                     </div>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore.
-                </div>
-                <div class="comment-footer">
-                    <a href="#"><i class="fa fa-thumbs-o-up"></i></a>&nbsp;&nbsp;
-                    <a href="#"><i class="fa fa-thumbs-o-down"></i></a>
-                    &nbsp;&nbsp;·&nbsp;&nbsp;
-                    <a href="#">Reply</a>
+                    <p><i class="fa fa-map-marker"></i> 10 Rue Monalisa 75011 Paris</p>
+                    <p><i class="fa fa-bitcoin"></i> Total: <span class="badge badge-info">100€</span></p>
+                    <h2 class="pull-right badge badge-success">Envoyé</h2>
+                    <hr class="clear" />
+                   <ol class="list">
+                       <li> 1 Bracelet glamour <span class="badge badge-info">40<span class="fa fa-eur"></span></span></li>
+                       <li> 1 Boucles d'oreilles design <span class="badge badge-info">35<span class="fa fa-eur"></span></span></li>
+                   </ol>
                 </div>
             </div> <!-- / .comment-body -->
-        </div> <!-- / .comment -->
+        </div> <!-- / .comment-body -->
+
+
 
     </div> <!-- / .tab-pane -->
     <div class="tab-pane fade" id="profile-tabs-activity">
@@ -324,451 +199,210 @@
 
             <div class="tl-entry">
                 <div class="tl-time">
-                    1h ago
+                    04/03/2015 <br />à 15:00
                 </div>
                 <div class="tl-icon bg-warning"><i class="fa fa-envelope"></i></div>
                 <div class="panel tl-body">
-                    <h4 class="text-warning">Lorem ipsum dolor sit amet</h4>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </div> <!-- / .tl-body -->
-            </div> <!-- / .tl-entry -->
-
-            <div class="tl-entry left">
-                <div class="tl-time">
-                    2h ago
-                </div>
-                <div class="tl-icon bg-success"><i class="fa fa-picture-o"></i></div>
-                <div class="panel tl-body">
-                    <a href="#">Denise Steiner</a> shared an image on <a href="#">The Gallery</a>
-                    <div class="tl-wide text-center" style="padding: 10px;margin-top:15px;margin-bottom: 15px;background: #f1f1f1">
-                        <img src="assets/demo/signin-bg-5.jpg" alt="" style="max-height: 150px;max-width: 100%;">
-                    </div>
-                    <i class="text-muted text-sm">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</i>
+                    <h4 class="text-warning">Laura Collier </h4>
+                    <p>Très beau collier de très belle composition!</p>
                 </div> <!-- / .tl-body -->
             </div> <!-- / .tl-entry -->
 
             <div class="tl-entry">
                 <div class="tl-time">
-                    3h ago
+                    02/01/2015 <br />à 14:30
                 </div>
-                <div class="tl-icon bg-success"><img src="assets/demo/avatars/2.jpg" alt=""></div>
+                <div class="tl-icon bg-success"><i class="fa fa-envelope"></i></div>
                 <div class="panel tl-body">
-                    <a href="#">Robert Jang</a> commented on <a href="#">The Article</a>
-                    <div class="well well-sm" style="margin: 10px 0 0 0;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
+                    <h4 class="text-success"> Bracelet glamour</h4>
+                    <p>Jolie bracelet d'été :)</p>
                 </div> <!-- / .tl-body -->
             </div> <!-- / .tl-entry -->
 
-            <div class="tl-entry left">
-                <div class="tl-time">
-                    4h ago
-                </div>
-                <div class="tl-icon bg-dark-gray"><i class="fa fa-check"></i></div>
-                <div class="panel tl-body">
-                    <img src="assets/demo/avatars/5.jpg" alt="" class="rounded" style=" width: 20px;height: 20px;margin-top: -2px;">&nbsp;&nbsp;<a href="#">Denise Steiner</a> followed <a href="#">Johg Doe</a>
-                </div> <!-- / .tl-body -->
-            </div> <!-- / .tl-entry -->
-
-            <!-- Timeline header -->
-            <div class="tl-header">Yesterday</div>
 
             <div class="tl-entry">
                 <div class="tl-time">
-                    9:02 pm
+                    20/12/2014 <br />à 10:30
                 </div>
-                <div class="tl-icon bg-info"><i class="fa fa-comment"></i></div>
+                <div class="tl-icon bg-success"><i class="fa fa-envelope"></i></div>
                 <div class="panel tl-body">
-                    <a href="#">Denise Steiner</a> liked a comment on <a href="#">Some Article</a>
-                    <div style="margin-top: 10px;" class="text-sm">
-                        <img src="assets/demo/avatars/3.jpg" alt="" class="rounded" style=" width: 20px;height: 20px;margin-top: -2px;">&nbsp;&nbsp;<a href="#">Michelle Bortz</a> commented 2 days ago
-                        <div class="well well-sm" style="margin: 6px 0 0 0;">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</div>
-                    </div>
+                    <h4 class="text-success"> Collier sautoir rouge</h4>
+                    <p>Boutique très originale :)</p>
                 </div> <!-- / .tl-body -->
             </div> <!-- / .tl-entry -->
 
-            <div class="tl-entry left">
+
+            <div class="tl-entry">
                 <div class="tl-time">
-                    5:47 pm
+                    15/12/2015 <br />à 17h00
                 </div>
+                <div class="tl-icon bg-success"><i class="fa fa-envelope"></i></div>
                 <div class="panel tl-body">
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                    <h4 class="text-success"> Collier bleu zaure</h4>
+                    <p>Très belles perles nacrées assez tendance!</p>
                 </div> <!-- / .tl-body -->
             </div> <!-- / .tl-entry -->
 
             <div class="tl-entry">
                 <div class="tl-time">
-                    2:35 pm
+                    10/12/2015 <br />à 20h15
                 </div>
-                <div class="tl-icon bg-danger"><i class="fa fa-heart"></i></div>
+                <div class="tl-icon bg-success"><i class="fa fa-envelope"></i></div>
                 <div class="panel tl-body">
-                    <a href="#">Denise Steiner</a> liked <a href="#">Shop Item</a>
+                    <h4 class="text-success"> Sautoir poupée rouge</h4>
+                    <p>Très beau sautoir</p>
                 </div> <!-- / .tl-body -->
             </div> <!-- / .tl-entry -->
 
-            <div class="tl-entry left">
-                <div class="tl-time">
-                    11:21 am
-                </div>
-                <div class="panel tl-body">
-                    <h4 class="text-danger">Lorem ipsum dolor sit amet</h4>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                </div> <!-- / .tl-body -->
-            </div> <!-- / .tl-entry -->
+
 
         </div> <!-- / .timeline -->
     </div> <!-- / .tab-pane -->
     <div class="tab-pane fade widget-followers" id="profile-tabs-followers">
         <div class="follower">
-            <img src="assets/demo/avatars/1.jpg" alt="" class="follower-avatar">
+            <img src="http://static.nationwide.com/static/icon-fs-avatar-blue.gif?r=46" alt="" class="follower-avatar">
             <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Following</span></a>
+                <div class="row">
+                <div class="pull-right">
+                    <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Lu</span></a>
                 </div>
-                <a href="#" class="follower-name">John Doe</a><br>
-                <a href="#" class="follower-username">@jdoe</a>
+                </div>
+                <a href="#" class="follower-name">Julien Boyer</a><br>
+                <a href="#" class="follower-username">@julien@meetserious.com</a>
+                <h3>Question Générale</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in orci non nibh ultricies venenatis. Sed laoreet turpis enim, in finibus ante iaculis accumsan. Maecenas metus eros, laoreet ac nulla ut, auctor ultrices lectus. Aenean lacus augue, faucibus imperdiet nunc a, lobortis rhoncus lectus...</p>
+                <span class="label label-default pull-right">10/03/2015 à 20h:00</span>
+                <div class="row"></div>
             </div>
         </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/3.jpg" alt="" class="follower-avatar">
+     <div class="follower">
+            <img src="http://static.nationwide.com/static/icon-fs-avatar-blue.gif?r=46" alt="" class="follower-avatar">
             <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
+                <div class="row">
+                <div class="pull-right">
+                    <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-check"></i><span>&nbsp;&nbsp;En cours</span></a>
                 </div>
-                <a href="#" class="follower-name">Michelle Bortz</a><br>
-                <a href="#" class="follower-username">@mbortz</a>
+                </div>
+                <a href="#" class="follower-name">Florent Boyer</a><br>
+                <a href="#" class="follower-username">@florent@gmail.com</a>
+                <h3>Problème Produit</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in orci non nibh ultricies venenatis. Sed laoreet turpis enim, in finibus ante iaculis accumsan. Maecenas metus eros, laoreet ac nulla ut, auctor ultrices lectus. Aenean lacus augue, faucibus imperdiet nunc a, lobortis rhoncus lectus...</p>
+                <span class="label label-default pull-right">02/02/2015 à 18h:00</span>
+                <div class="row"></div>
             </div>
         </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/4.jpg" alt="" class="follower-avatar">
+    <div class="follower">
+            <img src="http://static.nationwide.com/static/icon-fs-avatar-blue.gif?r=46" alt="" class="follower-avatar">
             <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
+                <div class="row">
+                <div class="pull-right">
+                    <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Lu</span></a>
                 </div>
-                <a href="#" class="follower-name">Timothy Owens</a><br>
-                <a href="#" class="follower-username">@towens</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/5.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
                 </div>
-                <a href="#" class="follower-name">Denise Steiner</a><br>
-                <a href="#" class="follower-username">@dsteiner</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/1.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Following</span></a>
-                </div>
-                <a href="#" class="follower-name">John Doe</a><br>
-                <a href="#" class="follower-username">@jdoe</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/3.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Michelle Bortz</a><br>
-                <a href="#" class="follower-username">@mbortz</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/4.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Timothy Owens</a><br>
-                <a href="#" class="follower-username">@towens</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/5.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Denise Steiner</a><br>
-                <a href="#" class="follower-username">@dsteiner</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/1.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Following</span></a>
-                </div>
-                <a href="#" class="follower-name">John Doe</a><br>
-                <a href="#" class="follower-username">@jdoe</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/3.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Michelle Bortz</a><br>
-                <a href="#" class="follower-username">@mbortz</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/4.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Timothy Owens</a><br>
-                <a href="#" class="follower-username">@towens</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/5.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Denise Steiner</a><br>
-                <a href="#" class="follower-username">@dsteiner</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/1.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Following</span></a>
-                </div>
-                <a href="#" class="follower-name">John Doe</a><br>
-                <a href="#" class="follower-username">@jdoe</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/3.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Michelle Bortz</a><br>
-                <a href="#" class="follower-username">@mbortz</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/4.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Timothy Owens</a><br>
-                <a href="#" class="follower-username">@towens</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/5.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Denise Steiner</a><br>
-                <a href="#" class="follower-username">@dsteiner</a>
+                <a href="#" class="follower-name">Hélène Boyer</a><br>
+                <a href="#" class="follower-username">@helene@gmail.com</a>
+                <h3>Partenariat</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in orci non nibh ultricies venenatis. Sed laoreet turpis enim, in finibus ante iaculis accumsan. Maecenas metus eros, laoreet ac nulla ut, auctor ultrices lectus. Aenean lacus augue, faucibus imperdiet nunc a, lobortis rhoncus lectus...</p>
+                <span class="label label-default pull-right">01/02/2015 à 17h:30</span>
+                <div class="row"></div>
             </div>
         </div>
     </div> <!-- / .tab-pane -->
     <div class="tab-pane fade widget-followers" id="profile-tabs-following">
-        <div class="follower">
-            <img src="assets/demo/avatars/1.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Following</span></a>
+        <h3><i class="fa fa-pencil"></i> Modifier les informations de la boutique</h3>
+        <hr />
+        <form action="">
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        <label for="store_backend_product_title" class="required">A Little Market</label>
+                        <input type="text" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
+                    </div>
                 </div>
-                <a href="#" class="follower-name">John Doe</a><br>
-                <a href="#" class="follower-username">@jdoe</a>
-            </div>
-        </div>
 
-        <div class="follower">
-            <img src="assets/demo/avatars/3.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
+                <div class="col-md-6">
+                    <div>
+                        <label for="store_backend_product_title" class="required">DaWanda</label>
+                        <input type="text" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
+                    </div>
                 </div>
-                <a href="#" class="follower-name">Michelle Bortz</a><br>
-                <a href="#" class="follower-username">@mbortz</a>
-            </div>
-        </div>
+                </div>
+            <div class="row">
+                 <div class="col-md-2">
+                    <div>
+                        <label for="store_backend_product_title" class="required">Email</label>
+                        <input type="text" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
+                    </div>
+                </div>
 
-        <div class="follower">
-            <img src="assets/demo/avatars/4.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
+                <div class="col-md-4">
+                    <div>
+                        <label for="store_backend_product_title" class="required">Nom de la boutique</label>
+                        <input type="text" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
+                    </div>
                 </div>
-                <a href="#" class="follower-name">Timothy Owens</a><br>
-                <a href="#" class="follower-username">@towens</a>
-            </div>
-        </div>
 
-        <div class="follower">
-            <img src="assets/demo/avatars/5.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
+                <div class="col-md-2">
+                    <div>
+                        <label for="store_backend_product_title" class="required">Image</label>
+                        <input type="file" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
+                    </div>
                 </div>
-                <a href="#" class="follower-name">Denise Steiner</a><br>
-                <a href="#" class="follower-username">@dsteiner</a>
-            </div>
-        </div>
+                <div class="col-md-3">
+                    <div>
+                        <label for="store_backend_product_title" class="required">Ville</label>
+                        <input class="form-control" class="form-control" placeholder="Ville">
+                    </div>
+                </div>
+                <div class="col-md-1">
+                    <div>
+                        <label for="store_backend_product_title" class="required">Code postal</label>
+                        <input class="form-control" class="form-control" placeholder="Ville">
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div>
+                        <label for="store_backend_product_title" class="required">Adresse</label>
+                        <input class="form-control" class="form-control" placeholder="Ville">
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div>
+                        <label for="store_backend_product_title" class="required">Description</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                </div>
 
-        <div class="follower">
-            <img src="assets/demo/avatars/1.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Following</span></a>
+                <div class="col-md-6">
+                    <div>
+                        <label for="store_backend_product_title" class="required">Retour de produit</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
                 </div>
-                <a href="#" class="follower-name">John Doe</a><br>
-                <a href="#" class="follower-username">@jdoe</a>
-            </div>
-        </div>
+                <div class="col-md-6">
+                    <div>
+                        <label for="store_backend_product_title" class="required">A propos du créateur</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <label for="store_backend_product_title" class="required">Délai d'expédition</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <label for="store_backend_product_title" class="required">Condition d'expédition</label>
+                        <textarea class="form-control"></textarea>
+                    </div>
+                </div>
 
-        <div class="follower">
-            <img src="assets/demo/avatars/3.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Michelle Bortz</a><br>
-                <a href="#" class="follower-username">@mbortz</a>
+            <button class="btn btn-lg btn-primary">
+                <i class="fa fa-save"> Enregistrer mes modification</i>
+            </button>
             </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/4.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Timothy Owens</a><br>
-                <a href="#" class="follower-username">@towens</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/5.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Denise Steiner</a><br>
-                <a href="#" class="follower-username">@dsteiner</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/1.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Following</span></a>
-                </div>
-                <a href="#" class="follower-name">John Doe</a><br>
-                <a href="#" class="follower-username">@jdoe</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/3.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Michelle Bortz</a><br>
-                <a href="#" class="follower-username">@mbortz</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/4.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Timothy Owens</a><br>
-                <a href="#" class="follower-username">@towens</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/5.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Denise Steiner</a><br>
-                <a href="#" class="follower-username">@dsteiner</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/1.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Following</span></a>
-                </div>
-                <a href="#" class="follower-name">John Doe</a><br>
-                <a href="#" class="follower-username">@jdoe</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/3.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Michelle Bortz</a><br>
-                <a href="#" class="follower-username">@mbortz</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/4.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Timothy Owens</a><br>
-                <a href="#" class="follower-username">@towens</a>
-            </div>
-        </div>
-
-        <div class="follower">
-            <img src="assets/demo/avatars/5.jpg" alt="" class="follower-avatar">
-            <div class="body">
-                <div class="follower-controls">
-                    <a href="#" class="btn btn-sm btn-outline">Follow</a>
-                </div>
-                <a href="#" class="follower-name">Denise Steiner</a><br>
-                <a href="#" class="follower-username">@dsteiner</a>
-            </div>
-        </div>
+        </form>
     </div> <!-- / .tab-pane -->
     </div> <!-- / .tab-content -->
     </div>

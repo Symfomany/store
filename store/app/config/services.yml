@@ -4,11 +4,7 @@ parameters:
 #    parameter_name: value
 
 services:
-     store.backend.twig.store_backend_extension:
-        # Notre classe qui va étendre Twig
-        class: Store\BackendBundle\Twig\Extensions\StoreBackendExtension
-        tags:
-            - { name: twig.extension }
+
 
 
 

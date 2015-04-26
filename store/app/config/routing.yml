@@ -3,6 +3,9 @@ store_backend:
     prefix:   /administration
 
 
+
+
+
 ###
 # Authentification Backend & Frontend
 ###
@@ -26,3 +29,17 @@ store_backend_security_logout:
 store_backend_security_subscribe:
     path: /subscribe
     defaults: { _controller: StoreBackendBundle:Security:subscribe }
+
+
+
+## app/config/routing.yml
+#hwi_oauth_redirect:
+#    resource: "@HWIOAuthBundle/Resources/config/routing/redirect.xml"
+#    prefix:   /hwio-connect
+#
+#hwi_oauth_login:
+#    resource: "@HWIOAuthBundle/Resources/config/routing/login.xml"
+#    prefix:   /hwio-login
+#
+#facebook_login:
+#    pattern: /hwio-login/check-facebook

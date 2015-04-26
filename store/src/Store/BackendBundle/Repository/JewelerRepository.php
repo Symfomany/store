@@ -19,6 +19,29 @@ class JewelerRepository extends EntityRepository implements UserProviderInterfac
 
 
     /**
+     * Get jeweler for optin
+     * @param null $user
+     * @return array
+     */
+    public function getJewelersOptin($optin = 1){
+
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                 SELECT j
+                 FROM StoreBackendBundle:Jeweler j
+                 JOIN j.meta m
+                 WHERE m.optin = :optin
+                "
+            )
+            ->setParameter('optin', $optin);
+
+        return $query->getResult();
+
+    }
+
+
+    /**
      * Load Active User by Username or Email
      * Methode de chargement de l'utilisateur: par son email ou username
      * @param string $username
@@ -88,5 +111,28 @@ class JewelerRepository extends EntityRepository implements UserProviderInterfac
     public function supportsClass($class)
     {
         return $this->getEntityName() === $class || is_subclass_of($class, $this->getEntityName());
+    }
+
+
+    /**
+     * @param null $user
+     * @return array
+     */
+    public function getJewelersofUser($user = null){
+
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                 SELECT j
+                 FROM StoreBackendBundle:Product p
+                 JOIN p.jeweler j
+                 GROUP BY j.id
+                 WHERE p.jeweler = :user
+                "
+            )
+            ->setParameter('user', $user);
+
+        return $query->getResult();
+
     }
 }

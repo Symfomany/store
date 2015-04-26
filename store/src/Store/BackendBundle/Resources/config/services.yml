@@ -15,6 +15,12 @@ services:
         arguments: ["@session"]
 
 
+    # Nom de service
+    store.backend.oauthprovider:
+        # Classe avec Namespaces
+        class: Store\BackendBundle\Provider\OAuthProvider
+
+
     # Nom du service
     store.backend.listener.authentification: #  Nom du service
        #  Nom de ma classe avec namespaces
@@ -28,6 +34,13 @@ services:
        tags:
          - { name: kernel.event_listener, event: security.interactive_login,method: onAuthenticationSuccess }
 
+
+
+    store.backend.twig.store_backend_extension:
+        # Notre classe qui va étendre Twig
+        class: Store\BackendBundle\Twig\Extensions\StoreBackendExtension
+        tags:
+            - { name: twig.extension }
 #    store_backend.voter.email:
 #        class: Store\BackendBundle\Security\Authorization\Voter\OwnerVoter
 #        public:     false

@@ -45,6 +45,9 @@ security:
       store_backend:
           entity: { class: StoreBackendBundle:Jeweler }
 
+#      oauth_provider:
+#          id: store.backend.oauthprovider
+
 
 
 ###
@@ -68,6 +71,18 @@ security:
             logout:
                 path:   store_backend_security_logout
                 target: /login
+#            oauth:
+#                resource_owners:
+#                  facebook:           "/administration/check-facebook"
+#                login_path:        /hwio-login
+#                check_path:        /administration/login-check
+#                use_forward:       false
+#                failure_path:      /login
+#                oauth_user_provider:
+#                  service: store.backend.oauthprovider
+
+
+
 
 
 ###
@@ -78,5 +93,6 @@ security:
     # of your application based on roles, ip, host or methods
     # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
+#        - { path: ^/hwio-login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/administration/products, roles: [ROLE_COMMERCIAL] }
         - { path: ^/administration, roles: [ROLE_JEWELER, ROLE_EDITOR, ROLE_COMMERCIAL] }
