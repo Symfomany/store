@@ -1,9 +1,7 @@
 <?php
 
-// src/Acme/DemoBundle/Security/Authorization/Voter/ClientIpVoter.php
 namespace Store\BackendBundle\Security\Authorization\Voter;
 
-use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;

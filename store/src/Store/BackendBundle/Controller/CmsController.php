@@ -22,6 +22,7 @@ class CmsController extends AbstractController{
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function listAction(Request $request){
+
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $cms = $em->getRepository('StoreBackendBundle:Cms')->getCmsByUser($user);
@@ -46,7 +47,6 @@ class CmsController extends AbstractController{
      */
     public function viewAction($id, $name){
 
-        $this->permission('Cms', $id);
 
         $em = $this->getDoctrine()->getManager();
         $cms = $em->getRepository('StoreBackendBundle:Cms')->find(1);
@@ -97,7 +97,7 @@ class CmsController extends AbstractController{
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                'Votre page cms a bien été crée'
+                $this->get('translator')->trans('cms.flashdatas.add')
             );
             return $this->redirectToRoute('store_backend_cms_list'); //redirection selon la route
         }
@@ -113,7 +113,6 @@ class CmsController extends AbstractController{
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Cms $id){
-        $this->permission('Cms', $id);
 
         $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
 
@@ -138,7 +137,7 @@ class CmsController extends AbstractController{
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                'Votre page cms a bien été modifiée'
+                $this->get('translator')->trans('cms.flashdatas.edit')
             );
             return $this->redirectToRoute('store_backend_cms_list'); //redirection selon la route
         }
@@ -162,7 +161,7 @@ class CmsController extends AbstractController{
 
         $this->get('session')->getFlashBag()->add(
             'success',
-            'Votre page a bien été modifiée'
+            $this->get('translator')->trans('cms.flashdatas.edit')
         );
 
         return $this->redirectToRoute('store_backend_cms_list');
@@ -181,7 +180,7 @@ class CmsController extends AbstractController{
 
         $this->get('session')->getFlashBag()->add(
             'success',
-            'Votre page a bien été modifiée'
+            $this->get('translator')->trans('cms.flashdatas.edit')
         );
 
         return $this->redirectToRoute('store_backend_cms_list');
@@ -194,8 +193,6 @@ class CmsController extends AbstractController{
      */
     public function removeAction($id){
 
-        $this->permission('Cms', $id);
-
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
 
@@ -207,7 +204,7 @@ class CmsController extends AbstractController{
 
         $this->get('session')->getFlashBag()->add(
             'success',
-            'Votre page a bien été supprimé'
+            $this->get('translator')->trans('cms.flashdatas.remove')
         );
 
         return $this->redirectToRoute('store_backend_cms_list');

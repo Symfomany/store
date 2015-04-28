@@ -30,6 +30,25 @@ class ProductRepository extends EntityRepository
         return $query->getResult();
     }
 
+
+    /**
+     * Get all product of an user who quantity less than
+     * @return mixed
+     */
+    public function getProductsQuantityIsLower($user = null){
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                 SELECT p
+                 FROM StoreBackendBundle:Product p
+                 WHERE p.jeweler = :jeweler
+                 AND p.quantity < 5"
+            )
+            ->setParameter('jeweler', $user);
+
+        return $query->getResult();
+    }
+
     /**
      * Count All Product
      * SELECT COUNT(id)

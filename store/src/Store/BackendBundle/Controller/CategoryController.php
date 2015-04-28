@@ -94,8 +94,6 @@ class CategoryController extends AbstractController{
      */
     public function editAction(Request $request, Category $id){
 
-        $this->permission('Category', $id);
-
         // je crée un formulaire de produit
         $form = $this->createForm(new CategoryType(1),$id,  array(
             'validation_groups' => 'new',
@@ -154,8 +152,6 @@ class CategoryController extends AbstractController{
      * @param $id
      */
     public function removeAction($id){
-
-        $this->permission('Category', $id);
 
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();

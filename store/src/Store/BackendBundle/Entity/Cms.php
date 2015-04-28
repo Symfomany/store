@@ -32,14 +32,14 @@ class Cms
     /**
      * @var string
      * @Assert\NotBlank(
-     *     message = "La titre ne doit pas etre vide",
+     *     message = "cms.form.validation.title.notblank",
      *     groups={"new", "edit"}
      * )
      * @Assert\Length(
      *      min = "4",
      *      max = "300",
-     *      minMessage = "Votre titre doit faire au moins {{ limit }} caractères",
-     *      maxMessage = "Votre titre ne peut pas être plus long que {{ limit }} caractères",
+     *      minMessage = "cms.form.validation.title.length.min",
+     *      maxMessage = "cms.form.validation.title.length.max",
      *      groups={"new", "edit"}
      * )     * @ORM\Column(name="title", type="string", length=300, nullable=true)
      */

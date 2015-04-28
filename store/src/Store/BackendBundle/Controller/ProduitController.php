@@ -18,11 +18,6 @@ class ProduitController extends AbstractController{
 
     public function listAction(Request $request){
 
-        //Methode numéro 1: restreindre l'accès au niveau de mon action de controlleur
-//        if (false === $this->get('security.context')->isGranted('ROLE_COMMERCIAL')) {
-//            throw new AccessDeniedException("Accès interdit pour ce type de contenu");
-//        }
-
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
 
@@ -56,8 +51,6 @@ class ProduitController extends AbstractController{
      */
     public function viewAction($id, $name)
     {
-        $this->permission('Product', $id);
-
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
 
@@ -106,8 +99,6 @@ class ProduitController extends AbstractController{
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function coverAction(Product $id, $action){
-
-        $this->permission('Product', $id);
 
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
@@ -175,13 +166,6 @@ class ProduitController extends AbstractController{
             //je récupere la quantité du produit enregistrer
             $quantity = $product->getQuantity();
 
-            // si ma quantité de produit est < 5
-            if($quantity < 5){
-                // $this->get() => accède au conteneur de service
-                // la methode notify sera executer avec un message de bienvenue
-                $this->get('store.backend.notification')
-                    ->notify('Attention, votre produit '.$product->getTitle().' est bientôt épuisé','danger');
-            }
 
             if($quantity == 1){
                 //je créer un message flash avec pour clef "success"
@@ -191,8 +175,6 @@ class ProduitController extends AbstractController{
                     'Votre bijou est un produit unique !'
                 );
             }
-
-
 
             return $this->redirectToRoute('store_backend_product_list'); //redirection selon la route
         }
@@ -207,10 +189,9 @@ class ProduitController extends AbstractController{
 
 
     /**
+     * 
      */
     public function editAction(Request $request,Product $id){
-
-//        $this->permission('Product', $id);
 
         // je crée un formulaire de produit en associant avec mon produit
         $form = $this->createForm(new ProductType(1),$id,
@@ -236,13 +217,6 @@ class ProduitController extends AbstractController{
             $em->persist($id); //j'enregistre mon objet product dans doctrine
             $em->flush(); //j'envoi ma requete d'insert à ma table product
 
-            // si ma quantité de produit est < 5
-            if($id->getQuantity() < 5){
-                // $this->get() => accède au conteneur de service
-                // la methode notify sera executer avec un message de bienvenue
-                $this->get('store.backend.notification')
-                    ->notify('Attention, votre produit '.$id->getTitle().' est bientôt épuisé', 'danger');
-            }
 
             $this->get('session')->getFlashBag()->add(
                 'success',
@@ -267,8 +241,6 @@ class ProduitController extends AbstractController{
      * @param $id
      */
     public function removeAction($id){
-
-        $this->permission('Product', $id);
 
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();

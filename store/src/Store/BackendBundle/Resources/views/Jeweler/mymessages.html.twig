@@ -6,6 +6,29 @@
 {% endblock  %}
 
 {% block content %}
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel widget-messages-alt">
+                <div class="panel-heading">
+                    <span class="panel-title"><i class="panel-title-icon fa fa-check"></i>Tous vos messages reçus</span>
+                </div> <!-- / .panel-heading -->
+                <div class="panel-body padding-sm">
+                    <div class="messages-list">
+                        {% for message in messages %}
+                            <div class="message">
+                                <a href="#" class="message-subject">{{ message.content|truncate(100) }}</a>
+                                <div class="message-description">
+                                    from <a href="#">Robert Jang</a>
+                                    &nbsp;&nbsp;·&nbsp;&nbsp;
+                                    {{ message.dateCreated|ago }}
+                                </div> <!-- / .message-description -->
+                            </div> <!-- / .message -->
+                        {% endfor %}
+                    </div> <!-- / .messages-list -->
+                </div> <!-- / .panel-body -->
+            </div>
+        </div>
+    </div>
 {% endblock %}
 
 

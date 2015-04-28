@@ -48,16 +48,17 @@ class CmsType extends AbstractType
         // le 2eme argument à ma fonction add() est le type de mon champs
         // le 3eme argument c'est ùmes options à mon chamos
         $builder->add('title', null, array(
-            'label' => 'Titre de mon bijoux', //label de mon chmpa
+            'label' => 'cms.form.title', //label de mon chmpa
+//            'options' => array('translation_domain' => 'StoreBackendBundle'),
             'required'  => true,
             'attr' => array(
                 'class' => 'form-control',
-                'placeholder' => 'Mettre un titre soigné',
+                'placeholder' => 'cms.form.placeholder.title',
                 'pattern' => '[a-zA-Z0-9- ]{5,}'
             )
         ));
         $builder->add('file', 'file', array(
-            'label' => 'Image de présentation',
+            'label' => 'cms.form.image',
             'required'  => false,
             'attr' => array(
                 'class' => 'form-control',
@@ -66,39 +67,43 @@ class CmsType extends AbstractType
             )
         ));
         $builder->add('video', 'text', array(
-            'label' => 'Vidéo de présentation',
+            'label' => 'cms.form.video',
             'required'  => false,
             'attr' => array(
                 'class' => 'form-control',
+                'placeholder' => 'cms.form.placeholder.video',
             )
         ));
         $builder->add('summary', null, array(
-            'label' => "Petit résumé",
+            'label' => 'cms.form.summary',
             'required'  => true,
             'attr' => array(
                     'class' => 'form-control',
-                    'placeholder' => 'Petit résumé du bijoux',
+                'placeholder' => 'cms.form.placeholder.summary',
              )
         ));
         $builder->add('description', null, array(
-            'label' => "Longue description",
+            'label' => 'cms.form.description',
             'required'  => true,
             'attr' => array(
                 'class' => 'form-control',
-                'placeholder' => 'Description longue du bijoux',
+                'placeholder' => 'cms.form.placeholder.description',
             )
         ));
         $builder->add('state', 'choice', array(
-            'choices'   => array("1" => 'Inactif',"2" => 'En cours de relecture', "3" => 'Actif'),
+            'label' => 'cms.form.state',
+            'choices'   => array(
+                "1" => 'cms.form.statelabel.inactive',
+                "2" => 'cms.form.statelabel.wait',
+                "3" => 'cms.form.statelabel.active'),
             'required'  => true, // liste déroulante obligatoire
             'preferred_choices' => array("En cours de relecture"), // champs choisi par défault
-            'label' => "Etat",
             'attr' => array(
                 'class' => 'form-control',
             )
         ));
         $builder->add('dateActive', 'datetime', array (
-            'label' => "Date d'activation",
+            'label' => 'cms.form.dateActive',
             'attr' => array(
                 'class' => 'form-control',
                 'placeholder' => 'dd/mm/YYYY',
@@ -110,7 +115,7 @@ class CmsType extends AbstractType
 
         $builder->add('product', 'entity',
             array (
-                'label' => 'Produits associés',
+                'label' => 'cms.form.product',
                 'class' => 'StoreBackendBundle:Product',
                 'multiple' => true, // choix multiple
                 'by_reference' => false, // to handle setProduct() new method in entity
@@ -122,6 +127,7 @@ class CmsType extends AbstractType
 
 
         $builder->add('envoyer', 'submit', array(
+            'label' => "cms.form.send",
             'attr' => array(
                 'class' => 'btn btn-primary btn-sm'
             )

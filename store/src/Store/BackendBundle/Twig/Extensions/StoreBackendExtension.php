@@ -20,47 +20,14 @@ class StoreBackendExtension extends \Twig_Extension
             // - 1er argument est le nom du filtre en TWIG
             // - 2eme argument est le nom du filtre en TWIG
             new \Twig_SimpleFilter('state', array($this, 'state')),
+            new \Twig_SimpleFilter('ago', array($this, 'createdAgo')),
+            new \Twig_SimpleFilter('begin', array($this, 'beginIn')),
+            new \Twig_SimpleFilter('urldecode', array($this, 'urlDecode')),
+            new \Twig_SimpleFilter('thumb', array($this, 'thumb'))
+
 
         );
     }
-    /**
-     * State helper
-     * @param $state
-     * @return string
-     */
-    public function state($state){
-        if($state == 2){
-            $badge =  "<span class='label label-success'>Envoyé</span>";
-        }elseif($state == 1){
-            $badge =  "<span class='label label-info'>En cours</span>";
-        }
-        else{
-            $badge =  "<span class='label label-warning'>Annulé</span>";
-        }
-
-        return $badge;
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
     /**
      * @param null $picture
@@ -83,21 +50,6 @@ class StoreBackendExtension extends \Twig_Extension
 '></iframe>";
     }
 
-    /**
-     * Format a price
-     * @param $number
-     * @param int $decimals
-     * @param string $decPoint
-     * @param string $thousandsSep
-     * @return string
-     */
-    public function price($number, $decimals = 0, $decPoint = '.', $thousandsSep = ',')
-    {
-        $price = number_format($number, $decimals, $decPoint, $thousandsSep);
-        $price = '$' . $price;
-
-        return $price;
-    }
 
 
     /**
@@ -177,7 +129,6 @@ class StoreBackendExtension extends \Twig_Extension
     }
 
 
-
     /**
      * URL Decode a string
      * @param string $url
@@ -229,6 +180,24 @@ class StoreBackendExtension extends \Twig_Extension
     {
         return json_decode($val);
     }
+    /**
+     * State helper
+     * @param $state
+     * @return string
+     */
+    public function state($state){
+        if($state == 2){
+            $badge =  "<span class='label label-success'>Envoyé</span>";
+        }elseif($state == 1){
+            $badge =  "<span class='label label-info'>En cours</span>";
+        }
+        else{
+            $badge =  "<span class='label label-warning'>Annulé</span>";
+        }
+
+        return $badge;
+    }
+
 
     /**
      * Get name of my extension

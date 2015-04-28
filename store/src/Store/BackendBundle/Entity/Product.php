@@ -374,7 +374,7 @@ class Product
         $this->price = 0;
 
         $this->dateCreated = new \DateTime('now');
-        $this->dateUpdated = new \DateTime('now');
+//        $this->dateUpdated = new \DateTime('now');
         $this->business = new \Doctrine\Common\Collections\ArrayCollection();
         $this->category = new \Doctrine\Common\Collections\ArrayCollection();
         $this->cms = new \Doctrine\Common\Collections\ArrayCollection();

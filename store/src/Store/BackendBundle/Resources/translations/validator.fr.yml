@@ -1,0 +1,8 @@
+cms:
+  form:
+    validation:
+      title:
+        notblank: Votre titre ne doit pas être vide
+        length:
+          min: Votre titre doit comporter au moins {{ limit }} caractères
+          max: Votre titre doit comporter au plus {{ limit }} caractères

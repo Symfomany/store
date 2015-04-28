@@ -1,0 +1,52 @@
+# Global strings
+cms:
+
+  flashdatas:
+    add:
+      Your page has be added
+    edit:
+      Your page has be edit
+    remove:
+      Your page has be removed
+
+  list:
+    title: List of CMS Pages
+    add: Add a CMS Pages
+    nb: 'There is %count% page founded |There are %count% pages founded'
+    table:
+      title: Title
+      summary: Summary
+      state: State
+      active: Active
+      nb: Numbers of products
+      actions: Action    see: See
+    edit: Edit
+    remove: Remove
+
+  edit:
+    title: Edit a CMS Page
+  add:
+    title: Create a CMS Page
+
+  form:
+    title: Title of my page
+    image: Image cover
+    video: Video cover
+    summary: Summary
+    description: Description
+    state: State
+    dateActive: Date of activation
+    product: Featured Product
+    statelabel:
+      inactive: Page disabled
+      wait: In waiting
+      active: Page enabled
+    dateActive: Date of activation
+    product: Product featured
+    send: Publish this page
+    placeholder:
+      title: Title cleaned
+      video: Vidéo of presentation (Dailymotion, Youtube, Vimeo)
+      summary: Summary short
+      description : Description completed
+

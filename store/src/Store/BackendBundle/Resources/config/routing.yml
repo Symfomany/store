@@ -33,7 +33,9 @@ store_backend_jewelers:
 #Pages CMS
 store_backend_cms:
     resource: "@StoreBackendBundle/Resources/config/modules/cms.yml"
-    prefix:   /cms
+    prefix:   /{_locale}/cms
+    requirements:
+      _locale: en|fr|es
 
 #Pages Suppliers
 store_backend_suppliers:

@@ -1,0 +1,8 @@
+cms:
+  form:
+    validation:
+      title:
+        notblank: Your title must not empty
+        length:
+          min: Your title must have more than {{ limit }} letters
+          min: Your title must have less than {{ limit }} letters

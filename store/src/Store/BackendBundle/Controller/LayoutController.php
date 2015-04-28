@@ -8,37 +8,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 
 /**
- * Class JewelerController
+ * Class LayoutController
  * @package Store\BackendBundle\Controller
  */
-class JewelerController extends Controller{
+class LayoutController extends Controller{
 
     /**
-     * My Account
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function myaccountAction(){
-
-        return $this->render('StoreBackendBundle:Jeweler:myaccount.html.twig');
-    }
-
-
-
-    /**
-     * My parameters
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function myparametersAction(){
-
-        return $this->render('StoreBackendBundle:Jeweler:myparameters.html.twig');
-    }
-
-    /**
-     * My parameters
+     * My Messages
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function mymessagesAction(){
-
         $em = $this->getDoctrine()->getManager();
 
         //récupérer l'utilisateur courant connecté
@@ -47,7 +26,7 @@ class JewelerController extends Controller{
         $messages = $em->getRepository('StoreBackendBundle:Message')
             ->getLastMessagesByUser($user, 15);
 
-        return $this->render('StoreBackendBundle:Jeweler:mymessages.html.twig', array(
+        return $this->render('StoreBackendBundle:Partial:mymessages.html.twig', array(
             'messages' => $messages
         ));
     }

@@ -15,6 +15,8 @@ services:
         arguments: ["@session"]
 
 
+
+
     # Nom de service
     store.backend.oauthprovider:
         # Classe avec Namespaces
@@ -27,12 +29,73 @@ services:
        class: Store\BackendBundle\Listener\AuthentificationListener
 
        #  Nom des services injecté en constructeur de ma classe
-       arguments: ["@doctrine.orm.entity_manager", "@security.context"]
+       arguments: ["@doctrine.orm.entity_manager","@security.context", "@store.backend.notification"]
 
        # Etende le mecanisme de security au niveau de linteraction login
        # avec un mecanisme d'écouteur
        tags:
          - { name: kernel.event_listener, event: security.interactive_login,method: onAuthenticationSuccess }
+
+
+
+
+    # Nom du service
+    store.backend.listener.product.persist:
+
+        # Nom de la classe
+        class: Store\BackendBundle\Listener\ProductListener
+
+        # Argument du constructeur
+        # Service de notification que l'on a crée juste en dessus
+        # ATTENTION: L'injection des dépendances se fait si mon service n'est pas deja injecté ,
+        # notement par le tag qui est associ à mon service
+        arguments: ["@store.backend.notification"]
+
+        # Ma classe utilisera le mecanisme d'écouteur de Symfony 2
+        tags:
+            # name: correspond au mecanisme ou ma classe sera affectée
+            # et plus particulierement au mecanisme d'écouteur de doctrine
+
+            # event: sera l'événement déclencheur de mon service
+            # et plus particulierement à la modification d'un objet
+
+            # method: la methode qui sera appellé après déclenchement de mon event
+            # et plus particulierement la methode appelé dans mon service: postUpdate()
+            # Evenement à doctrine: (Lifecycle)
+            # Doctrine a une liste exhaustive d'evenement appelé "LifesCydle"
+            # Cycle de vie d'un objet en Doctrine
+            # + preRemove
+            # + postRemove
+            # + prePersist : quand je crée mon objet en base de donnée
+            # + postPersist
+            # + preUpdate : quand je modifie mon objet en base de donnée
+            # + postUpdate
+            # + postLoad
+            # + loadClassMetadata
+
+            # postUpdate:
+            - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }
+            - { name: doctrine.event_listener, event: postPersist, method: postPersist }
+            - { name: doctrine.event_listener, event: preUpdate, method: preUpdate }
+
+
+
+#            - { name: doctrine.event_listener, event: postPersist, method: postPerist }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -7,14 +7,13 @@
 
     <script type="text/javascript">
         init.push(function () {
-
             $("textarea").markdown({ iconlibrary: 'fa' });
         });
     </script>
 {% endblock %}
 
 {% block titlepage %}
-    <i class="fa fa-plus"></i> Créer une page CMS
+    <i class="fa fa-plus"></i> {{ "cms.add.title"|trans }}
 {% endblock  %}
 
 {% block content %}

@@ -6,7 +6,7 @@ imports:
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -111,11 +111,11 @@ knp_paginator:
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
 
 
-#hwi_oauth:
-#    # name of the firewall in which this bundle is active, this setting MUST be set
-#    firewall_name: store_backend
-#    resource_owners:
-#      facebook:
-#        type:                facebook
-#        client_id:           %api_facebook_id%
-#        client_secret:       %api_facebook_secret%
+  #hwi_oauth:
+  #    # name of the firewall in which this bundle is active, this setting MUST be set
+  #    firewall_name: store_backend
+  #    resource_owners:
+  #      facebook:
+  #        type:                facebook
+  #        client_id:           %api_facebook_id%
+  #        client_secret:       %api_facebook_secret%
