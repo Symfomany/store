@@ -83,20 +83,12 @@ services:
 #            - { name: doctrine.event_listener, event: postPersist, method: postPerist }
 
 
+    store_backend.voter:
+        class: Store\BackendBundle\Security\Authorization\Voter\OwnerVoter
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+        public:     false # service accessible depuis un controlleur
+        tags:
+           - { name: security.voter }
 
 
     store.backend.twig.store_backend_extension:
@@ -104,14 +96,3 @@ services:
         class: Store\BackendBundle\Twig\Extensions\StoreBackendExtension
         tags:
             - { name: twig.extension }
-#    store_backend.voter.email:
-#        class: Store\BackendBundle\Security\Authorization\Voter\OwnerVoter
-#        public:     false
-#        tags:
-#           - { name: security.voter }
-#    store.backend.listener.product.persist:
-#        class: Store\BackendBundle\Listener\ProductListener
-#        arguments: [@store_backend.email, @store.backend.notification]
-#        tags:
-#            - { name: doctrine.event_listener, event: postUpdate, method: postUpdate }
-#            - { name: doctrine.event_listener, event: postPersist, method: postPerist }

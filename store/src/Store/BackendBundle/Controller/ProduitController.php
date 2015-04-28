@@ -7,7 +7,6 @@ namespace Store\BackendBundle\Controller;
 use Store\BackendBundle\Entity\Product;
 use Store\BackendBundle\Form\ProductType;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
@@ -189,7 +188,7 @@ class ProduitController extends AbstractController{
 
 
     /**
-     * 
+     * @Security("is_granted('edit', id)")
      */
     public function editAction(Request $request,Product $id){
 

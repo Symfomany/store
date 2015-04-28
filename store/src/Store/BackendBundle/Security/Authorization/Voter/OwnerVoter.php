@@ -6,12 +6,13 @@ use Symfony\Component\Security\Core\Authorization\Voter\VoterInterface;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
+/**
+ * Class OwnerVoter: qui va voter si l'utilisateur est permis de faire une action
+ * @package Store\BackendBundle\Security\Authorization\Voter
+ */
 class OwnerVoter implements VoterInterface
 {
 
-    const VIEW = 'view';
-    const EDIT = 'edit';
-    const REMOVE = 'remove';
 
     /**
      * Get Attribute of User
@@ -21,11 +22,7 @@ class OwnerVoter implements VoterInterface
      */
     public function supportsAttribute($attribute)
     {
-        return in_array($attribute, array(
-            self::VIEW,
-            self::EDIT,
-            self::REMOVE,
-        ));
+        return true;
     }
 
     /**
@@ -49,20 +46,6 @@ class OwnerVoter implements VoterInterface
     public function vote(TokenInterface $token, $object, array $attributes)
     {
 
-        if (count($attributes) == 0) {
-            throw new \InvalidArgumentException(
-                'Il y a aucun argument disponible'
-            );
-        }
-
-        // set the attribute to check against
-        $attribute = $attributes[0];
-
-        // Le voter ne peut décider si il a main mise sur la restrition
-        if (!$this->supportsAttribute($attribute)) {
-            return VoterInterface::ACCESS_ABSTAIN;
-        }
-
         // get current logged in user
         $user = $token->getUser();
 
@@ -71,12 +54,13 @@ class OwnerVoter implements VoterInterface
             return VoterInterface::ACCESS_DENIED;
         }
 
+
 //        exit(var_dump($object->getJeweler()->getId() != $user->getId()));
 
         //si le jeweler id est égale à l'id de l'utilisateur
         if(method_exists($object,'getJeweler')){
             if ($object->getJeweler()->getId() == $user->getId()) {
-                return VoterInterface::ACCESS_GRANTED;
+                return VoterInterface::ACCESS_GRANTED; //ecces permis
             }
         }
 

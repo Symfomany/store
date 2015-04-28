@@ -31,9 +31,8 @@ framework:
 twig:
     debug:            "%kernel.debug%"
     strict_variables: "%kernel.debug%"
-    form:
-      resources:
-          - 'StoreBackendBundle:Partial:form.html.twig'
+    form_themes:
+     - 'StoreBackendBundle:Partial:form.html.twig'
 
 services:
     twig.extension.text:
