@@ -15,14 +15,6 @@ services:
         arguments: ["@session"]
 
 
-
-
-    # Nom de service
-    store.backend.oauthprovider:
-        # Classe avec Namespaces
-        class: Store\BackendBundle\Provider\OAuthProvider
-
-
     # Nom du service
     store.backend.listener.authentification: #  Nom du service
        #  Nom de ma classe avec namespaces
@@ -35,8 +27,6 @@ services:
        # avec un mecanisme d'écouteur
        tags:
          - { name: kernel.event_listener, event: security.interactive_login,method: onAuthenticationSuccess }
-
-
 
 
     # Nom du service
@@ -82,13 +72,34 @@ services:
 
 #            - { name: doctrine.event_listener, event: postPersist, method: postPerist }
 
+    # Npm de notre service
+    store.backend.voter:
 
-    store_backend.voter:
+        # Classe affectée à notre service
         class: Store\BackendBundle\Security\Authorization\Voter\OwnerVoter
 
-        public:     false # service accessible depuis un controlleur
+        # Mecanisme de sécurité au niveau des votes de la gestion des roles
+        # Implémente notre service parmi le mécanisme de Vote des authorisations
+        # de la sécurité
         tags:
            - { name: security.voter }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     store.backend.twig.store_backend_extension:
@@ -96,3 +107,13 @@ services:
         class: Store\BackendBundle\Twig\Extensions\StoreBackendExtension
         tags:
             - { name: twig.extension }
+
+
+
+
+
+    # Nom de service
+    store.backend.oauthprovider:
+        # Classe avec Namespaces
+        class: Store\BackendBundle\Provider\OAuthProvider
+

@@ -12,9 +12,8 @@ use Doctrine\ORM\EntityRepository;
  */
 class MessageRepository extends EntityRepository
 {
-
     /**
-     * DQL Syntax with Form
+     * Récupère les messages de l'utilisateur
      * @param int $user
      * @return array
      */
@@ -30,7 +29,6 @@ class MessageRepository extends EntityRepository
             ->setParameter('user', $user)
             ->setMaxResults($limit);
 
-        // retourne 1 résultat ou null
         return $query->getResult();
     }
 

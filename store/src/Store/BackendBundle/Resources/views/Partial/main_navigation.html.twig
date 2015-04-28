@@ -109,6 +109,10 @@
 
 
     {# Inclure mes messages depuis le controlleur#}
+    {# render() va appeler le controlleur Layout et son action mymessages  #}
+    {# A la différence de include qui va inclure une vue statique,
+      render() va appeler dynamiquement un controlleur et une action de controlleur
+     #}
     {{ render(controller('StoreBackendBundle:Layout:mymessages')) }}
 
 

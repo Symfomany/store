@@ -188,7 +188,10 @@ class ProduitController extends AbstractController{
 
 
     /**
-     * @Security("is_granted('edit', id)")
+     * is_granted
+     * 1er argument : attribut à vide
+     * 2eme argument Objet: Produit
+     * @Security("is_granted('', id)")
      */
     public function editAction(Request $request,Product $id){
 

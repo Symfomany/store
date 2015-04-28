@@ -8,15 +8,15 @@ use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
  * Class OwnerVoter: qui va voter si l'utilisateur est permis de faire une action
+ *
  * @package Store\BackendBundle\Security\Authorization\Voter
  */
 class OwnerVoter implements VoterInterface
 {
 
-
     /**
      * Get Attribute of User
-     * Les attributs accepté
+     * Cette methode me permet de récuoérer le ou les attribut(s) envoyés depuis mon contronlleur
      * @param string $attribute
      * @return bool
      */
@@ -26,8 +26,7 @@ class OwnerVoter implements VoterInterface
     }
 
     /**
-     * Support All CLass
-     * Restriction sur une classe ou plusieurs classe
+     * Me permet de faire des restrictions sur l'utilisation de ce Voter
      * @param string $class
      * @return bool
      */
@@ -37,7 +36,10 @@ class OwnerVoter implements VoterInterface
     }
 
     /**
-     * Voter action
+     * LE PLUS IMPORTANT
+     * Mecanisme que l'on implémente pour voter les droits
+     * et permissions de l'utilisateur
+     *
      * @param TokenInterface $token
      * @param null|object $object
      * @param array $attributes
@@ -45,7 +47,12 @@ class OwnerVoter implements VoterInterface
      */
     public function vote(TokenInterface $token, $object, array $attributes)
     {
-
+    /**
+     * VoterInterface::ACCESS_DENIED: Acces non permis (403)
+     * VoterInterface::ACCESS_GRANTED: Acces authorisée
+     * VoterInterface::ACCESS_ABSTAIN: S'abstenir de voter sur le mecanisme
+     * d'authorisation
+     */
         // get current logged in user
         $user = $token->getUser();
 
@@ -53,9 +60,6 @@ class OwnerVoter implements VoterInterface
         if (!$user instanceof UserInterface) {
             return VoterInterface::ACCESS_DENIED;
         }
-
-
-//        exit(var_dump($object->getJeweler()->getId() != $user->getId()));
 
         //si le jeweler id est égale à l'id de l'utilisateur
         if(method_exists($object,'getJeweler')){
@@ -65,7 +69,5 @@ class OwnerVoter implements VoterInterface
         }
 
         return VoterInterface::ACCESS_DENIED;
-
-
     }
 }

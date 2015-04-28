@@ -20,15 +20,15 @@
 
 
         {% for message in messages %}
-     <div class="message">
-         <a href="#" class="message-subject">{{ message.content }}.</a>
-         <div class="message-description">
-             de <a href="#">{{ message.user.email }}</a>
-             &nbsp;&nbsp;·&nbsp;&nbsp;
-             {{ message.dateCreated|ago }}
-         </div>
-     </div>
- {% endfor %}
+             <div class="message">
+                 <a href="#" class="message-subject">{{ message.content }}.</a>
+                 <div class="message-description">
+                     de <a href="#">{{ message.user.email }}</a>
+                     &nbsp;&nbsp;·&nbsp;&nbsp;
+                     {{ message.dateCreated|date('d/m/Y') }}
+                 </div>
+             </div>
+         {% endfor %}
 
 
         </div> <!-- / .messages-list -->

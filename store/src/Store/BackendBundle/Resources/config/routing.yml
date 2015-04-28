@@ -33,6 +33,10 @@ store_backend_jewelers:
 #Pages CMS
 store_backend_cms:
     resource: "@StoreBackendBundle/Resources/config/modules/cms.yml"
+    #Argument {_locale} pour traduire tout mon module cms
+    # au niveau du routing
+    # {_locale} : Argument spéciale au routing reconnus par le systeme
+    # d'internationalisation de Symfony
     prefix:   /{_locale}/cms
     requirements:
       _locale: en|fr|es

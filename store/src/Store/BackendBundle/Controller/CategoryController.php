@@ -7,6 +7,7 @@ namespace Store\BackendBundle\Controller;
 use Store\BackendBundle\Entity\Category;
 use Store\BackendBundle\Form\CategoryType;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
 /**
@@ -91,6 +92,7 @@ class CategoryController extends AbstractController{
     /**
      * New category page
      * @return \Symfony\Component\HttpFoundation\Response
+     * @Security("is_granted('', id)")
      */
     public function editAction(Request $request, Category $id){
 

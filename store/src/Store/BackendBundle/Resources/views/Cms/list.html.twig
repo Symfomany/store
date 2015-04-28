@@ -10,8 +10,12 @@
 
 <div class="row">
     <div class="btn-group pull-right">
-        <a href="{{ path('store_backend_cms_list', {'_locale': 'en'}) }}"  class="btn btn-primary btn-outline {% if  app.request.get('_locale') == 'en' %} active {% endif %}">Anglais</a>
-        <a href="{{ path('store_backend_cms_list', {'_locale': 'fr'}) }}" class="btn btn-primary btn-outline {% if  app.request.get('_locale') == 'fr' %} active {% endif %}">Français</a>
+        {#la variable _locale que j'envoi en paramètre dans ma route sera la langue affectée à mon tuilisateur  #}
+        <a href="{{ path('store_backend_cms_list', {'_locale': 'en'}) }}"
+           class="btn btn-primary btn-outline {% if  app.request.get('_locale') == 'en' %} active {% endif %}">Anglais</a>
+
+        <a href="{{ path('store_backend_cms_list', {'_locale': 'fr'}) }}"
+           class="btn btn-primary btn-outline {% if  app.request.get('_locale') == 'fr' %} active {% endif %}">Français</a>
     </div>
 </div>
 
