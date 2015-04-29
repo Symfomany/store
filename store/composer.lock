@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "18df42614a974d4c4215fc4eccfe565c",
+    "hash": "be611826754968b81294592838a1b20b",
     "packages": [
         {
             "name": "doctrine/annotations",
@@ -80,12 +80,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/cache.git",
-                "reference": "c9eadeb743ac6199f7eec423cb9426bc518b7b03"
+                "reference": "9d141335b758cbff3c58b52777836ce945522a68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/cache/zipball/c9eadeb743ac6199f7eec423cb9426bc518b7b03",
-                "reference": "c9eadeb743ac6199f7eec423cb9426bc518b7b03",
+                "url": "https://api.github.com/repos/doctrine/cache/zipball/9d141335b758cbff3c58b52777836ce945522a68",
+                "reference": "9d141335b758cbff3c58b52777836ce945522a68",
                 "shasum": ""
             },
             "require": {
@@ -142,7 +142,7 @@
                 "cache",
                 "caching"
             ],
-            "time": "2015-04-15 00:11:59"
+            "time": "2015-04-28 19:52:40"
         },
         {
             "name": "doctrine/collections",
@@ -216,12 +216,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/common.git",
-                "reference": "ad89591bebea6490fd589f872d0a9ef63e9674a9"
+                "reference": "5add480dcb5da8cd8e4e9c4b5055a2c9bbd05af3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/common/zipball/ad89591bebea6490fd589f872d0a9ef63e9674a9",
-                "reference": "ad89591bebea6490fd589f872d0a9ef63e9674a9",
+                "url": "https://api.github.com/repos/doctrine/common/zipball/5add480dcb5da8cd8e4e9c4b5055a2c9bbd05af3",
+                "reference": "5add480dcb5da8cd8e4e9c4b5055a2c9bbd05af3",
                 "shasum": ""
             },
             "require": {
@@ -281,7 +281,64 @@
                 "persistence",
                 "spl"
             ],
-            "time": "2015-04-02 20:23:27"
+            "time": "2015-04-29 09:19:45"
+        },
+        {
+            "name": "doctrine/data-fixtures",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/data-fixtures.git",
+                "reference": "bd44f6b6e40247b6530bc8abe802e4e4d914976a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/data-fixtures/zipball/bd44f6b6e40247b6530bc8abe802e4e4d914976a",
+                "reference": "bd44f6b6e40247b6530bc8abe802e4e4d914976a",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/common": "~2.2",
+                "php": ">=5.3.2"
+            },
+            "conflict": {
+                "doctrine/orm": "< 2.4"
+            },
+            "require-dev": {
+                "doctrine/orm": "~2.4"
+            },
+            "suggest": {
+                "doctrine/mongodb-odm": "For loading MongoDB ODM fixtures",
+                "doctrine/orm": "For loading ORM fixtures",
+                "doctrine/phpcr-odm": "For loading PHPCR ODM fixtures"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.1.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Doctrine\\Common\\DataFixtures": "lib/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jonathan Wage",
+                    "email": "jonwage@gmail.com"
+                }
+            ],
+            "description": "Data Fixtures for all Doctrine Object Managers",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "database"
+            ],
+            "time": "2015-03-30 12:14:13"
         },
         {
             "name": "doctrine/dbal",
@@ -507,6 +564,64 @@
             "time": "2015-03-15 18:50:55"
         },
         {
+            "name": "doctrine/doctrine-fixtures-bundle",
+            "version": "dev-master",
+            "target-dir": "Doctrine/Bundle/FixturesBundle",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/doctrine/DoctrineFixturesBundle.git",
+                "reference": "c5ff0542772102ddd4e2fbe173e9ad40ad67c22f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/doctrine/DoctrineFixturesBundle/zipball/c5ff0542772102ddd4e2fbe173e9ad40ad67c22f",
+                "reference": "c5ff0542772102ddd4e2fbe173e9ad40ad67c22f",
+                "shasum": ""
+            },
+            "require": {
+                "doctrine/data-fixtures": "~1.0",
+                "doctrine/doctrine-bundle": "~1.0",
+                "php": ">=5.3.2",
+                "symfony/doctrine-bridge": "~2.1"
+            },
+            "type": "symfony-bundle",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.2.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Doctrine\\Bundle\\FixturesBundle": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Symfony Community",
+                    "homepage": "http://symfony.com/contributors"
+                },
+                {
+                    "name": "Doctrine Project",
+                    "homepage": "http://www.doctrine-project.org"
+                },
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                }
+            ],
+            "description": "Symfony DoctrineFixturesBundle",
+            "homepage": "http://www.doctrine-project.org",
+            "keywords": [
+                "Fixture",
+                "persistence"
+            ],
+            "time": "2015-01-19 02:21:37"
+        },
+        {
             "name": "doctrine/inflector",
             "version": "dev-master",
             "source": {
@@ -707,12 +822,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/hwi/HWIOAuthBundle.git",
-                "reference": "a9f88f394e4680d5383b9a129f0e21fc74ca187f"
+                "reference": "c3790c23dbb32bd270da99fa00b42e2c086f906f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/a9f88f394e4680d5383b9a129f0e21fc74ca187f",
-                "reference": "a9f88f394e4680d5383b9a129f0e21fc74ca187f",
+                "url": "https://api.github.com/repos/hwi/HWIOAuthBundle/zipball/c3790c23dbb32bd270da99fa00b42e2c086f906f",
+                "reference": "c3790c23dbb32bd270da99fa00b42e2c086f906f",
                 "shasum": ""
             },
             "require": {
@@ -813,7 +928,7 @@
                 "yahoo",
                 "yandex"
             ],
-            "time": "2015-01-09 16:46:23"
+            "time": "2015-04-29 06:30:49"
         },
         {
             "name": "incenteev/composer-parameter-handler",
@@ -1687,12 +1802,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/symfony.git",
-                "reference": "0cd300f2d94e911b32dd9dc08d8e29e23d03b716"
+                "reference": "7389aa1cb8d25e605bf0274eb4aa24bb9b050502"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/symfony/zipball/0cd300f2d94e911b32dd9dc08d8e29e23d03b716",
-                "reference": "0cd300f2d94e911b32dd9dc08d8e29e23d03b716",
+                "url": "https://api.github.com/repos/symfony/symfony/zipball/7389aa1cb8d25e605bf0274eb4aa24bb9b050502",
+                "reference": "7389aa1cb8d25e605bf0274eb4aa24bb9b050502",
                 "shasum": ""
             },
             "require": {
@@ -1801,7 +1916,7 @@
             "keywords": [
                 "framework"
             ],
-            "time": "2015-04-25 09:52:42"
+            "time": "2015-04-28 19:15:25"
         },
         {
             "name": "twig/extensions",
@@ -1809,12 +1924,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig-extensions.git",
-                "reference": "69ca523f25a02819a1648c65e500e1dd0f2fef22"
+                "reference": "a155ec01555ffa3aab3e7e042d55aab549c83b75"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/69ca523f25a02819a1648c65e500e1dd0f2fef22",
-                "reference": "69ca523f25a02819a1648c65e500e1dd0f2fef22",
+                "url": "https://api.github.com/repos/twigphp/Twig-extensions/zipball/a155ec01555ffa3aab3e7e042d55aab549c83b75",
+                "reference": "a155ec01555ffa3aab3e7e042d55aab549c83b75",
                 "shasum": ""
             },
             "require": {
@@ -1853,7 +1968,7 @@
                 "i18n",
                 "text"
             ],
-            "time": "2015-04-10 15:36:07"
+            "time": "2015-04-27 12:00:01"
         },
         {
             "name": "twig/twig",
@@ -1861,12 +1976,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/twigphp/Twig.git",
-                "reference": "7d5fe0fbd442f6bfc526260eb14ed99ea2a561f5"
+                "reference": "f012ea296af1f4937376621c4f50282fc02415e3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/twigphp/Twig/zipball/7d5fe0fbd442f6bfc526260eb14ed99ea2a561f5",
-                "reference": "7d5fe0fbd442f6bfc526260eb14ed99ea2a561f5",
+                "url": "https://api.github.com/repos/twigphp/Twig/zipball/f012ea296af1f4937376621c4f50282fc02415e3",
+                "reference": "f012ea296af1f4937376621c4f50282fc02415e3",
                 "shasum": ""
             },
             "require": {
@@ -1910,7 +2025,7 @@
             "keywords": [
                 "templating"
             ],
-            "time": "2015-04-19 08:35:47"
+            "time": "2015-04-29 13:28:48"
         }
     ],
     "packages-dev": [
@@ -1966,7 +2081,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "hwi/oauth-bundle": 20
+        "hwi/oauth-bundle": 20,
+        "doctrine/doctrine-fixtures-bundle": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

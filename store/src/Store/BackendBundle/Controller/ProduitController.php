@@ -27,13 +27,17 @@ class ProduitController extends AbstractController{
         $products = $em->getRepository('StoreBackendBundle:Product')
             ->getProductByUser($user);
 
-
-        //paginate to bundle
+        //Paginer mes produits
+        //je recupere le service knp_paginator qui me sert a paginer
         $paginator  = $this->get('knp_paginator');
+
+        // J'utilise la méthode paginate() du service knp_paginator
         $pagination = $paginator->paginate(
-            $products,
-            $request->query->get('page', 1)/*page number*/,
-            5/*limit per page*/
+            $products, //je lui envoie mon tableau de produits
+            $request->query->get('page', 1) ,
+            // Recupérer le numéro de page sur lequel
+            // Je me trouve, par defaut il prendra la page numéro 1
+            5 // je limite à 5 mes résultats de produits (5 par page)
         );
 
         return $this->render('StoreBackendBundle:Product:list.html.twig', array(

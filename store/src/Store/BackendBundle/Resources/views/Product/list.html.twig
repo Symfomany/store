@@ -15,17 +15,22 @@
     <hr />
 
     <div class="alert alert-info alert-dark">
-        {{ products.getTotalItemCount }} produit trouvés
+        {# Me compte la liste de mes produits #}
+        {{ products.getTotalItemCount }} produits trouvés
     </div>
 
     {% if products is not empty %}
     <table class="table table-bordered table-primary">
         <thead>
-            <th>Id</th>
-            <th>Référence</th>
-            <th>Titre</th>
-            <th>Prix</th>
-            <th>Quantité</th>
+            {#  1er argument, le tableau de produits,
+            le 2eme argument le label de la colonne
+            le 3eme arguement la colonne sur lequele le tri va s'effectué
+            #}
+            <th>{{ knp_pagination_sortable(products, 'Id', 'p.id')|raw }}</th>
+            <th>{{ knp_pagination_sortable(products, 'Référence', 'p.ref')|raw }}</th>
+            <th>{{ knp_pagination_sortable(products, 'Titre', 'p.title')|raw }}</th>
+            <th>{{ knp_pagination_sortable(products, 'Prix', 'p.price')|raw }}</th>
+            <th>{{ knp_pagination_sortable(products, 'Quantité', 'p.quantity')|raw }}</th>
             <th>Actif</th>
             <th>Page d'Acceuil</th>
             <th>Catégories</th>
@@ -82,9 +87,10 @@
 
         </tbody>
     </table>
+
         {% else %}
         <div class="alert alert-danger alert-dark">
-            <strong>Attenion</strong> Aaucun résultat trouvé
+            <strong>Attention</strong> Aaucun résultat trouvé
         </div>
         {% endif %}
 
