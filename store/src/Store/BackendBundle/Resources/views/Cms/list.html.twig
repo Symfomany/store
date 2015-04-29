@@ -1,6 +1,6 @@
 {% extends "StoreBackendBundle::layout.html.twig" %}
 
-{#{% trans_default_domain "cms" %}#}
+{% trans_default_domain "cms" %}
 
 {% block titlepage %}
     {# le filtre trans de twig va me chercher la traduction pour le texte Pages CMS#}
@@ -13,8 +13,7 @@
 
 <div class="row">
     <div class="btn-group pull-right">
-        <p>Choisissez votre langue {{ app.user.username }}</p>
-        <p>{{ "cms.list.choice"|trans({'%username%' : app.user.username}) }}</p>
+        <p>{{ "list.choice"|trans({'%username%' : app.user.username}, "messages") }}</p>
         {#la variable _locale que j'envoi en paramètre dans ma route sera la langue affectée à mon tuilisateur  #}
         <a href="{{ path('store_backend_cms_list', {'_locale': 'en'}) }}"
            class="btn btn-primary btn-outline {% if  app.request.get('_locale') == 'en' %} active {% endif %}">Anglais</a>
@@ -94,9 +93,9 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Actions&nbsp;<i class="fa fa-caret-down"></i></button>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="fa fa-search"></i> {{ "cms.list.btn.see"|trans }}</a></li>
-                        <li><a href="{{ path('store_backend_cms_edit', {'id': page.id}) }}"><i class="fa fa-pencil"></i> {{ "cms.list.btn.edit"|trans }}</a></li>
-                        <li><a href="{{ path('store_backend_cms_remove', {'id' : page.id}) }}"><i class="fa fa-times"></i> {{ "cms.list.btn.remove"|trans }}</a></li>
+                        <li><a href="#"><i class="fa fa-search"></i> {{ "cms.list.table.btn.see"|trans }}</a></li>
+                        <li><a href="{{ path('store_backend_cms_edit', {'id': page.id}) }}"><i class="fa fa-pencil"></i> {{ "cms.list.table.btn.edit"|trans }}</a></li>
+                        <li><a href="{{ path('store_backend_cms_remove', {'id' : page.id}) }}"><i class="fa fa-times"></i> {{ "cms.list.table.btn.remove"|trans }}</a></li>
                     </ul>
                 </div>
             </td>

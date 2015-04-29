@@ -1,8 +1,11 @@
 # Je vais pouvoir traduire mes textes de vues et mes textes de Controllers
 cms:
+  form:
+      title: Title of my page
+  flashdatas:
+      activate: Your page has been modified
   list:
     title:  Pages CMS
-    nb: 'Il y %count% page trouvée | Il y a %count% pages trouvées'
     table:
       th:
         title: Titre

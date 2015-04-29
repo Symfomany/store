@@ -153,7 +153,7 @@ class CmsController extends AbstractController{
 
 
     /**
-     * Action de suppression
+     * Action d'activation d'une page CMS
      * @param $id
      */
     public function activateAction(Cms $id, $action){
@@ -162,10 +162,12 @@ class CmsController extends AbstractController{
         $em->persist($id);
         $em->flush();
 
+        //message flash
         $this->get('session')->getFlashBag()->add(
             'success',
-            $this->get('translator')->trans('cms.flashdatas.edit')
+            $this->get('translator')->trans('cms.flashdatas.activate', array(),'cms')
         );
+
 
         return $this->redirectToRoute('store_backend_cms_list');
     }

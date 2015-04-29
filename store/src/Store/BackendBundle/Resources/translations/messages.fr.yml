@@ -1,23 +1,7 @@
 # Je vais pouvoir traduire mes textes de vues et mes textes de Controllers
-cms:
-  list:
-    choice: Choisissez votre langue %username%
-    title: Pages CMS
-    nb: 'Il y a %count% page trouvée | Il y a %count% pages trouvées'
-    btn:
-      add: Ajouter une page CMS
-      see: Voir
-      edit: Editer
-      remove: Supprimer
-    table:
-      th:
-        title: Titre
-        summary: Résumé
-        state: Etat de mon produit
-        active: Activé
-        nb: Nombre de produits
-        actions: Actions
-      state:
-        read: Lu
-        wait: En cours de relecture
-        no: Non lu
+list:
+  choice: Choisir votre langue svp %username%
+
+
+form:
+    title: Titre

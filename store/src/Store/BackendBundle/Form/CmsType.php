@@ -49,7 +49,6 @@ class CmsType extends AbstractType
         // le 3eme argument c'est ùmes options à mon chamos
         $builder->add('title', null, array(
             'label' => 'cms.form.title', //label de mon chmpa
-//            'options' => array('translation_domain' => 'StoreBackendBundle'),
             'required'  => true,
             'attr' => array(
                 'class' => 'form-control',
