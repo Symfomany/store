@@ -156,6 +156,7 @@ class CmsType extends AbstractType
     {
         $resolver->setDefaults(array(
             'data_class' => 'Store\BackendBundle\Entity\Cms',
+            'translation_domain' => 'cms'
         ));
     }
 

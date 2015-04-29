@@ -71,7 +71,7 @@
             $("select").select2();
             $("input[type='date']").attr('type','text').mask("99/99/9999");
             $("#store_backend_product_ref").mask("****-**-*");
-            $('input[type="file"]').pixelFileInput({ placeholder: 'Aucun fichier...' });
+            $('input[type="file"]').pixelFileInput({ placeholder: 'Aucun fichier...'|trans });
             $('div.alert-success').delay(3000).slideUp('slow');
         });
         window.PixelAdmin.start(init);
