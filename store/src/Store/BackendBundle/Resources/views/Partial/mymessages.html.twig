@@ -28,6 +28,10 @@
                      {{ message.dateCreated|date('d/m/Y') }}
                  </div>
              </div>
+         {% else %}
+            <div class="alert alert-block alert-warning">
+                Vous avez aucun message
+            </div>
          {% endfor %}
 
 

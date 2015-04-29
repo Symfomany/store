@@ -1,51 +1,23 @@
-# Global strings
+# Je vais pouvoir traduire mes textes de vues et mes textes de Controllers
 cms:
-
-  flashdatas:
-    add:
-      Votre page a bien été ajoutée
-    edit:
-      Votre page a bien été editée
-    remove:
-      Votre page a bien été supprimée
-
   list:
-   title: Liste de mes pages CMS
-   add: Ajouter une page CMS
-   nb: 'Il y a %count% page trouvée |Il y a %count% pages trouvées'
-   table:
-    title: Titre
-    summary: Résumé
-    state: Etat
-    active: Actif
-    nb: Nombre de produit
-    actions: Actions
-   see: Voir
-   edit: Editer
-   remove: Supprimer
-
-  edit:
-    title: Editer une page CMS
-
-  add:
-    title: Créer une page CMS
-
-  form:
-    title: Titre de mon page
-    image: Image en couverture
-    video: Vidéo en couverture
-    summary: Résumé
-    description: Description
-    state: État
-    statelabel:
-      inactive: Page inactive
-      wait: En cours de relecture
-      active: Actif sur la plateforme
-    dateActive: Date d'activation
-    product: Produits associés
-    send: Publier cette page
-    placeholder:
-      title: Mettre un titre soigné
-      video: Vidéo de présentation (Dailymotion, Youtube, Vimeo)
-      summary: Résumé concis de votre page
-      description : Longue descriptif
+    choice: Choisissez votre langue %username%
+    title: Pages CMS
+    nb: 'Il y a %count% page trouvée | Il y a %count% pages trouvées'
+    btn:
+      add: Ajouter une page CMS
+      see: Voir
+      edit: Editer
+      remove: Supprimer
+    table:
+      th:
+        title: Titre
+        summary: Résumé
+        state: Etat de mon produit
+        active: Activé
+        nb: Nombre de produits
+        actions: Actions
+      state:
+        read: Lu
+        wait: En cours de relecture
+        no: Non lu

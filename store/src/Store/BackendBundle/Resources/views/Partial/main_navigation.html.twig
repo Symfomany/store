@@ -99,6 +99,10 @@
                                     <div class="notification-ago">{{ alert.date|date('d/m/Y') }}</div>
                                     <div class="notification-icon fa fa-warning bg-{{ alert.criticity }}"></div>
                                 </div>
+                            {% else %}
+                                <div class="alert alert-block alert-warning">
+                                    Vous avez aucune notification
+                                </div>
                             {% endfor %}
                         {% endif %}
 
@@ -114,6 +118,8 @@
       render() va appeler dynamiquement un controlleur et une action de controlleur
      #}
     {{ render(controller('StoreBackendBundle:Layout:mymessages')) }}
+
+    {{ render(controller('StoreBackendBundle:Layout:myorders')) }}
 
 
 

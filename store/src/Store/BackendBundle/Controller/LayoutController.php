@@ -35,6 +35,28 @@ class LayoutController extends Controller{
             )
         );
     }
+    /**
+     * Me retourne la liste de mes commandes
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function myordersAction(){
+
+        //je récupère l'Entité Manager
+        $em = $this->getDoctrine()->getManager();
+
+        //récupérer l'utilisateur courant connecté
+        $user = $this->getUser();
+
+        //récuperer mes messages depuis ma requête
+        $orders = $em->getRepository('StoreBackendBundle:Order')
+            ->getOrderByUser($user, 15);
+
+        return $this->render('StoreBackendBundle:Partial:myorders.html.twig',
+            array(
+                'orders' => $orders
+            )
+        );
+    }
 
 }
 

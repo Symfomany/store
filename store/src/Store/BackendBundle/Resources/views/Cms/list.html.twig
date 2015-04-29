@@ -1,8 +1,11 @@
 {% extends "StoreBackendBundle::layout.html.twig" %}
 
+{#{% trans_default_domain "cms" %}#}
 
 {% block titlepage %}
-    <i class="fa fa-pencil"></i> Pages CMS
+    {# le filtre trans de twig va me chercher la traduction pour le texte Pages CMS#}
+    <i class="fa fa-pencil"></i> {{ "cms.list.title"|trans }}
+
 {% endblock  %}
 
 {% block content %}
@@ -10,6 +13,8 @@
 
 <div class="row">
     <div class="btn-group pull-right">
+        <p>Choisissez votre langue {{ app.user.username }}</p>
+        <p>{{ "cms.list.choice"|trans({'%username%' : app.user.username}) }}</p>
         {#la variable _locale que j'envoi en paramètre dans ma route sera la langue affectée à mon tuilisateur  #}
         <a href="{{ path('store_backend_cms_list', {'_locale': 'en'}) }}"
            class="btn btn-primary btn-outline {% if  app.request.get('_locale') == 'en' %} active {% endif %}">Anglais</a>
@@ -24,14 +29,17 @@
 
 <div class="row">
     <a href="{{ path('store_backend_cms_new') }}" class=" pull-right btn btn-success btn-lg">
-        <i class="fa fa-plus"></i> {{ "cms.list.add"|trans }}
+        <i class="fa fa-plus"></i> {{ "cms.list.btn.add"|trans }}
     </a>
 </div>
+
 
 
 <hr />
 
 <div class="alert alert-info alert-dark">
+    {# Filtre: transchoice permet de choisir la traduction en fonction du nombre
+      que je lui donne #}
     {{  "cms.list.nb"|transchoice(cms|length) }}
 </div>
 
@@ -39,12 +47,12 @@
 <table class="table table-bordered table-primary">
     <thead>
         <th>Id</th>
-        <th>{{ "cms.list.table.title"|trans }}</th>
-        <th>{{ "cms.list.table.summary"|trans }}</th>
-        <th>{{ "cms.list.table.state"|trans }}</th>
-        <th>{{ "cms.list.table.active"|trans }}</th>
-        <th>{{ "cms.list.table.nb"|trans }}</th>
-        <th>{{ "cms.list.table.actions"|trans }}</th>
+        <th>{{ "cms.list.table.th.title"|trans }}</th>
+        <th>{{ "cms.list.table.th.summary"|trans }}</th>
+        <th>{{ "cms.list.table.th.title"|trans }}</th>
+        <th>{{ "cms.list.table.th.active"|trans }}</th>
+        <th>{{ "cms.list.table.th.nb"|trans }}</th>
+        <th>{{ "cms.list.table.th.actions"|trans }}</th>
     </thead>
     <tbody>
 
@@ -56,17 +64,17 @@
             <td>{{ page.summary }}</td>
             <td>
                 {% if page.state == 2 %}
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 2 }) }}" class="btn btn-success disabled">Lu</a>
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 1 }) }}" class="btn btn-primary">En cours de lecture</a>
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 0 }) }}" class="btn btn-danger">Non lu</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 2 }) }}" class="btn btn-success disabled">{{ "cms.list.table.state.read"|trans }}</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 1 }) }}" class="btn btn-primary">{{ "cms.list.table.state.wait"|trans }}</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 0 }) }}" class="btn btn-danger">{{ "cms.list.table.state.no"|trans }}</a>
                 {% elseif page.state == 1 %}
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 2 }) }}" class="btn btn-success">Lu</a>
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 1 }) }}" class="btn btn-primary disabled">En cours de lecture</a>
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 0 }) }}" class="btn btn-danger">Non lu</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 2 }) }}" class="btn btn-success">{{ "cms.list.table.state.read"|trans }}</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 1 }) }}" class="btn btn-primary disabled">{{ "cms.list.table.state.wait"|trans }}</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 0 }) }}" class="btn btn-danger">{{ "cms.list.table.state.no"|trans }}</a>
                 {% else %}
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 2 }) }}" class="btn btn-success">Lu</a>
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 1 }) }}" class="btn btn-primary">En cours de lecture</a>
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 0 }) }}" class="btn btn-danger disabled">Non lu</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 2 }) }}" class="btn btn-success">{{ "cms.list.table.state.read"|trans }}</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 1 }) }}" class="btn btn-primary">{{ "cms.list.table.state.wait"|trans }}</a>
+                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 0 }) }}" class="btn btn-danger disabled">{{ "cms.list.table.state.no"|trans }}</a>
 
                 {% endif %}
             </td>
@@ -81,14 +89,14 @@
                     </a>
                 {% endif %}
             </td>
-            <td><i class="badge badge-info">{{ page.product|length }}</i>  produits associés</td>
+            <td><i class="badge badge-info">{{ page.product|length }}</i></td>
             <td>
                 <div class="btn-group">
                     <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Actions&nbsp;<i class="fa fa-caret-down"></i></button>
                     <ul class="dropdown-menu">
-                        <li><a href="#"><i class="fa fa-search"></i> {{ "cms.list.see"|trans }}</a></li>
-                        <li><a href="{{ path('store_backend_cms_edit', {'id': page.id}) }}"><i class="fa fa-pencil"></i> {{ "cms.list.edit"|trans }}</a></li>
-                        <li><a href="{{ path('store_backend_cms_remove', {'id' : page.id}) }}"><i class="fa fa-times"></i> {{ "cms.list.remove"|trans }}</a></li>
+                        <li><a href="#"><i class="fa fa-search"></i> {{ "cms.list.btn.see"|trans }}</a></li>
+                        <li><a href="{{ path('store_backend_cms_edit', {'id': page.id}) }}"><i class="fa fa-pencil"></i> {{ "cms.list.btn.edit"|trans }}</a></li>
+                        <li><a href="{{ path('store_backend_cms_remove', {'id' : page.id}) }}"><i class="fa fa-times"></i> {{ "cms.list.btn.remove"|trans }}</a></li>
                     </ul>
                 </div>
             </td>

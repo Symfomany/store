@@ -6,7 +6,12 @@ imports:
 
 framework:
     #esi:             ~
-    translator:      { fallbacks: ["%locale%"] }
+
+    # Composant de Traduction à activer si j'ai site multilingue
+    # Le paremetre fallbacks à l'intérieur est la langue prise par défaut
+    # dans le mecanisme de traduction
+    # %locale% est un paremetre définis dans parameters.yml
+    translator:      { fallbacks: ['%locale%'] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"

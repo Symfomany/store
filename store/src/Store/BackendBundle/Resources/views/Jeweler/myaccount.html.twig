@@ -260,7 +260,6 @@
     </div> <!-- / .tab-pane -->
     <div class="tab-pane fade widget-followers" id="profile-tabs-followers">
         <div class="follower">
-            <img src="http://static.nationwide.com/static/icon-fs-avatar-blue.gif?r=46" alt="" class="follower-avatar">
             <div class="body">
                 <div class="row">
                 <div class="pull-right">
@@ -276,7 +275,6 @@
             </div>
         </div>
      <div class="follower">
-            <img src="http://static.nationwide.com/static/icon-fs-avatar-blue.gif?r=46" alt="" class="follower-avatar">
             <div class="body">
                 <div class="row">
                 <div class="pull-right">
@@ -292,7 +290,6 @@
             </div>
         </div>
     <div class="follower">
-            <img src="http://static.nationwide.com/static/icon-fs-avatar-blue.gif?r=46" alt="" class="follower-avatar">
             <div class="body">
                 <div class="row">
                 <div class="pull-right">
@@ -308,100 +305,141 @@
             </div>
         </div>
     </div> <!-- / .tab-pane -->
-    <div class="tab-pane fade widget-followers" id="profile-tabs-following">
+
+
+    <div class="tab-pane fade widget-followers panel-padding" id="profile-tabs-following">
         <h3><i class="fa fa-pencil"></i> Modifier les informations de la boutique</h3>
         <hr />
-        <form action="">
-            <div class="row">
+        <form action="" class="form">
+            <div class="alert alert-dark alert-info row">
                 <div class="col-md-6">
                     <div>
-                        <label for="store_backend_product_title" class="required">A Little Market</label>
+                        <label for="store_backend_product_title" class="required"><i class="fa fa-link"></i> A Little Market</label>
                         <input type="text" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div>
-                        <label for="store_backend_product_title" class="required">DaWanda</label>
+                        <label for="store_backend_product_title" class="required"><i class="fa fa-link"></i> DaWanda</label>
                         <input type="text" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
                     </div>
                 </div>
-                </div>
-            <div class="row">
-                 <div class="col-md-2">
-                    <div>
-                        <label for="store_backend_product_title" class="required">Email</label>
-                        <input type="text" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
-                    </div>
-                </div>
-
                 <div class="col-md-4">
                     <div>
                         <label for="store_backend_product_title" class="required">Nom de la boutique</label>
                         <input type="text" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
                     </div>
                 </div>
+                <div class="col-md-2">
+                    <div>
+                        <label for="store_backend_product_title" class="required">Type de société</label>
+                        <select name="" class="form-control">
+                            <option>Aucun</option>
+                            <option>SA</option>
+                            <option>SARL</option>
+                            <option>SAS</option>
+                            <option>EURL</option>
+                            <option>Freelance</option>
+                        </select>
+                    </div>
+                </div>
+                 <div class="col-md-2">
+                    <div>
+                        <label for="store_backend_product_title" class="required"><i class="fa fa-envelope"></i> Email</label>
+                        <input type="text" id="store_backend_product_title" name="store_backend_product[title]" required="required" class="form-control" placeholder="Email pro/perso">
+                    </div>
+                </div>
+
+
+
+                <div class="col-md-4">
+                    <div>
+                        <label for="store_backend_product_title" class="required"><i class="fa fa-picture-o"></i> Image</label>
+                        <input type="file" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
+                    </div>
+                </div>
+            </div>
 
                 <div class="col-md-2">
                     <div>
-                        <label for="store_backend_product_title" class="required">Image</label>
-                        <input type="file" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
+                        <label for="store_backend_product_title" class="required"><i class="fa fa-phone"></i> Téléphone</label>
+                        <input class="form-control" class="form-control" placeholder="06-XX-XX-XX-XX">
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div>
+                        <label for="store_backend_product_title" class="required"><i class="fa fa-link"></i> Website</label>
+                        <input class="form-control" class="form-control" placeholder="http://">
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div>
-                        <label for="store_backend_product_title" class="required">Ville</label>
-                        <input class="form-control" class="form-control" placeholder="Ville">
+                        <label for="store_backend_product_title" class="required"><i class="fa fa-map-marker"></i> Ville</label>
+                        <input class="form-control" class="form-control" placeholder="Paris">
                     </div>
                 </div>
                 <div class="col-md-1">
                     <div>
                         <label for="store_backend_product_title" class="required">Code postal</label>
-                        <input class="form-control" class="form-control" placeholder="Ville">
+                        <input class="form-control" class="form-control" placeholder="75008"/>
                     </div>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-4">
                     <div>
                         <label for="store_backend_product_title" class="required">Adresse</label>
-                        <input class="form-control" class="form-control" placeholder="Ville">
+                        <input class="form-control" class="form-control" placeholder="10 Rue de la Paix">
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div>
-                        <label for="store_backend_product_title" class="required">Description</label>
-                        <textarea class="form-control"></textarea>
+                        <label for="store_backend_product_title" class="required"><i class="fa fa-pencil"></i> Description</label>
+                        <textarea placeholder="Une belle description soignée" class="form-control"></textarea>
                     </div>
                 </div>
 
-                <div class="col-md-6">
-                    <div>
-                        <label for="store_backend_product_title" class="required">Retour de produit</label>
-                        <textarea class="form-control"></textarea>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div>
-                        <label for="store_backend_product_title" class="required">A propos du créateur</label>
-                        <textarea class="form-control"></textarea>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div>
-                        <label for="store_backend_product_title" class="required">Délai d'expédition</label>
-                        <textarea class="form-control"></textarea>
-                    </div>
-                </div>
-                <div class="col-md-6">
-                    <div>
-                        <label for="store_backend_product_title" class="required">Condition d'expédition</label>
-                        <textarea class="form-control"></textarea>
-                    </div>
-                </div>
 
+                <div class="col-md-6">
+                    <div>
+                        <label for="store_backend_product_title" class="required"><i class="fa fa-retweet"></i> Retour de produit</label>
+                        <textarea class="form-control" placeholder="Vos conditions de retours de produits"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        <label for="store_backend_product_title" class="required"><i class="fa fa-user"></i> A propos du créateur</label>
+                        <textarea class="form-control" placeholder="Votre histoire"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div>
+                        <label for="store_backend_product_title" class="required"><i class="fa fa-clock-o"></i> Délai d'expédition</label>
+                        <input class="form-control" placeholder="En heure (h.)" />
+                    </div>
+                </div>
+                <div class="col-md-10">
+                    <div>
+                        <label for="store_backend_product_title" class="required"><i class="fa fa-truck"></i> Expédition de colis</label>
+                        <textarea class="form-control" placeholder="Processus de transport de colis"></textarea>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div>
+                        <label for="store_backend_product_title" class="required"><i class="fa fa-legal"></i> Mentions Légales</label>
+                        <textarea class="form-control" placeholder="Siège social et status"></textarea>
+                    </div>
+                </div>
+                <hr class="clear" />
+                <div class="col-md-12">
+                    <div>
+                        <input type="checkbox" id="store_backend_optin" />
+                        <label for="store_backend_optin" class="required">J'accepte de recevoir la newsletter</label>
+                    </div>
+                </div>
+            <div class="row"><br /><br /><br /></div>
             <button class="btn btn-lg btn-primary">
-                <i class="fa fa-save"> Enregistrer mes modification</i>
+                <i class="fa fa-save"> Enregistrer mes modifications</i>
             </button>
-            </div>
         </form>
     </div> <!-- / .tab-pane -->
     </div> <!-- / .tab-content -->

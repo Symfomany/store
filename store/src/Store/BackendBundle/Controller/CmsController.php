@@ -23,6 +23,9 @@ class CmsController extends AbstractController{
      */
     public function listAction(Request $request){
 
+        // forcer la langue
+//        $request->setLocale('fr');
+
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $cms = $em->getRepository('StoreBackendBundle:Cms')->getCmsByUser($user);

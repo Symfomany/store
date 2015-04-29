@@ -1,0 +1,41 @@
+<li class="nav-icon-btn nav-icon-btn-success dropdown">
+    <a href="#orders" class="dropdown-toggle" data-toggle="dropdown">
+        <span class="label">{{ orders|length }}</span>
+        <i class="nav-icon fa fa-shopping-cart"></i>
+        <span class="small-screen-text">Commandes reçus</span>
+    </a>
+
+    <!-- MESSAGES -->
+
+    <!-- Javascript -->
+    <script>
+        init.push(function () {
+            $('#main-navbar-orders').slimScroll({ height: 250 });
+        });
+    </script>
+    <!-- / Javascript -->
+
+    <div class="dropdown-menu widget-messages-alt no-padding" style="width: 300px;">
+        <div class="messages-list" id="main-navbar-orders" style="overflow: hidden; width: auto; height: 250px;">
+
+
+        {% for order in orders %}
+             <div class="message">
+                 <a href="#" class="message-subject">{{ order.address }}.</a>
+                 <div class="message-description">
+                     de <a href="#">{{ order.total }} €</a>
+                     &nbsp;&nbsp;·&nbsp;&nbsp;
+                     {{ order.dateCreated|date('d/m/Y') }}
+                 </div>
+             </div>
+         {% else %}
+             <div class="alert alert-block alert-warning">
+                 Vous avez aucune commande
+             </div>
+         {% endfor %}
+
+
+        </div> <!-- / .messages-list -->
+        <a href="{{ path('store_backend_jeweler_mymessages') }}" class="messages-link">Toutes les commandes</a>
+    </div> <!-- / .dropdown-menu -->
+</li>
