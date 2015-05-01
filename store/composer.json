@@ -10,7 +10,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.7.*",
+        "symfony/symfony": "2.6.*",
         "hwi/oauth-bundle": "dev-master",
         "doctrine/orm": "~2.2,>=2.2.3,<2.5",
         "doctrine/dbal": "<2.5",
@@ -23,7 +23,8 @@
         "sensio/framework-extra-bundle": "~3.0,>=3.0.2",
         "incenteev/composer-parameter-handler": "~2.0",
         "knplabs/knp-paginator-bundle": "~2.4",
-        "doctrine/doctrine-fixtures-bundle": "2.2.*"
+        "doctrine/doctrine-fixtures-bundle": "2.2.*",
+        "friendsofsymfony/elastica-bundle": "~3.2@dev"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"
@@ -54,12 +55,8 @@
     "config": {
         "bin-dir": "bin"
     },
-    "minimum-stability": "dev",
 
     "extra": {
-        "branch-alias": {
-            "dev-master": "2.7-dev"
-        },
         "symfony-app-dir": "app",
         "symfony-web-dir": "web",
         "symfony-assets-install": "relative",

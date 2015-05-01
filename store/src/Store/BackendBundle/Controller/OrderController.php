@@ -4,6 +4,7 @@
 namespace Store\BackendBundle\Controller;
 
 // J'inclue la classe Controller de Symfony pour pouvoir hériter de cette classe
+use Store\BackendBundle\Entity\Order;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
 
@@ -44,6 +45,28 @@ class OrderController extends Controller{
         );
 
     }
+
+    /**
+     * Modify State of Order
+     * @param $id
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function stateAction(Order $order, $state){
+
+        $em = $this->getDoctrine()->getManager();
+        $order->setState($state);
+        $em->persist($order);
+        $em->flush();
+
+        //message flash de confirmation
+        $this->get('session')->getFlashBag()->add(
+            'success',
+            'Votre commande '.$order->getId().' a bien été modifiée'
+        );
+
+        return $this->redirectToRoute('store_backend_order_list');
+    }
+
 
 }
 

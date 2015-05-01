@@ -1,0 +1,6 @@
+table th a {
+    color: white;
+}
+table th a:hover {
+    color: #18191d;
+}

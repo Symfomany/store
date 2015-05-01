@@ -116,6 +116,58 @@ knp_paginator:
         sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # Template de tri
 
 
+
+##FOS Elastica
+fos_elastica:
+    default_manager: orm
+    clients:
+        default: { host: localhost, port: 9200 }
+    indexes:
+        website:
+            client: default
+            index_name: website_qa
+            types:
+              supplier:
+                 mappings:
+                   name: {type: string }
+                   description: {type: string }
+              jeweler:
+                 mappings:
+                   username: {type: string }
+                   email: {type: string }
+                   title: {type: string }
+                   description: {type: string }
+              product:
+                mappings:
+                    title: { type: string }
+                    summary: { type: string }
+                    description: { type: string }
+                    composition: { type: string }
+                    price: { type: string }
+                    taxe: { type: string }
+                    jeweler:
+                      type: "nested"
+                      properties:
+                         username: {type: string }
+                         email: {type: string }
+                         title: {type: string }
+                         description: {type: string }
+                    category:
+                      type: "nested"
+                      properties:
+                         title: {type: string }
+                         description: {type: string }
+                persistence:
+                    driver: orm
+                    model: Store\BackendBundle\Entity\Product
+                    repository: Store\BackendBundle\Repository\ProductRepository
+                    provider:
+                        query_builder_method: activeProductQueryBuilder
+                    finder: ~
+                    listener: ~ # by default, listens to "insert", "update" and "delete"
+
+
+
   #hwi_oauth:
   #    # name of the firewall in which this bundle is active, this setting MUST be set
   #    firewall_name: store_backend

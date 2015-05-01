@@ -36,7 +36,7 @@ class ProductRepositoryTest extends WebTestCase
             ->getRepository('StoreBackendBundle:Product')
             ->getProductByUser(1);
 
-        $this->assertCount(6, $products);
+        $this->assertCount(13, $products->getResult());
 
     }
 

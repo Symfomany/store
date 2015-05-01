@@ -138,4 +138,21 @@ class ProductRepository extends EntityRepository
 
         return $queryBuilder;
     }
+
+    /**
+     * DQL Syntax with Form
+     * @param int $user
+     * @return array
+     */
+    public function activeProductQueryBuilder(){
+
+        /**
+         * Le formulaire ProductType attend un objet createQueryBuilder()
+         *  ET NON PAS l'objet createQuery()
+         */
+        $queryBuilder = $this->createQueryBuilder('p')
+            ->where('p.active = 1');
+
+        return $queryBuilder;
+    }
 }

@@ -19,6 +19,15 @@ class MainController extends Controller{
     public function indexAction(){
 
 
+
+        $finderProducts = $this->container->get('fos_elastica.finder.website.product');
+
+// Option 1. Returns all users who have example.net in any of their mapped fields
+        $results = $finderProducts->find('zuzu38080@gmail.com');
+
+
+
+
         // $this->get() => accède au conteneur de service
         // et récupere le service store.backend.email
 //        $mail = $this->get('store.backend.email');

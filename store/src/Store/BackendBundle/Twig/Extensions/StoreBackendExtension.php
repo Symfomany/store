@@ -186,10 +186,28 @@ class StoreBackendExtension extends \Twig_Extension
      * @return string
      */
     public function state($state){
-        if($state == 2){
-            $badge =  "<span class='label label-success'>Envoyé</span>";
-        }elseif($state == 1){
-            $badge =  "<span class='label label-info'>En cours</span>";
+        if($state == 8){
+            $badge =  "<span class='label label-success'>Livré</span>";
+        }elseif($state == 7){
+            $badge =  "<span class='label label-info'>En cours de paiement</span>";
+        }
+        elseif($state == 6){
+            $badge =  "<span class='label label-info'>En cours de livraison</span>";
+        }
+        elseif($state == 5){
+            $badge =  "<span class='label label-info'>En cours de préparation</span>";
+        }
+        elseif($state == 4){
+            $badge =  "<span class='label label-info'>En cours de réaprovisionnement</span>";
+        }
+        elseif($state == 3){
+            $badge =  "<span class='label label-info'>Erreur de paiement</span>";
+        }
+        elseif($state == 2){
+            $badge =  "<span class='label label-info'>Remboursé</span>";
+        }
+        elseif($state == 1){
+            $badge =  "<span class='label label-info'>Problème d'acheminement</span>";
         }
         else{
             $badge =  "<span class='label label-warning'>Annulé</span>";

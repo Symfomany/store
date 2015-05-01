@@ -12,3 +12,11 @@ store_backend_order_view:
     id: \d+
     name: "[a-zA-Z0-9-]{3,30}"
     _method: GET
+
+store_backend_order_state:
+  path: /state/{order}/{state}
+  defaults: { _controller: StoreBackendBundle:Order:state }
+  requirements:
+    order: \d+
+    state: \d+
+    _method: GET

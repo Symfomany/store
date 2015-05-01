@@ -6,18 +6,29 @@
 {% endblock  %}
 
 {% block content %}
+    <script>
+        init.push(function () {
+            $('#jq-datatables-example').dataTable();
+            $('#jq-datatables-example_wrapper .table-caption').text('Toutes vos commandes');
+            $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Rechercher...');
+
+            $('.selectstate').change(function(){
+                var href = $(this).find().attr('data-href');
+//                alert($(this).html());
+//                window.location.href= href;
+            });
+        });
+    </script>
 
     {% if orders is not empty %}
-    <table class="table table-bordered table-primary">
+    <table class="table table-bordered table-primary" id="jq-datatables-example">
         <thead>
         <th>Id</th>
         <th>User</th>
-        <th>Detail</th>
         <th>Addresse</th>
-        <th>Date de livraison</th>
         <th>Total</th>
-        <th>Date de création</th>
-        <th>ETat</th>
+        <th>Etat</th>
+        <th>Facture</th>
         <th>Actions</th>
         </thead>
         <tbody>
@@ -28,41 +39,38 @@
                     <a href="">{{ order.id }}</a>
                 </td>
              <td>
-                <a href="">{{ order.user.email }}</a>
+                 <i class="fa fa-envelope"></i>  <a href="">{{ order.user.email }}</a>
              </td>
+              <td>
+                <i class="fa fa-map-marker"></i> {{ order.address }}
+             </td>
+
                 <td>
-                    <ul>
-                        {%  for detail in order.detail %}
-                            {{ detail.product.title }} ({{ detail.quantity }}) <br/>
-                            {{ detail.price }} €
-                        {%  endfor %}
-                    </ul>
+                    <strong>{{ order.total }}€</strong>
                 </td>
 
-              <td>
-                {{ order.address }}
-             </td>
                 <td>
-                    {{ order.date|date('d/m/Y H:i:s') }}
+                    {{ order.state|state|raw }}
                 </td>
                 <td>
-                    {{ order.total }}
+                    {% if order.state == 1 %}
+                        <a href=""><i class="fa fa-file-text"></i> Impression</a>
+                    {% else %}
+                        <i class="fa fa-shield"> Pas encore de facture généré</i>
+                    {% endif %}
                 </td>
-                <td>
-                    {{ order.dateCreated|date('d/m/Y H:i:s') }}
-                </td>
-                <td>
-                    {{ order.state }}
-                </td>
-             <td>
-                     <div class="btn-group">
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Actions&nbsp;<i class="fa fa-caret-down"></i></button>
-                        <ul class="dropdown-menu">
-                            <li><a href="#"><i class="fa fa-search"></i> Voir</a></li>
-                            <li><a href="#"><i class="fa fa-pencil"></i> Editer</a></li>
-                            <li><a href="#"><i class="fa fa-times"></i> Supprimer</a></li>
-                        </ul>
-                    </div>
+                 <td>
+                    <select data-id="{{ order.id }}" class="col-md-8 selectstate" class="form-control">
+                        <option {% if order.state == 1 %}selected{% endif %} data-href="{{ path('store_backend_order_state', {'state': 1, 'order': order.id}) }}" value="1"><a href="#"><i class="fa fa-search"></i> Livré</a></option>
+                        <option {% if order.state == 2 %}selected{% endif %} data-href="{{ path('store_backend_order_state', {'state': 2, 'order': order.id}) }}"  value="2"><a href="#"><i class="fa fa-pencil"></i> En cours de paiement</a></option>
+                        <option {% if order.state == 3 %}selected{% endif %}  data-href="{{ path('store_backend_order_state', {'state': 3, 'order': order.id}) }}" value="3"><a href="#"><i class="fa fa-pencil"></i> En cours de livraison</a></option>
+                        <option {% if order.state == 4 %}selected{% endif %}  data-href="{{ path('store_backend_order_state', {'state': 4, 'order': order.id}) }}" value="4"><a href="#"><i class="fa fa-pencil"></i> En cours de préparation</a></option>
+                        <option {% if order.state == 5 %}selected{% endif %}  data-href="{{ path('store_backend_order_state', {'state': 5, 'order': order.id}) }}" value="5"><a href="#"><i class="fa fa-pencil"></i> En cours de réaprovisionnement</a></option>
+                        <option {% if order.state == 6 %}selected{% endif %}  data-href="{{ path('store_backend_order_state', {'state': 6, 'order': order.id}) }}" value="6"><a href="#"><i class="fa fa-pencil"></i> Erreur de paiement</a></option>
+                        <option {% if order.state == 7 %}selected{% endif %}  data-href="{{ path('store_backend_order_state', {'state': 7, 'order': order.id}) }}" value="7"><a href="#"><i class="fa fa-times"></i> Remboursé</a></option>
+                        <option {% if order.state == 8 %}selected{% endif %}  data-href="{{ path('store_backend_order_state', {'state': 8, 'order': order.id}) }}" value="8"><a href="#"><i class="fa fa-times"></i> Problème d'acheminement</a></option>
+                        <option {% if order.state == 9 %}selected{% endif %}  data-href="{{ path('store_backend_order_state', {'state': 9, 'order': order.id}) }}" value="9"><a href="#"><i class="fa fa-times"></i> Annulé</a></option>
+                    </select>
                 </td>
             </tr>
         {% endfor %}

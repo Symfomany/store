@@ -53,7 +53,6 @@ class JewelerSubscribeType extends AbstractType
 
         $builder->add('password', 'repeated', array(
             'required' => true,
-            'attr' => array('autocomplete', 'off'),
             'type' => 'password',
             'first_name' => 'mdp',
             'second_name' => 'mdp_conf',

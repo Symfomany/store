@@ -9,6 +9,7 @@
   <link href="{{ asset('assets/backend/stylesheets/widgets.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('assets/backend/stylesheets/rtl.min.css') }} " rel="stylesheet" type="text/css">
   <link href="{{ asset('assets/backend/stylesheets/themes.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('assets/backend/stylesheets/main.css') }}" rel="stylesheet" type="text/css">
 {% endblock %}
 
 {% block body %}
@@ -71,7 +72,7 @@
             $("select").select2();
             $("input[type='date']").attr('type','text').mask("99/99/9999");
             $("#store_backend_product_ref").mask("****-**-*");
-            $('input[type="file"]').pixelFileInput({ placeholder: 'Aucun fichier...'|trans });
+            $('input[type="file"]').pixelFileInput({ placeholder: 'Aucun fichier...' });
             $('div.alert-success').delay(3000).slideUp('slow');
         });
         window.PixelAdmin.start(init);

@@ -33,9 +33,11 @@
             <th>{{ knp_pagination_sortable(products, 'Quantité', 'p.quantity')|raw }}</th>
             <th>Actif</th>
             <th>Page d'Acceuil</th>
+            <th>Position</th>
             <th>Catégories</th>
             <th>Pages CMS</th>
             <th>Fournisseurs</th>
+            <th><i class="fa fa-plus"></i> Images</th>
             <th>Actions</th>
         </thead>
         <tbody>
@@ -69,9 +71,13 @@
                             </a>
                         {% endif %}
                     </td>
+                    <td><i class="fa fa-arrows"></i></td>
                     <td><span class="badge badge-info">{{ product.category|length }}</span> catégories</td>
                     <td><span class="badge badge-info">{{ product.cms|length }}</span> pages cms</td>
                     <td><span class="badge badge-info">{{ product.supplier|length }}</span> fournisseurs</td>
+                    <td>
+                        <a href=""><i class="fa fa-picture-o"></i> Gérer les photos</a>
+                    </td>
                     <td>
                         <div class="btn-group">
                             <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><i class="fa fa-cogs"></i> Actions&nbsp;<i class="fa fa-caret-down"></i></button>
