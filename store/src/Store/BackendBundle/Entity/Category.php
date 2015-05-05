@@ -75,6 +75,11 @@ class Category
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
+     * @Assert\Count(
+     *      min = "1",
+     *      minMessage = "Vous devez au moins associé au moins un bijou",
+     *      groups={"new", "edit"}
+     * )
      * @ORM\ManyToMany(targetEntity="Product", mappedBy="category", cascade={"all"})
      */
     private $product;

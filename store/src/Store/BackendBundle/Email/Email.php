@@ -29,26 +29,6 @@ class Email {
         $this->twig = $twig; //je stoque mon
     }
 
-    /**
-     * Fonction qui envoi un email à un utilisateur
-     */
-    public function send(){
-
-        // je créer un message d'email en utilisant Swift Mailer de Symfony
-        $message = \Swift_Message::newInstance()
-            ->setSubject('Test email') //le sujet
-            ->setFrom('julien@meetserious.com') // l'expediteur
-            ->setTo('julien@meetserious.com') //le destinataire
-            ->setContentType('text/html')
-            ->setBody( //le corps du mail qui sera une vue en Twig
-                $this->twig->render('StoreBackendBundle:Email:email.html.twig')
-            );
-        $this->mailer->send($message);
-        //Utilise le service Mailer et envoi mon email
-        //avec la methode send()
-    }
-
-
 
     /**
      *  Send E-Mail

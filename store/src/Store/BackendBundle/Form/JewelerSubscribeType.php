@@ -23,31 +23,37 @@ class JewelerSubscribeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('title', null, array(
-            'label' => 'Nom de la bijouterie', //label de mon chmpa
             'required'  => true,
             'attr' => array(
-                'class' => 'form-control',
+                'class' => 'form-control input-lg',
                 'placeholder' => 'Nom / Marque du bijoutier',
-                'pattern' => '[a-zA-Z0-9- ]{5,}'
+                'pattern' => '[a-zA-Z0-9- ]{4,}'
             )
         ));
 
         $builder->add('username', null, array(
-            'label' => "Nom d'utilisateur", //label de mon chmpa
             'required'  => true,
             'attr' => array(
-                'class' => 'form-control',
-                'placeholder' => 'Login choisi',
-                'pattern' => '[a-zA-Z0-9- ]{5,}'
+                'class' => 'form-control input-lg',
+                'placeholder' => 'Login de 4 caractères minimum',
+                'pattern' => '[a-zA-Z0-9- ]{4,}'
+            )
+        ));
+
+        $builder->add('description', null, array(
+            'required'  => true,
+            'attr' => array(
+                'class' => 'form-control input-lg',
+                'rows' => 8,
+                'placeholder' => 'Soignez une longue description complète de votre boutique',
             )
         ));
 
         $builder->add('email', 'email', array(
-            'label' => "Email d'utilisateur", //label de mon chmpa
             'required'  => true,
             'attr' => array(
-                'class' => 'form-control',
-                'placeholder' => 'Votre email',
+                'class' => 'form-control input-lg',
+                'placeholder' => 'Email pro/perso',
             )
         ));
 
@@ -60,19 +66,39 @@ class JewelerSubscribeType extends AbstractType
             'first_options' =>
             array('label' => 'Mot de passe',
                 'attr' => array('value' => '',
-                                'class' => 'form-control',
+                                'class' => 'form-control input-lg',
                                 'autocomplete' => 'off',
                                 'placeholder' => 'Au moins 6 caractères',
                                 'pattern' => '.{6,}')),
             'second_options' =>
             array('label' => 'Confirmation du mot de passe',
                 'attr' => array('value' => '',
-                                'class' => 'form-control',
+                                'class' => 'form-control input-lg',
                                 'autocomplete'=> 'off',
                                 'placeholder' => 'Retaper votre mot de passe',
                                 'pattern' => '.{6,}'))
         ));
 
+
+        $builder->add('captcha', 'captcha', array(
+                'background_color' => array(255,255,255),
+                'width' => 300,
+                'height' => 70,
+                'attr' => array(
+                'placeholder' => 'Saisissez le code de sécurité en image',
+                'pattern' => '.{5,}',
+                'class' => 'form-control input-lg',
+                'length' => 6
+            )
+        )); // That's all !
+
+
+        $builder->add('signup_confirm', 'checkbox', array(
+            'required' => true,
+            'mapped' => false,
+            'attr' => array(
+            )
+        ));
 
         $builder->add('envoyer', 'submit', array(
             'attr' => array(
@@ -113,7 +139,7 @@ class JewelerSubscribeType extends AbstractType
      */
     public function getName()
     {
-        return "store_backend_jeweler_subscribe";
+        return "";
     }
 
 }

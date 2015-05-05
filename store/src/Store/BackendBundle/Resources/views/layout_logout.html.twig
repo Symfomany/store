@@ -1,0 +1,68 @@
+{% extends "::base.html.twig" %}
+
+{% block classname %}theme-default page-signin-alt{% endblock %}
+
+{# Stylesheets #}
+{% block stylesheets %}
+  {{ parent() }}
+    <link href="{{ asset('assets/backend/stylesheets/pages.min.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('assets/backend/stylesheets/pixel-admin.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('assets/backend/stylesheets/widgets.min.css') }}" rel="stylesheet" type="text/css">
+  <link href="{{ asset('assets/backend/stylesheets/rtl.min.css') }} " rel="stylesheet" type="text/css">
+  <link href="{{ asset('assets/backend/stylesheets/themes.min.css') }}" rel="stylesheet" type="text/css">
+    <style>
+        #signin-demo {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            z-index: 10000;
+            background: rgba(0,0,0,.6);
+            padding: 6px;
+            border-radius: 3px;
+        }
+        #signin-demo img { cursor: pointer; height: 40px; }
+        #signin-demo img:hover { opacity: .5; }
+        #signin-demo div {
+            color: #fff;
+            font-size: 10px;
+            font-weight: 600;
+            padding-bottom: 6px;
+        }
+    </style>
+
+{% endblock %}
+
+{% block body %}
+
+    {#ini.push() tableau pour pousser tout le jquery#}
+    <script>var init = [];</script>
+    <div class="signin-header">
+        <a href="{{ path('store_backend_security_login') }}" class="logo">
+            <strong>Marché</strong>deBijoux
+        </a> <!-- / .logo -->
+        <a href="{{ path('store_backend_security_subscribe') }}" class="btn btn-lg btn-primary"><i class="fa fa-plus"></i> S'inscrire maintenant</a>
+    </div>
+
+    <div class="signin-container">
+
+            {# Le block où vont ecrire nos vues filles #}
+            {% block content %}
+            {% endblock %}
+
+    </div> <!-- fermeture main-wrapper -->
+
+
+{% endblock %}
+
+
+{#Javascript files#}
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('assets/backend/javascripts/pixel-admin.min.js') }}"></script>
+
+    <script type="text/javascript">
+        init.push(function () {
+        })
+        window.PixelAdmin.start(init);
+    </script>
+{% endblock%}

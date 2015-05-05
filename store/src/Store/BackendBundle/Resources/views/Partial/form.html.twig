@@ -1,35 +1,10 @@
 
+{% extends "bootstrap_3_layout.html.twig" %}
 
-{% block form_errors %}
-    {% spaceless %}
-        {% if errors|length > 0 %}
-            <div class="alert alert-danger alert-dark fade in">
-                <button type="button" class="close" data-dismiss="alert">×</button>
-                <strong>Attention! </strong>
-                {% for error in errors %}
-                    {{
-                    error.messagePluralization is null
-                    ? error.messageTemplate|trans(error.messageParameters, 'validators')
-                    : error.messageTemplate|transchoice(error.messagePluralization, error.messageParameters, 'validators')
-                    }}
-                {% endfor %}
-            </div>
-        {% endif %}
-    {% endspaceless %}
-{% endblock %}
-
-{% block form_row %}
-    <div>
-        {% spaceless %}
-                {{ form_label(form) }}
-                {{ form_widget(form) }}
-                {{ form_errors(form) }}
-        {% endspaceless %}
-    </div>
-
-{% endblock form_row %}
-
-
+{% block form_start -%}
+    {% set attr = attr|merge({class: (' form-horizontal panel-padding')|trim}) %}
+    {{- parent() -}}
+{%- endblock form_start %}
 
 {% block money_widget %}
     {% spaceless %}
@@ -39,33 +14,22 @@
 
 
 
-{% block datetime_widget %}
-    {% spaceless %}
-        {% if widget == 'single_text' %}
-            {{ block('form_widget_simple') }}
-        {% else %}
-            <div {{ block('widget_container_attributes') }}>
-                {{ form_errors(form.date) }}
-                {{ form_errors(form.time) }}
-                {{ form_widget(form.date) }}
-                {{ form_widget(form.time) }}
-            </div>
-        {% endif %}
-    {% endspaceless %}
-{% endblock datetime_widget %}
+{% block form_row -%}
+    <div class="form-group dark {% if (not compound or force_error|default(false)) and not valid %} has-error{% endif %}">
+        {{- form_label(form) -}}
+        {{- form_widget(form) -}}
+        {{- form_errors(form) -}}
+    </div>
+{%- endblock form_row %}
 
-{% block date_widget %}
-    {% spaceless %}
-        {% if widget == 'single_text' %}
-            {{ block('form_widget_simple') }}
-        {% else %}
-            <div {{ block('widget_container_attributes') }}>
-                {{ date_pattern|replace({
-                '{{ year }}':  form_widget(form.year),
-                '{{ month }}': form_widget(form.month),
-                '{{ day }}':   form_widget(form.day),
-                })|raw }}
-            </div>
-        {% endif %}
-    {% endspaceless %}
-{% endblock date_widget %}
+{% block form_errors -%}
+    {% if errors|length > 0 -%}
+    {% if form.parent %}<span class="help-block">{% else %}<div class="alert alert-dark alert-danger">{% endif %}
+    <ul class="list-unstyled">
+        {%- for error in errors -%}
+    <li><span class="fa fa-exclamation-triangle"></span> {{ error.message }}</li>
+{%- endfor -%}
+    </ul>
+    {% if form.parent %}</span>{% else %}</div>{% endif %}
+    {%- endif %}
+{%- endblock form_errors %}

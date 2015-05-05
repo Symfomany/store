@@ -24,7 +24,9 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "knplabs/knp-paginator-bundle": "~2.4",
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
-        "friendsofsymfony/elastica-bundle": "~3.2@dev"
+        "friendsofsymfony/elastica-bundle": "~3.2@dev",
+        "gregwar/captcha-bundle": "^1.0",
+        "stof/doctrine-extensions-bundle": "dev-master"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

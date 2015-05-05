@@ -8,13 +8,6 @@
 
 {% block content %}
 
-<div class="row">
-    <a href="{{ path('store_backend_supplier_new') }}" class=" pull-right btn btn-success btn-lg">
-        <i class="fa fa-plus"></i> Ajouter un fournisseur
-    </a>
-</div>
-
-<hr />
 
 <div class="alert alert-info alert-dark">
     {{ suppliers.getTotalItemCount }} fournisseurs trouvés
@@ -67,5 +60,9 @@
     <div class="navigation">
         {{ knp_pagination_render(suppliers) }}
     </div>
-
+    <div class="row">
+        <a href="{{ path('store_backend_supplier_new') }}" class=" pull-right btn btn-success btn-lg">
+            <i class="fa fa-plus"></i> Ajouter un fournisseur
+        </a>
+    </div>
 {% endblock %}

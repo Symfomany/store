@@ -17,6 +17,11 @@
 
 {% block content %}
 
+    <div class="alert alert-info">
+        <button class="close">X</button>
+        <strong><i class="fa fa-info"></i> Information: </strong> Remplissez votre page produit ici avec le maximum d'information sur votre bijoux.<br />
+        Plus les informations sont détaillées à propos de votre bijoux, plus vos clients seront bien renseignés
+    </div>
     {{ include('StoreBackendBundle:Product:_form.html.twig') }}
 
 {% endblock %}

@@ -1,0 +1,12 @@
+{% extends "StoreBackendBundle::layout_email.html.twig" %}
+
+{% block content %}
+
+    <h1>Bienvenue {{ user.username }} sur la plateforme Marché de Bijoux</h1>
+
+    <p>Pour activer votre compte, voici le lien de confirmation:</p>
+
+    <p>
+        <a href="{{ url('store_backend_security_confirmation', {'id' : user.id , 'token' : user.token}) }}">Confirmer en cliquant ici votre compte</a>
+    </p>
+{% endblock %}

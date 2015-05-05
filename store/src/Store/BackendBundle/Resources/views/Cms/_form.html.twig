@@ -1,7 +1,9 @@
 {{ form_start(form) }}
 
+<h3><i class="fa fa-pencil"></i> Information de la page</h3>
+<hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-7">
         {{ form_row(form.title) }}
     </div>
     <div class="col-md-3">
@@ -10,8 +12,26 @@
     <div class="col-md-2">
         {{ form_row(form.state) }}
     </div>
+</div>
+
+
+
+<h3><i class="fa fa-pencil"></i> Description de la page</h3>
+<hr />
+<div class="row">
+    <div class="col-md-12">
+        {{ form_row(form.summary) }}
+    </div>
+    <div class="col-md-12">
+        {{ form_row(form.description) }}
+    </div>
 
 </div>
+
+
+
+<h3><i class="fa fa-pencil"></i> Association de la page</h3>
+<hr />
 <div class="row">
     <div class="col-md-6">
         {{ form_row(form.product) }}
@@ -19,15 +39,6 @@
     <div class="col-md-6">
         {{ form_row(form.video) }}
     </div>
-</div>
-<div class="row">
-    <div class="col-md-5">
-        {{ form_row(form.summary) }}
-    </div>
-    <div class="col-md-7">
-        {{ form_row(form.description) }}
-    </div>
-
 </div>
 
 

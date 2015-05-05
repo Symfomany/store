@@ -1,16 +1,26 @@
 # Je vais pouvoir traduire mes textes de vues et mes textes de Controllers
 cms:
   form:
+    send: Enregistrer cette page
     title: Titre de ma page
   flashdatas:
     activate: Votre Page a été modifiée
+    edit: Votre Page a été modifiée
+    new: Votre Page a été crée
+    remove: Votre Page a été supprimée
   list:
     title:  Pages CMS
+    btn:
+      add: Ajouter une page CMS
     description: |
       <h3>Blabla</h3>
       <p class="text-success">Hello World</p>
       <i>qshdqshkdsqoi</i>
     table:
+      btn:
+        edit: Editer
+        see: Voir
+        remove: Supprimer
       th:
         title: Titre
         summary: Résumé

@@ -19,6 +19,11 @@
 {% endblock  %}
 
 {% block content %}
+    <div class="alert alert-info">
+        <button class="close">X</button>
+        <strong><i class="fa fa-info"></i> Information: </strong> Remplissez votre catégorie et associez cette catégorie à vos bijoux
+    </div>
+
     {{ include('StoreBackendBundle:Category:_form.html.twig') }}
 
 {% endblock %}

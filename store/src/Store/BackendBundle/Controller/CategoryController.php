@@ -130,38 +130,17 @@ class CategoryController extends AbstractController{
         ));
     }
 
-    /**
-     * View a category
-     * @param $id
-     * @param $name
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function viewAction($id, $name){
-
-        // je retourne ma vue view de Categorie où je transmet l'id en vue
-        return $this->render('StoreBackendBundle:Category:view.html.twig',
-            array(
-                'id' => $id, // le nom de ma clefs sera le nom de ma variable en vue
-                'name' => $name, // le nom de ma clefs sera le nom de ma variable en vue
-            )
-        );
-    }
-
-
 
     /**
      * Action de suppression
-     * @param $id
+     * @Security("is_granted('', id)")
      */
-    public function removeAction($id){
+    public function removeAction(Category $id){
 
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
 
-        //Je récupère tous les produits de ma base de données avec la methode findAll()
-        $product = $em->getRepository('StoreBackendBundle:Category')->find($id);
-
-        $em->remove($product);
+        $em->remove($id);
         $em->flush();
 
         $this->get('session')->getFlashBag()->add(

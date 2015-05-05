@@ -47,7 +47,7 @@ class CategoryType extends AbstractType
         // le 2eme argument à ma fonction add() est le type de mon champs
         // le 3eme argument c'est ùmes options à mon chamos
         $builder->add('title', null, array(
-            'label' => 'Titre de ma catégorie', //label de mon chmpa
+            'label' => 'Titre original de la catégorie', //label de mon chmpa
             'required'  => true,
             'attr' => array(
                 'class' => 'form-control',
@@ -57,7 +57,7 @@ class CategoryType extends AbstractType
         ));
 
         $builder->add('file', 'file', array(
-            'label' => 'Image de la catégorie',
+            'label' => 'Image de couverture de la catégorie',
             'required'  => false,
             'attr' => array(
                 'class' => 'form-control',
@@ -67,27 +67,19 @@ class CategoryType extends AbstractType
         ));
 
         $builder->add('description', null, array(
-            'label' => "Longue description",
+            'label' => "Description complète de la catégorie",
             'required'  => true,
             'attr' => array(
+                'rows' => 15,
                 'class' => 'form-control',
                 'placeholder' => 'Description longue du bijoux',
-            )
-        ));
-
-        $builder->add('position', null, array(
-            'label' => "Position",
-            'required'  => true,
-            'attr' => array(
-                'class' => 'form-control',
-                'placeholder' => 'Position du bijoux',
             )
         ));
 
 
         $builder->add('product', 'entity',
             array (
-                'label' => 'Produits associés',
+                'label' => 'Produits associés de la catégorie',
                 'class' => 'StoreBackendBundle:Product',
                 'multiple' => true, // choix multiple
                 'by_reference' => false, // to handle setProduct() new method in entity
@@ -96,11 +88,6 @@ class CategoryType extends AbstractType
                     return $er->getProductByUserBuilder($this->user);
                 },
             ));
-
-        $builder->add('active', null, array(
-            'label' => "Catégorie active ?",
-            'required'  => false,
-        ));
 
         $builder->add('envoyer', 'submit', array(
             'attr' => array(

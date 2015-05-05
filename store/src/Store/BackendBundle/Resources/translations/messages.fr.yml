@@ -2,6 +2,10 @@
 list:
   choice: Choisir votre langue svp %username%
 
-
+"User account is disabled.": Votre compte n'est pas encore activé. Veuille vérifier votre boîte e-mail.
+User account is disabled.: Votre compte n'est pas encore activé. Veuille vérifier votre boîte e-mail.
+cms:
+  list:
+    nb: "%count% page associée à vos bijoux|%count% pages associées à vos bijoux"
 form:
     title: Titre

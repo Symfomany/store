@@ -16,6 +16,16 @@ store_backend_security_login:
     path: /login
     defaults: { _controller: StoreBackendBundle:Security:login }
 
+
+#Confiration de compte
+store_backend_security_confirmation:
+    path: /confirmation-compte/{id}/{token}
+    defaults: { _controller: StoreBackendBundle:Security:confirmation }
+    requirements:
+      id: \d+
+      _method: GET
+
+
 #Route de l'action de mon formulaire d'authentification
 store_backend_security_login_check:
     path: /administration/login_check

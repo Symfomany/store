@@ -72,7 +72,7 @@ services:
 
 #            - { name: doctrine.event_listener, event: postPersist, method: postPerist }
 
-    # Npm de notre service
+    # Nom de notre service
     store.backend.voter:
 
         # Classe affectée à notre service
@@ -84,36 +84,24 @@ services:
         tags:
            - { name: security.voter }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    # Extension de Twig
     store.backend.twig.store_backend_extension:
         # Notre classe qui va étendre Twig
         class: Store\BackendBundle\Twig\Extensions\StoreBackendExtension
         tags:
             - { name: twig.extension }
 
-
-
-
-
     # Nom de service
     store.backend.oauthprovider:
         # Classe avec Namespaces
         class: Store\BackendBundle\Provider\OAuthProvider
 
+    # Authentification Provider
+    wsse.security.authentication.provider:
+      class:  Store\BackendBundle\Security\Authentification\Provider\WsseProvider
+      arguments: ['', %kernel.cache_dir%/security/nonces]
+
+    # Authentification Listener
+    wsse.security.authentication.listener:
+      class:  Store\BackendBundle\Security\Authentification\Firewall\WsseListener
+      arguments: [@security.context, @security.authentication.manager]

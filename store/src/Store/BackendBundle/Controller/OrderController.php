@@ -30,25 +30,11 @@ class OrderController extends Controller{
         ));
     }
 
-    /**
-     * View a order
-     * @param $id
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function viewAction($id, $name){
-
-        return $this->render('StoreBackendBundle:Order:view.html.twig',
-            array(
-                'id' => $id,
-                'name' => $name
-            )
-        );
-
-    }
 
     /**
      * Modify State of Order
      * @param $id
+     * @Security("is_granted('', id)")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function stateAction(Order $order, $state){

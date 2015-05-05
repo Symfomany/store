@@ -48,16 +48,16 @@ class CmsType extends AbstractType
         // le 2eme argument à ma fonction add() est le type de mon champs
         // le 3eme argument c'est ùmes options à mon chamos
         $builder->add('title', null, array(
-            'label' => 'cms.form.title', //label de mon chmpa
+            'label' => 'Titre de votre page', //label de mon chmpa
             'required'  => true,
             'attr' => array(
                 'class' => 'form-control',
-                'placeholder' => 'cms.form.placeholder.title',
+                 'placeholder' => 'Mettre un titre soigné',
                 'pattern' => '[a-zA-Z0-9- ]{5,}'
             )
         ));
         $builder->add('file', 'file', array(
-            'label' => 'cms.form.image',
+            'label' => 'Image de présentation',
             'required'  => false,
             'attr' => array(
                 'class' => 'form-control',
@@ -66,7 +66,7 @@ class CmsType extends AbstractType
             )
         ));
         $builder->add('video', 'text', array(
-            'label' => 'cms.form.video',
+            'label' => 'Vidéo de présentation',
             'required'  => false,
             'attr' => array(
                 'class' => 'form-control',
@@ -74,27 +74,26 @@ class CmsType extends AbstractType
             )
         ));
         $builder->add('summary', null, array(
-            'label' => 'cms.form.summary',
-            'required'  => true,
-            'attr' => array(
-                    'class' => 'form-control',
-                'placeholder' => 'cms.form.placeholder.summary',
-             )
-        ));
-        $builder->add('description', null, array(
-            'label' => 'cms.form.description',
+            'label' => "Petit résumé",
             'required'  => true,
             'attr' => array(
                 'class' => 'form-control',
-                'placeholder' => 'cms.form.placeholder.description',
-            )
+                'rows' => 6,
+                'placeholder' => 'Petit résumé du bijoux',
+                )
+        ));
+        $builder->add('description', null, array(
+            'label' => "Longue description",
+            'required'  => true,
+            'attr' => array(
+                'class' => 'form-control',
+                'rows' => 15,
+                'placeholder' => 'Description longue du bijoux',
+                )
         ));
         $builder->add('state', 'choice', array(
-            'label' => 'cms.form.state',
-            'choices'   => array(
-                "1" => 'cms.form.statelabel.inactive',
-                "2" => 'cms.form.statelabel.wait',
-                "3" => 'cms.form.statelabel.active'),
+            'label' => "Etat",
+            'choices'   => array("1" => 'Inactif',"2" => 'En cours de relecture', "3" => 'Actif'),
             'required'  => true, // liste déroulante obligatoire
             'preferred_choices' => array("En cours de relecture"), // champs choisi par défault
             'attr' => array(
@@ -102,7 +101,7 @@ class CmsType extends AbstractType
             )
         ));
         $builder->add('dateActive', 'datetime', array (
-            'label' => 'cms.form.dateActive',
+            'label' => "Date d'activation",
             'attr' => array(
                 'class' => 'form-control',
                 'placeholder' => 'dd/mm/YYYY',
@@ -114,7 +113,7 @@ class CmsType extends AbstractType
 
         $builder->add('product', 'entity',
             array (
-                'label' => 'cms.form.product',
+                'label' => 'Produits associés',
                 'class' => 'StoreBackendBundle:Product',
                 'multiple' => true, // choix multiple
                 'by_reference' => false, // to handle setProduct() new method in entity

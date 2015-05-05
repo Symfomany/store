@@ -23,8 +23,6 @@ security:
 ###
     # http://symfony.com/doc/current/book/security.html#hierarchical-roles
     role_hierarchy:
-        ROLE_EDITOR:       ROLE_EDITOR
-        ROLE_COMMERCIAL:    ROLE_COMMERCIAL
         ROLE_JEWELER:      [ROLE_JEWELER, ROLE_EDITOR, ROLE_COMMERCIAL]
         ROLE_USER:         [ROLE_USER, ROLE_JEWELER]
         ROLE_ADMIN:        [ROLE_ADMIN, ROLE_USER]
@@ -57,6 +55,7 @@ security:
         # secures part of the application
         store_backend:
             pattern:    ^/administration
+            wsse:      {lifetime: 6000}
             #cookie: encrypter le contenu du cookie
             remember_me:
                 key:      "%secret%"
@@ -94,5 +93,4 @@ security:
     # http://symfony.com/doc/current/cookbook/security/access_control.html
     access_control:
 #        - { path: ^/hwio-login, roles: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/administration/products, roles: [ROLE_COMMERCIAL] }
-        - { path: ^/administration, roles: [ROLE_JEWELER, ROLE_EDITOR, ROLE_COMMERCIAL] }
+        - { path: ^/administration, roles: [ROLE_JEWELER] }

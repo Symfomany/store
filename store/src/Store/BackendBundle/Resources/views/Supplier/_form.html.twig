@@ -1,24 +1,23 @@
 {{ form_start(form) }}
 
+
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-12">
         {{ form_row(form.name) }}
     </div>
-    <div class="col-md-3">
-        {{ form_row(form.file) }}
-    </div>
-    <div class="col-md-2">
-        {{ form_row(form.active) }}
-    </div>
-
-</div>
-<div class="row">
-    <div class="col-md-6">
-        {{ form_row(form.product) }}
-    </div>
-    <div class="col-md-6">
+    <div class="col-md-12">
         {{ form_row(form.description) }}
     </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        {{ form_row(form.product) }}
+    </div>
+    <div class="col-md-4">
+        {{ form_row(form.file) }}
+    </div>
+
 </div>
 
 

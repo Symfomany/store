@@ -4,42 +4,25 @@
 
 {% block titlepage %}
     {# le filtre trans de twig va me chercher la traduction pour le texte Pages CMS#}
-    <i class="fa fa-pencil"></i> {{ "cms.list.title"|trans }}
+    <i class="fa fa-pencil"></i> Pages associées aux bijoux
 
 {% endblock  %}
 
 {% block content %}
 
 
-<div class="row">
-    <div class="btn-group pull-right">
-        <p>{{ "list.choice"|trans({'%username%' : app.user.username}, "messages") }}</p>
-        {#la variable _locale que j'envoi en paramètre dans ma route sera la langue affectée à mon tuilisateur  #}
-        <a href="{{ path('store_backend_cms_list', {'_locale': 'en'}) }}"
-           class="btn btn-primary btn-outline {% if  app.request.get('_locale') == 'en' %} active {% endif %}">Anglais</a>
 
-        <a href="{{ path('store_backend_cms_list', {'_locale': 'fr'}) }}"
-           class="btn btn-primary btn-outline {% if  app.request.get('_locale') == 'fr' %} active {% endif %}">Français</a>
+    <div class="row">
+        <div class="alert alert-info">
+            {# Me compte la liste de mes produits #}
+            <strong><i class="fa fa-info"></i> Information</strong>  Enrichissez vos bijoux en remplissant avec soins des pages associées afin d'ugmenter le référencement et la visibilité
+        </div>
     </div>
-</div>
-
-<br />
-
-
-<div class="row">
-    <a href="{{ path('store_backend_cms_new') }}" class=" pull-right btn btn-success btn-lg">
-        <i class="fa fa-plus"></i> {{ "cms.list.btn.add"|trans }}
-    </a>
-</div>
-
-
-
-<hr />
 
 <div class="alert alert-info alert-dark">
     {# Filtre: transchoice permet de choisir la traduction en fonction du nombre
       que je lui donne #}
-    {{  "cms.list.nb"|transchoice(cms|length) }}
+    {{  "cms.list.nb"|transchoice(cms|length,{}, 'messages') }}
 </div>
 
 {% if  cms is not empty %}
@@ -48,9 +31,7 @@
         <th>Id</th>
         <th>{{ "cms.list.table.th.title"|trans }}</th>
         <th>{{ "cms.list.table.th.summary"|trans }}</th>
-        <th>{{ "cms.list.table.th.title"|trans }}</th>
         <th>{{ "cms.list.table.th.active"|trans }}</th>
-        <th>Position</th>
         <th>{{ "cms.list.table.th.nb"|trans }}</th>
         <th>{{ "cms.list.table.th.actions"|trans }}</th>
     </thead>
@@ -63,22 +44,6 @@
             <td><a href="{{ path('store_backend_cms_view', {"id" : page.id, "name" : page.title}) }}">{{ page.title }}</a></td>
             <td>{{ page.summary }}</td>
             <td>
-                {% if page.state == 2 %}
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 2 }) }}" class="btn btn-success disabled">{{ "cms.list.table.state.read"|trans }}</a>
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 1 }) }}" class="btn btn-primary">{{ "cms.list.table.state.wait"|trans }}</a>
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 0 }) }}" class="btn btn-danger">{{ "cms.list.table.state.no"|trans }}</a>
-                {% elseif page.state == 1 %}
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 2 }) }}" class="btn btn-success">{{ "cms.list.table.state.read"|trans }}</a>
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 1 }) }}" class="btn btn-primary disabled">{{ "cms.list.table.state.wait"|trans }}</a>
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 0 }) }}" class="btn btn-danger">{{ "cms.list.table.state.no"|trans }}</a>
-                {% else %}
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 2 }) }}" class="btn btn-success">{{ "cms.list.table.state.read"|trans }}</a>
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 1 }) }}" class="btn btn-primary">{{ "cms.list.table.state.wait"|trans }}</a>
-                    <a href="{{ path('store_backend_cms_state', {"id" : page.id, "action": 0 }) }}" class="btn btn-danger disabled">{{ "cms.list.table.state.no"|trans }}</a>
-
-                {% endif %}
-            </td>
-            <td>
                 {% if page.active == 1 %}
                     <a href="{{ path('store_backend_cms_activate', {'id': page.id, 'action' : 0}) }}" >
                         <i class="fa fa-check"></i>
@@ -89,7 +54,6 @@
                     </a>
                 {% endif %}
             </td>
-            <td><i class="fa fa-arrows"></i></td>
             <td><i class="badge badge-info">{{ page.product|length }}</i></td>
             <td>
                 <div class="btn-group">
@@ -117,6 +81,11 @@
         {{ knp_pagination_render(cms) }}
     </div>
 
+    <div class="row">
+        <a href="{{ path('store_backend_cms_new') }}" class=" pull-right btn btn-success btn-lg">
+            <i class="fa fa-plus"></i> {{ "cms.list.btn.add"|trans }}
+        </a>
+    </div>
 
 {% endblock %}
 

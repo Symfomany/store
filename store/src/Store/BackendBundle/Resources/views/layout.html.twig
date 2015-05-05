@@ -9,7 +9,9 @@
   <link href="{{ asset('assets/backend/stylesheets/widgets.min.css') }}" rel="stylesheet" type="text/css">
   <link href="{{ asset('assets/backend/stylesheets/rtl.min.css') }} " rel="stylesheet" type="text/css">
   <link href="{{ asset('assets/backend/stylesheets/themes.min.css') }}" rel="stylesheet" type="text/css">
-  <link href="{{ asset('assets/backend/stylesheets/main.css') }}" rel="stylesheet" type="text/css">
+    {% stylesheets 'assets/backend/stylesheets/main.css' filter='uglifycss'  %}
+        <link rel="stylesheet" href="{{ asset_url }}" />
+    {% endstylesheets %}
 {% endblock %}
 
 {% block body %}
@@ -66,12 +68,12 @@
 {% block javascripts %}
     {{ parent() }}
     <script src="{{ asset('assets/backend/javascripts/pixel-admin.min.js') }}"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/hinclude/0.9.5/hinclude.min.js"></script>
 
     <script type="text/javascript">
         init.push(function () {
             $("select").select2();
             $("input[type='date']").attr('type','text').mask("99/99/9999");
-            $("#store_backend_product_ref").mask("****-**-*");
             $('input[type="file"]').pixelFileInput({ placeholder: 'Aucun fichier...' });
             $('div.alert-success').delay(3000).slideUp('slow');
         });

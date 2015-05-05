@@ -23,25 +23,12 @@ class ProduitController extends AbstractController{
         //récupérer l'utilisateur courant connecté
         $user = $this->getUser();
 
-        //Je récupère tous les produits du jeweler numéro 1
+        //Je récupère tous les bijous du jeweler numéro 1
         $products = $em->getRepository('StoreBackendBundle:Product')
             ->getProductByUser($user);
 
-        //Paginer mes produits
-        //je recupere le service knp_paginator qui me sert a paginer
-        $paginator  = $this->get('knp_paginator');
-
-        // J'utilise la méthode paginate() du service knp_paginator
-        $pagination = $paginator->paginate(
-            $products, //je lui envoie mon tableau de produits
-            $request->query->get('page', 1) ,
-            // Recupérer le numéro de page sur lequel
-            // Je me trouve, par defaut il prendra la page numéro 1
-            5 // je limite à 5 mes résultats de produits (5 par page)
-        );
-
         return $this->render('StoreBackendBundle:Product:list.html.twig', array(
-            'products' => $pagination
+            'products' => $products
         ));
     }
 
@@ -57,7 +44,7 @@ class ProduitController extends AbstractController{
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
 
-        //Je récupère tous les produits de ma base de données avec la methode findAll()
+        //Je récupère tous les bijous de ma base de données avec la methode findAll()
         $product = $em->getRepository('StoreBackendBundle:Product')->find($id);
 
 
@@ -71,7 +58,7 @@ class ProduitController extends AbstractController{
 
     /**
      * Activate a product
-     * @param $id
+     * @Security("is_granted('', id)")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function activateAction(Product $id, $action){
@@ -88,7 +75,7 @@ class ProduitController extends AbstractController{
         // et un message de confirmation
         $this->get('session')->getFlashBag()->add(
             'success',
-            'Votre produit a bien été activé'
+            'Votre bijou a bien été activé'
         );
 
         return $this->redirectToRoute('store_backend_product_list'); //redirection selon la route
@@ -98,7 +85,7 @@ class ProduitController extends AbstractController{
 
     /**
      * Cover a product
-     * @param $id
+     * @Security("is_granted('', id)")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function coverAction(Product $id, $action){
@@ -114,7 +101,7 @@ class ProduitController extends AbstractController{
         // et un message de confirmation
         $this->get('session')->getFlashBag()->add(
             'success',
-            'Votre produit a bien été modifié'
+            'Votre bijou a bien été modifié'
         );
 
         return $this->redirectToRoute('store_backend_product_list'); //redirection selon la route
@@ -132,9 +119,9 @@ class ProduitController extends AbstractController{
 
         $user = $this->getUser();
 
-        $product->setJeweler($user); //j'associe mon jeweler 1 à mon produit
+        $product->setJeweler($user); //j'associe mon jeweler 1 à mon bijou
 
-        // je crée un formulaire de produit en associant avec mon produit
+        // je crée un formulaire de bijou en associant avec mon bijou
         $form = $this->createForm(new ProductType($user),$product,
             array(
             'validation_groups' => 'new',
@@ -163,10 +150,10 @@ class ProduitController extends AbstractController{
             // et un message de confirmation
             $this->get('session')->getFlashBag()->add(
                 'success',
-                'Votre produit a bien été crée'
+                'Votre bijou a bien été crée'
             );
 
-            //je récupere la quantité du produit enregistrer
+            //je récupere la quantité du bijou enregistrer
             $quantity = $product->getQuantity();
 
 
@@ -175,7 +162,7 @@ class ProduitController extends AbstractController{
                 // et un message de confirmation
                 $this->get('session')->getFlashBag()->add(
                     'warning',
-                    'Votre bijou est un produit unique !'
+                    'Votre bijou est un bijou unique !'
                 );
             }
 
@@ -194,12 +181,12 @@ class ProduitController extends AbstractController{
     /**
      * is_granted
      * 1er argument : attribut à vide
-     * 2eme argument Objet: Produit
+     * 2eme argument Objet: bijou
      * @Security("is_granted('', id)")
      */
     public function editAction(Request $request,Product $id){
 
-        // je crée un formulaire de produit en associant avec mon produit
+        // je crée un formulaire de bijou en associant avec mon bijou
         $form = $this->createForm(new ProductType(1),$id,
             array(
             'validation_groups' => 'edit',
@@ -226,7 +213,7 @@ class ProduitController extends AbstractController{
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                'Votre produit a bien été edité'
+                'Votre bijou a bien été edité'
             );
 
             return $this->redirectToRoute('store_backend_product_list'); //redirection selon la route
@@ -244,23 +231,22 @@ class ProduitController extends AbstractController{
 
     /**
      * Action de suppression
-     * @param $id
+     * @Security("is_granted('', id)")
      */
-    public function removeAction($id){
+    public function removeAction(Product $id){
 
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
 
-        //Je récupère tous les produits de ma base de données avec la methode findAll()
-        $product = $em->getRepository('StoreBackendBundle:Product')->find($id);
-
-        $em->remove($product);
-        $em->flush();
-
         $this->get('session')->getFlashBag()->add(
             'success',
-            'Votre produit a bien été supprimé'
+            'Le bijou '.$id->getTitle().' a bien été supprimé'
         );
+        
+        $em->remove($id);
+        $em->flush();
+
+       
 
         return $this->redirectToRoute('store_backend_product_list');
 

@@ -49,7 +49,7 @@ class ProductType extends AbstractType
         // le 2eme argument à ma fonction add() est le type de mon champs
         // le 3eme argument c'est ùmes options à mon chamos
         $builder->add('title', null, array(
-            'label' => 'Titre de mon bijoux', //label de mon chmpa
+            'label' => 'Titre du bijou', //label de mon chmpa
             'required'  => true,
             'attr' => array(
                 'class' => 'form-control',
@@ -58,17 +58,16 @@ class ProductType extends AbstractType
             )
         ));
         $builder->add('ref', null, array(
-            'label' => 'Référence du produit',
+            'label' => 'Référence du bijou',
             'required'  => true,
             'attr' => array(
                 'class' => 'form-control',
-                'placeholder' => 'AAAA-XX-B',
-                'pattern' => '[A-Z]{4}-[0-9]{2}-[A-Z]{1}'
+                'placeholder' => 'AA-XX',
             )
         ));
 
         $builder->add('file', 'file', array(
-            'label' => 'Image de présentation',
+            'label' => 'Image de couverture',
             'required'  => false,
             'attr' => array(
                 'class' => 'form-control',
@@ -77,41 +76,30 @@ class ProductType extends AbstractType
             )
         ));
 
-        $builder->add('category', 'entity',
-        array (
-            'label' => 'Catégorie',
-            'class' => 'StoreBackendBundle:Category',
-            'property' => 'title',
-            'multiple' => true, // choix multiple
-            'expanded' => true, // checkbox plutot que liste déroulante
-            'query_builder' => function(CategoryRepository $er)
-            {
-                return $er->getCategoryByUserBuilder($this->user);
-            },
-        ));
 
         $builder->add('summary', null, array(
-            'label' => "Petit résumé",
+            'label' => "Petit résumé décrivant succintement le bijou",
             'required'  => true,
             'attr' => array(
                     'class' => 'form-control',
-                    'placeholder' => 'Petit résumé du bijoux',
+                    'placeholder' => 'Décrivez en quelques mots le bijou',
              )
         ));
         $builder->add('description', null, array(
-            'label' => "Longue description",
+            'label' => "Longue description complète du bijou",
             'required'  => true,
             'attr' => array(
                 'class' => 'form-control',
-                'placeholder' => 'Description longue du bijoux',
+                'rows' => 15,
+                'placeholder' => 'Soignez une longue description complète du bijou',
             )
         ));
         $builder->add('composition', null, array(
-            'label' => "Composition de votre bijoux",
+            'label' => "Composition du bijou",
             'required'  => true,
             'attr' => array(
                 'class' => 'form-control',
-                'placeholder' => 'Composition du bijoux',
+                'placeholder' => 'Composition du bijou',
             )
         ));
         $builder->add('price', 'money', array(
@@ -133,32 +121,47 @@ class ProductType extends AbstractType
         ));
         $builder->add('quantity', 'number', array(
             'required'  => true,
-            'label' => "Quantité du produit",
+            'label' => "Quantité en stock",
             'attr' => array(
                 'class' => 'form-control',
                 'pattern' => '[0-9]{1,4}'
             )
         ));
         $builder->add('active', null, array(
-            'label' => "Produit activé dans la boutique?"
+            'label' => "Bijou activé dans la boutique?"
         ));
         $builder->add('cover', null, array(
-            'label' => "Produit mis en couverture dans la boutique?"
+            'label' => "Bijou mis en avant sur ma page d'accueil dans la boutique?"
         ));
         $builder->add('cms', null, array(
-            'label' => "Page(s) associée(s) au produit",
+            'label' => "Page(s) associée(s) au bijou",
+            'multiple' => true, // choix multiple
+            'expanded' => true, // checkbox plutot que liste déroulante
             'attr' => array(
-                'class' => 'form-control',
             )
         ));
+
+        $builder->add('category', 'entity',
+            array (
+                'label' => 'Catégorie associées à votre bijou',
+                'class' => 'StoreBackendBundle:Category',
+                'property' => 'title',
+                'multiple' => true, // choix multiple
+                'expanded' => true, // checkbox plutot que liste déroulante
+                'query_builder' => function(CategoryRepository $er)
+                {
+                    return $er->getCategoryByUserBuilder($this->user);
+                },
+            ));
         $builder->add('supplier', null, array(
-            'label' => "Fournisseur(s) associé(s) au produit",
+            'label' => "Fournisseur(s) associé(s) au bijou",
+            'multiple' => true, // choix multiple
+            'expanded' => true, // checkbox plutot que liste déroulante
             'attr' => array(
-                'class' => 'form-control',
             )
         ));
         $builder->add('dateActive', 'datetime', array (
-            'label' => "Date d'activation",
+            'label' => "Date d'activation de la vente",
             'attr' => array(
                 'class' => 'form-control',
                 'placeholder' => 'dd/mm/YYYY',
@@ -168,12 +171,13 @@ class ProductType extends AbstractType
             'pattern' => '{{ day }}/{{ month }}/{{ year }',
         ));
         $builder->add('tag', null, array(
-            'label' => "Tag(s) associé(s) au produit",
+            'label' => "Mot(s)-clefs associé(s) au bijou",
             'attr' => array(
                 'class' => 'form-control',
             )
         ));
         $builder->add('envoyer', 'submit', array(
+            'label' => "Enregistrer ce bijou",
             'attr' => array(
                 'class' => 'btn btn-primary btn-sm'
             )

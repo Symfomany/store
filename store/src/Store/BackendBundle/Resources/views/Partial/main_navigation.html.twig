@@ -6,7 +6,7 @@
     -->
     <div id="main-navbar" class="navbar navbar-inverse" role="navigation">
     <!-- Main menu toggle -->
-    <button type="button" id="main-menu-toggle"><i class="navbar-icon fa fa-bars icon"></i><span class="hide-menu-text">HIDE MENU</span></button>
+    <button type="button" id="main-menu-toggle"><i class="navbar-icon fa fa-bars icon"></i><span class="hide-menu-text">CACHER MENU</span></button>
 
     <div class="navbar-inner">
     <!-- Main navbar header -->
@@ -14,8 +14,7 @@
 
         <!-- Logo -->
         <a href="index.html" class="navbar-brand">
-            <div><img alt="Pixel Admin" src="http://cache.filehippo.com/img/ex/2171__ChromeNew_icon.png"></div>
-            ALittleJewerly
+            Marché du <strong>Bijoux</strong>
         </a>
 
         <!-- Main navbar toggle -->
@@ -26,48 +25,30 @@
     <div id="main-navbar-collapse" class="collapse navbar-collapse main-navbar-collapse">
     <div>
     <ul class="nav navbar-nav">
-        <li class="{% if app.request.attributes.get('_route') == "store_backend_index" %} active {% endif %}">
+        <li id="menu_home" class="{% if app.request.attributes.get('_route') == "store_backend_index" %} active {% endif %}">
             <a href="{{ path('store_backend_index') }}"><i class="fa fa-home"></i> Home</a>
         </li>
-        <li class="{% if app.request.attributes.get('_route') == "store_backend_jeweler_myaccount" %} active {% endif %}">
+        <li id="menu_boutique" class="{% if app.request.attributes.get('_route') == "store_backend_jeweler_myaccount" %} active {% endif %}">
             <a href="{{ path('store_backend_jeweler_myaccount') }}"><i class="fa fa-user"></i> Ma Boutique</a>
         </li>
-        {% if is_granted('ROLE_COMMERCIAL') %}
-            <li class="{% if app.request.attributes.get('_route') == "store_backend_product_list" %} active {% endif %}">
-                <a href="{{ path('store_backend_product_list') }}"><i class="fa fa-bookmark"></i> Produits</a>
-            </li>
-        {% endif %}
-        {% if is_granted('ROLE_COMMERCIAL') %}
-            <li class="{% if app.request.attributes.get('_route') == "store_backend_category_list" %} active {% endif %}">
-                <a href="{{ path('store_backend_category_list') }}"><i class="fa fa-th"></i> Categories</a>
-            </li>
-        {% endif %}
-    {% if is_granted('ROLE_COMMERCIAL') %}
-
-        <li class="{% if app.request.attributes.get('_route') == "store_backend_order_list" %} active {% endif %}">
+        <li  id="menu_bijoux" class="{% if app.request.attributes.get('_route') == "store_backend_product_list" %} active {% endif %}">
+            <a href="{{ path('store_backend_product_list') }}"><i class="fa fa-th"></i> Bijoux</a>
+        </li>
+        <li  id="menu_categories" class="{% if app.request.attributes.get('_route') == "store_backend_category_list" %} active {% endif %}">
+            <a href="{{ path('store_backend_category_list') }}"><i class="fa fa-list-ul"></i> Categories</a>
+        </li>
+        <li  id="menu_commandes" class="{% if app.request.attributes.get('_route') == "store_backend_order_list" %} active {% endif %}">
             <a href="{{ path('store_backend_order_list') }}"><i class="fa fa-shopping-cart"></i> Commandes</a>
         </li>
-    {% endif %}
-    {% if is_granted('ROLE_EDITOR') %}
-
-        <li class="{% if app.request.attributes.get('_route') == "store_backend_cms_list" %} active {% endif %}">
-            <a href="{{ path('store_backend_cms_list') }}"><i class="fa fa-pencil"></i> CMS</a>
+        <li  id="menu_pages" class="{% if app.request.attributes.get('_route') == "store_backend_cms_list" %} active {% endif %}">
+            <a href="{{ path('store_backend_cms_list') }}"><i class="fa fa-pencil"></i> Pages</a>
         </li>
-    {% endif %}
-
-    {% if is_granted('ROLE_COMMERCIAL') %}
-
-        <li class="{% if app.request.attributes.get('_route') == "store_backend_supplier_list" %} active {% endif %}">
+        <li  id="menu_fournisseurs" class="{% if app.request.attributes.get('_route') == "store_backend_supplier_list" %} active {% endif %}">
             <a href="{{ path('store_backend_supplier_list') }}"><i class="fa fa-truck"></i> Fournisseurs</a>
         </li>
-    {% endif %}
-    {% if is_granted('ROLE_COMMERCIAL') %}
-
-        <li class="{% if app.request.attributes.get('_route') == "store_backend_slider_list" %} active {% endif %}">
+        <li  id="menu_slider" class="{% if app.request.attributes.get('_route') == "store_backend_slider_list" %} active {% endif %}">
             <a href="{{ path('store_backend_slider_list') }}"><i class="fa fa-video-camera"></i> Slider</a>
         </li>
-    {% endif %}
-
     </ul> <!-- / .navbar-nav -->
 
     <div class="right clearfix">
@@ -121,17 +102,12 @@
 
     {{ render(controller('StoreBackendBundle:Layout:myorders')) }}
 
-
-
-    <li>
-        <form class="navbar-form pull-left">
-            <input type="text" class="form-control" placeholder="Rechercher...">
-        </form>
-    </li>
-
     <li class="dropdown">
         <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
+        {% if app.user.image is not empty %}
             <img src="{{ app.user.image }}" alt="">
+        {% endif %}
+
             <span>{{ app.user.username }}</span>
         </a>
         <ul class="dropdown-menu">

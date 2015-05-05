@@ -107,7 +107,11 @@ class Supplier
 
     /**
      * @var \Doctrine\Common\Collections\Collection
-     *
+     * @Assert\Count(
+     *      min = "1",
+     *      minMessage = "Vous devez spécifier au moins un bijou",
+     *      groups={"new", "edit"}
+     * )
      * @ORM\ManyToMany(targetEntity="Product", mappedBy="supplier")
      */
     private $product;

@@ -19,6 +19,8 @@
     {#{{ form_errors(form.ref) }}#}
 
     {# Fonction qui sort le label +  le widget + les errors #}
+<h3><span class="fa fa-pencil"></span> Intitulé du bijou</h3>
+<hr />
 <div class="row">
     <div class="col-md-3">
         {{ form_row(form.ref) }} {# form_widget() + form_label() + form_errors() #}
@@ -33,22 +35,27 @@
                 <img src="{{ asset('uploads/product/' ~ product.imagepresentation) }}" class="img-thumbnail" />
             {% endif %}
         {% endif %}
+        <div class="alert alert-warning"><i class="fa fa-info"></i> Image de qualité et de bonne résolution (Format: jpeg ou jpg)</div>
     </div>
 </div>
-<hr />
 
+<h3><span class="fa fa-pencil"></span> A propos du bijou</h3>
+<hr />
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-6">
         {{ form_row(form.summary) }}
     </div>
-    <div class="col-md-4">
-        {{ form_row(form.description) }}
-    </div>
-    <div class="col-md-4">
+    <div class="col-md-6">
         {{ form_row(form.composition) }}
+    </div>
+    <div class="col-md-12">
+        {{ form_row(form.description) }}
     </div>
 
 </div>
+
+<h3><span class="fa fa-pencil"></span> Vente du bijou</h3>
+<hr />
 
 <div class="row">
     <div class="col-md-3">
@@ -64,6 +71,12 @@
         {{ form_row(form.dateActive) }}
     </div>
 </div>
+<div class="alert alert-info">
+    <i class="fa fa-info"></i> Indiquer en quantité 1 si le bijou est unique <br />
+    La date d'activation sert à appliquer une date de mise en vente du bijou sur votre boutique
+</div>
+
+
 <div class="row">
     <div class="col-md-6">
         {{ form_row(form.active) }}
@@ -72,6 +85,16 @@
         {{ form_row(form.cover) }}
     </div>
 </div>
+
+
+<h3><span class="fa fa-pencil"></span> Associations du bijou</h3>
+<hr />
+<div class="alert alert-info">
+    <button class="close">X</button>
+    <strong><i class="fa fa-info"></i> Information: </strong> Aidez votre produit à être bien référencé grâce au catégories associées,
+    au pages rédigés associés, au mots-clefs ...
+</div>
+
 <div class="row">
     <div class="col-md-6">
         {{ form_row(form.category) }}

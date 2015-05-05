@@ -9,10 +9,44 @@
    {{ parent() }}
     <!-- Google Maps -->
     <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&sensor=false"></script>
+    <script src="{{  asset('assets/backend/javascripts/jquery.joyride-2.1.js') }}"></script>
+{% endblock  %}
+
+{% block stylesheets %}
+   {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('assets/backend/stylesheets/tour/joyride-2.1.css') }}">
 {% endblock  %}
 
 {% block content %}
 
+
+    <ol id="joyRideTipContent">
+
+        <li data-id="menu_bijoux" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
+            <h2>Créer et editer des Bijoux</h2>
+            <p>Gérez tous vos bijoux, descriptions & intitulés, les quantités, les prix, les taxes...</p>
+        </li>
+        <li data-id="menu_categories" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
+            <h2>Organisez par catégories</h2>
+            <p>Organisez vos bijoux par catégories</p>
+        </li>
+        <li data-id="menu_commandes" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
+            <h2>Gérez vos commandes</h2>
+            <p>Suivez toutes vos commandes de bijoux</p>
+        </li>
+        <li data-id="menu_pages" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
+            <h2>Rédigez vos pages</h2>
+            <p>Ecrivez toutes vos pages à propis de vos produits et enrichissez le contenu de vos pages</p>
+        </li>
+        <li data-id="menu_fournisseurs" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
+            <h2>Manager vos fournisseurs</h2>
+            <p>Associez vos bijoux à vos fournisseurs</p>
+        </li>
+        <li data-id="menu_slider" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
+            <h2>Manager votre diaporama</h2>
+            <p>Publiez vos photos</p>
+        </li>
+    </ol>
 
     {% if nbprodempty.nb > 0 %}
         <div class="row">
@@ -641,6 +675,27 @@
 
                 google.maps.event.addListener(marker, 'click', function() {
                     infowindow.open(map,marker);
+                });
+
+                $('#joyRideTipContent').joyride({
+                    autoStart : true,
+                    'template' : { // HTML segments for tip layout
+                        'link'    : '<a href="#close" class="joyride-close-tip">X</a>',
+                        'timer'   : '<div class="joyride-timer-indicator-wrap"><span class="joyride-timer-indicator"></span></div>',
+                        'tip'     : '<div class="joyride-tip-guide"><span class="joyride-nub"></span></div>',
+                        'wrapper' : '<div class="joyride-content-wrapper" role="dialog"></div>',
+                        'button'  : '<a href="#" class="joyride-next-tip"></a>',
+                        'modal'   : '<div class="joyride-modal-bg"></div>',
+                        'expose'  : '<div class="joyride-expose-wrapper"></div>',
+                        'exposeCover': '<div class="joyride-expose-cover"></div>'
+                    },
+                    postStepCallback : function (index, tip) {
+//                        if (index == 3) {
+//                            $(this).joyride('set_li', false, 1);
+//                        }
+                    },
+                    modal:true,
+                    expose: true
                 });
 
             });

@@ -2,38 +2,52 @@
 
 
 {% block titlepage %}
-    <i class="fa  fa-bookmark"></i> Liste de mes produits
+    <i class="fa  fa-bookmark"></i> Liste de mes bijoux dans ma boutique
 {% endblock  %}
 
 {% block content %}
 
+    <script>
+        init.push(function () {
+                $('#jq-datatables-example').dataTable({
+                    "aoColumnDefs": [
+                        { 'bSortable': false, 'aTargets': [ 0,5,6,7,8,9,10,11 ] }
+                    ]
+                });
+            $('#jq-datatables-example_wrapper .table-caption').text('Toutes vos bijoux');
+            $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Rechercher...');
+        });
+    </script>
+
+
+    <div class="row">
+        <div class="alert alert-info alert-dark">
+                {# Me compte la liste de mes produits #}
+                <strong>{{ products|length }}</strong>   bijoux dans votre boutique
+            </div>
+    </div>
+
     <div class="row">
         <a href="{{ path('store_backend_product_new') }}" class=" pull-right btn btn-success btn-lg">
-            <i class="fa fa-plus"></i> Ajouter un produit
+            <i class="fa fa-plus"></i> Ajouter un bijou
         </a>
-    </div>
-    <hr />
-
-    <div class="alert alert-info alert-dark">
-        {# Me compte la liste de mes produits #}
-        {{ products.getTotalItemCount }} produits trouvés
     </div>
 
     {% if products is not empty %}
-    <table class="table table-bordered table-primary">
+    <br />
+    <table id="jq-datatables-example" class="table table-bordered table-primary">
         <thead>
             {#  1er argument, le tableau de produits,
             le 2eme argument le label de la colonne
             le 3eme arguement la colonne sur lequele le tri va s'effectué
             #}
-            <th>{{ knp_pagination_sortable(products, 'Id', 'p.id')|raw }}</th>
-            <th>{{ knp_pagination_sortable(products, 'Référence', 'p.ref')|raw }}</th>
-            <th>{{ knp_pagination_sortable(products, 'Titre', 'p.title')|raw }}</th>
-            <th>{{ knp_pagination_sortable(products, 'Prix', 'p.price')|raw }}</th>
-            <th>{{ knp_pagination_sortable(products, 'Quantité', 'p.quantity')|raw }}</th>
+            <th>Id</th>
+            <th>Référence</th>
+            <th>Titre</th>
+            <th>Prix</th>
+            <th>Quantité</th>
             <th>Actif</th>
             <th>Page d'Acceuil</th>
-            <th>Position</th>
             <th>Catégories</th>
             <th>Pages CMS</th>
             <th>Fournisseurs</th>
@@ -48,7 +62,7 @@
                     <td>{{ product.ref }}</td>
                     <td><a href="{{ path('store_backend_product_view', {'name' : product.title , 'id': product.id } ) }}"> {{ product.title }}</a></td>
                     <td><strong>{{ product.price }}€</strong></td>
-                    <td>{{ product.quantity }}</td>
+                    <td>{{ product.quantity }} <i class="fa fa-bars"></i> </td>
                     <td>
                     {% if product.active == 1 %}
                         <a href="{{ path('store_backend_product_activate', {'id': product.id, 'action' : 0}) }}" >
@@ -71,7 +85,6 @@
                             </a>
                         {% endif %}
                     </td>
-                    <td><i class="fa fa-arrows"></i></td>
                     <td><span class="badge badge-info">{{ product.category|length }}</span> catégories</td>
                     <td><span class="badge badge-info">{{ product.cms|length }}</span> pages cms</td>
                     <td><span class="badge badge-info">{{ product.supplier|length }}</span> fournisseurs</td>
@@ -96,12 +109,8 @@
 
         {% else %}
         <div class="alert alert-danger alert-dark">
-            <strong>Attention</strong> Aaucun résultat trouvé
+            <strong>Attention</strong> Aucun résultat trouvé
         </div>
         {% endif %}
-
-    <div class="navigation">
-        {{ knp_pagination_render(products) }}
-    </div>
 
 {% endblock %}

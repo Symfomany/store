@@ -1,45 +1,145 @@
-{% extends "StoreBackendBundle::layout.html.twig" %}
+{% extends "StoreBackendBundle::layout_logout.html.twig" %}
+
+{% form_theme form _self %}
+
+{% block captcha_widget %}
+    {% spaceless %}
+        {{ form_widget(form) }}
+        <div class="row">
+        <img class="img-responsive pull-right" id="{{ image_id }}" src="{{ captcha_code }}" alt="" title="captcha" width="{{ captcha_width }}" height="{{ captcha_height }}" />
+        </div>
+    {% endspaceless %}
+{% endblock %}
 
 
-{% block titlepage %}
-    <i class="fa fa-power-off"></i> Souscription de Bijoutier
-{% endblock  %}
 
 {% block content %}
 
-    {{ form_start(form) }}
-    <div class="row">
-        <div class="col-md-12">
-            {{ form_row(form.title) }}
+    <script type="text/javascript">
+        var init = [];
+        init.push(function () {
+            $("form").validate({
+                ignore: '.ignore, .select2-input',
+                focusInvalid: false,
+                rules: {
+                    'username': {
+                        required: true
+                    },
+                    'title': {
+                        required: true,
+                        minlength: 4
+                    },
+                    'description': {
+                        required: true,
+                        minlength: 10
+                    },
+                    'email': {
+                        required: true,
+                        email: true
+                    },
+                    'password[mdp]': {
+                        required: true,
+                        minlength: 6
+                    },
+                    'password[mdp_conf]': {
+                        required: true,
+                        minlength: 6,
+                        equalTo: "#password_mdp"
+                    },
+                    'captcha': {
+                        required: true
+                    }
+                },
+                messages: {
+                    'username': "Vous devez mettre un login pour vous identifier",
+                    'captcha': "Vous devez remplir le code de sécurité",
+                    'title': "Vous devez mettre un nom ou un titre à votre boutique",
+                    'description': "Vous devez mettre une description d'au moins 10 caractères",
+                    'email': "Vous devez mettre un email valide",
+                    'password[mdp]': "Vous devez mettre mot de passe valide",
+                    'password[mdp_conf]': "Vous devez mettre confimer correctement votre mot de passe ",
+                }
+            });
+        });
+        window.PixelAdmin.start(init);
+    </script>
+
+
+    <div class="panel" style="width: 800px">
+
+        <h3 class="text-center"><i class="fa fa-plus"></i> Inscription de Bijoutier</h3>
+
+        <div class="panel-body">
+
+        {{ form_start(form) }}
+
+            <div class="form-group">
+            {{ form_widget(form.title) }}
+            {{ form_errors(form.title) }}
+            </div>
+
+            <div class="form-group">
+            {{ form_widget(form.description) }}
+                {{ form_errors(form.description) }}
+
+            </div>
+
+
+            <div class="form-group">
+                {{ form_widget(form.username) }}
+                {{ form_errors(form.username) }}
+
+            </div>
+
+            <div class="form-group">
+            {{ form_widget(form.email) }}
+                {{ form_errors(form.email) }}
+
+            </div>
+
+
+            <div class="form-group">
+            {{ form_widget(form.password.mdp) }}
+                {{ form_errors(form.password) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_widget(form.password.mdp_conf) }}
+                {{ form_errors(form.password.mdp_conf) }}
+            </div>
+
+            <div class="form-group">
+                {{ form_widget(form.captcha) }}
+                {{ form_errors(form.captcha) }}
+            </div>
+
+
+            <div class="form-group" style="margin-top: 20px;margin-bottom: 20px;">
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="signup_confirm" name="signup_confirm" required="required" class="px" value="1">
+
+                    <span class="lbl">J'accepte les <a href="#" target="_blank">Les Conditons Générales d'Utilisation</a></span>
+                </label>
+
+            </div>
+
         </div>
+
+        <div class="panel-footer text-center">
+            <button class=" text-center btn btn-lg btn-primary" type="submit">
+                <i class="fa fa-plus"></i> J'enregistre mon compte
+            </button>
+        </div>
+
+
+            {# ATTENTION: token à ne pas oublier #}
+            {{ form_widget(form._token) }}
+
+            {# Crée une balise fermante </form>#}
+            {{ form_end(form, {'render_rest': false}) }}
+
     </div>
 
-    <div class="row">
-        <div class="col-md-3">
-            {{ form_row(form.email) }}
-        </div>
-        <div class="col-md-3">
-            {{ form_row(form.username) }}
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-md-3">
-            {{ form_row(form.password.mdp) }}
-        </div>
-        <div class="col-md-3">
-            {{ form_row(form.password.mdp_conf) }}
-        </div>
-    </div>
-
-    {#{#btn envoyer#}
-    {{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-lg btn-primary'}}) }}
-
-    {# ATTENTION: token à ne pas oublier #}
-    {{ form_widget(form._token) }}
-
-    {# Crée une balise fermante </form>#}
-    {{ form_end(form, {'render_rest': false}) }}
 {% endblock %}
 
 

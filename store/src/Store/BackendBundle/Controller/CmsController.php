@@ -23,9 +23,6 @@ class CmsController extends AbstractController{
      */
     public function listAction(Request $request){
 
-        // forcer la langue
-//        $request->setLocale('fr');
-
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $cms = $em->getRepository('StoreBackendBundle:Cms')->getCmsByUser($user);
@@ -41,27 +38,6 @@ class CmsController extends AbstractController{
         return $this->render('StoreBackendBundle:Cms:list.html.twig', array(
             'cms' => $pagination
         ));
-    }
-
-    /**
-     * View a cms
-     * @param $id
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function viewAction($id, $name){
-
-
-        $em = $this->getDoctrine()->getManager();
-        $cms = $em->getRepository('StoreBackendBundle:Cms')->find(1);
-
-
-        return $this->render('StoreBackendBundle:Cms:view.html.twig',
-            array(
-                'id' => $id,
-                'cms' => $cms
-            )
-        );
-
     }
 
 
@@ -113,6 +89,7 @@ class CmsController extends AbstractController{
 
     /**
      * New category page
+     * @Security("is_granted('', id)")
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function editAction(Request $request, Cms $id){
@@ -155,6 +132,7 @@ class CmsController extends AbstractController{
     /**
      * Action d'activation d'une page CMS
      * @param $id
+     * @Security("is_granted('', id)")
      */
     public function activateAction(Cms $id, $action){
         $em = $this->getDoctrine()->getManager();
@@ -176,6 +154,7 @@ class CmsController extends AbstractController{
     /**
      * Action de suppression
      * @param $id
+     * @Security("is_granted('', id)")
      */
     public function stateAction(Cms $id, $action){
         $em = $this->getDoctrine()->getManager();
@@ -195,16 +174,15 @@ class CmsController extends AbstractController{
     /**
      * Action de suppression
      * @param $id
+     * @Security("is_granted('', id)")
      */
-    public function removeAction($id){
+    public function removeAction(Cms $id){
 
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
 
-        //Je récupère tous les produits de ma base de données avec la methode findAll()
-        $cms = $em->getRepository('StoreBackendBundle:Cms')->find($id);
 
-        $em->remove($cms);
+        $em->remove($id);
         $em->flush();
 
         $this->get('session')->getFlashBag()->add(

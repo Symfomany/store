@@ -3,7 +3,9 @@
 namespace Store\BackendBundle\Controller;
 
 use Store\BackendBundle\Entity\Jeweler;
+use Store\BackendBundle\Entity\JewelerMeta;
 use Store\BackendBundle\Form\JewelerSubscribeType;
+use Store\BackendBundle\Form\LoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
@@ -25,6 +27,10 @@ class SecurityController extends Controller{
          */
         $session = $request->getSession();
 
+        $form =  $this->createForm(new LoginType());
+
+        $form->handleRequest($request);
+
         // get the login error if there is one
         if ($request->attributes->has(SecurityContext::AUTHENTICATION_ERROR)) {
             $error = $request->attributes->get(SecurityContext::AUTHENTICATION_ERROR);
@@ -33,14 +39,51 @@ class SecurityController extends Controller{
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
 
+
         // je retourne la vue login de mon dossier Security
         return $this->render('StoreBackendBundle:Security:login.html.twig',
             array(
                 'last_username' => $session->get(SecurityContext::LAST_USERNAME),
                 'error'         => $error,
+                'form' => $form->createView()
             ));
+
     }
 
+
+    /**
+     * Suscribe a Jeweler
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function confirmationAction(Request $request, $id, $token){
+        $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
+
+        $user = $em->getRepository('StoreBackendBundle:Jeweler')->findOneBy(
+          array(
+            'token' => $token,
+            'id' => $id,
+        ));
+
+        if($user){
+            if($user->getEnabled() == 0)
+                $user->setEnabled(true);
+                $em->persist($user);
+                $em->flush();
+
+            $this->get('session')->getFlashBag()->add(
+                'info',
+                "Bravo, vous avez activé votre compte ! Vous pouvez vous connecter sur l'outil d'administration"
+            );
+
+        }
+
+        $this->get('session')->getFlashBag()->add(
+            'danger',
+            "Mauvais compte . Veuillez nous contacter"
+        );
+
+        return $this->redirectToRoute('store_backend_security_login'); //redirection selon la route
+    }
 
     /**
      * Suscribe a Jeweler
@@ -90,16 +133,27 @@ class SecurityController extends Controller{
             //J'associe mon jeweler au role ROLE_JEWELER
             $jeweler->addGroup($group);
 
-            $em->persist($jeweler); //enregistrement
+            $meta = new JewelerMeta();
+            $meta->setJeweler($jeweler);
+            $jeweler->setMeta($meta);
+
+            $em->persist($meta); //enregistrement
+            $em->persist($jeweler);
             $em->flush();
+
+            $this->get('store.backend.email')->sendparam(
+                $jeweler, 'ecrindebijoux@gmail.com',
+                'StoreBackendBundle:Email:subscribe.html.twig', "[ALittleJewerly] Confirmation de votre compte",
+                $jeweler->getEmail()
+            );
 
             $this->get('session')->getFlashBag()->add(
                 'success',
-                'Votre compte a bien été crée'
+                'Votre compte a bien été crée. Un emailo de confirmation a été envoyé à '.$jeweler->getEmail()
             );
             $this->get('session')->getFlashBag()->add(
                 'info',
-                'Vous pouvez vous connecter sur le back-office'
+                "Vous devez activer votre compte pour pouvoir se connecter sur l'outil d'administration"
             );
             return $this->redirectToRoute('store_backend_security_login'); //redirection selon la route
         }

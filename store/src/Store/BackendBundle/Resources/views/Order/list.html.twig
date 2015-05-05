@@ -8,17 +8,29 @@
 {% block content %}
     <script>
         init.push(function () {
-            $('#jq-datatables-example').dataTable();
+            $('#jq-datatables-example').dataTable({
+                "aoColumnDefs": [
+                    { 'bSortable': false, 'aTargets': [0,5,6 ] }
+                ]
+            });
             $('#jq-datatables-example_wrapper .table-caption').text('Toutes vos commandes');
             $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Rechercher...');
 
             $('.selectstate').change(function(){
-                var href = $(this).find().attr('data-href');
-//                alert($(this).html());
-//                window.location.href= href;
+                var optionSelected = $("option:selected", this);
+                var href = optionSelected.attr('data-href');
+                document.location.href= href;
             });
         });
     </script>
+
+
+    <div class="row">
+        <div class="alert alert-info">
+            {# Me compte la liste de mes produits #}
+            <strong><i class="fa fa-info"></i> Information</strong>  Gérer vos commandes de bijoux en fonction de l'état
+        </div>
+    </div>
 
     {% if orders is not empty %}
     <table class="table table-bordered table-primary" id="jq-datatables-example">

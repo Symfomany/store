@@ -1,3 +1,6 @@
+"User account is disabled.": Votre compte n'est pas encore activé. Veuille vérifier votre boîte e-mail.
+User account is disabled.: Votre compte n'est pas encore activé. Veuille vérifier votre boîte e-mail.
+
 cms:
   form:
     validation:

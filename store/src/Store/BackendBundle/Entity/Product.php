@@ -29,10 +29,6 @@ class Product
 
     /**
      * @var string
-     * @Assert\Regex(pattern="/[A-Z]{4}-[0-9]{2}-[A-Z]{1}/",
-     *                          message="La référence n'est pas valide",
-     *                          groups={"new", "edit"}
-     * )
      * @Assert\NotBlank(
      *     message = "La référence ne doit pas etre vide",
      *     groups={"new", "edit"}

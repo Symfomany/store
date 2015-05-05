@@ -5,6 +5,7 @@ namespace Store\BackendBundle\Controller;
 
 // J'inclue la classe Controller de Symfony pour pouvoir hériter de cette classe
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Response;
 
 
 /**
@@ -80,8 +81,17 @@ class MainController extends Controller{
         $statorder[] = $em->getRepository('StoreBackendBundle:Order')->getNbOrderByMonth($user, new \DateTime('-4 month'));
         $statorder[] = $em->getRepository('StoreBackendBundle:Order')->getNbOrderByMonth($user, new \DateTime('-5 month'));
 
-        // je retourne la vue index de mon dossier Main
-        return $this->render('StoreBackendBundle:Main:index.html.twig',
+        $response = new Response();
+        $response->setPrivate();
+
+        // définit une directive personnalisée du Cache-Control
+        $response->headers->addCacheControlDirective('must-revalidate', true);
+
+        $date = new \DateTime();
+        $date->modify('+600 seconds');
+        $response->setExpires($date);
+
+        $response->setContent($this->renderView('StoreBackendBundle:Main:index.html.twig',
             array(
                 'ca' => $ca,
                 'nbprod' => $nbprod,
@@ -97,8 +107,16 @@ class MainController extends Controller{
                 'nbcms' => $nbcms,
                 'nbcomm' => $nbcomm,
                 'statorder' => $statorder,
-            )
-        );
+            )));
+        $response->setETag(md5($response->getContent()));
+
+
+// définit l'âge max des caches privés ou des caches partagés
+        $response->setMaxAge(600);
+
+
+        // je retourne la vue index de mon dossier Main
+        return $response;
     }
 
 

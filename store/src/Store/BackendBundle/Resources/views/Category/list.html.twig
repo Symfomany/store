@@ -2,30 +2,33 @@
 
 
 {% block titlepage %}
-    <i class="fa fa-th"></i> Categories
+    <i class="fa fa fa-list-ul"></i> Categories de bijoux
 {% endblock  %}
 
 {% block content %}
 
+
     <div class="row">
-        <a href="{{ path('store_backend_category_new') }}" class=" pull-right btn btn-success btn-lg">
-            <i class="fa fa-plus"></i> Ajouter une catégorie
-        </a>
+        <div class="alert alert-info">
+            {# Me compte la liste de mes produits #}
+            <strong><i class="fa fa-info"></i> Information</strong>  Classez vos bijoux par des catégories originales, cela aidera la recherche de bijoux de vos clients
+        </div>
     </div>
 
-    <hr />
+
 
     <div class="alert alert-info alert-dark">
-        {{ categories.getTotalItemCount }} catégories trouvés
+        {{ categories.getTotalItemCount }} catégories de bijoux
     </div>
+
 {% if categories is not empty %}
 
+    <div class="col-md-12">
     <table class="table table-bordered table-primary">
         <thead>
             <th>Id</th>
             <th>Titre</th>
             <th>Description</th>
-            <th>Position</th>
             <th>Nb.de produits affectés</th>
             <th>Actions</th>
         </thead>
@@ -35,7 +38,6 @@
                     <td><a href="">{{ category.id }}</a></td>
                     <td><a href="">{{ category.title }}</a></td>
                     <td>{{ category.description }}</td>
-                    <td><i class="fa fa-arrows"></i></td>
                     <td><span class="badge badge-info"><strong>{{ category.product|length }}</strong></span> produits</td>
                     <td>
                         <div class="btn-group">
@@ -52,6 +54,7 @@
             {% endfor %}
         </tbody>
     </table>
+    </div>
 {% else %}
     <div class="alert alert-danger alert-dark">
         <strong>Attention</strong> Aucun résultat de trouvé
@@ -62,6 +65,12 @@
         {{ knp_pagination_render(categories) }}
     </div>
 
+
+    <div class="row">
+        <a href="{{ path('store_backend_category_new') }}" class=" pull-right btn btn-success btn-lg">
+            <i class="fa fa-plus"></i> Ajouter une catégorie
+        </a>
+    </div>
 {% endblock %}
 
 
