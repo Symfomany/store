@@ -5,6 +5,9 @@ namespace Store\BackendBundle\Listener;
 
 use Doctrine\ORM\EntityManager;
 use Store\BackendBundle\Notification\Notification;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Routing\Router;
 use Symfony\Component\Security\Core\Event\AuthenticationFailureEvent;
 use Symfony\Component\Security\Core\SecurityContextInterface;
 use Symfony\Component\Security\Http\Event\InteractiveLoginEvent;
@@ -37,12 +40,16 @@ class AuthentificationListener
      */
     public function __construct(EntityManager $em,
             SecurityContextInterface $securityContext,
-            Notification $notification)
+            Notification $notification,
+            Session $session,
+            Router $router)
     {
         //je stocke dans 2 attributs les services récupérés
         $this->em = $em;
         $this->securityContext = $securityContext;
         $this->notification = $notification;
+        $this->session = $session;
+        $this->router = $router;
     }
 
     /**
@@ -58,8 +65,7 @@ class AuthentificationListener
 
         //recupere tous les produits de l'utilisateur via le repository ProductRepository
         // et via getProductsQuantityIsLower() qui on une quantité < 5
-        $products = $this->em->getRepository('StoreBackendBundle:Product')->
-            getProductsQuantityIsLower($user);
+        $products = $this->em->getRepository('StoreBackendBundle:Product')->getProductsQuantityIsLower($user);
 
         //pour chaque produit
         foreach($products as $product){
@@ -77,6 +83,17 @@ class AuthentificationListener
 
 
         // declencher une notification dans mes produits
+        $date = $user->getDateAuth();
+        $oldyear = new \DateTime('-2 month');
+
+        $route = 'store_backend_index';
+
+
+        // Long time to control use account
+        if($date < $oldyear || !$date){
+            $this->session->set('first', true);
+            $route = 'store_backend_jeweler_myaccount';
+        }
 
         // met à jour la date de connexion de l'utilisateur
         $user->setDateAuth($now);
@@ -84,6 +101,9 @@ class AuthentificationListener
         //enregistre mon utilisateur avec sa date modifié
         $this->em->persist($user);
         $this->em->flush();
+
+        return new RedirectResponse($this->router->generate($route));
+        
     }
 
 

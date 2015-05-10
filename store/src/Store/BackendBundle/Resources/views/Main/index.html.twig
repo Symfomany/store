@@ -19,35 +19,6 @@
 
 {% block content %}
 
-
-    <ol id="joyRideTipContent">
-
-        <li data-id="menu_bijoux" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
-            <h2>Créer et editer des Bijoux</h2>
-            <p>Gérez tous vos bijoux, descriptions & intitulés, les quantités, les prix, les taxes...</p>
-        </li>
-        <li data-id="menu_categories" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
-            <h2>Organisez par catégories</h2>
-            <p>Organisez et trié vos bijoux par catégories</p>
-        </li>
-        <li data-id="menu_commandes" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
-            <h2>Gérez vos commandes</h2>
-            <p>Suivez toutes vos commandes de bijoux en temps réels</p>
-        </li>
-        <li data-id="menu_pages" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
-            <h2>Rédigez vos pages</h2>
-            <p>Ecrivez vos propres pages à propos de vos produits et enrichissez le contenu de vos pages</p>
-        </li>
-        <li data-id="menu_fournisseurs" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
-            <h2>Manager vos fournisseurs</h2>
-            <p>Créez des fournisseurs à bijoux et associez vos bijoux à vos fournisseurs</p>
-        </li>
-        <li data-id="menu_slider" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
-            <h2>Manager votre diaporama</h2>
-            <p>Publiez toutes vos jolies photos</p>
-        </li>
-    </ol>
-
     {% if nbprodempty.nb > 0 %}
         <div class="row">
             <div class="alert alert-warning"><i class="fa fa-warning"></i> <strong>{{ nbprodempty.nb }}</strong> produits sont en rupture de stock</div>
@@ -555,78 +526,78 @@
 
 
 
-    <div class="row">
-        <div class="col-md-6">
-        <div class="panel widget-followers panel-dark panel-info">
-            <div class="panel-heading">
-                <span class="panel-title"><i class="panel-title-icon fa fa-dollar"></i>Promotions & Réduction</span>
-            </div> <!-- / .panel-heading -->
-            <div class="panel-body">
+    {#<div class="row">#}
+        {#<div class="col-md-6">#}
+        {#<div class="panel widget-followers panel-dark panel-info">#}
+            {#<div class="panel-heading">#}
+                {#<span class="panel-title"><i class="panel-title-icon fa fa-dollar"></i>Promotions & Réduction</span>#}
+            {#</div> <!-- / .panel-heading -->#}
+            {#<div class="panel-body">#}
 
-                <div class="follower">
-                    <div class="body">
-                        <div class="follower-controls">
-                            <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;-20 %</span></a>
-                        </div>
-                        <a href="#" class="follower-name">ALYCIA Collier</a> <span class="badge badge-info">85.7€</span><br>
-                        <a href="#" class="follower-username">Promotion</a>
-                    </div>
-                </div>
-                <div class="follower">
-                    <div class="body">
-                        <div class="follower-controls">
-                            <a href="#" class="btn btn-sm btn-info"><i class="fa fa-check"></i><span>&nbsp;&nbsp;-10€</span></a>
-                        </div>
-                        <a href="#" class="follower-name">ALYCIA Collier</a> <span class="badge badge-info">45.7€</span><br>
-                        <a href="#" class="follower-username">Promotion</a>
-                    </div>
-                </div>
-                <div class="follower">
-                    <div class="body">
-                        <div class="follower-controls">
-                            <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;-15%</span></a>
-                        </div>
-                        <a href="#" class="follower-name">ZOE Collier</a>  <span class="badge badge-info">14.7€</span><br>
-                        <a href="#" class="follower-username">Réduction</a>
-                    </div>
-                </div>
-                <div class="follower">
-                    <div class="body">
-                        <div class="follower-controls">
-                            <a href="#" class="btn btn-sm btn-info"><i class="fa fa-check"></i><span>&nbsp;&nbsp;-15%</span></a>
-                        </div>
-                        <a href="#" class="follower-name">LAURA Collier élégant</a>  <span class="badge badge-info">12.7€</span><br>
-                        <a href="#" class="follower-username">Promotion</a>
-                    </div>
-                </div>
+                {#<div class="follower">#}
+                    {#<div class="body">#}
+                        {#<div class="follower-controls">#}
+                            {#<a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;-20 %</span></a>#}
+                        {#</div>#}
+                        {#<a href="#" class="follower-name">ALYCIA Collier</a> <span class="badge badge-info">85.7€</span><br>#}
+                        {#<a href="#" class="follower-username">Promotion</a>#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="follower">#}
+                    {#<div class="body">#}
+                        {#<div class="follower-controls">#}
+                            {#<a href="#" class="btn btn-sm btn-info"><i class="fa fa-check"></i><span>&nbsp;&nbsp;-10€</span></a>#}
+                        {#</div>#}
+                        {#<a href="#" class="follower-name">ALYCIA Collier</a> <span class="badge badge-info">45.7€</span><br>#}
+                        {#<a href="#" class="follower-username">Promotion</a>#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="follower">#}
+                    {#<div class="body">#}
+                        {#<div class="follower-controls">#}
+                            {#<a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;-15%</span></a>#}
+                        {#</div>#}
+                        {#<a href="#" class="follower-name">ZOE Collier</a>  <span class="badge badge-info">14.7€</span><br>#}
+                        {#<a href="#" class="follower-username">Réduction</a>#}
+                    {#</div>#}
+                {#</div>#}
+                {#<div class="follower">#}
+                    {#<div class="body">#}
+                        {#<div class="follower-controls">#}
+                            {#<a href="#" class="btn btn-sm btn-info"><i class="fa fa-check"></i><span>&nbsp;&nbsp;-15%</span></a>#}
+                        {#</div>#}
+                        {#<a href="#" class="follower-name">LAURA Collier élégant</a>  <span class="badge badge-info">12.7€</span><br>#}
+                        {#<a href="#" class="follower-username">Promotion</a>#}
+                    {#</div>#}
+                {#</div>#}
 
-            </div> <!-- / .panel-body -->
-        </div>
-        </div>
-        <div class="col-md-6">
-            <div class="panel panel-info panel-dark panel-body-colorful widget-profile widget-profile-centered">
-                <div class="panel-heading">
-                    <div class="widget-profile-header">
-                        <span>Boutique de Julien</span><br>
-                        <p>Tous les produits de la boutique de Julien</p>
+            {#</div> <!-- / .panel-body -->#}
+        {#</div>#}
+        {#</div>#}
+        {#<div class="col-md-6">#}
+            {#<div class="panel panel-info panel-dark panel-body-colorful widget-profile widget-profile-centered">#}
+                {#<div class="panel-heading">#}
+                    {#<div class="widget-profile-header">#}
+                        {#<span>Boutique de Julien</span><br>#}
+                        {#<p>Tous les produits de la boutique de Julien</p>#}
 
-                    </div>
-                </div> <!-- / .panel-heading -->
-                <div class="panel-body">
-                    <div class="widget-profile-text" style="padding: 0;">
-                        <p><i class="fa fa-phone"></i> 06 74 58 56 48</p>
-                        <p><i class="fa fa-mail-forward"></i> julien@meetserious.com</p>
-                        <a href="https://twitter.com/test">http://www.meetserious.com</a>
-                        <p>26 Rue Emile Decorps</p>
-                        <p>Lyon</p>
-                        <p><i class="fa fa-link"></i><a href=""> http://fr.dawanda.com/shop/victoireandmatilda</a></p>
-                        <p><i class="fa fa-link"></i><a href=""> http://www.alittlemarket.com/boutique/perea_bijoux-279514.html</a></p>
-                    </div>
-                </div>
-            </div> <!-- / .panel -->
-            <!-- /7. $PROFILE_WIDGET_CENTERED_EXAMPLE -->
-        </div>
-    </div>
+                    {#</div>#}
+                {#</div> <!-- / .panel-heading -->#}
+                {#<div class="panel-body">#}
+                    {#<div class="widget-profile-text" style="padding: 0;">#}
+                        {#<p><i class="fa fa-phone"></i> 06 74 58 56 48</p>#}
+                        {#<p><i class="fa fa-mail-forward"></i> julien@meetserious.com</p>#}
+                        {#<a href="https://twitter.com/test">http://www.meetserious.com</a>#}
+                        {#<p>26 Rue Emile Decorps</p>#}
+                        {#<p>Lyon</p>#}
+                        {#<p><i class="fa fa-link"></i><a href=""> http://fr.dawanda.com/shop/victoireandmatilda</a></p>#}
+                        {#<p><i class="fa fa-link"></i><a href=""> http://www.alittlemarket.com/boutique/perea_bijoux-279514.html</a></p>#}
+                    {#</div>#}
+                {#</div>#}
+            {#</div> <!-- / .panel -->#}
+            {#<!-- /7. $PROFILE_WIDGET_CENTERED_EXAMPLE -->#}
+        {#</div>#}
+    {#</div>#}
 
 
     <div class="row">
@@ -677,29 +648,90 @@
                     infowindow.open(map,marker);
                 });
 
-                $('#joyRideTipContent').joyride({
-                    autoStart : true,
-                    'template' : { // HTML segments for tip layout
-                        'link'    : '<a href="#close" class="joyride-close-tip">X</a>',
-                        'timer'   : '<div class="joyride-timer-indicator-wrap"><span class="joyride-timer-indicator"></span></div>',
-                        'tip'     : '<div class="joyride-tip-guide"><span class="joyride-nub"></span></div>',
-                        'wrapper' : '<div class="joyride-content-wrapper" role="dialog"></div>',
-                        'button'  : '<a href="#" class="joyride-next-tip"></a>',
-                        'modal'   : '<div class="joyride-modal-bg"></div>',
-                        'expose'  : '<div class="joyride-expose-wrapper"></div>',
-                        'exposeCover': '<div class="joyride-expose-cover"></div>'
-                    },
-                    postStepCallback : function (index, tip) {
-//                        if (index == 3) {
-//                            $(this).joyride('set_li', false, 1);
-//                        }
-                    },
-                    modal:true,
-                    expose: true
-                });
+                {% if app.session.get('first') is not empty %}
+
+
+
+
+
+//                $('#joyRideTipContent').joyride({
+//                        autoStart : true,
+//                        'template' : { // HTML segments for tip layout
+//                            'link'    : '<a href="#close" class="joyride-close-tip">X</a>',
+//                            'timer'   : '<div class="joyride-timer-indicator-wrap"><span class="joyride-timer-indicator"></span></div>',
+//                            'tip'     : '<div class="joyride-tip-guide"><span class="joyride-nub"></span></div>',
+//                            'wrapper' : '<div class="joyride-content-wrapper" role="dialog"></div>',
+//                            'button'  : '<a href="#" class="joyride-next-tip"></a>',
+//                            'modal'   : '<div class="joyride-modal-bg"></div>',
+//                            'expose'  : '<div class="joyride-expose-wrapper"></div>',
+//                            'exposeCover': '<div class="joyride-expose-cover"></div>'
+//                        },
+//                        postStepCallback : function (index, tip) {
+//    //                        if (index == 3) {
+//    //                            $(this).joyride('set_li', false, 1);
+//    //                        }
+//                        },
+//                        modal:true,
+//                        expose: true
+//                    });
+
+                {% endif %}
+
+                var $modal  = $('#uidemo-modals-effects-template');
+                $modal.find('> div').addClass('modal-dialog modal-sm animated flipInX');
+                $modal.modal('show');
 
             });
         </script>
+
+        <div id="uidemo-modals-effects-template" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+            <div>
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                        <h4 class="modal-title">Bienvenue sur Marchéde<b>Bijoux</b></h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Marchéde<b>Bijoux</b> vous permet de mettre en avant vos création de bijoux fantaisies et fait mains sur une unique plateforme</p>
+                        <p>Personnaliser et remplissez votre compte</p>
+                    </div>
+                </div><!-- / .modal-content -->
+            </div><!-- / .modal-dialog -->
+        </div>
+
+        {% if app.session.get('first') is not empty %}
+
+
+
+
+            <ol id="joyRideTipContent">
+
+                <li data-id="menu_bijoux" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
+                    <h2>Créer et editer des Bijoux</h2>
+                    <p>Gérez tous vos bijoux, descriptions & intitulés, les quantités, les prix, les taxes...</p>
+                </li>
+                <li data-id="menu_categories" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
+                    <h2>Organisez par catégories</h2>
+                    <p>Organisez et trié vos bijoux par catégories</p>
+                </li>
+                <li data-id="menu_commandes" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
+                    <h2>Gérez vos commandes</h2>
+                    <p>Suivez toutes vos commandes de bijoux en temps réels</p>
+                </li>
+                <li data-id="menu_pages" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
+                    <h2>Rédigez vos pages</h2>
+                    <p>Ecrivez vos propres pages à propos de vos produits et enrichissez le contenu de vos pages</p>
+                </li>
+                <li data-id="menu_fournisseurs" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
+                    <h2>Manager vos fournisseurs</h2>
+                    <p>Créez des fournisseurs à bijoux et associez vos bijoux à vos fournisseurs</p>
+                </li>
+                <li data-id="menu_slider" data-button="Next" data-options="tipLocation:top;tipAnimation:fade">
+                    <h2>Manager votre diaporama</h2>
+                    <p>Publiez toutes vos jolies photos</p>
+                </li>
+            </ol>
+        {% endif %}
 
         <div class="panel">
             <div class="panel-heading">

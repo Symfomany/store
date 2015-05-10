@@ -70,12 +70,6 @@
             </div>
     </div>
 
-    <div class="row">
-        <a href="{{ path('store_backend_product_new') }}" class=" pull-right btn btn-success btn-lg">
-            <i class="fa fa-plus"></i> Ajouter un bijou
-        </a>
-    </div>
-
     {% if products is not empty %}
     <br />
     <table id="jq-datatables-example" class="table table-bordered table-primary">
@@ -150,10 +144,12 @@
         </tbody>
     </table>
 
-        {% else %}
-        <div class="alert alert-danger alert-dark">
-            <strong>Attention</strong> Aucun résultat trouvé
-        </div>
-        {% endif %}
+    {% endif %}
+
+    <div class="row">
+        <a href="{{ path('store_backend_product_new') }}" class=" pull-right btn btn-success btn-lg">
+            <i class="fa fa-plus"></i> Ajouter un bijou
+        </a>
+    </div>
 
 {% endblock %}

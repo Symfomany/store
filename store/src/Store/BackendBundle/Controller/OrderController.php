@@ -6,6 +6,7 @@ namespace Store\BackendBundle\Controller;
 // J'inclue la classe Controller de Symfony pour pouvoir hériter de cette classe
 use Store\BackendBundle\Entity\Order;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\Request;
 
 
 /**
@@ -19,14 +20,23 @@ class OrderController extends Controller{
      * List my orders
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction(){
+    public function listAction(Request $request){
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
 
         $orders = $em->getRepository('StoreBackendBundle:Order')->getOrderByUser($user);
 
+        //paginate to bundle
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $orders,
+            $request->query->get('page', 1)/*page number*/,
+            5/*limit per page*/
+        );
+
+
         return $this->render('StoreBackendBundle:Order:list.html.twig', array(
-            'orders' => $orders
+            'orders' => $pagination
         ));
     }
 

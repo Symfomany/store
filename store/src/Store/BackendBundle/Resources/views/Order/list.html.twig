@@ -32,6 +32,11 @@
         </div>
     </div>
 
+
+    <div class="alert alert-info alert-dark">
+        {{ orders.getTotalItemCount }} commandes de bijoux
+    </div>
+
     {% if orders is not empty %}
     <table class="table table-bordered table-primary" id="jq-datatables-example">
         <thead>
@@ -89,11 +94,14 @@
 
         </tbody>
     </table>
-{% else %}
-    <div class="alert alert-danger alert-dark">
-        <strong>Attention</strong> Aucun résultat de trouvé
-    </div>
+
 {% endif %}
+
+
+    <div class="navigation">
+        {{ knp_pagination_render(orders) }}
+    </div>
+
 {% endblock %}
 
 

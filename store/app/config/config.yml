@@ -104,8 +104,8 @@ swiftmailer:
     encryption: ssl
     auth_mode:  login
     host:       %mailer_host%
-    username:   %mailer_host%
-    password:   %mailer_user%
+    username:   %mailer_user%
+    password:   %mailer_password%
 
 
 #KNP Paginator Bundle Configuration

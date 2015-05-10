@@ -21,7 +21,7 @@ services:
        class: Store\BackendBundle\Listener\AuthentificationListener
 
        #  Nom des services injecté en constructeur de ma classe
-       arguments: ["@doctrine.orm.entity_manager","@security.context", "@store.backend.notification"]
+       arguments: ["@doctrine.orm.entity_manager","@security.context", "@store.backend.notification","@session", "@router"]
 
        # Etende le mecanisme de security au niveau de linteraction login
        # avec un mecanisme d'écouteur
