@@ -82,14 +82,34 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "Le titre de votre boutique ne doit pas etre vide",
+     *     groups={"suscribe"}
+     * )
+     * @Assert\Length(
+     *      min = "6",
+     *      max = "50",
+     *      minMessage = "Le titre de votre boutique doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Le titre de votre boutique ne peut pas être plus long que {{ limit }} caractères",
+     *      groups={"suscribe"}
+     * )
      * @ORM\Column(name="title", type="string", length=300, nullable=true)
      */
     protected $title;
 
     /**
      * @var string
-     *
+     * @Assert\NotBlank(
+     *     message = "La description ne doit pas etre vide",
+     *     groups={"suscribe", "edit"}
+     * )
+     * @Assert\Length(
+     *      min = "15",
+     *      max = "5000",
+     *      minMessage = "La description doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "La description ne peut pas être plus long que {{ limit }} caractères",
+     *      groups={"suscribe", "edit"}
+     * )
      * @ORM\Column(name="description", type="text", nullable=true)
      */
     protected $description;
@@ -233,6 +253,12 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * @ORM\Column(name="date_created", type="datetime", nullable=true)
      */
     protected $dateCreated;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_updated", type="datetime", nullable=true)
+     */
+    protected $dateUpdated;
 
     /**
      * @var \DateTime
@@ -263,14 +289,16 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     public function __construct()
     {
         $this->dateCreated = new \DateTime('now');
+        $this->dateUpdated = new \DateTime('now');
         $this->type = 1;
-        $this->enabled = 1;
+        $this->enabled = false;
         $this->accountnonexpired = 1;
         $this->accountnonlocked = 1;
         $this->credentialsExpired = 1;
         $this->locked = 0;
         $this->expired = 0;
         $this->salt = md5(uniqid(null, true));
+        $this->token = sha1(uniqid(null, true).microtime());
         $this->groups = new ArrayCollection();
 
     }
@@ -1017,22 +1045,28 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      */
     public function validate(ExecutionContextInterface $context)
     {
-        if (($this->getUsername()  == $this->getPassword())) {
-            $context->addViolationAt(
-                'username',
-                'Votre login ne doit pas être identique à votre mot de passe',
-                array(),
-                null
-            );
+        $val = $this->getUsername();
+        if(!empty($val)) {
+            if (($this->getUsername() == $this->getPassword())) {
+                $context->addViolationAt(
+                    'username',
+                    'Votre login ne doit pas être identique à votre mot de passe',
+                    array(),
+                    null
+                );
+            }
         }
 
-        if (($this->getUsername()  == $this->getEmail())) {
-            $context->addViolationAt(
-                'email',
-                'Votre email ne doit pas être identique à votre login',
-                array(),
-                null
-            );
+        $val = $this->getEmail();
+        if(!empty($val)) {
+            if (($this->getUsername()  == $this->getEmail())) {
+                $context->addViolationAt(
+                    'email',
+                    'Votre email ne doit pas être identique à votre login',
+                    array(),
+                    null
+                );
+            }
         }
 
     }

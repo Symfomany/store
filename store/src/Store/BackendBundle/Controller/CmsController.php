@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class CmsController
  * @package Store\BackendBundle\Controller
  */
-class CmsController extends AbstractController{
+class CmsController extends Controller{
 
 
     /**

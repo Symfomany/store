@@ -6,12 +6,13 @@ namespace Store\BackendBundle\Controller;
 // J'inclue la classe Controller de Symfony pour pouvoir hériter de cette classe
 use Store\BackendBundle\Entity\Product;
 use Store\BackendBundle\Form\ProductType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 
-class ProduitController extends AbstractController{
+class ProduitController extends Controller{
 
 
 

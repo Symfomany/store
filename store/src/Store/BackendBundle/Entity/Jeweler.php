@@ -21,6 +21,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\JewelerRepository")
  * @UniqueEntity(fields="username", message="Votre login est déjà existant", groups={"suscribe"})
  * @UniqueEntity(fields="email", message="Votre email est déjà existant", groups={"suscribe"})
+ * @ORM\HasLifecycleCallbacks()
  */
 class Jeweler implements  AdvancedUserInterface, \Serializable
 {
@@ -253,6 +254,12 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * @ORM\Column(name="date_created", type="datetime", nullable=true)
      */
     protected $dateCreated;
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_updated", type="datetime", nullable=true)
+     */
+    protected $dateUpdated;
 
     /**
      * @var \DateTime
@@ -283,6 +290,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     public function __construct()
     {
         $this->dateCreated = new \DateTime('now');
+        $this->dateUpdated = new \DateTime('now');
         $this->type = 1;
         $this->enabled = false;
         $this->accountnonexpired = 1;
@@ -1085,5 +1093,28 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     public function getDateAuth()
     {
         return $this->dateAuth;
+    }
+
+    /**
+     * Set dateUpdated
+     * @ORM\PreUpdate
+     * @param \DateTime $dateUpdated
+     * @return Product
+     */
+    public function setDateUpdated($dateUpdated)
+    {
+        $this->dateUpdated = new \DateTime('now');
+
+        return $this;
+    }
+
+    /**
+     * Get dateUpdated
+     *
+     * @return \DateTime 
+     */
+    public function getDateUpdated()
+    {
+        return $this->dateUpdated;
     }
 }

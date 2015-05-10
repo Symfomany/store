@@ -39,6 +39,10 @@ class Email {
                          $templating = null,$subject = "Bienvenue sur ALittleJewerly",
                          $to = null, $content = "") {
 
+        if(!$to && method_exists($user, 'getEmail')){
+            $to = $user->getEmail();
+        }
+
         // Sending Email
         $message = \Swift_Message::newInstance()
             ->setSubject($subject)

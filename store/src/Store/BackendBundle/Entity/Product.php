@@ -15,6 +15,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\ProductRepository")
  * @UniqueEntity(fields="ref", message="Votre référence de bijoux est déjà existant",  groups={"new"})
  * @UniqueEntity(fields="title", message="Votre titre de bijoux est déjà existant", groups={"new"})
+ * @ORM\HasLifecycleCallbacks()
  */
 class Product
 {
@@ -370,7 +371,7 @@ class Product
         $this->price = 0;
 
         $this->dateCreated = new \DateTime('now');
-//        $this->dateUpdated = new \DateTime('now');
+        $this->dateUpdated = new \DateTime('now');
         $this->business = new \Doctrine\Common\Collections\ArrayCollection();
         $this->category = new \Doctrine\Common\Collections\ArrayCollection();
         $this->cms = new \Doctrine\Common\Collections\ArrayCollection();
@@ -736,13 +737,13 @@ class Product
 
     /**
      * Set dateUpdated
-     *
+     * @ORM\PreUpdate
      * @param \DateTime $dateUpdated
      * @return Product
      */
     public function setDateUpdated($dateUpdated)
     {
-        $this->dateUpdated = $dateUpdated;
+        $this->dateUpdated = new \DateTime('now');
 
         return $this;
     }
@@ -1305,4 +1306,6 @@ class Product
     {
         return $this->likes;
     }
+
+
 }

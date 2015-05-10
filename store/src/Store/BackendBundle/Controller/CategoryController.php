@@ -6,15 +6,20 @@ namespace Store\BackendBundle\Controller;
 // J'inclue la classe Controller de Symfony pour pouvoir hériter de cette classe
 use Store\BackendBundle\Entity\Category;
 use Store\BackendBundle\Form\CategoryType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
+use Symfony\Component\Security\Acl\Domain\ObjectIdentity;
+use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
+use Symfony\Component\Security\Acl\Permission\MaskBuilder;
+use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
 
 /**
  * Class CategoryController
  * @package Store\BackendBundle\Controller
  */
-class CategoryController extends AbstractController{
+class CategoryController extends Controller{
 
 
     /**
@@ -77,11 +82,25 @@ class CategoryController extends AbstractController{
             $em->persist($category); //j'enregistre mon objet product dans doctrine
             $em->flush(); //j'envoie ma requete d'insert à ma table product
 
-                $this->get('session')->getFlashBag()->add(
-                    'success',
-                    'Votre catégorie a bien été crée'
-                );
-                return $this->redirectToRoute('store_backend_category_list'); //redirection selon la route
+            // création de l'ACL
+            $aclProvider = $this->get('security.acl.provider');
+            $objectIdentity = ObjectIdentity::fromDomainObject($category);
+            $acl = $aclProvider->createAcl($objectIdentity);
+
+            // retrouve l'identifiant de sécurité de l'utilisateur actuellement connecté
+            $tokenStorage = $this->get('security.token_storage');
+            $user = $tokenStorage->getToken()->getUser();
+            $securityIdentity = UserSecurityIdentity::fromAccount($user);
+
+            // donne accès au propriétaire
+            $acl->insertObjectAce($securityIdentity, MaskBuilder::MASK_OWNER);
+            $aclProvider->updateAcl($acl);
+
+            $this->get('session')->getFlashBag()->add(
+                'success',
+                'Votre catégorie a bien été crée'
+            );
+            return $this->redirectToRoute('store_backend_category_list'); //redirection selon la route
         }
 
         return $this->render('StoreBackendBundle:Category:new.html.twig', array(
@@ -92,9 +111,16 @@ class CategoryController extends AbstractController{
     /**
      * New category page
      * @return \Symfony\Component\HttpFoundation\Response
-     * @Security("is_granted('', id)")
      */
     public function editAction(Request $request, Category $id){
+
+        $authChecker = $this->get('security.authorization_checker');
+
+        // check for edit access
+        if (false === $authChecker->isGranted('EDIT', $id))
+        {
+            throw new AccessDeniedException();
+        }
 
         // je crée un formulaire de produit
         $form = $this->createForm(new CategoryType(1),$id,  array(

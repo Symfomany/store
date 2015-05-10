@@ -6,6 +6,7 @@ namespace Store\BackendBundle\Controller;
 // J'inclue la classe Controller de Symfony pour pouvoir hériter de cette classe
 use Store\BackendBundle\Entity\Slider;
 use Store\BackendBundle\Form\SliderType;
+use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
 
@@ -13,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class SliderController
  * @package Store\BackendBundle\Controller
  */
-class SliderController extends AbstractController{
+class SliderController extends Controller{
 
 
     /**

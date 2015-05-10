@@ -20,8 +20,7 @@ class AppKernel extends Kernel
             new Store\BackendBundle\StoreBackendBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
             new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new FOS\ElasticaBundle\FOSElasticaBundle(),
-            new Stof\DoctrineExtensionsBundle\StofDoctrineExtensionsBundle(),
+            new FOS\ElasticaBundle\FOSElasticaBundle()
 
         );
 

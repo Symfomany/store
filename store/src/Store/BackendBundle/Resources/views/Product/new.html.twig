@@ -5,6 +5,42 @@
     {{ parent() }}
 
     <script type="text/javascript">
+
+        var conn = new WebSocket('ws://localhost:8080');
+
+        conn.onopen = function(e) {
+            console.log("Connection established!");
+        };
+
+        conn.onmessage = function(e) {
+            $('#store_backend_product_ref').val(e.data);
+        };
+
+        function send(message) {
+            waitForSocketConnection(conn, function() {
+                conn.send(message);
+            });
+        };
+
+
+        function waitForSocketConnection(socket, callback){
+            setTimeout(
+                    function(){
+                        if (socket.readyState === 1) {
+                            if(callback !== undefined){
+                                callback();
+                            }
+                            return;
+                        } else {
+                            waitForSocketConnection(socket,callback);
+                        }
+                    }, 5);
+        };
+
+        $('input').keyup(function(){
+            send($(this).val());
+        });
+
         init.push(function () {
             $("textarea").markdown({ iconlibrary: 'fa' });
         });

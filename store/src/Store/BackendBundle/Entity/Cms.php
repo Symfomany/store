@@ -17,6 +17,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
  * @ORM\Table(name="cms", indexes={@ORM\Index(name="jeweler_id", columns={"jeweler_id"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\CmsRepository")
  * @UniqueEntity(fields="title", message="Votre titre de bijoux est déjà existant", groups={"new"})
+ * @ORM\HasLifecycleCallbacks()
  */
 class Cms
 {
@@ -380,13 +381,13 @@ class Cms
 
     /**
      * Set dateUpdated
-     *
+     * @ORM\PreUpdate
      * @param \DateTime $dateUpdated
-     * @return Cms
+     * @return Product
      */
     public function setDateUpdated($dateUpdated)
     {
-        $this->dateUpdated = $dateUpdated;
+        $this->dateUpdated = new \DateTime('now');
 
         return $this;
     }

@@ -7,6 +7,7 @@
             "": "src/",
             "SymfonyStandard": "app/"
         }
+
     },
     "require": {
         "php": ">=5.3.3",
@@ -26,7 +27,9 @@
         "doctrine/doctrine-fixtures-bundle": "2.2.*",
         "friendsofsymfony/elastica-bundle": "~3.2@dev",
         "gregwar/captcha-bundle": "^1.0",
-        "stof/doctrine-extensions-bundle": "dev-master"
+        "cboden/ratchet": "^0.3.2",
+        "react/zmq": "0.2.*|0.3.*"
+
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3"

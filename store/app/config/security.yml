@@ -3,6 +3,8 @@
 ###
 security:
 
+    acl:
+      connection: default
 
 ###
 # 1. Encoders

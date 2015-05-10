@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
  * Class SupplierController
  * @package Store\BackendBundle\Controller
  */
-class SupplierController extends AbstractController{
+class SupplierController extends Controller{
 
 
     /**

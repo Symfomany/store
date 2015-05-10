@@ -19,28 +19,17 @@ class MainController extends Controller{
      */
     public function indexAction(){
 
-
-
-        $finderProducts = $this->container->get('fos_elastica.finder.website.product');
-
-// Option 1. Returns all users who have example.net in any of their mapped fields
-        $results = $finderProducts->find('zuzu38080@gmail.com');
-
-
-
-
-        // $this->get() => accède au conteneur de service
-        // et récupere le service store.backend.email
-//        $mail = $this->get('store.backend.email');
-//        $mail->send(); //appel de ma methode pour envoyer un email
-
+//        $finderProducts = $this->container->get('fos_elastica.finder.website.product');
+//
+//// Option 1. Returns all users who have example.net in any of their mapped fields
+//        $results = $finderProducts->find('zuzu38080@gmail.com');
 
         // Récupérer l'utilisateur
         $user = $this->getUser();
-
-//        $this->get('store_backend.email')->send($user, 'julien@meetserious.com',
-//            'StoreBackendBundle:Mail:welcome.html.twig', "Bienvenue :)", '<p>okay</p>');
-
+//
+//        $this->get('store.backend.email')->sendparam($user, 'julien@meetserious.com',
+//            'StoreBackendBundle:Email:welcome.html.twig', "Bienvenue :)",'zuzu38080@gmail.com', '<p>okay</p>');
+//
 
         // Récupérer Doctrine Manager
         $em = $this->getDoctrine()->getManager();

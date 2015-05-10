@@ -27,8 +27,9 @@ framework:
     trusted_proxies: ~
     session:
         # handler_id set to null will use default session handler from php.ini
-        handler_id:  ~
         gc_probability: 0
+        handler_id: session.handler.native_file
+        save_path: "%kernel.root_dir%/sessions"
     fragments:       ~
     http_method_override: true
 
@@ -99,12 +100,12 @@ doctrine:
 
 # Swiftmailer Configuration
 swiftmailer:
-    transport:  smtp
+    transport:  %mailer_transport%
     encryption: ssl
     auth_mode:  login
-    host:       smtp.gmail.com
-    username:   zuzu38080@gmail.com
-    password:   djscrave0474272459
+    host:       %mailer_host%
+    username:   %mailer_host%
+    password:   %mailer_user%
 
 
 #KNP Paginator Bundle Configuration
@@ -174,6 +175,7 @@ fos_elastica:
                         query_builder_method: activeProductQueryBuilder
                     finder: ~
                     listener: ~ # by default, listens to "insert", "update" and "delete"
+
 
 
 
