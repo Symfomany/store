@@ -8,10 +8,12 @@
 {% endblock %}
 
 
-{% block javascript %}
+{% block javascripts %}
     {{ parent() }}
     <script type="text/javascript">
         init.push(function () {
+            $("textarea").markdown({ iconlibrary: 'fa' });
+
             $('#profile-tabs').tabdrop();
             $("textarea").markdown({ iconlibrary: 'fa' });
             $("#leave-comment-form").expandingInput({
@@ -39,12 +41,58 @@
     <div class="profile-full-name">
         <span class="text-semibold">Boutique de Boyer Julien</span>'
     </div>
+
+
     <div class="profile-row">
     <div class="left-col">
         <div class="profile-block">
+            {% if app.user.image is not empty %}
             <div class="panel profile-photo">
                 <img src="{{ app.user.image }}" alt="" class="">
             </div><br>
+            {% endif %}
+            <script>
+                init.push(function () {
+                    $("#dropzonejs-example").dropzone({
+                        url: "{{ path('store_backend_jeweler_mypicture') }}",
+                        paramName: "file", // The name that will be used to transfer the file
+                        maxFilesize: 0.5, // MB
+                        addRemoveLinks : true,
+                        dictResponseError: "Can't upload file!",
+                        autoProcessQueue: true,
+                        thumbnailWidth: 138,
+                        thumbnailHeight: 120,
+                        resize: function(file) {
+                            var info = { srcX: 0, srcY: 0, srcWidth: file.width, srcHeight: file.height },
+                                    srcRatio = file.width / file.height;
+                            if (file.height > this.options.thumbnailHeight || file.width > this.options.thumbnailWidth) {
+                                info.trgHeight = this.options.thumbnailHeight;
+                                info.trgWidth = info.trgHeight * srcRatio;
+                                if (info.trgWidth > this.options.thumbnailWidth) {
+                                    info.trgWidth = this.options.thumbnailWidth;
+                                    info.trgHeight = info.trgWidth / srcRatio;
+                                }
+                            } else {
+                                info.trgHeight = file.height;
+                                info.trgWidth = file.width;
+                            }
+                            return info;
+                        }
+                    });
+                });
+            </script>
+
+            <div id="dropzonejs-example" class="dropzone-box dz-clickable">
+                <div class="dz-default dz-message">
+                    Votre image ici
+                </div>
+                <form  id="dropzonejs-example">
+                </form>
+            </div>
+
+
+
+
             <a href="#" class="btn btn-info"><i class="fa fa-heart"></i>&nbsp;&nbsp;8</a>&nbsp;&nbsp;
             <a href="#" class="btn btn-success"><i class="fa fa-random"></i>&nbsp;&nbsp;5</a>&nbsp;&nbsp;
             <a href="#" class="btn btn-default"><i class="fa fa-truck"></i>&nbsp;&nbsp;5</a>&nbsp;&nbsp;
@@ -104,7 +152,10 @@
     <div class="profile-content">
 
     <ul id="profile-tabs" class="nav nav-tabs">
-        <li class="active">
+        <li  class="active">
+            <a href="#profile-tabs-following" data-toggle="tab"><span class="fa fa-star"></span> Mes informations</a>
+        </li>
+        <li>
             <a href="#profile-tabs-board" data-toggle="tab"><strong>10</strong> Commandes</a>
         </li>
         <li>
@@ -113,13 +164,11 @@
         <li>
             <a href="#profile-tabs-followers" data-toggle="tab"><strong>8</strong> Messages</a>
         </li>
-        <li>
-            <a href="#profile-tabs-following" data-toggle="tab"><span class="fa fa-star"></span> Mes informations</a>
-        </li>
+
     </ul>
 
     <div class="tab-content tab-content-bordered panel-padding">
-    <div class="widget-article-comments tab-pane panel no-padding no-border fade in active" id="profile-tabs-board">
+    <div class="widget-article-comments tab-pane panel no-padding no-border fade" id="profile-tabs-board">
 
         <div class="comment">
             <div class="comment-body">
@@ -311,139 +360,122 @@
     </div> <!-- / .tab-pane -->
 
 
-    <div class="tab-pane fade widget-followers panel-padding" id="profile-tabs-following">
+    <div class="tab-pane fade widget-followers panel-padding in active" id="profile-tabs-following">
         <h3><i class="fa fa-pencil"></i> Modifier les informations de la boutique</h3>
         <hr />
-        <form action="" class="form">
+            {{ form_start(form) }}
             <div class="alert alert-dark alert-info row">
                 <div class="col-md-6">
                     <div>
-                        <label for="store_backend_product_title" class="required"><i class="fa fa-link"></i> A Little Market</label>
-                        <input type="text" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
+                        {{ form_row(form.meta.littlemarket) }}
                     </div>
                 </div>
 
                 <div class="col-md-6">
                     <div>
-                        <label for="store_backend_product_title" class="required"><i class="fa fa-link"></i> DaWanda</label>
-                        <input type="text" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
+                        {{ form_row(form.meta.dawanda) }}
                     </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-6">
                     <div>
-                        <label for="store_backend_product_title" class="required">Nom de la boutique</label>
-                        <input type="text" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div>
-                        <label for="store_backend_product_title" class="required">Type de société</label>
-                        <select name="" class="form-control">
-                            <option>Aucun</option>
-                            <option>SA</option>
-                            <option>SARL</option>
-                            <option>SAS</option>
-                            <option>EURL</option>
-                            <option>Freelance</option>
-                        </select>
-                    </div>
-                </div>
-                 <div class="col-md-2">
-                    <div>
-                        <label for="store_backend_product_title" class="required"><i class="fa fa-envelope"></i> Email</label>
-                        <input type="text" id="store_backend_product_title" name="store_backend_product[title]" required="required" class="form-control" placeholder="Email pro/perso">
-                    </div>
-                </div>
-
-
-
-                <div class="col-md-4">
-                    <div>
-                        <label for="store_backend_product_title" class="required"><i class="fa fa-picture-o"></i> Image</label>
-                        <input type="file" id="store_backend_product_title" name="store_backend_product[title]" required="required" maxlength="300" pattern="[a-zA-Z0-9- ]{5,}" class="form-control" placeholder="Mettre un titre soigné">
-                    </div>
-                </div>
-            </div>
-
-                <div class="col-md-2">
-                    <div>
-                        <label for="store_backend_product_title" class="required"><i class="fa fa-phone"></i> Téléphone</label>
-                        <input class="form-control" class="form-control" placeholder="06-XX-XX-XX-XX">
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div>
-                        <label for="store_backend_product_title" class="required"><i class="fa fa-link"></i> Website</label>
-                        <input class="form-control" class="form-control" placeholder="http://">
+                        {{ form_row(form.title) }}
                     </div>
                 </div>
                 <div class="col-md-3">
                     <div>
-                        <label for="store_backend_product_title" class="required"><i class="fa fa-map-marker"></i> Ville</label>
-                        <input class="form-control" class="form-control" placeholder="Paris">
+                        {{ form_row(form.email) }}
                     </div>
                 </div>
-                <div class="col-md-1">
+                <div class="col-md-3">
                     <div>
-                        <label for="store_backend_product_title" class="required">Code postal</label>
-                        <input class="form-control" class="form-control" placeholder="75008"/>
+                        {{ form_row(form.username) }}
+                    </div>
+                </div>
+
+                <div class="col-md-2">
+                    <div>
+                        {{ form_row(form.type) }}
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div>
-                        <label for="store_backend_product_title" class="required">Adresse</label>
-                        <input class="form-control" class="form-control" placeholder="10 Rue de la Paix">
+                        {{ form_row(form.meta.website) }}
                     </div>
                 </div>
+                <div class="col-md-6">
+                    <div>
+                        {{ form_row(form.file) }}
+                    </div>
+                </div>
+            </div>
+
+                <div class="row">
+                    <div class="col-md-4">
+                        <div>
+                            {{ form_row(form.meta.phone) }}
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div>
+                            {{ form_row(form.meta.city) }}
+                        </div>
+                    </div>
+                    <div class="col-md-1">
+                        <div>
+                            {{ form_row(form.meta.zipcode) }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            {{ form_row(form.meta.address) }}
+                        </div>
+                    </div>
+                </div>
+                <hr />
                 <div class="col-md-12">
                     <div>
-                        <label for="store_backend_product_title" class="required"><i class="fa fa-pencil"></i> Description</label>
-                        <textarea placeholder="Une belle description soignée" class="form-control"></textarea>
+                        {{ form_row(form.description) }}
                     </div>
                 </div>
 
 
                 <div class="col-md-6">
                     <div>
-                        <label for="store_backend_product_title" class="required"><i class="fa fa-retweet"></i> Retour de produit</label>
-                        <textarea class="form-control" placeholder="Vos conditions de retours de produits"></textarea>
+                        {{ form_row(form.meta.retour) }}
                     </div>
                 </div>
                 <div class="col-md-6">
                     <div>
-                        <label for="store_backend_product_title" class="required"><i class="fa fa-user"></i> A propos du créateur</label>
-                        <textarea class="form-control" placeholder="Votre histoire"></textarea>
+                        {{ form_row(form.meta.propos) }}
                     </div>
                 </div>
-                <div class="col-md-2">
+                <div class="col-md-3">
                     <div>
-                        <label for="store_backend_product_title" class="required"><i class="fa fa-clock-o"></i> Délai d'expédition</label>
-                        <input class="form-control" placeholder="En heure (h.)" />
+                        {{ form_row(form.meta.delai) }}
                     </div>
                 </div>
-                <div class="col-md-10">
+                <div class="col-md-9">
                     <div>
-                        <label for="store_backend_product_title" class="required"><i class="fa fa-truck"></i> Expédition de colis</label>
-                        <textarea class="form-control" placeholder="Processus de transport de colis"></textarea>
+                        {{ form_row(form.meta.expedition) }}
                     </div>
                 </div>
                 <div class="col-md-12">
                     <div>
-                        <label for="store_backend_product_title" class="required"><i class="fa fa-legal"></i> Mentions Légales</label>
-                        <textarea class="form-control" placeholder="Siège social et status"></textarea>
+                        {{ form_row(form.meta.mention) }}
                     </div>
                 </div>
                 <hr class="clear" />
                 <div class="col-md-12">
                     <div>
-                        <input type="checkbox" id="store_backend_optin" />
-                        <label for="store_backend_optin" class="required">J'accepte de recevoir la newsletter</label>
+                        {{ form_row(form.meta.optin) }}
+
                     </div>
                 </div>
             <div class="row"><br /><br /><br /></div>
-            <button class="btn btn-lg btn-primary">
+            <button class="btn btn-lg btn-primary" style="width: 100%">
                 <i class="fa fa-save"> Enregistrer mes modifications</i>
             </button>
+            {{ form_widget(form._token) }}
         </form>
     </div> <!-- / .tab-pane -->
     </div> <!-- / .tab-content -->

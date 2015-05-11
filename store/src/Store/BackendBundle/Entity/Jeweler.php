@@ -19,8 +19,8 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
  * Use AdvancedUserInterface
  * @ORM\Table(name="jeweler", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\JewelerRepository")
- * @UniqueEntity(fields="username", message="Votre login est déjà existant", groups={"suscribe"})
- * @UniqueEntity(fields="email", message="Votre email est déjà existant", groups={"suscribe"})
+ * @UniqueEntity(fields="username", message="Votre login est déjà existant", groups={"suscribe", "edit"})
+ * @UniqueEntity(fields="email", message="Votre email est déjà existant", groups={"suscribe", "edit"})
  * @ORM\HasLifecycleCallbacks()
  */
 class Jeweler implements  AdvancedUserInterface, \Serializable
@@ -36,12 +36,12 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * @var string
      * @Assert\NotBlank(
      *     message = "L'email ne doit pas etre vide",
-     *     groups={"suscribe"}
+     *     groups={"suscribe", "edit"}
      * )
      * @Assert\Email(
      *     message = "'{{ value }}' n'est pas un email valide.",
      *     checkMX = true,
-     *     groups={"suscribe"}
+     *     groups={"suscribe", "edit"}
      * )
      * @ORM\Column(name="email", type="string", length=150, nullable=true)
      */
@@ -51,14 +51,14 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * @var string
      * @Assert\NotBlank(
      *     message = "Le login ne doit pas etre vide",
-     *     groups={"suscribe"}
+     *     groups={"suscribe", "edit"}
      * )
      * @Assert\Length(
      *      min = "3",
      *      max = "50",
      *      minMessage = "Le login doit faire au moins {{ limit }} caractères",
      *      maxMessage = "La login ne peut pas être plus long que {{ limit }} caractères",
-     *      groups={"suscribe"}
+     *      groups={"suscribe", "edit"}
      * )
      * @ORM\Column(name="username", type="string", length=150, nullable=true)
      */
@@ -85,14 +85,14 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * @var string
      * @Assert\NotBlank(
      *     message = "Le titre de votre boutique ne doit pas etre vide",
-     *     groups={"suscribe"}
+     *     groups={"suscribe", "edit"}
      * )
      * @Assert\Length(
      *      min = "6",
      *      max = "50",
      *      minMessage = "Le titre de votre boutique doit faire au moins {{ limit }} caractères",
      *      maxMessage = "Le titre de votre boutique ne peut pas être plus long que {{ limit }} caractères",
-     *      groups={"suscribe"}
+     *      groups={"suscribe", "edit"}
      * )
      * @ORM\Column(name="title", type="string", length=300, nullable=true)
      */
@@ -282,6 +282,24 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      */
     protected $groups;
 
+
+
+
+    /**
+     * Attribut qui représentera mon fichier uploadé
+     * @Assert\Image(
+     *     minWidth = 100,
+     *     maxWidth = 3000,
+     *     minHeight = 100,
+     *     maxHeight = 2500,
+     *     maxWidthMessage= "La largeur est trop grande",
+     *     minWidthMessage = "La largeur est trop petite",
+     *     maxHeightMessage = "La hauteur est trop grande",
+     *     minHeightMessage = "La largeur est trop petite",
+     *     groups={"new", "edit"}
+     * )
+     */
+    protected $file;
 
 
     /**
@@ -1116,5 +1134,92 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     public function getDateUpdated()
     {
         return $this->dateUpdated;
+    }
+
+
+    /**
+     * @return mixed
+     */
+    public function getFile()
+    {
+        return $this->file;
+    }
+
+    /**
+     * @param mixed $file
+     */
+    public function setFile($file)
+    {
+        $this->file = $file;
+    }
+
+
+
+    /**
+     * Retourne le chemin absolue de mon image
+     * @return null|string
+     */
+    public function getAbsolutePath()
+    {
+        return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
+    }
+
+
+    /**
+     * Retourne le chemin de l'image depuis le dossier web
+     * @return null|string
+     */
+    public function getWebPath()
+    {
+        return null === $this->image ? null : $this->getUploadDir().'/'.$this->image;
+    }
+
+    /**
+     * Retourne le cheùin de mon image depuis l'entité
+     * @return string
+     */
+    protected function getUploadRootDir()
+    {
+        // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
+        return __DIR__.'/../../../../web/'.$this->getUploadDir();
+    }
+
+    /**
+     * Retourne le dossier d'upload et sous dossier product
+     * @return string
+     */
+    protected function getUploadDir()
+    {
+        // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
+        // le document/image dans la vue.
+        return 'uploads/profil';
+    }
+
+
+    /**
+     * Mecanisme d'upload
+     * + déplacement du fichier uploadé dans le bon dossier
+     */
+    public function upload()
+    {
+        // la propriété « file » peut être vide si le champ n'est pas requis
+        if (null === $this->file) {
+            return;
+        }
+
+        // utilisez le nom de fichier original ici mais
+        // vous devriez « l'assainir » pour au moins éviter
+        // quelconques problèmes de sécurité
+
+        // Déplacer le fichier uploadé dans le bon répertoir
+        // uploads/product/
+        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+
+        // je stocke le nom du fichier uploadé dans mon
+        //attribut image
+        $this->image = $this->file->getClientOriginalName();
+
+        // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
+        $this->file = null;
     }
 }

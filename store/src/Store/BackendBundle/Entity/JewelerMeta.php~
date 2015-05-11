@@ -31,6 +31,13 @@ class JewelerMeta
     /**
      * @var string
      *
+     * @ORM\Column(name="zipcode", type="string", length=300, nullable=true)
+     */
+    private $zipcode;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="address", type="string", length=300, nullable=true)
      */
     private $address;
@@ -143,7 +150,7 @@ class JewelerMeta
      */
     public function __construct()
     {
-        $this->optin = 0;
+        $this->optin = false;
     }
 
 
@@ -523,5 +530,12 @@ class JewelerMeta
     public function getJeweler()
     {
         return $this->jeweler;
+    }
+
+    /**
+     * Retourne le contenu
+     */
+    public function __toString(){
+        return $this->id;
     }
 }

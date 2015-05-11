@@ -19,6 +19,23 @@ class MainController extends Controller{
      */
     public function indexAction(){
 
+
+
+//        $entryData = array(
+//            'category' => 'Presse'
+//            , 'title'    => 'Article de Sarkozy :)'
+//            , 'article'  => 7
+//            , 'when'     => time()
+//        );
+//
+//// This is our new stuff
+//        $context = new \ZMQContext();
+//        $socket = $context->getSocket(\ZMQ::SOCKET_PUSH, 'pushed');
+//        $socket->connect("tcp://localhost:5555");
+//
+//        $socket->send(json_encode($entryData));
+
+
 //        $finderProducts = $this->container->get('fos_elastica.finder.website.product');
 //
 //// Option 1. Returns all users who have example.net in any of their mapped fields
@@ -30,7 +47,6 @@ class MainController extends Controller{
 //        $this->get('store.backend.email')->sendparam($user, 'julien@meetserious.com',
 //            'StoreBackendBundle:Email:welcome.html.twig', "Bienvenue :)",'zuzu38080@gmail.com', '<p>okay</p>');
 //
-
         // Récupérer Doctrine Manager
         $em = $this->getDoctrine()->getManager();
 

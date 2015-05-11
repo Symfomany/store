@@ -103,7 +103,7 @@ class AuthentificationListener
         $this->em->flush();
 
         return new RedirectResponse($this->router->generate($route));
-        
+
     }
 
 

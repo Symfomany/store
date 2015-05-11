@@ -68,7 +68,7 @@ class CommentRepository extends EntityRepository
      * WHERE `jeweler_id` = 1
      * @return mixed
      */
-    public function getNbCommentState($user = null, $state = 2){
+    public function getNbCommentState($user = null, $state = null){
         // compte le nb de produits pour 1 bijoutier
         $query = $this->getEntityManager()
             ->createQuery(

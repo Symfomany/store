@@ -9,16 +9,13 @@ use Ratchet\ConnectionInterface;
  */
 class Pusher implements WampServerInterface {
 
-
     /**
      * A lookup of all the topics clients have subscribed to
      */
-    protected $products = array();
-
+    protected $subscribedTopics = array();
 
     public function onSubscribe(ConnectionInterface $conn, $topic) {
-        $this->products[$topic->getId()] = $topic;
-
+        $this->subscribedTopics[$topic->getId()] = $topic;
     }
 
     /**
@@ -28,15 +25,16 @@ class Pusher implements WampServerInterface {
         $entryData = json_decode($entry, true);
 
         // If the lookup topic object isn't set there is no one to publish to
-        if (!array_key_exists($entryData['title'], $this->products)) {
+        if (!array_key_exists($entryData['category'], $this->subscribedTopics)) {
             return;
         }
 
-        $topic = $this->products[$entryData['title']];
+        $topic = $this->subscribedTopics[$entryData['category']];
 
         // re-send the data to all the clients subscribed to that category
         $topic->broadcast($entryData);
     }
+
 
     public function onUnSubscribe(ConnectionInterface $conn, $topic) {
 

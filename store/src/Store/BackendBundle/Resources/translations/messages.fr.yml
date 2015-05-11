@@ -1,7 +1,8 @@
 # Je vais pouvoir traduire mes textes de vues et mes textes de Controllers
 list:
   choice: Choisir votre langue svp %username%
-
+"Bad credentials": Mauvais pseudonyme/ Mauvais mot de passe
+Bad credentials: Mauvais pseudonyme/ Mauvais mot de passe
 "User account is disabled.": Votre compte n'est pas encore activé. Veuille vérifier votre boîte e-mail.
 User account is disabled.: Votre compte n'est pas encore activé. Veuille vérifier votre boîte e-mail.
 cms:

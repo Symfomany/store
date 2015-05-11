@@ -70,6 +70,22 @@
     <script src="{{ asset('assets/backend/javascripts/pixel-admin.min.js') }}"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/hinclude/0.9.5/hinclude.min.js"></script>
 
+    {#<script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script>#}
+    {#<script>#}
+{#//        var conn = new ab.Session('ws://localhost:8080',#}
+{#//                function() {#}
+{#//                    conn.subscribe('Pressing', function(topic, data) {#}
+{#//                        // This is where you would add the new article to the DOM (beyond the scope of this tutorial)#}
+{#//                        console.log('New article published to category "' + topic + '" : ' + data.title + ' : ' + data.category);#}
+{#//                    });#}
+{#//                },#}
+{#//                function() {#}
+{#//                    console.warn('WebSocket connection closed');#}
+{#//                },#}
+{#//                {'skipSubprotocolCheck': true}#}
+{#//        );#}
+    {#</script>#}
+
     <script type="text/javascript">
         init.push(function () {
             $("select").select2();
@@ -78,5 +94,42 @@
             $('div.alert-success').delay(3000).slideUp('slow');
         });
         window.PixelAdmin.start(init);
+
+        /*
+        var conn = new WebSocket('ws://localhost:8080');
+        conn.onopen = function(e) {
+            console.log("Connection established!");
+        };
+
+        conn.onmessage = function(e) {
+            console.log(e.data);
+        };
+
+        send('lala');
+
+        function send(message) {
+            waitForSocketConnection(conn, function() {
+                conn.send(message);
+            });
+        };
+
+
+        function waitForSocketConnection(socket, callback){
+            setTimeout(
+                    function(){
+                        if (socket.readyState === 1) {
+                            if(callback !== undefined){
+                                callback();
+                            }
+                            return;
+                        } else {
+                            waitForSocketConnection(socket,callback);
+                        }
+                    }, 5);
+        };*/
+
+
+
+
     </script>
 {% endblock%}

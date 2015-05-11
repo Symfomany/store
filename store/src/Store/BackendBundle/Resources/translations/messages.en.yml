@@ -1,6 +1,7 @@
 # Je vais pouvoir traduire mes textes de vues et mes textes de Controllers
 list:
   choice: Choose your language please %username%
-
+"Bad credentials": Mauvais pseudonyme/ Mauvais mot de passe
+Bad credentials: Mauvais pseudonyme/ Mauvais mot de passe
 form:
     title: Title

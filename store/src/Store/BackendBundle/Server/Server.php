@@ -4,11 +4,7 @@ namespace Store\BackendBundle\Server;
 use Ratchet\MessageComponentInterface;
 use Ratchet\ConnectionInterface;
 
-/**
- * Server Service Class
- */
 class Server implements MessageComponentInterface {
-
     protected $clients;
 
     public function __construct() {

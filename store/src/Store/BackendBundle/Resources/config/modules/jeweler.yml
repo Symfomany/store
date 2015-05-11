@@ -13,3 +13,8 @@ store_backend_jeweler_myparameters:
 store_backend_jeweler_mymessages:
   path: /my-messages
   defaults: { _controller: StoreBackendBundle:Jeweler:mymessages }
+
+# Page My Messages
+store_backend_jeweler_mypicture:
+  path: /my-picture
+  defaults: { _controller: StoreBackendBundle:Jeweler:mypicture }
