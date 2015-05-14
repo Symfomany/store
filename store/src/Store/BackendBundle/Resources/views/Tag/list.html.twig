@@ -1,0 +1,58 @@
+{% extends "StoreBackendBundle::layout.html.twig" %}
+
+{% block titlepage %}
+    <i class="fa  fa-tags"></i> Boîte à mots-clefs
+{% endblock  %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+
+    <script>
+        init.push(function () {
+            $('#jq-datatables-example').dataTable();
+            $('#jq-datatables-example_wrapper .table-caption').text('Toutes vos bijoux');
+            $('#jq-datatables-example_wrapper .dataTables_filter input').attr('placeholder', 'Rechercher...');
+        });
+    </script>
+{% endblock  %}
+
+
+{% block content %}
+
+    <div class="row">
+        <div class="alert alert-dark alert-danger">
+            <button class="close">X</button>
+            <strong><i class="fa fa-info"></i> Information: </strong> Boîte à mots-clef: Liste de mots-clefs dans lequel vous pouvez roicher pour vous inspirer.
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="alert alert-info alert-dark">
+            {# Me compte la liste de mes produits #}
+            <strong>{{ tags|length }}</strong>  mots-clef
+        </div>
+    </div>
+
+    <table id="jq-datatables-example" class="table table-bordered table-primary">
+        <thead>
+            <th>Id</th>
+            <th>Mots-Clef</th>
+        </thead>
+        <tbody>
+        {% for tag in tags %}
+            <tr>
+                <td>{{ tag.id }}</td>
+                <td>{{ tag.word }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <div class="row">
+        <a href="{{ path('store_backend_tag_new') }}" class="pull-right btn btn-success btn-lg">
+            <i class="fa fa-plus"></i> Ajouter un mots-clef
+        </a>
+    </div>
+
+{% endblock %}

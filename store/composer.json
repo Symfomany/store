@@ -28,11 +28,18 @@
         "friendsofsymfony/elastica-bundle": "~3.2@dev",
         "gregwar/captcha-bundle": "^1.0",
         "cboden/ratchet": "^0.3.2",
-        "react/zmq": "0.2.*|0.3.*"
+        "react/zmq": "0.2.*|0.3.*",
+        "behat/mink-extension": "^2.0",
+        "behat/mink-browserkit-driver": "^1.2"
 
     },
     "require-dev": {
-        "sensio/generator-bundle": "~2.3"
+        "sensio/generator-bundle": "~2.3",
+        "behat/behat": "^3.0",
+        "behat/symfony2-extension": "^2.0",
+        "behat/mink": "^1.6",
+        "behat/mink-goutte-driver": "*",
+        "behat/mink-selenium2-driver": "*"
     },
     "scripts": {
         "post-root-package-install": [

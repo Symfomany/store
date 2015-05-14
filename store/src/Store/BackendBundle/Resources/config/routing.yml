@@ -5,6 +5,14 @@ store_backend_index:
     defaults: { _controller: StoreBackendBundle:Main:index }
     # Le Controlleur et L'action appelée
 
+#
+# Ajax
+#
+store_backend_ajax_city:
+    path: /ajax-city #chemin / URI de la route
+    defaults: { _controller: StoreBackendBundle:Layout:ajaxCity }
+
+
 #Pages Statics
 store_backend_statics:
     resource: "@StoreBackendBundle/Resources/config/statics.yml"
@@ -14,6 +22,11 @@ store_backend_statics:
 store_backend_products:
     resource: "@StoreBackendBundle/Resources/config/modules/product.yml"
     prefix:   /products
+
+#Pages Tags
+store_backend_tags:
+    resource: "@StoreBackendBundle/Resources/config/modules/tag.yml"
+    prefix:   /mots-clef
 
 #Pages Orders
 store_backend_orders:

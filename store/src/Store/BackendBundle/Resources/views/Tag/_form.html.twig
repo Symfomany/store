@@ -1,0 +1,16 @@
+{{ form_start(form) }}
+
+<div class="row">
+    <div class="col-md-8">
+        {{ form_row(form.word) }}
+    </div>
+</div>
+
+{#{#btn envoyer#}
+    {{ form_widget(form.envoyer, {'attr': {'class': 'btn btn-lg btn-primary'}}) }}
+
+{# ATTENTION: token à ne pas oublier #}
+    {{ form_widget(form._token) }}
+
+    {# Crée une balise fermante </form>#}
+{{ form_end(form, {'render_rest': false}) }}

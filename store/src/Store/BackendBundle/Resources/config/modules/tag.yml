@@ -1,0 +1,10 @@
+
+# Page List of Tafs
+store_backend_tag_list:
+  path: /list
+  defaults: { _controller: StoreBackendBundle:Tag:list }
+
+# Page Create a Tag
+store_backend_tag_new:
+  path: /new
+  defaults: { _controller: StoreBackendBundle:Tag:new }

@@ -5,6 +5,8 @@ namespace Store\BackendBundle\Controller;
 
 // J'inclue la classe Controller de Symfony pour pouvoir hériter de cette classe
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class LayoutController
@@ -35,6 +37,9 @@ class LayoutController extends Controller{
             )
         );
     }
+
+
+
     /**
      * Me retourne la liste de mes commandes
      * @return \Symfony\Component\HttpFoundation\Response
@@ -57,6 +62,34 @@ class LayoutController extends Controller{
             )
         );
     }
+
+    /**
+     * Me retourne la liste de mes commandes
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function ajaxCityAction(Request $request){
+
+        //je récupère l'Entité Manager
+        $em = $this->getDoctrine()->getManager();
+
+        $ville = $request->query->get('city');
+
+        $villes = $em->getRepository('StoreBackendBundle:Villes')
+            ->getCity($ville, 10);
+
+
+        $tab = array();
+        foreach($villes as $ville){
+            $tab[] = $ville['nom'];
+        }
+
+       return new JsonResponse(
+           array($tab)
+       );
+
+    }
+
+
 
 }
 

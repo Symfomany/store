@@ -14,6 +14,27 @@
         init.push(function () {
             $("textarea").markdown({ iconlibrary: 'fa' });
 
+            $('#meta_city').autocomplete({
+                minLength: 4,
+                source : function(requete, reponse){ // les deux arguments représentent les données nécessaires au plugin
+                    $.ajax({
+                        url : "{{ path('store_backend_ajax_city') }}", // on appelle le script JSON
+                        dataType : 'json', // on spécifie bien que le type de données est en JSON
+                        cache: true,
+                        data : {
+                            city : $('#meta_city').val() // on donne la chaîne de caractère tapée dans le champ de recherche
+                        },
+
+                        success : function(donnee){
+                            reponse($.map(donnee, function(objet){
+                                return objet;
+                            }));
+                        }
+                    });
+                }
+            });
+
+
             $('#profile-tabs').tabdrop();
             $("textarea").markdown({ iconlibrary: 'fa' });
             $("#leave-comment-form").expandingInput({
@@ -39,7 +60,7 @@
 
 {% block content %}
     <div class="profile-full-name">
-        <span class="text-semibold">Boutique de Boyer Julien</span>'
+       <h1> Boutique de <span class="text-semibold">{{ app.user.title }}</span></h1>
     </div>
 
 
@@ -93,9 +114,9 @@
 
 
 
-            <a href="#" class="btn btn-info"><i class="fa fa-heart"></i>&nbsp;&nbsp;8</a>&nbsp;&nbsp;
-            <a href="#" class="btn btn-success"><i class="fa fa-random"></i>&nbsp;&nbsp;5</a>&nbsp;&nbsp;
-            <a href="#" class="btn btn-default"><i class="fa fa-truck"></i>&nbsp;&nbsp;5</a>&nbsp;&nbsp;
+            <a href="#" class="btn btn-info"><i class="fa fa-heart"></i>&nbsp;&nbsp;{{  nblikes.nb|default('0') }}</a>&nbsp;&nbsp;
+            <a href="#" class="btn btn-success"><i class="fa fa-random"></i>&nbsp;&nbsp;{{  nborders.nb|default('0') }}</a>&nbsp;&nbsp;
+            <a href="#" class="btn btn-default"><i class="fa fa-truck"></i>&nbsp;&nbsp;{{  nbsuppliers.nb|default('0') }}</a>&nbsp;&nbsp;
         </div>
 
         <div class="panel panel-transparent">
@@ -103,31 +124,17 @@
                 <span class="panel-title"><i class="fa fa-pencil"></i > Description</span>
             </div>
             <div class="panel-body editinline">
-                Pandora SA est un fabricant danois de bijoux fondé en 1982 par les orfèvres Per et Winnie Enevoldson.
-                La société est connue pour ses bracelets personnalisables et leurs breloques (charms), qui représentent la majorité de son chiffre d'affaires....
-        </div>
+                {{ app.user.description|truncate(300, true) }}
+            </div>
 
         <div class="panel panel-transparent">
             <div class="panel-heading">
                 <span class="panel-title"><i class="fa fa-bar-chart-o"></i> Statistique</span>
             </div>
             <div class="list-group">
-                <a href="#" class="list-group-item"><strong><span class="badge badge-info">12</span></strong> Produits</a>
-                <a href="#" class="list-group-item"><strong><span class="badge badge-info">5</span></strong> Pages</a>
-                <a href="#" class="list-group-item"><strong><span class="badge badge-info">10</span></strong> Commentaires</a>
-            </div>
-        </div>
-
-        <div class="panel panel-transparent profile-skills">
-            <div class="panel-heading">
-                <span class="panel-title">Mot-clefs</span>
-            </div>
-            <div class="panel-body">
-                <span class="label label-primary">Collier élégant</span>
-                <span class="label label-primary">Bijoux design</span>
-                <span class="label label-primary">Bracelet glamour</span>
-                <span class="label label-primary">Bijoux fantaisies</span>
-                <span class="label label-primary">Collier </span>
+                <a href="#" class="list-group-item"><strong><span class="badge badge-info">{{ nbprod.nb|default('0')  }}</span></strong> Produits</a>
+                <a href="#" class="list-group-item"><strong><span class="badge badge-info">{{ nbcms.nb|default('0')  }}</span></strong> Pages</a>
+                <a href="#" class="list-group-item"><strong><span class="badge badge-info">{{ nbcomm.nb|default('0')  }}</span></strong> Commentaires</a>
             </div>
         </div>
 
@@ -136,10 +143,10 @@
                 <span class="panel-title">Coordonnées</span>
             </div>
             <div class="list-group">
-                <p>12 Rue Mandar</p>
-                <p>75002 Paris</p>
-                <p><i class="profile-list-icon fa fa-phone" style="color: #888"></i> 06 74 58 56 48</p>
-                <p><i class="profile-list-icon fa fa-envelope" style="color: #888"></i> dsteiner@example.com</p>
+                <p>{{ app.user.meta.address }}</p>
+                <p>{{ app.user.meta.zipcode }} {{ app.user.meta.city }}</p>
+                <p><i class="profile-list-icon fa fa-phone" style="color: #888"></i> {{ app.user.meta.phone }}</p>
+                <p><i class="profile-list-icon fa fa-envelope" style="color: #888"></i> {{ app.user.email }}</p>
             </div>
         </div>
 
@@ -156,13 +163,13 @@
             <a href="#profile-tabs-following" data-toggle="tab"><span class="fa fa-star"></span> Mes informations</a>
         </li>
         <li>
-            <a href="#profile-tabs-board" data-toggle="tab"><strong>10</strong> Commandes</a>
+            <a href="#profile-tabs-board" data-toggle="tab"><strong>{{ orders|length }}</strong> {{ "orders"|transchoice(orders|length) }}</a>
         </li>
         <li>
-            <a href="#profile-tabs-activity" data-toggle="tab"><strong>5</strong> Commentaires</a>
+            <a href="#profile-tabs-activity" data-toggle="tab"><strong>{{ comments|length }}</strong> {{ "comments"|transchoice(comments|length) }}</a>
         </li>
         <li>
-            <a href="#profile-tabs-followers" data-toggle="tab"><strong>8</strong> Messages</a>
+            <a href="#profile-tabs-followers" data-toggle="tab"><strong>{{ messages|length }}</strong> {{ "messages"|transchoice(messages|length) }}</a>
         </li>
 
     </ul>
@@ -170,199 +177,85 @@
     <div class="tab-content tab-content-bordered panel-padding">
     <div class="widget-article-comments tab-pane panel no-padding no-border fade" id="profile-tabs-board">
 
-        <div class="comment">
-            <div class="comment-body">
-                <div class="comment-text">
-                    <div class="comment-heading">
-                        <a href="#" title="">Boyer Julien</a> |  <a href="">julien@meetserious.com</a> <span class="pull-right label label-info">11/05/2014</span>
+        {% for order in orders %}
+            <div class="comment">
+                <div class="comment-body">
+                    <div class="comment-text">
+                        <div class="comment-heading">
+                            <a href="#" title="">{{ order.user.humanize }}</a> |  <a href="">{{ order.user.email }}</a> <span class="pull-right">{{ order.dateCreated|ago }}</span>
+                        </div>
+                        <p><i class="fa fa-map-marker"></i> {{ order.user.fullAddress }}</p>
+                        <p><i class="fa fa-bitcoin"></i> Total: <span class="badge badge-info">{{ order.total|price }}</span></p>
+                        <div class="row"><p class="pull-right">{{ order.state|state|raw }}</p></div>
+                       <ol class="list">
+                           {% for detail in order.detail %}
+                            <li> {{ detail.line }}</li>
+                            {% endfor %}
+                       </ol>
                     </div>
-                    <p><i class="fa fa-map-marker"></i> 75 Rue de la Muguette 75008 Paris</p>
-                    <p><i class="fa fa-bitcoin"></i> Total: <span class="badge badge-info">175€</span></p>
-                    <h2 class="pull-right badge badge-success">Envoyé</h2>
-                    <hr class="clear" />
-                   <ol class="list">
-                       <li> 2 Collier Laura <span class="badge badge-info">55<span class="fa fa-eur"></span></span></li>
-                       <li> 1 Bracelet Crystale Bleue <span class="badge badge-info">60<span class="fa fa-eur"></span></span></li>
-                       <li> 1 Boucles d'oreilles Printemps <span class="badge badge-info">10<span class="fa fa-eur"></span></span></li>
-                   </ol>
-                </div>
+                </div> <!-- / .comment-body -->
             </div> <!-- / .comment-body -->
-        </div> <!-- / .comment-body -->
-
-        <div class="comment">
-            <div class="comment-body">
-                <div class="comment-text">
-                    <div class="comment-heading">
-                        <a href="#" title="">Boyer Florent</a> |  <a href="">florent@gmail.com</a> <span class="pull-right label label-info">10/01/2014</span>
-                    </div>
-                    <p><i class="fa fa-map-marker"></i> 8 rue Jean Jaures 75002 Paris</p>
-                    <p><i class="fa fa-bitcoin"></i> Total: <span class="badge badge-info">55€</span></p>
-                    <h2 class="pull-right badge badge-warning">En cours</h2>
-                    <hr class="clear" />
-                   <ol class="list">
-                       <li> 1 Collier Marguerite <span class="badge badge-info">55<span class="fa fa-eur"></span></span></li>
-                   </ol>
-                </div>
-            </div> <!-- / .comment-body -->
-        </div> <!-- / .comment-body -->
-
-        <div class="comment">
-            <div class="comment-body">
-                <div class="comment-text">
-                    <div class="comment-heading">
-                        <a href="#" title="">Boyer Hélène</a> |  <a href="">helene@gmail.com</a> <span class="pull-right label label-info">20/10/2014</span>
-                    </div>
-                    <p><i class="fa fa-map-marker"></i> 60 Rue Waston 75011 Paris</p>
-                    <p><i class="fa fa-bitcoin"></i> Total: <span class="badge badge-info">75€</span></p>
-                    <h2 class="pull-right badge badge-danger">Annulé</h2>
-                    <hr class="clear" />
-                   <ol class="list">
-                       <li> 1 Bracelet glamour <span class="badge badge-info">40<span class="fa fa-eur"></span></span></li>
-                       <li> 1 Boucles d'oreilles design <span class="badge badge-info">35<span class="fa fa-eur"></span></span></li>
-                   </ol>
-                </div>
-            </div> <!-- / .comment-body -->
-        </div> <!-- / .comment-body -->
-
-        <div class="comment">
-            <div class="comment-body">
-                <div class="comment-text">
-                    <div class="comment-heading">
-                        <a href="#" title="">Boyer Nicolas</a> |  <a href="">helene@gmail.com</a> <span class="pull-right label label-info">20/10/2014</span>
-                    </div>
-                    <p><i class="fa fa-map-marker"></i> 10 Rue Monalisa 75011 Paris</p>
-                    <p><i class="fa fa-bitcoin"></i> Total: <span class="badge badge-info">100€</span></p>
-                    <h2 class="pull-right badge badge-success">Envoyé</h2>
-                    <hr class="clear" />
-                   <ol class="list">
-                       <li> 1 Bracelet glamour <span class="badge badge-info">40<span class="fa fa-eur"></span></span></li>
-                       <li> 1 Boucles d'oreilles design <span class="badge badge-info">35<span class="fa fa-eur"></span></span></li>
-                   </ol>
-                </div>
-            </div> <!-- / .comment-body -->
-        </div> <!-- / .comment-body -->
-
-
+        {% else %}
+            <div class="alert alert-danger">
+                <i class="fa fa-warning"></i> Aucune commande pour le moment
+            </div>
+        {% endfor %}
 
     </div> <!-- / .tab-pane -->
     <div class="tab-pane fade" id="profile-tabs-activity">
         <div class="timeline">
             <!-- Timeline header -->
-            <div class="tl-header now">Now</div>
+            <div class="tl-header now">Aujourd'hui</div>
 
-            <div class="tl-entry">
-                <div class="tl-time">
-                    04/03/2015 <br />à 15:00
-                </div>
-                <div class="tl-icon bg-warning"><i class="fa fa-envelope"></i></div>
-                <div class="panel tl-body">
-                    <h4 class="text-warning">Laura Collier </h4>
-                    <p>Très beau collier de très belle composition!</p>
-                </div> <!-- / .tl-body -->
-            </div> <!-- / .tl-entry -->
-
-            <div class="tl-entry">
-                <div class="tl-time">
-                    02/01/2015 <br />à 14:30
-                </div>
-                <div class="tl-icon bg-success"><i class="fa fa-envelope"></i></div>
-                <div class="panel tl-body">
-                    <h4 class="text-success"> Bracelet glamour</h4>
-                    <p>Jolie bracelet d'été :)</p>
-                </div> <!-- / .tl-body -->
-            </div> <!-- / .tl-entry -->
-
-
-            <div class="tl-entry">
-                <div class="tl-time">
-                    20/12/2014 <br />à 10:30
-                </div>
-                <div class="tl-icon bg-success"><i class="fa fa-envelope"></i></div>
-                <div class="panel tl-body">
-                    <h4 class="text-success"> Collier sautoir rouge</h4>
-                    <p>Boutique très originale :)</p>
-                </div> <!-- / .tl-body -->
-            </div> <!-- / .tl-entry -->
-
-
-            <div class="tl-entry">
-                <div class="tl-time">
-                    15/12/2015 <br />à 17h00
-                </div>
-                <div class="tl-icon bg-success"><i class="fa fa-envelope"></i></div>
-                <div class="panel tl-body">
-                    <h4 class="text-success"> Collier bleu zaure</h4>
-                    <p>Très belles perles nacrées assez tendance!</p>
-                </div> <!-- / .tl-body -->
-            </div> <!-- / .tl-entry -->
-
-            <div class="tl-entry">
-                <div class="tl-time">
-                    10/12/2015 <br />à 20h15
-                </div>
-                <div class="tl-icon bg-success"><i class="fa fa-envelope"></i></div>
-                <div class="panel tl-body">
-                    <h4 class="text-success"> Sautoir poupée rouge</h4>
-                    <p>Très beau sautoir</p>
-                </div> <!-- / .tl-body -->
-            </div> <!-- / .tl-entry -->
+            {% for comment in comments %}
+                <div class="tl-entry">
+                    <div class="tl-time">
+                        {{ comment.dateCreated|date("d/m/Y") }} <br />à {{ comment.dateCreated|date("H:i") }}
+                    </div>
+                    <div class="tl-icon bg-warning"><i class="fa fa-envelope"></i></div>
+                    <div class="panel tl-body">
+                        <h4 class="text-warning">{{ comment.product.title }}</h4>
+                        <p>{{ comment.content }}</p>
+                    </div> <!-- / .tl-body -->
+                </div> <!-- / .tl-entry -->
+            {% endfor %}
 
 
 
         </div> <!-- / .timeline -->
     </div> <!-- / .tab-pane -->
-    <div class="tab-pane fade widget-followers" id="profile-tabs-followers">
-        <div class="follower">
-            <div class="body">
-                <div class="row">
-                <div class="pull-right">
-                    <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Lu</span></a>
+    <div class="tab-pane fade" id="profile-tabs-followers">
+
+        {% for message in messages %}
+            <div class="follower">
+                <div class="body">
+                    <div class="row">
+                    <div class="pull-right">
+                        <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Lu</span></a>
+                    </div>
+                    </div>
+                    <a href="#" class="follower-name">{{ message.user.humanize }}</a><br>
+                    <a href="#" class="follower-username">{{ message.user.email }}</a>
+                    <h3>{{ message.title }}</h3>
+                    <p>{{ message.content|truncate(300,true) }}</p>
+                        <span class="label label-default pull-right">{{ message.dateCreated|ago }} <br /> {{ message.dateCreated|date('d/m/Y') }} à {{ message.dateCreated|date('H:i') }}</span>
+                    <div class="row"></div>
                 </div>
-                </div>
-                <a href="#" class="follower-name">Julien Boyer</a><br>
-                <a href="#" class="follower-username">@julien@meetserious.com</a>
-                <h3>Question Générale</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in orci non nibh ultricies venenatis. Sed laoreet turpis enim, in finibus ante iaculis accumsan. Maecenas metus eros, laoreet ac nulla ut, auctor ultrices lectus. Aenean lacus augue, faucibus imperdiet nunc a, lobortis rhoncus lectus...</p>
-                <span class="label label-default pull-right">10/03/2015 à 20h:00</span>
-                <div class="row"></div>
             </div>
-        </div>
-     <div class="follower">
-            <div class="body">
-                <div class="row">
-                <div class="pull-right">
-                    <a href="#" class="btn btn-sm btn-warning"><i class="fa fa-check"></i><span>&nbsp;&nbsp;En cours</span></a>
-                </div>
-                </div>
-                <a href="#" class="follower-name">Florent Boyer</a><br>
-                <a href="#" class="follower-username">@florent@gmail.com</a>
-                <h3>Problème Produit</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in orci non nibh ultricies venenatis. Sed laoreet turpis enim, in finibus ante iaculis accumsan. Maecenas metus eros, laoreet ac nulla ut, auctor ultrices lectus. Aenean lacus augue, faucibus imperdiet nunc a, lobortis rhoncus lectus...</p>
-                <span class="label label-default pull-right">02/02/2015 à 18h:00</span>
-                <div class="row"></div>
+        {% else %}
+            <div class="alert alert-danger">
+                <i class="fa fa-warning"></i> Aucun message pour le moment
             </div>
-        </div>
-    <div class="follower">
-            <div class="body">
-                <div class="row">
-                <div class="pull-right">
-                    <a href="#" class="btn btn-sm btn-success"><i class="fa fa-check"></i><span>&nbsp;&nbsp;Lu</span></a>
-                </div>
-                </div>
-                <a href="#" class="follower-name">Hélène Boyer</a><br>
-                <a href="#" class="follower-username">@helene@gmail.com</a>
-                <h3>Partenariat</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in orci non nibh ultricies venenatis. Sed laoreet turpis enim, in finibus ante iaculis accumsan. Maecenas metus eros, laoreet ac nulla ut, auctor ultrices lectus. Aenean lacus augue, faucibus imperdiet nunc a, lobortis rhoncus lectus...</p>
-                <span class="label label-default pull-right">01/02/2015 à 17h:30</span>
-                <div class="row"></div>
-            </div>
-        </div>
+        {% endfor %}
+
     </div> <!-- / .tab-pane -->
 
 
     <div class="tab-pane fade widget-followers panel-padding in active" id="profile-tabs-following">
+        <p class="pull-right alert-warning alert">Modifier {{ app.user.dateUpdated|ago }}</p>
         <h3><i class="fa fa-pencil"></i> Modifier les informations de la boutique</h3>
-        <hr />
+        <div class="row">
+        </div>
             {{ form_start(form) }}
             <div class="alert alert-dark alert-info row">
                 <div class="col-md-6">

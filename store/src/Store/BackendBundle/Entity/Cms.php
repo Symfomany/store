@@ -28,7 +28,7 @@ class Cms
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -44,7 +44,7 @@ class Cms
      *      groups={"new", "edit"}
      * )     * @ORM\Column(name="title", type="string", length=300, nullable=true)
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
@@ -55,7 +55,7 @@ class Cms
      * @StoreAssert\StripTagLength(groups={"new", "edit"})
      * @ORM\Column(name="summary", type="text", nullable=true)
      */
-    private $summary;
+    protected $summary;
 
     /**
      * @var string
@@ -72,13 +72,13 @@ class Cms
      * )
      * @ORM\Column(name="description", type="text", nullable=true)
      */
-    private $description;
+    protected $description;
 
 
     /**
      * @ORM\Column(name="image", type="string", nullable=true)
      */
-    private $image;
+    protected $image;
 
 
     /**
@@ -106,7 +106,7 @@ class Cms
      * )
      * @ORM\Column(name="video", type="string", length=300, nullable=true)
      */
-    private $video;
+    protected $video;
 
     /**
      * @var integer
@@ -116,42 +116,42 @@ class Cms
      * )
      * @ORM\Column(name="state", type="integer", nullable=true)
      */
-    private $state;
+    protected $state;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
-    private $active;
+    protected $active;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_active", type="datetime", nullable=true)
      */
-    private $dateActive;
+    protected $dateActive;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_updated", type="datetime", nullable=true)
      */
-    private $dateUpdated;
+    protected $dateUpdated;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_created", type="datetime", nullable=true)
      */
-    private $dateCreated;
+    protected $dateCreated;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="view", type="integer", nullable=true)
      */
-    private $view;
+    protected $view;
 
     /**
      * @var \Jeweler
@@ -161,14 +161,14 @@ class Cms
      *   @ORM\JoinColumn(name="jeweler_id", referencedColumnName="id")
      * })
      */
-    private $jeweler;
+    protected $jeweler;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
      * @ORM\ManyToMany(targetEntity="Product", mappedBy="cms")
      */
-    private $product;
+    protected $product;
 
     /**
      * Constructor

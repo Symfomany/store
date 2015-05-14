@@ -71,7 +71,7 @@ class JewelerRepository extends EntityRepository implements UserProviderInterfac
 
         } catch (NoResultException $e) {
             // si il n'y a aucun résultat, alors on retourne aucun utilisateur
-           return null;
+            throw new UsernameNotFoundException(sprintf('Utilisateur introuvable "%s".', $username), 0, $e);
         }
 
         return $user;
@@ -95,9 +95,16 @@ class JewelerRepository extends EntityRepository implements UserProviderInterfac
                 )
             );
         }
-
         //utilise la methode find() pour retrouver l'utilisateur depuis son ID
-        return $this->find($user->getId());
+            $q = $this
+                ->createQueryBuilder('u')
+                ->select('u, g')
+                ->leftJoin('u.groups', 'g')
+                ->where('u.id = :id')
+                ->setParameter('id', $user->getId())
+                ->getQuery();
+
+        return $q->getSingleResult();
     }
 
     /**
@@ -112,6 +119,7 @@ class JewelerRepository extends EntityRepository implements UserProviderInterfac
     {
         return $this->getEntityName() === $class || is_subclass_of($class, $this->getEntityName());
     }
+
 
 
     /**

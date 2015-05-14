@@ -19,35 +19,35 @@ class Message
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="title", type="string", nullable=true)
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
      *
      * @ORM\Column(name="content", type="text", nullable=true)
      */
-    private $content;
+    protected $content;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="state", type="integer", nullable=true)
      */
-    private $state;
+    protected $state;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_created", type="datetime", nullable=true)
      */
-    private $dateCreated;
+    protected $dateCreated;
 
     /**
      * @var \Jeweler
@@ -57,7 +57,7 @@ class Message
      *   @ORM\JoinColumn(name="jeweler_id", referencedColumnName="id")
      * })
      */
-    private $jeweler;
+    protected $jeweler;
     /**
      * @var \User
      *
@@ -66,7 +66,7 @@ class Message
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
-    private $user;
+    protected $user;
 
 
     /**

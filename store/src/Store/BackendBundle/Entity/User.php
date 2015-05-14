@@ -4,6 +4,9 @@ namespace Store\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 /**
  * User
  *
@@ -19,68 +22,87 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
-    private $active;
+    protected $active;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="last_login", type="datetime", nullable=true)
      */
-    private $lastLogin;
+    protected $lastLogin;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_created", type="datetime", nullable=true)
      */
-    private $dateCreated;
+    protected $dateCreated;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_updated", type="datetime", nullable=true)
      */
-    private $dateUpdated;
+    protected $dateUpdated;
 
     /**
      * @var string
      *
      * @ORM\Column(name="firstname", type="string", length=150, nullable=true)
      */
-    private $firstname;
+    protected $firstname;
 
     /**
      * @var string
      *
      * @ORM\Column(name="lastname", type="string", length=150, nullable=true)
      */
-    private $lastname;
+    protected $lastname;
 
     /**
      * @var string
      *
      * @ORM\Column(name="email", type="string", length=150, nullable=true)
      */
-    private $email;
+    protected $email;
 
     /**
      * @var string
      *
      * @ORM\Column(name="password", type="string", length=150, nullable=true)
      */
-    private $password;
+    protected $password;
 
     /**
      * @var integer
      */
-    private $fid;
+    protected $fid;
+
+    /**
+     * @var string
+     * @Assert\Regex(
+     *  pattern="/^\+?\s*(\d+[ \.-]?){8,}$/",
+     *  message = "Le téléphone n'est pas valide",
+     *  groups={"edit"}
+     * )
+     * @ORM\Column(name="phone", type="string", length=20, nullable=true)
+     */
+    protected $phone;
+
+
+    /**
+     * @var \Product
+     *
+     * @ORM\OneToMany(targetEntity="UserAddress", mappedBy="user")
+     */
+    protected $address;
 
 
     /**
@@ -287,6 +309,24 @@ class User
         return $this->password;
     }
 
+    /**
+     * Humanize this user
+     * @return string
+     */
+    public function getHumanize(){
+
+        return $this->getFirstname() . " " . $this->getLastname();
+    }
+
+    /**
+     * Humanize this user
+     * @return string
+     */
+    public function getFullAddress(){
+
+        return $this->getAddress()[0]->getAddress() . " " . $this->getAddress()[0]->getZipcode() . " ". $this->getAddress()[0]->getCity();
+    }
+
 
 
     /**
@@ -319,5 +359,61 @@ class User
     public function __toString(){
 
         return $this->firstname ." ". $this->lastname;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return User
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Add address
+     *
+     * @param \Store\BackendBundle\Entity\UserAdress $address
+     * @return User
+     */
+    public function addAddress(\Store\BackendBundle\Entity\UserAddress $address)
+    {
+        $this->address[] = $address;
+
+        return $this;
+    }
+
+    /**
+     * Remove address
+     *
+     * @param \Store\BackendBundle\Entity\UserAdress $address
+     */
+    public function removeAddress(\Store\BackendBundle\Entity\UserAddress $address)
+    {
+        $this->address->removeElement($address);
+    }
+
+    /**
+     * Get address
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAddress()
+    {
+        return $this->address;
     }
 }

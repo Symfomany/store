@@ -19,40 +19,54 @@ class UserAddress
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=300, nullable=true)
      */
-    private $city;
+    protected $city;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="integer",  nullable=true)
+     */
+    protected $type;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="zipcode", type="integer", nullable=true)
      */
-    private $zipcode;
+    protected $zipcode;
 
     /**
      * @var string
      *
      * @ORM\Column(name="address", type="text", nullable=true)
      */
-    private $address;
+    protected $address;
 
     /**
      * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="address")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
-    private $user;
+    protected $user;
 
 
+    /**
+     * Constructor
+     */
+    public function __construct(){
+
+        $this->type = 1;
+    }
 
     /**
      * Get id
@@ -162,5 +176,28 @@ class UserAddress
      */
     public function __toString(){
         return $this->zipcode. " ". $this->address;
+    }
+
+    /**
+     * Set type
+     *
+     * @param integer $type
+     * @return UserAddress
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    /**
+     * Get type
+     *
+     * @return integer 
+     */
+    public function getType()
+    {
+        return $this->type;
     }
 }

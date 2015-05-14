@@ -20,10 +20,11 @@ class StoreBackendExtension extends \Twig_Extension
             // - 1er argument est le nom du filtre en TWIG
             // - 2eme argument est le nom du filtre en TWIG
             new \Twig_SimpleFilter('state', array($this, 'state')),
-            new \Twig_SimpleFilter('ago', array($this, 'createdAgo')),
+            new \Twig_SimpleFilter('ago', array($this, 'ago')),
             new \Twig_SimpleFilter('begin', array($this, 'beginIn')),
             new \Twig_SimpleFilter('urldecode', array($this, 'urlDecode')),
-            new \Twig_SimpleFilter('thumb', array($this, 'thumb'))
+            new \Twig_SimpleFilter('thumb', array($this, 'thumb')),
+            new \Twig_SimpleFilter('price', array($this, 'priceFilter')),
 
 
         );
@@ -51,44 +52,42 @@ class StoreBackendExtension extends \Twig_Extension
     }
 
 
-
     /**
-     * Created ago function
-     * @param $dateTime
-     * @return null|string
-     * @throws \Exception
+     * Format a price
+     * @param $number
+     * @param int $decimals
+     * @param string $decPoint
+     * @param string $thousandsSep
+     * @return string
      */
-    public function createdAgo($dateTime)
+    public function priceFilter($number, $decimals = 0, $decPoint = '.', $thousandsSep = ',')
+    {
+        $price = number_format($number, $decimals, $decPoint, $thousandsSep);
+        $price = $price.' €';
+        return $price;
+    }
+
+
+
+    public function pluralize( $count, $text )
+    {
+        return $count . ( ( $count == 1 ) ? ( " $text" ) : ( " ${text}s" ) );
+    }
+
+
+    public function ago( $datetime )
     {
 
-        if (!$dateTime)
-            return null;
+        $interval = date_create('now')->diff( $datetime );
 
-        $delta = time() - $dateTime->getTimestamp();
-        if ($delta < 0)
-            throw new \Exception("createdAgo is unable to handle dates in the future");
-        $duration = "";
-        if ($delta < 60) {
-            // Seconds
-            if ($delta < 60) {
-                // Secondes
-                $time = $delta;
-                $duration = $time . " seconde" . (($time === 0 || $time > 1) ? "s" : "") . "";
-            }
-        } else if ($delta <= 3600) {
-            // Mins
-            $time = floor($delta / 60);
-            $duration = $time . " minute" . (($time > 1) ? "s" : "") . "";
-        } else if ($delta <= 86400) {
-            // Hours
-            $time = floor($delta / 3600);
-            $duration = $time . " heure" . (($time > 1) ? "s" : "") . "";
-        } else {
-            // Days
-            $time = floor($delta / 86400);
-            $duration = $time . " jour" . (($time > 1) ? "s" : "") . "";
-        }
-        return $duration;
+        if ( $v = $interval->y >= 1 ) return $this->pluralize( $interval->y, 'année' ) ;
+        if ( $v = $interval->m >= 1 ) return $this->pluralize( $interval->m, 'moi' ) ;
+        if ( $v = $interval->d >= 1 ) return $this->pluralize( $interval->d, 'jour' ) ;
+        if ( $v = $interval->h >= 1 ) return $this->pluralize( $interval->h, 'heure' ) ;
+        if ( $v = $interval->i >= 1 ) return $this->pluralize( $interval->i, 'minute' ) ;
+
+
+        return $this->pluralize( $interval->s, 'second' ) ;
     }
 
 

@@ -1,9 +1,11 @@
+store_backend_suscribe:
+    defaults: { _controller: StoreBackendBundle:Security:subscribe }
+    path:   /
+
+
 store_backend:
     resource: "@StoreBackendBundle/Resources/config/routing.yml"
     prefix:   /administration
-
-
-
 
 
 ###

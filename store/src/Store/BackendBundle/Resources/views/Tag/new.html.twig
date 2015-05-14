@@ -1,0 +1,17 @@
+{% extends "StoreBackendBundle::layout.html.twig" %}
+
+{% block titlepage %}
+    <i class="fa fa-plus"></i> Créer un mots-clef
+{% endblock  %}
+
+{% block content %}
+    <div class="alert alert-info">
+        <button class="close">X</button>
+        <strong><i class="fa fa-info"></i> Information: </strong> Ecrivez un mots-clef qui peut être une expression de plusieurs mots-clef
+    </div>
+
+    {{ include('StoreBackendBundle:Tag:_form.html.twig') }}
+
+{% endblock %}
+
+

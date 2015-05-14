@@ -19,35 +19,35 @@ class Comment
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="note", type="integer", nullable=true)
      */
-    private $note;
+    protected $note;
 
     /**
      * @var string
      *
      * @ORM\Column(name="content", type="text", nullable=true)
      */
-    private $content;
+    protected $content;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="state", type="integer", nullable=true)
      */
-    private $state;
+    protected $state;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_created", type="datetime", nullable=true)
      */
-    private $dateCreated;
+    protected $dateCreated;
 
     /**
      * @var \Product
@@ -57,7 +57,7 @@ class Comment
      *   @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      * })
      */
-    private $product;
+    protected $product;
     
     /**
      * @var \User
@@ -67,7 +67,7 @@ class Comment
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
-    private $user;
+    protected $user;
 
 
     /**

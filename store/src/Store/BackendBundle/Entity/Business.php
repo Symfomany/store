@@ -19,28 +19,28 @@ class Business
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="type", type="integer", nullable=true)
      */
-    private $type;
+    protected $type;
 
     /**
      * @var float
      *
      * @ORM\Column(name="amount", type="float", precision=10, scale=0, nullable=true)
      */
-    private $amount;
+    protected $amount;
 
     /**
      * @var string
      *
      * @ORM\Column(name="message", type="string", length=300, nullable=true)
      */
-    private $message;
+    protected $message;
 
 
     /**
@@ -48,17 +48,17 @@ class Business
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
-    private $active;
+    protected $active;
 
     /**
      * @var \DateTime
      */
-    private $dateExpired;
+    protected $dateExpired;
 
     /**
      * @var \DateTime
      */
-    private $dateCreated;
+    protected $dateCreated;
 
 
     /**
@@ -66,7 +66,7 @@ class Business
      *
      * @ORM\ManyToMany(targetEntity="Product", mappedBy="business")
      */
-    private $product;
+    protected $product;
 
 
     /**

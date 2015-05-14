@@ -1,8 +1,14 @@
 # Je vais pouvoir traduire mes textes de vues et mes textes de Controllers
+orders: 'commande|commandes'
+comments: 'commentaire|commentaires'
+messages: 'message|messages'
 list:
   choice: Choisir votre langue svp %username%
-"Bad credentials": Mauvais pseudonyme/ Mauvais mot de passe
-Bad credentials: Mauvais pseudonyme/ Mauvais mot de passe
+Account is disabled.: Votre compte n'est pas encore activé. Veuillez vérifier votre boîte e-mail.
+Account has expired.: Votre compte a expiré. Veuillez contacter l'administrateur par mail dans la partie contact pour plus d'information.
+Account is locked.: Votre compte est bloqué. Veuillez contacter l'administrateur par mail dans la partie contact pour plus d'information.
+Credentials have expired.: Votre compte n'a pas les droits suffisants. Veuillez contacter l'administrateur par mail dans la partie contact pour plus d'information.
+Invalid credentials.: Mauvais identifiant/mot de passe.
 "User account is disabled.": Votre compte n'est pas encore activé. Veuille vérifier votre boîte e-mail.
 User account is disabled.: Votre compte n'est pas encore activé. Veuille vérifier votre boîte e-mail.
 cms:

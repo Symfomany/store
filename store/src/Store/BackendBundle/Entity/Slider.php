@@ -20,7 +20,7 @@ class Slider
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -37,12 +37,12 @@ class Slider
      * )
     * @ORM\Column(name="caption", type="text", nullable=true)
      */
-    private $caption;
+    protected $caption;
 
     /**
      * @ORM\Column(name="image", type="string", nullable=true)
      */
-    private $image;
+    protected $image;
 
 
     /**
@@ -66,14 +66,14 @@ class Slider
      *
      * @ORM\Column(name="position", type="integer", nullable=true)
      */
-    private $position;
+    protected $position;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
-    private $active;
+    protected $active;
 
     /**
      * @var \Product
@@ -83,7 +83,7 @@ class Slider
      *   @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      * })
      */
-    private $product;
+    protected $product;
 
 
     /**

@@ -24,7 +24,7 @@ class Supplier
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -40,7 +40,7 @@ class Supplier
      *      groups={"new", "edit"}
      * )     * @ORM\Column(name="name", type="string", length=300, nullable=true)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
@@ -56,14 +56,14 @@ class Supplier
      *      groups={"new", "edit"}
      * )     * @ORM\Column(name="description", type="text", nullable=true)
      */
-    private $description;
+    protected $description;
 
     /**
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=300, nullable=true)
      */
-    private $image;
+    protected $image;
 
 
 
@@ -89,21 +89,21 @@ class Supplier
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
-    private $active;
+    protected $active;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_created", type="datetime", nullable=true)
      */
-    private $dateCreated;
+    protected $dateCreated;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_updated", type="datetime", nullable=true)
      */
-    private $dateUpdated;
+    protected $dateUpdated;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -114,7 +114,7 @@ class Supplier
      * )
      * @ORM\ManyToMany(targetEntity="Product", mappedBy="supplier")
      */
-    private $product;
+    protected $product;
 
 
     /**
@@ -125,7 +125,7 @@ class Supplier
      *   @ORM\JoinColumn(name="jeweler_id", referencedColumnName="id")
      * })
      */
-    private $jeweler;
+    protected $jeweler;
     
     /**
      * Constructor

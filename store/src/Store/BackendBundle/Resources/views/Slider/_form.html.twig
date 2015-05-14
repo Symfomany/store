@@ -20,9 +20,7 @@
 
     {# Fonction qui sort le label +  le widget + les errors #}
 <div class="row">
-    <div class="col-md-6">
-        {{ form_row(form.caption) }}
-    </div>
+
     <div class="col-md-3">
         {{ form_row(form.file) }}
         {% if app.request.attributes.get('_route') == "store_backend_slider_edit" %}
@@ -31,18 +29,13 @@
             {% endif %}
         {% endif %}
     </div>
+    <div class="col-md-9">
+        {{ form_row(form.caption) }}
+    </div>
 </div>
-<hr />
-
 <div class="row">
-    <div class="col-md-6">
+    <div class="col-md-12">
         {{ form_row(form.product) }}
-    </div>
-    <div class="col-md-4">
-        {{ form_row(form.position) }}
-    </div>
-    <div class="col-md-2">
-        {{ form_row(form.active) }}
     </div>
 </div>
 

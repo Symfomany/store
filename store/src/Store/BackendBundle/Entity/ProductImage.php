@@ -19,21 +19,21 @@ class ProductImage
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="image", type="string", length=300, nullable=true)
      */
-    private $image;
+    protected $image;
 
     /**
      * @var string
      *
      * @ORM\Column(name="image_thumb", type="string", length=300, nullable=true)
      */
-    private $imageThumb;
+    protected $imageThumb;
 
     /**
      * @var \Product
@@ -43,7 +43,7 @@ class ProductImage
      *   @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      * })
      */
-    private $product;
+    protected $product;
 
 
 

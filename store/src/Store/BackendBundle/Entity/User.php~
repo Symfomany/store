@@ -4,6 +4,9 @@ namespace Store\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Symfony\Component\Validator\Constraints as Assert;
+
+
 /**
  * User
  *
@@ -81,6 +84,25 @@ class User
      * @var integer
      */
     private $fid;
+
+    /**
+     * @var string
+     * @Assert\Regex(
+     *  pattern="/^\+?\s*(\d+[ \.-]?){8,}$/",
+     *  message = "Le téléphone n'est pas valide",
+     *  groups={"edit"}
+     * )
+     * @ORM\Column(name="phone", type="string", length=20, nullable=true)
+     */
+    private $phone;
+
+
+    /**
+     * @var \Product
+     *
+     * @ORM\OneToMany(targetEntity="UserAdress", mappedBy="user")
+     */
+    private $address;
 
 
     /**
@@ -287,6 +309,24 @@ class User
         return $this->password;
     }
 
+    /**
+     * Humanize this user
+     * @return string
+     */
+    public function getHumanize(){
+
+        return $this->getFirstname() . " " . $this->getLastname();
+    }
+
+    /**
+     * Humanize this user
+     * @return string
+     */
+    public function getFullAdress(){
+
+        return $this->getMeta() . " " . $this->getLastname();
+    }
+
 
 
     /**
@@ -310,5 +350,37 @@ class User
     public function getFid()
     {
         return $this->fid;
+    }
+
+
+    /**
+     * Retourne le nom et prenom
+     */
+    public function __toString(){
+
+        return $this->firstname ." ". $this->lastname;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return User
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
     }
 }

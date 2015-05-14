@@ -37,6 +37,26 @@ class OrderRepository extends EntityRepository
         return $query->getResult();
     }
 
+    /**
+     * Get Orders of User
+     * @param int $user
+     * @return array
+     */
+    public function getNbOrderByUser($user){
+
+        $query = $this->getEntityManager()
+            ->createQuery(
+                "
+                    SELECT COUNT(o.id) as nb
+                    FROM StoreBackendBundle:Order o
+                    WHERE o.jeweler = :user
+                    "
+            )
+            ->setParameter('user', $user);
+
+        return $query->getOneOrNullResult();
+    }
+
 
     /**
      * get CA of User

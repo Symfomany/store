@@ -29,6 +29,13 @@ class UserAddress
     private $city;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="integer",  nullable=true)
+     */
+    private $type;
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="zipcode", type="integer", nullable=true)
@@ -45,7 +52,7 @@ class UserAddress
     /**
      * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\ManyToOne(targetEntity="User", inversedBy="address")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
@@ -53,6 +60,13 @@ class UserAddress
     private $user;
 
 
+    /**
+     * Constructor
+     */
+    public function __construct(){
+
+        $this->type = 1;
+    }
 
     /**
      * Get id
@@ -154,5 +168,13 @@ class UserAddress
     public function getUser()
     {
         return $this->user;
+    }
+
+
+    /**
+     * Retourne le title
+     */
+    public function __toString(){
+        return $this->zipcode. " ". $this->address;
     }
 }

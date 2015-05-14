@@ -19,84 +19,84 @@ class ProductMeta
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var float
      *
      * @ORM\Column(name="weight", type="float", precision=10, scale=0, nullable=true)
      */
-    private $weight;
+    protected $weight;
 
     /**
      * @var float
      *
      * @ORM\Column(name="length", type="float", precision=10, scale=0, nullable=true)
      */
-    private $length;
+    protected $length;
 
     /**
      * @var float
      *
      * @ORM\Column(name="width", type="float", precision=10, scale=0, nullable=true)
      */
-    private $width;
+    protected $width;
 
     /**
      * @var string
      *
      * @ORM\Column(name="video", type="string", length=300, nullable=true)
      */
-    private $video;
+    protected $video;
 
     /**
      * @var string
      *
      * @ORM\Column(name="extras", type="text", nullable=true)
      */
-    private $extras;
+    protected $extras;
 
     /**
      * @var string
      *
      * @ORM\Column(name="subtitle", type="string", length=300, nullable=true)
      */
-    private $subtitle;
+    protected $subtitle;
 
     /**
      * @var float
      *
      * @ORM\Column(name="note", type="float", precision=10, scale=0, nullable=true)
      */
-    private $note;
+    protected $note;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="view", type="integer", nullable=true)
      */
-    private $view;
+    protected $view;
 
     /**
      * @var string
      *
      * @ORM\Column(name="meta_keyword", type="text", nullable=true)
      */
-    private $metaKeyword;
+    protected $metaKeyword;
 
     /**
      * @var string
      *
      * @ORM\Column(name="meta_description", type="text", nullable=true)
      */
-    private $metaDescription;
+    protected $metaDescription;
 
     /**
      * @var string
      *
      * @ORM\Column(name="meta_title", type="text", nullable=true)
      */
-    private $metaTitle;
+    protected $metaTitle;
 
     /**
      * @var \Product
@@ -106,7 +106,7 @@ class ProductMeta
      *   @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      * })
      */
-    private $product;
+    protected $product;
 
 
 

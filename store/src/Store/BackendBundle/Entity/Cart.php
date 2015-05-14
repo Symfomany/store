@@ -19,7 +19,7 @@ class Cart
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var \Product
@@ -29,7 +29,7 @@ class Cart
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
-    private $user;
+    protected $user;
 
 
     /**
@@ -37,14 +37,14 @@ class Cart
      *
      * @ORM\Column(name="content", type="text", nullable=true)
      */
-    private $content;
+    protected $content;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_created", type="datetime", nullable=true)
      */
-    private $dateCreated;
+    protected $dateCreated;
 
 
 

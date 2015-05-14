@@ -16,15 +16,20 @@ class AppKernel extends Kernel
             new Symfony\Bundle\AsseticBundle\AsseticBundle(),
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
+
+            //Third Bundle
             new Gregwar\CaptchaBundle\GregwarCaptchaBundle(),
-            new Store\BackendBundle\StoreBackendBundle(),
             new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
-            new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle(),
-            new FOS\ElasticaBundle\FOSElasticaBundle()
+            new FOS\ElasticaBundle\FOSElasticaBundle(),
+
+
+            new Store\BackendBundle\StoreBackendBundle(),
 
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {
+
+            $bundles[] = new Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle();
             $bundles[] = new Symfony\Bundle\DebugBundle\DebugBundle();
             $bundles[] = new Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Sensio\Bundle\DistributionBundle\SensioDistributionBundle();

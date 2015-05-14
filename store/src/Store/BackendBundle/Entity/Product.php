@@ -26,7 +26,7 @@ class Product
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -36,7 +36,7 @@ class Product
      * )
      * @ORM\Column(name="ref", type="string", length=30, nullable=true)
      */
-    private $ref;
+    protected $ref;
 
     /**
      * @var string
@@ -53,7 +53,7 @@ class Product
      * )
      * @ORM\Column(name="title", type="string", length=150, nullable=true)
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
@@ -64,7 +64,7 @@ class Product
      * @StoreAssert\StripTagLength(groups={"new", "edit"})
      * @ORM\Column(name="summary", type="text", nullable=true)
      */
-    private $summary;
+    protected $summary;
 
     /**
      * @var string
@@ -81,7 +81,7 @@ class Product
      * )
      * @ORM\Column(name="description", type="text", nullable=true)
      */
-    private $description;
+    protected $description;
 
     /**
      * @var string
@@ -98,7 +98,7 @@ class Product
      * )
      * @ORM\Column(name="composition", type="text", nullable=true)
      */
-    private $composition;
+    protected $composition;
 
     /**
      * @Assert\NotBlank(
@@ -114,7 +114,7 @@ class Product
      * )
      * @ORM\Column(name="price", type="float", precision=10, scale=0, nullable=true)
      */
-    private $price;
+    protected $price;
 
     /**
      * @Assert\Choice(choices = {"2.1","5.5","10", "19.6", "20"},
@@ -123,7 +123,7 @@ class Product
      * )
      * @ORM\Column(name="taxe", type="float", nullable=true)
      */
-    private $taxe;
+    protected $taxe;
 
     /**
      * @Assert\NotBlank(
@@ -139,14 +139,14 @@ class Product
      * )
      * @ORM\Column(name="quantity", type="integer", nullable=true)
      */
-    private $quantity;
+    protected $quantity;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
-    private $active;
+    protected $active;
 
     /**
      * @var \DateTime
@@ -156,49 +156,49 @@ class Product
      * )
      *  @ORM\Column(name="date_active", type="datetime", nullable=true)
      */
-    private $dateActive;
+    protected $dateActive;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="cover", type="boolean", nullable=true)
      */
-    private $cover;
+    protected $cover;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="shop", type="boolean", nullable=true)
      */
-    private $shop;
+    protected $shop;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="position", type="integer", nullable=true)
      */
-    private $position;
+    protected $position;
 
     /**
      * @var string
      *
      * @ORM\Column(name="slug", type="string", length=300, nullable=true)
      */
-    private $slug;
+    protected $slug;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_created", type="datetime", nullable=true)
      */
-    private $dateCreated;
+    protected $dateCreated;
 
     /**
      * @var \DateTime
      *
      * @ORM\Column(name="date_updated", type="datetime", nullable=true)
      */
-    private $dateUpdated;
+    protected $dateUpdated;
 
     /**
      * @var \Jeweler
@@ -208,7 +208,7 @@ class Product
      *   @ORM\JoinColumn(name="jeweler_id", referencedColumnName="id")
      * })
      */
-    private $jeweler;
+    protected $jeweler;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -223,7 +223,7 @@ class Product
      *   }
      * )
      */
-    private $business;
+    protected $business;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -245,7 +245,7 @@ class Product
      *   }
      * )
      */
-    private $category;
+    protected $category;
 
     /**
      * @Assert\Count(
@@ -266,7 +266,7 @@ class Product
      *   }
      * )
      */
-    private $cms;
+    protected $cms;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -281,7 +281,7 @@ class Product
      *   }
      * )
      */
-    private $supplier;
+    protected $supplier;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -302,19 +302,19 @@ class Product
      *   }
      * )
      */
-    private $tag;
+    protected $tag;
 
     /**
      * @var boolean
      * @ORM\OneToOne(targetEntity="ProductMeta", mappedBy="product")
      **/
-    private $meta;
+    protected $meta;
 
     /**
      * @ORM\OneToMany(targetEntity="Slider", mappedBy="product")
      *
      */
-    private $slide;
+    protected $slide;
 
 
     /**
@@ -330,13 +330,13 @@ class Product
      *   }
      * )
      */
-    private $likes;
+    protected $likes;
 
 
     /**
      * @ORM\Column(name="imagepresentation", type="string", nullable=true)
      */
-    private $imagepresentation;
+    protected $imagepresentation;
 
 
     /**
@@ -984,17 +984,17 @@ class Product
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $product2;
+    protected $product2;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $user;
+    protected $user;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
      */
-    private $order;
+    protected $order;
 
 
     /**

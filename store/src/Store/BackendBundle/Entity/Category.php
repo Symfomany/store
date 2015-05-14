@@ -22,7 +22,7 @@ class Category
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -39,7 +39,7 @@ class Category
      * )
      * @ORM\Column(name="title", type="string", length=300, nullable=true)
      */
-    private $title;
+    protected $title;
 
     /**
      * @var string
@@ -56,21 +56,21 @@ class Category
      * )
      * @ORM\Column(name="description", type="text", nullable=true)
      */
-    private $description;
+    protected $description;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="position", type="integer", nullable=true)
      */
-    private $position;
+    protected $position;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
-    private $active;
+    protected $active;
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -82,7 +82,7 @@ class Category
      * )
      * @ORM\ManyToMany(targetEntity="Product", mappedBy="category", cascade={"all"})
      */
-    private $product;
+    protected $product;
 
     /**
      * @var \Product
@@ -92,12 +92,12 @@ class Category
      *   @ORM\JoinColumn(name="jeweler_id", referencedColumnName="id")
      * })
      */
-    private $jeweler;
+    protected $jeweler;
 
     /**
      * @ORM\Column(name="image", type="string", nullable=true)
      */
-    private $image;
+    protected $image;
 
 
     /**
@@ -312,7 +312,7 @@ class Category
     /**
      * @var \DateTime
      */
-    private $dateCreated;
+    protected $dateCreated;
 
 
     /**

@@ -19,43 +19,42 @@ class Order
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="address", type="text", nullable=true)
      */
-    private $address;
+    protected $address;
 
     /**
      * @var float
      *
      * @ORM\Column(name="date", type="date", nullable=true)
      */
-    private $date;
+    protected $date;
 
     /**
      * @var float
      *
      * @ORM\Column(name="state", type="integer", nullable=true)
      */
-    private $state;
+    protected $state;
 
     /**
      * @var float
      *
      * @ORM\Column(name="total", type="float", nullable=true)
      */
-    private $total;
+    protected $total;
 
     /**
      * @var float
      *
      * @ORM\Column(name="date_created", type="datetime", nullable=true)
      */
-    private $dateCreated;
-
+    protected $dateCreated;
 
     /**
      * @var \Product
@@ -65,7 +64,7 @@ class Order
      *   @ORM\JoinColumn(name="user_id", referencedColumnName="id")
      * })
      */
-    private $user;
+    protected $user;
 
     /**
      * @var \Product
@@ -75,14 +74,14 @@ class Order
      *   @ORM\JoinColumn(name="jeweler_id", referencedColumnName="id")
      * })
      */
-    private $jeweler;
+    protected $jeweler;
 
     /**
      * @var \Product
      *
      * @ORM\OneToMany(targetEntity="OrderDetail", mappedBy="order")
      */
-    private $detail;
+    protected $detail;
 
 
     /**

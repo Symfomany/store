@@ -33,9 +33,11 @@
                 {# J'inclus ma vue des messages flashs #}
                 {{ include('StoreBackendBundle:Partial:flashdatas.html.twig') }}
 
-                {% if error is not empty %}
+                {% if error %}
                     <div class="alert alert-danger alert-dark">
-                        <i class="fa fa-warning"></i> {{ error.message|trans([], 'StoreBackendBundle') }}
+                        {% if error %}
+                            <div><i class="fa fa-warning"></i> {{ error.messageKey|trans(error.messageData) }}</div>
+                        {% endif %}
                     </div>
                 {% endif %}
 

@@ -70,6 +70,7 @@
     <script src="{{ asset('assets/backend/javascripts/pixel-admin.min.js') }}"></script>
     <script src="http://cdnjs.cloudflare.com/ajax/libs/hinclude/0.9.5/hinclude.min.js"></script>
 
+
     {#<script src="http://autobahn.s3.amazonaws.com/js/autobahn.min.js"></script>#}
     {#<script>#}
 {#//        var conn = new ab.Session('ws://localhost:8080',#}
@@ -88,6 +89,12 @@
 
     <script type="text/javascript">
         init.push(function () {
+
+            $('form').on("submit", function (event) {
+                $(this).find('button:last').attr('disabled', 'disabled');
+                $(this).find('button:last').text('Envoi en cours...');
+            });
+
             $("select").select2();
             $("input[type='date']").attr('type','text').mask("99/99/9999");
             $('input[type="file"]').pixelFileInput({ placeholder: 'Aucun fichier...' });

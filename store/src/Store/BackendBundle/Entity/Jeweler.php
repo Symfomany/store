@@ -50,16 +50,14 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     /**
      * @var string
      * @Assert\NotBlank(
-     *     message = "Le login ne doit pas etre vide",
+     *     message = "Le pseudonyme ne doit pas etre vide",
      *     groups={"suscribe", "edit"}
      * )
-     * @Assert\Length(
-     *      min = "3",
-     *      max = "50",
-     *      minMessage = "Le login doit faire au moins {{ limit }} caractères",
-     *      maxMessage = "La login ne peut pas être plus long que {{ limit }} caractères",
-     *      groups={"suscribe", "edit"}
-     * )
+     * @Assert\Regex(
+     *     message = "Le pseudonyme doit être valide (caractères alphanumérique au minimum de 4)",
+     *     groups={"suscribe", "edit"},
+     *     pattern="/^[a-zA-Z._]{4,60}/"
+     * ))
      * @ORM\Column(name="username", type="string", length=150, nullable=true)
      */
     protected $username;
@@ -87,13 +85,11 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      *     message = "Le titre de votre boutique ne doit pas etre vide",
      *     groups={"suscribe", "edit"}
      * )
-     * @Assert\Length(
-     *      min = "6",
-     *      max = "50",
-     *      minMessage = "Le titre de votre boutique doit faire au moins {{ limit }} caractères",
-     *      maxMessage = "Le titre de votre boutique ne peut pas être plus long que {{ limit }} caractères",
-     *      groups={"suscribe", "edit"}
-     * )
+     * @Assert\Regex(
+     *     message = "Le nom de votre boutique doit être valide (caractères alphanumérique au minimum de 4)",
+     *     groups={"edit"},
+     *     pattern="/^[a-zA-Z0-9áàâäãåçéèêëíìîïñóòôöõúùûüýÿæœÁÀÂÄÃÅÇÉÈÊËÍÌÎÏÑÓÒÔÖÕÚÙÛÜÝŸÆŒ._\s-]{4,70}/"
+     * ))
      * @ORM\Column(name="title", type="string", length=300, nullable=true)
      */
     protected $title;
@@ -106,9 +102,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * )
      * @Assert\Length(
      *      min = "15",
-     *      max = "5000",
      *      minMessage = "La description doit faire au moins {{ limit }} caractères",
-     *      maxMessage = "La description ne peut pas être plus long que {{ limit }} caractères",
      *      groups={"suscribe", "edit"}
      * )
      * @ORM\Column(name="description", type="text", nullable=true)
@@ -124,7 +118,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
     /**
      * @var integer
-     *
+     * @Assert\Choice(choices = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}, message = "Choisissez un type valide.",  groups={"edit"})
      * @ORM\Column(name="type", type="integer", nullable=true)
      */
     protected $type;
@@ -135,21 +129,6 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * @ORM\Column(name="enabled", type="boolean", nullable=true)
      */
     protected $enabled;
-
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="locked", type="boolean", nullable=true)
-     */
-    protected $locked;
-
-    /**
-     * @var boolean
-     *
-     * @ORM\Column(name="expired", type="boolean", nullable=true)
-     */
-    protected $expired;
 
     /**
      * @var string
@@ -164,13 +143,6 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * @ORM\Column(name="token", type="string", length=300, nullable=true)
      */
     protected $token;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="username_canonical", type="string", length=300, nullable=true)
-     */
-    protected $usernameCanonical;
 
     /**
      * @var string
@@ -244,6 +216,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
     /**
      * @var boolean
+     * @Assert\Valid
      * @ORM\OneToOne(targetEntity="JewelerMeta", mappedBy="jeweler")
      **/
     protected $meta;
@@ -281,8 +254,6 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      *
      */
     protected $groups;
-
-
 
 
     /**
@@ -484,62 +455,6 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get enabled
-     *
-     * @return boolean 
-     */
-    public function getEnabled()
-    {
-        return $this->enabled;
-    }
-
-    /**
-     * Set locked
-     *
-     * @param boolean $locked
-     * @return Jeweler
-     */
-    public function setLocked($locked)
-    {
-        $this->locked = $locked;
-
-        return $this;
-    }
-
-    /**
-     * Get locked
-     *
-     * @return boolean 
-     */
-    public function getLocked()
-    {
-        return $this->locked;
-    }
-
-    /**
-     * Set expired
-     *
-     * @param boolean $expired
-     * @return Jeweler
-     */
-    public function setExpired($expired)
-    {
-        $this->expired = $expired;
-
-        return $this;
-    }
-
-    /**
-     * Get expired
-     *
-     * @return boolean 
-     */
-    public function getExpired()
-    {
-        return $this->expired;
-    }
-
-    /**
      * Set salt
      *
      * @param string $salt
@@ -583,29 +498,6 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     public function getToken()
     {
         return $this->token;
-    }
-
-    /**
-     * Set usernameCanonical
-     *
-     * @param string $usernameCanonical
-     * @return Jeweler
-     */
-    public function setUsernameCanonical($usernameCanonical)
-    {
-        $this->usernameCanonical = $usernameCanonical;
-
-        return $this;
-    }
-
-    /**
-     * Get usernameCanonical
-     *
-     * @return string 
-     */
-    public function getUsernameCanonical()
-    {
-        return $this->usernameCanonical;
     }
 
     /**

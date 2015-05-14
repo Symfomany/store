@@ -21,22 +21,22 @@ class Groups  implements RoleInterface {
      * @ORM\Id()
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\Column(name="name", type="string", length=300)
      */
-    private $name;
+    protected $name;
 
     /**
      * @ORM\Column(name="role", type="string", length=300, unique=true)
      */
-    private $role;
+    protected $role;
 
     /**
      * @ORM\ManyToMany(targetEntity="Jeweler", mappedBy="groups")
      */
-    private $jeweler;
+    protected $jeweler;
 
 
 

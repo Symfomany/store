@@ -4,6 +4,7 @@ namespace Store\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
+use Store\BackendBundle\Validator\Constraints as StoreAssert;
 
 /**
  * JewelerMeta
@@ -20,24 +21,23 @@ class JewelerMeta
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
-     *
+     * @StoreAssert\Location(groups={"edit"})
      * @Assert\Length(
      *      min = "3",
-     *      max = "50",
      *      minMessage = "La ville de votre boutique doit faire au moins {{ limit }} caractères",
-     *      maxMessage = "La ville de votre boutique ne peut pas être plus long que {{ limit }} caractères",
      *      groups={"edit"}
      * )
      * @ORM\Column(name="city", type="string", length=300, nullable=true)
      */
-    private $city;
+    protected $city;
 
     /**
      * @var string
+     * @StoreAssert\Location(groups={"edit"})
      * @Assert\Length(
      *      min = "5",
      *      max = "5",
@@ -47,117 +47,140 @@ class JewelerMeta
      * )
      * @ORM\Column(name="zipcode", type="string", length=300, nullable=true)
      */
-    private $zipcode;
+    protected $zipcode;
 
     /**
      * @var string
      * @Assert\Length(
      *      min = "6",
-     *      max = "90",
      *      minMessage = "L'adresse de votre boutique doit faire au moins {{ limit }} caractères",
-     *      maxMessage = "L'adresse de votre boutique ne peut pas être plus long que {{ limit }} caractères",
      *      groups={"edit"}
      * )
      * @ORM\Column(name="address", type="string", length=300, nullable=true)
      */
-    private $address;
+    protected $address;
+
+    /**
+     * @var string
+     * @Assert\Regex(
+     *  pattern="/^\+?\s*(\d+[ \.-]?){8,}$/",
+     *  message = "Le téléphone n'est pas valide",
+     *  groups={"edit"}
+     * )
+     * @ORM\Column(name="phone", type="string", length=20, nullable=true)
+     */
+    protected $phone;
+
+    /**
+     * @var string
+     * @Assert\Url(
+     *  message = "L'url n'est pas valide",
+     *  groups={"edit"}
+     * )
+     * @ORM\Column(name="website", type="string", length=300, nullable=true)
+     */
+    protected $website;
 
     /**
      * @var string
      * @Assert\Length(
-     *      min = "6",
-     *      max = "90",
-     *      minMessage = "L'adresse de votre boutique doit faire au moins {{ limit }} caractères",
-     *      maxMessage = "L'adresse de votre boutique ne peut pas être plus long que {{ limit }} caractères",
-     *      groups={"edit"}
+     *      min = "15",
+     *      minMessage = "Le retou du produit doit faire au moins {{ limit }} caractères",
+     *      groups={"suscribe", "edit"}
      * )
-     * @ORM\Column(name="phone", type="string", length=20, nullable=true)
-     */
-    private $phone;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="website", type="string", length=300, nullable=true)
-     */
-    private $website;
-
-    /**
-     * @var string
-     *
      * @ORM\Column(name="retour", type="text", nullable=true)
      */
-    private $retour;
+    protected $retour;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="propos", type="text", nullable=true)
+     * @Assert\Length(
+     *      min = "15",
+     *      minMessage = "A propos de vous doit faire au moins {{ limit }} caractères",
+     *      groups={"suscribe", "edit"}
+     * )
+     *  @ORM\Column(name="propos", type="text", nullable=true)
      */
-    private $propos;
+    protected $propos;
 
     /**
      * @var string
      *
      * @ORM\Column(name="delai", type="text", nullable=true)
      */
-    private $delai;
+    protected $delai;
 
     /**
      * @var float
      *
      * @ORM\Column(name="longituide", type="float", precision=10, scale=0, nullable=true)
      */
-    private $longituide;
+    protected $longitude;
 
     /**
      * @var float
      *
      * @ORM\Column(name="latitude", type="float", precision=10, scale=0, nullable=true)
      */
-    private $latitude;
+    protected $latitude;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="optin", type="boolean", nullable=true)
      */
-    private $optin;
+    protected $optin;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="last_activity", type="integer", nullable=true)
      */
-    private $lastActivity;
+    protected $lastActivity;
 
     /**
      * @var string
-     *
+     * @Assert\Length(
+     *      min = "15",
+     *      minMessage = "Les mentions légales doivent faire au moins {{ limit }} caractères",
+     *      groups={"suscribe", "edit"}
+     * )
      * @ORM\Column(name="mention", type="text", nullable=true)
      */
-    private $mention;
+    protected $mention;
 
     /**
      * @var string
-     *
+     * @Assert\Length(
+     *      min = "15",
+     *      minMessage = "Les conditions d'expéditions doivent faire au moins {{ limit }} caractères",
+     *      groups={"suscribe", "edit"}
+     * )
      * @ORM\Column(name="expedition", type="text", nullable=true)
      */
-    private $expedition;
+    protected $expedition;
 
     /**
      * @var string
-     *
+     * @Assert\Regex(
+     *     message = "L'url DaWanda n'est pas valide",
+     *     groups={"edit"},
+     *     pattern="/^http:\/\/fr.dawanda.com/"
+     * ))
      * @ORM\Column(name="dawanda", type="string", length=300, nullable=true)
      */
-    private $dawanda;
+    protected $dawanda;
 
     /**
      * @var string
-     *
+     * @Assert\Regex(
+     *     message = "L'url ALittleMarket n'est pas valide",
+     *     groups={"edit"},
+     *     pattern="/^http:\/\/www.alittlemarket.com/"
+     * ))
      * @ORM\Column(name="littlemarket", type="string", length=300, nullable=true)
      */
-    private $littlemarket;
+    protected $littlemarket;
 
     /**
      * @var \Jeweler
@@ -167,7 +190,7 @@ class JewelerMeta
      *   @ORM\JoinColumn(name="jeweler_id", referencedColumnName="id")
      * })
      */
-    private $jeweler;
+    protected $jeweler;
 
 
     /**
@@ -357,9 +380,9 @@ class JewelerMeta
      * @param float $longituide
      * @return JewelerMeta
      */
-    public function setLongituide($longituide)
+    public function setLongitude($longitude)
     {
-        $this->longituide = $longituide;
+        $this->longitude = $longitude;
 
         return $this;
     }
@@ -369,9 +392,9 @@ class JewelerMeta
      *
      * @return float
      */
-    public function getLongituide()
+    public function getLongitude()
     {
-        return $this->longituide;
+        return $this->longitude;
     }
 
     /**

@@ -28,7 +28,6 @@ class JewelerMetaType extends AbstractType
             'attr' => array(
                 'class' => 'form-control',
                 'placeholder' => '14 Rue Mandar',
-                'pattern' => '[a-zA-Z0-9- ]{4,}'
             )
         ));
         $builder->add('zipcode', null, array(

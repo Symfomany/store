@@ -22,7 +22,7 @@ class OrderDetail
      *   @ORM\JoinColumn(name="order_id", referencedColumnName="id")
      * })
      */
-    private $order;
+    protected $order;
 
     /**
      * @var \Product
@@ -32,21 +32,21 @@ class OrderDetail
      *   @ORM\JoinColumn(name="product_id", referencedColumnName="id")
      * })
      */
-    private $product;
+    protected $product;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="quantity", type="integer", nullable=true)
      */
-    private $quantity;
+    protected $quantity;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="price", type="float", nullable=true)
      */
-    private $price;
+    protected $price;
 
 
 
@@ -148,6 +148,16 @@ class OrderDetail
     public function getProduct()
     {
         return $this->product;
+    }
+
+    /**
+     * Get product
+     *
+     * @return \Store\BackendBundle\Entity\Product
+     */
+    public function getLine()
+    {
+        return $this->getQuantity() . " ". $this->getProduct()->getTitle(). " : " . $this->getPrice() ."€";
     }
 
 

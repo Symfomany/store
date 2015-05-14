@@ -53,7 +53,9 @@ class JewelerType extends AbstractType
             )
         ));
 
-        $builder->add('meta',  new JewelerMetaType(), array());
+        $builder->add('meta',  new JewelerMetaType(), array(
+            'cascade_validation' => true,
+        ));
 
         $builder->add('file', 'file', array(
             'label' => '<i class="fa fa-picture-o"></i> Image de présentation',

@@ -15,6 +15,12 @@ services:
         arguments: ["@session"]
 
 
+    store.backend.validator.location:
+        arguments: ["@doctrine.orm.entity_manager"]
+        class: Store\BackendBundle\Validator\Constraints\LocationValidator
+        tags:
+            - { name: validator.constraint_validator, alias: validation_location }
+
     # Nom du service
     store.backend.listener.authentification: #  Nom du service
        #  Nom de ma classe avec namespaces
