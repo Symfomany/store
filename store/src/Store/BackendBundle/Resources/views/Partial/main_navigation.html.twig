@@ -115,7 +115,7 @@
     <li class="dropdown">
         <a href="#" class="dropdown-toggle user-menu" data-toggle="dropdown">
         {% if app.user.image is not empty %}
-            <img src="{{ app.user.image }}" alt="">
+            <img src="{{ asset('uploads/profil/' ~ app.user.id ~ "/" ~ app.user.image) }}" alt="" class="">
         {% endif %}
 
             <span>{{ app.user.username }}</span>

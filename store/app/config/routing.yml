@@ -1,3 +1,7 @@
+store_frontend:
+    resource: "@StoreFrontendBundle/Resources/config/routing.yml"
+    prefix:   /
+
 store_backend_suscribe:
     defaults: { _controller: StoreBackendBundle:Security:subscribe }
     path:   /
@@ -39,8 +43,26 @@ store_backend_security_logout:
 
 #Subscribe Jeweler Backend
 store_backend_security_subscribe:
-    path: /subscribe
+    path: /inscription
     defaults: { _controller: StoreBackendBundle:Security:subscribe }
+
+#Subscribe Jeweler Backend
+store_backend_security_subscribe_steptwo:
+    path: /inscription-step-2
+    defaults: { _controller: StoreBackendBundle:Security:subscribeStepTwo }
+
+#Ajax Jeweler Backend
+store_backend_security_subscribe_diaporama:
+    path: /inscription-diaporama
+    defaults: { _controller: StoreBackendBundle:Security:diaporama }
+
+
+#
+# Ajax
+#
+store_backend_ajax_city:
+    path: /ajax-city #chemin / URI de la route
+    defaults: { _controller: StoreBackendBundle:Layout:ajaxCity }
 
 
 

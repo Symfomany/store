@@ -194,12 +194,20 @@ class JewelerMeta
 
 
     /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="diaporama", type="text", nullable=true)
+     */
+    protected $diaporama;
+
+    /**
      * Constructor
      */
     public function __construct()
     {
         $this->optin = false;
         $this->delai = "48h.";
+        $this->diaporama = serialize(array());
     }
 
 
@@ -614,4 +622,27 @@ class JewelerMeta
     }
 
 
+
+    /**
+     * Set diaporama
+     *
+     * @param string $diaporama
+     * @return JewelerMeta
+     */
+    public function setDiaporama($diaporama)
+    {
+        $this->diaporama = $diaporama;
+
+        return $this;
+    }
+
+    /**
+     * Get diaporama
+     *
+     * @return string 
+     */
+    public function getDiaporama()
+    {
+        return $this->diaporama;
+    }
 }

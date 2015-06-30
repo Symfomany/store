@@ -1,0 +1,184 @@
+{% extends "StoreBackendBundle::layout_logout.html.twig" %}
+
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        init.push(function () {
+            $("textarea").markdown({ iconlibrary: 'fa' });
+
+            $("#dropzonejs-example").dropzone({
+                url: "{{ path('store_backend_security_subscribe_diaporama') }}",
+                paramName: "file", // The name that will be used to transfer the file
+                maxFilesize: 0.5, // MB
+                addRemoveLinks : true,
+                dictResponseError: "Ne peut uploader ce fichier!",
+                autoProcessQueue: true,
+                thumbnailWidth: 138,
+                thumbnailHeight: 120,
+
+                previewTemplate: '<div class="dz-preview dz-file-preview"><div class="dz-details"><div class="dz-filename"><span data-dz-name></span></div><div class="dz-size">File size: <span data-dz-size></span></div><div class="dz-thumbnail-wrapper"><div class="dz-thumbnail"><img data-dz-thumbnail><span class="dz-nopreview">No preview</span><div class="dz-success-mark"><i class="fa fa-check-circle-o"></i></div><div class="dz-error-mark"><i class="fa fa-times-circle-o"></i></div><div class="dz-error-message"><span data-dz-errormessage></span></div></div></div></div><div class="progress progress-striped active"><div class="progress-bar progress-bar-success" data-dz-uploadprogress></div></div></div>',
+
+                resize: function(file) {
+                    var info = { srcX: 0, srcY: 0, srcWidth: file.width, srcHeight: file.height },
+                            srcRatio = file.width / file.height;
+                    if (file.height > this.options.thumbnailHeight || file.width > this.options.thumbnailWidth) {
+                        info.trgHeight = this.options.thumbnailHeight;
+                        info.trgWidth = info.trgHeight * srcRatio;
+                        if (info.trgWidth > this.options.thumbnailWidth) {
+                            info.trgWidth = this.options.thumbnailWidth;
+                            info.trgHeight = info.trgWidth / srcRatio;
+                        }
+                    } else {
+                        info.trgHeight = file.height;
+                        info.trgWidth = file.width;
+                    }
+                    return info;
+                }
+            });
+
+            $('#meta_city').autocomplete({
+                minLength: 4,
+                source : function(requete, reponse){ // les deux arguments représentent les données nécessaires au plugin
+                    $.ajax({
+                        url : "{{ path('store_backend_ajax_city') }}", // on appelle le script JSON
+                        dataType : 'json', // on spécifie bien que le type de données est en JSON
+                        cache: true,
+                        data : {
+                            city : $('#meta_city').val() // on donne la chaîne de caractère tapée dans le champ de recherche
+                        },
+
+                        success : function(donnee){
+                            reponse($.map(donnee, function(objet){
+                                return objet;
+                            }));
+                        }
+                    });
+                }
+            });
+
+            $('#profile-tabs').tabdrop();
+
+        })
+    </script>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+    <div class="panel" style="width: 800px">
+
+        <h3 class="text-center"><i class="fa fa-plus"></i> Inscription de Bijoutier - Etape 2</h3>
+
+        <div class="panel-body">
+
+        {{ form_start(form) }}
+
+            <div class="row">
+                <div class="col-md-6">
+                    <div>
+                        {{ form_row(form.meta.littlemarket) }}
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <div>
+                        {{ form_row(form.meta.dawanda) }}
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-6">
+                    <div>
+                        {{ form_row(form.file) }}
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div>
+                        {{ form_row(form.type) }}
+                    </div>
+                </div>
+            </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>
+                            {{ form_row(form.file) }}
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div>
+                            {{ form_row(form.meta.address) }}
+                        </div>
+                    </div>
+                    <div class="col-md-1 col-lg-offset-1">
+                        <div>
+                            {{ form_row(form.meta.zipcode) }}
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div>
+                            {{ form_row(form.meta.city) }}
+                        </div>
+                </div>
+                </div>
+            <div class="row">
+
+                <div class="col-md-12">
+                    <div>
+                        {{ form_row(form.meta.retour) }}
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div>
+                        {{ form_row(form.meta.mention) }}
+                    </div>
+                </div>
+            </div>
+
+            <div id="dropzonejs-example" class="dropzone-box dz-clickable">
+                <div class="dz-default dz-message">
+                    <i class="fa fa-cloud-upload"></i>
+                    Déposer vos photos de bijoux ici<br><span class="dz-text-small">ou cliquez ici manuellement</span>
+                </div>
+                <form>
+
+                </form>
+            </div>
+
+            <hr />
+            <div class="form-group" style="margin-top: 20px;margin-bottom: 20px;">
+                <label class="checkbox-inline">
+                    <input type="checkbox" id="signup_confirm" name="meta[optin]" class="px" value="1">
+                    <span class="lbl">J'accepte de recevoir la newsletter de MarchéduBijoux</span>
+                </label>
+
+            </div>
+
+        </div>
+
+        <div class="panel-footer text-center">
+            <button id="btnsend" class=" text-center btn btn-lg btn-primary" type="submit">
+                <i class="fa fa-plus"></i> J'enregistre mon compte
+            </button>
+        </div>
+
+
+            {# ATTENTION: token à ne pas oublier #}
+            {{ form_widget(form._token) }}
+
+            {# Crée une balise fermante </form>#}
+            {{ form_end(form, {'render_rest': false}) }}
+
+
+
+
+    </div>
+
+{% endblock %}
+
+

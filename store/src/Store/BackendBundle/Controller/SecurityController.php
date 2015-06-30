@@ -4,9 +4,11 @@ namespace Store\BackendBundle\Controller;
 
 use Store\BackendBundle\Entity\Jeweler;
 use Store\BackendBundle\Entity\JewelerMeta;
+use Store\BackendBundle\Form\JewelerSubscribeTwoType;
 use Store\BackendBundle\Form\JewelerSubscribeType;
 use Store\BackendBundle\Form\LoginType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 
@@ -141,11 +143,133 @@ class SecurityController extends Controller{
             $em->persist($jeweler);
             $em->flush();
 
+            $this->get('session')->set('iduser', $jeweler->getId());
+
             $this->get('store.backend.email')->sendparam(
                 $jeweler, 'ecrindebijoux@gmail.com',
                 'StoreBackendBundle:Email:subscribe.html.twig', "[ALittleJewerly] Confirmation de votre compte",
                 $jeweler->getEmail()
             );
+
+            return $this->redirectToRoute('store_backend_security_subscribe_steptwo'); //redirection selon la route
+        }
+
+
+        return $this->render('StoreBackendBundle:Security:subscribe.html.twig',
+            array(
+                'form' => $form->createView()
+            )
+        );
+    }
+
+
+    /**
+     * Suscribe a Jeweler
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function diaporamaAction(Request $request)
+    {
+
+        if($request->isXmlHttpRequest()) {
+
+            $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
+
+            $id = $this->get('session')->get('iduser');
+
+            if (!$id) {
+                return $this->redirectToRoute('store_backend_suscribe');
+            }
+
+            $jeweler = $em->getRepository('StoreBackendBundle:Jeweler')->find($id);
+
+            if (!$jeweler) {
+                return $this->redirectToRoute('store_backend_suscribe');
+            }
+
+            $diaporamas = $jeweler->getMeta()->getDiaporama();
+            $diaporamas = unserialize($diaporamas);
+
+            $file = $request->files->get('file');
+
+            if(!isset($diaporamas[$file->getClientSize()])){
+                $diaporamas[$file->getClientSize()] = $file->getClientOriginalName();
+                $file->move($jeweler->getUploadRootDir().'/'.$id, $file->getClientOriginalName());
+                $file = null;
+            }
+
+            $meta = $jeweler->getMeta();
+            $meta->setDiaporama(serialize($diaporamas));
+
+            $em->persist($meta);
+            $em->flush();
+
+            $response = new JsonResponse();
+            $response->setData(array(
+                'data' => true
+            ));
+
+            return $response;
+        }
+        $response = new JsonResponse();
+        $response->setData(array(
+            'data' => false
+        ));
+        return $response;
+    }
+
+    /**
+     * Suscribe a Jeweler
+     * @return \Symfony\Component\HttpFoundation\Response
+     */
+    public function subscribeStepTwoAction(Request $request){
+
+        $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
+
+        $id = $this->get('session')->get('iduser');
+
+        if(!$id){
+            return $this->redirectToRoute('store_backend_suscribe');
+        }
+
+        $jeweler = $em->getRepository('StoreBackendBundle:Jeweler')->find($id);
+
+        if(!$jeweler){
+            return $this->redirectToRoute('store_backend_suscribe');
+        }
+
+        //Je crée mon formulaire d'inscription au jeweler que j'associe à mon nouveau jeweler
+        $form = $this->createForm(new JewelerSubscribeTwoType(), $jeweler, array(
+            'validation_groups' => 'suscribetwo',
+        ));
+
+        // Je lie le formulaire à la requete
+        $form->handleRequest($request);
+
+        // je valide mon formulaire
+        if($form->isValid()){
+
+            $jeweler->upload($jeweler->getId());
+
+            $city = $form['meta']->getData()->getCity();
+            $zipcode = $form['meta']->getData()->getZipcode();
+
+            if(!empty($city)){
+                $coordonates = $em->getRepository('StoreBackendBundle:Villes')
+                    ->getCordonneesByCity($city);
+
+                if(!$coordonates){
+                    $coordonates = $em->getRepository('StoreBackendBundle:Villes')
+                        ->getCordonneesByCity($zipcode);
+                }
+
+                if(!empty($coordonates)){
+                    $jeweler->getMeta()->setLongitude($coordonates['longitude']);
+                    $jeweler->getMeta()->setLatitude($coordonates['latitude']);
+                }
+            }
+
+            $em->persist($jeweler);
+            $em->flush();
 
             $this->get('session')->getFlashBag()->add(
                 'success',
@@ -159,7 +283,8 @@ class SecurityController extends Controller{
         }
 
 
-        return $this->render('StoreBackendBundle:Security:subscribe.html.twig',
+
+        return $this->render('StoreBackendBundle:Security:subscribesteptwo.html.twig',
             array(
                 'form' => $form->createView()
             )

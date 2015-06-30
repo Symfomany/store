@@ -12,24 +12,23 @@ class DefaultControllerTest extends WebTestCase
         $client = static::createClient();
 
         // le client crée une requete en GET sur /administration
-        $crawler = $client->request('GET', '/subscribe');
+        $crawler = $client->request('GET', '/');
         //reponse: redirection /login
 
         //$crawler->filter : parcourir les noeuds d'elements HTML (DOM)
-        $this->assertCount(1, $crawler->filter('html:contains("Souscription de Bijoutier")'));
+        $this->assertCount(1, $crawler->filter('html:contains("Inscription de Bijoutier")'));
 //        $this->assertGreaterThan(1, $crawler->filter('html:contains("Keep me logged in")')->count());
 
         // Fill in the form xand submit it
         $form = $crawler->selectButton('Envoyer')->form(array(
-            'store_backend_jeweler_subscribe[title]'  => 'Mon titre ba bla... loool',
-            'store_backend_jeweler_subscribe[email]'  => 'juju@yahoo.fr',
-            'store_backend_jeweler_subscribe[username]'  => 'jujuliloumont',
-            'store_backend_jeweler_subscribe[password][mdp]'  => 'testalpha120',
-            'store_backend_jeweler_subscribe[password][mdp_conf]'  => 'testalpha120',
+            'title'  => 'Mon titre ba bla... loool',
+            'email'  => 'juju@yahoo.fr',
+            'username'  => 'jujuliloumont',
+            'password[mdp]'  => 'testalpha120',
+            'password[mdp_conf]'  => 'testalpha120',
         ));
         $client->submit($form);
 
-        exit(var_dump($client->getResponse()->getContent()));
 
 //        $alert = $crawler->filter('html:contains(".alert-danger")');
 //

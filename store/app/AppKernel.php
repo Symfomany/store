@@ -24,7 +24,7 @@ class AppKernel extends Kernel
 
 
             new Store\BackendBundle\StoreBackendBundle(),
-
+            new Store\FrontendBundle\StoreFrontendBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

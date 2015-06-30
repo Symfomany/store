@@ -5,13 +5,6 @@ store_backend_index:
     defaults: { _controller: StoreBackendBundle:Main:index }
     # Le Controlleur et L'action appelée
 
-#
-# Ajax
-#
-store_backend_ajax_city:
-    path: /ajax-city #chemin / URI de la route
-    defaults: { _controller: StoreBackendBundle:Layout:ajaxCity }
-
 
 #Pages Statics
 store_backend_statics:

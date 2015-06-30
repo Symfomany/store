@@ -3,6 +3,8 @@
 namespace Store\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Store\BackendBundle\Validator\Constraints as StoreAssert;
 
 /**
  * JewelerMeta
@@ -19,119 +21,166 @@ class JewelerMeta
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
-     *
+     * @StoreAssert\Location(groups={"edit"})
+     * @Assert\Length(
+     *      min = "3",
+     *      minMessage = "La ville de votre boutique doit faire au moins {{ limit }} caractères",
+     *      groups={"edit"}
+     * )
      * @ORM\Column(name="city", type="string", length=300, nullable=true)
      */
-    private $city;
+    protected $city;
 
     /**
      * @var string
-     *
+     * @StoreAssert\Location(groups={"edit"})
+     * @Assert\Length(
+     *      min = "5",
+     *      max = "5",
+     *      minMessage = "Le code postal de votre boutique doit faire au moins {{ limit }} caractères",
+     *      maxMessage = "Le code postal de votre boutique ne peut pas être plus long que {{ limit }} caractères",
+     *      groups={"edit"}
+     * )
      * @ORM\Column(name="zipcode", type="string", length=300, nullable=true)
      */
-    private $zipcode;
+    protected $zipcode;
 
     /**
      * @var string
-     *
+     * @Assert\Length(
+     *      min = "6",
+     *      minMessage = "L'adresse de votre boutique doit faire au moins {{ limit }} caractères",
+     *      groups={"edit"}
+     * )
      * @ORM\Column(name="address", type="string", length=300, nullable=true)
      */
-    private $address;
+    protected $address;
 
     /**
      * @var string
-     *
+     * @Assert\Regex(
+     *  pattern="/^\+?\s*(\d+[ \.-]?){8,}$/",
+     *  message = "Le téléphone n'est pas valide",
+     *  groups={"edit"}
+     * )
      * @ORM\Column(name="phone", type="string", length=20, nullable=true)
      */
-    private $phone;
+    protected $phone;
 
     /**
      * @var string
-     *
+     * @Assert\Url(
+     *  message = "L'url n'est pas valide",
+     *  groups={"edit"}
+     * )
      * @ORM\Column(name="website", type="string", length=300, nullable=true)
      */
-    private $website;
+    protected $website;
 
     /**
      * @var string
-     *
+     * @Assert\Length(
+     *      min = "15",
+     *      minMessage = "Le retou du produit doit faire au moins {{ limit }} caractères",
+     *      groups={"suscribe", "edit"}
+     * )
      * @ORM\Column(name="retour", type="text", nullable=true)
      */
-    private $retour;
+    protected $retour;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="propos", type="text", nullable=true)
+     * @Assert\Length(
+     *      min = "15",
+     *      minMessage = "A propos de vous doit faire au moins {{ limit }} caractères",
+     *      groups={"suscribe", "edit"}
+     * )
+     *  @ORM\Column(name="propos", type="text", nullable=true)
      */
-    private $propos;
+    protected $propos;
 
     /**
      * @var string
      *
      * @ORM\Column(name="delai", type="text", nullable=true)
      */
-    private $delai;
+    protected $delai;
 
     /**
      * @var float
      *
      * @ORM\Column(name="longituide", type="float", precision=10, scale=0, nullable=true)
      */
-    private $longituide;
+    protected $longitude;
 
     /**
      * @var float
      *
      * @ORM\Column(name="latitude", type="float", precision=10, scale=0, nullable=true)
      */
-    private $latitude;
+    protected $latitude;
 
     /**
      * @var boolean
      *
      * @ORM\Column(name="optin", type="boolean", nullable=true)
      */
-    private $optin;
+    protected $optin;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="last_activity", type="integer", nullable=true)
      */
-    private $lastActivity;
+    protected $lastActivity;
 
     /**
      * @var string
-     *
+     * @Assert\Length(
+     *      min = "15",
+     *      minMessage = "Les mentions légales doivent faire au moins {{ limit }} caractères",
+     *      groups={"suscribe", "edit"}
+     * )
      * @ORM\Column(name="mention", type="text", nullable=true)
      */
-    private $mention;
+    protected $mention;
 
     /**
      * @var string
-     *
+     * @Assert\Length(
+     *      min = "15",
+     *      minMessage = "Les conditions d'expéditions doivent faire au moins {{ limit }} caractères",
+     *      groups={"suscribe", "edit"}
+     * )
      * @ORM\Column(name="expedition", type="text", nullable=true)
      */
-    private $expedition;
+    protected $expedition;
 
     /**
      * @var string
-     *
+     * @Assert\Regex(
+     *     message = "L'url DaWanda n'est pas valide",
+     *     groups={"edit"},
+     *     pattern="/^http:\/\/fr.dawanda.com/"
+     * ))
      * @ORM\Column(name="dawanda", type="string", length=300, nullable=true)
      */
-    private $dawanda;
+    protected $dawanda;
 
     /**
      * @var string
-     *
+     * @Assert\Regex(
+     *     message = "L'url ALittleMarket n'est pas valide",
+     *     groups={"edit"},
+     *     pattern="/^http:\/\/www.alittlemarket.com/"
+     * ))
      * @ORM\Column(name="littlemarket", type="string", length=300, nullable=true)
      */
-    private $littlemarket;
+    protected $littlemarket;
 
     /**
      * @var \Jeweler
@@ -141,9 +190,15 @@ class JewelerMeta
      *   @ORM\JoinColumn(name="jeweler_id", referencedColumnName="id")
      * })
      */
-    private $jeweler;
+    protected $jeweler;
 
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="diaporama", type="text", nullable=true)
+     */
+    protected $diaporama;
 
     /**
      * Constructor
@@ -151,13 +206,15 @@ class JewelerMeta
     public function __construct()
     {
         $this->optin = false;
+        $this->delai = "48h.";
+        $this->diaporama = serialize(array());
     }
 
 
     /**
      * Get id
      *
-     * @return integer 
+     * @return integer
      */
     public function getId()
     {
@@ -180,7 +237,7 @@ class JewelerMeta
     /**
      * Get city
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -203,7 +260,7 @@ class JewelerMeta
     /**
      * Get address
      *
-     * @return string 
+     * @return string
      */
     public function getAddress()
     {
@@ -226,7 +283,7 @@ class JewelerMeta
     /**
      * Get phone
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -249,7 +306,7 @@ class JewelerMeta
     /**
      * Get website
      *
-     * @return string 
+     * @return string
      */
     public function getWebsite()
     {
@@ -272,7 +329,7 @@ class JewelerMeta
     /**
      * Get retour
      *
-     * @return string 
+     * @return string
      */
     public function getRetour()
     {
@@ -295,7 +352,7 @@ class JewelerMeta
     /**
      * Get propos
      *
-     * @return string 
+     * @return string
      */
     public function getPropos()
     {
@@ -318,7 +375,7 @@ class JewelerMeta
     /**
      * Get delai
      *
-     * @return string 
+     * @return string
      */
     public function getDelai()
     {
@@ -331,9 +388,9 @@ class JewelerMeta
      * @param float $longituide
      * @return JewelerMeta
      */
-    public function setLongituide($longituide)
+    public function setLongitude($longitude)
     {
-        $this->longituide = $longituide;
+        $this->longitude = $longitude;
 
         return $this;
     }
@@ -341,11 +398,11 @@ class JewelerMeta
     /**
      * Get longituide
      *
-     * @return float 
+     * @return float
      */
-    public function getLongituide()
+    public function getLongitude()
     {
-        return $this->longituide;
+        return $this->longitude;
     }
 
     /**
@@ -364,7 +421,7 @@ class JewelerMeta
     /**
      * Get latitude
      *
-     * @return float 
+     * @return float
      */
     public function getLatitude()
     {
@@ -387,7 +444,7 @@ class JewelerMeta
     /**
      * Get optin
      *
-     * @return boolean 
+     * @return boolean
      */
     public function getOptin()
     {
@@ -410,7 +467,7 @@ class JewelerMeta
     /**
      * Get lastActivity
      *
-     * @return integer 
+     * @return integer
      */
     public function getLastActivity()
     {
@@ -433,7 +490,7 @@ class JewelerMeta
     /**
      * Get mention
      *
-     * @return string 
+     * @return string
      */
     public function getMention()
     {
@@ -456,7 +513,7 @@ class JewelerMeta
     /**
      * Get expedition
      *
-     * @return string 
+     * @return string
      */
     public function getExpedition()
     {
@@ -479,7 +536,7 @@ class JewelerMeta
     /**
      * Get dawanda
      *
-     * @return string 
+     * @return string
      */
     public function getDawanda()
     {
@@ -502,7 +559,7 @@ class JewelerMeta
     /**
      * Get littlemarket
      *
-     * @return string 
+     * @return string
      */
     public function getLittlemarket()
     {
@@ -522,10 +579,34 @@ class JewelerMeta
         return $this;
     }
 
+
+    /**
+     * Set zipcode
+     *
+     * @param string $zipcode
+     * @return JewelerMeta
+     */
+    public function setZipcode($zipcode)
+    {
+        $this->zipcode = $zipcode;
+
+        return $this;
+    }
+
+    /**
+     * Get zipcode
+     *
+     * @return string
+     */
+    public function getZipcode()
+    {
+        return $this->zipcode;
+    }
+
     /**
      * Get jeweler
      *
-     * @return \Store\BackendBundle\Entity\Jeweler 
+     * @return \Store\BackendBundle\Entity\Jeweler
      */
     public function getJeweler()
     {
@@ -535,7 +616,10 @@ class JewelerMeta
     /**
      * Retourne le contenu
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->id;
     }
+
+
 }

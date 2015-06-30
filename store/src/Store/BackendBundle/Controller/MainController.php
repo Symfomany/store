@@ -19,23 +19,6 @@ class MainController extends Controller{
      */
     public function indexAction(){
 
-
-
-//        $entryData = array(
-//            'category' => 'Presse'
-//            , 'title'    => 'Article de Sarkozy :)'
-//            , 'article'  => 7
-//            , 'when'     => time()
-//        );
-//
-//// This is our new stuff
-//        $context = new \ZMQContext();
-//        $socket = $context->getSocket(\ZMQ::SOCKET_PUSH, 'pushed');
-//        $socket->connect("tcp://localhost:5555");
-//
-//        $socket->send(json_encode($entryData));
-
-
 //        $finderProducts = $this->container->get('fos_elastica.finder.website.product');
 //
 //// Option 1. Returns all users who have example.net in any of their mapped fields

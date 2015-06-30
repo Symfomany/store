@@ -62,7 +62,18 @@
 
     <script type="text/javascript">
         init.push(function () {
-        })
+
+
+                $('form').on("submit", function (event) {
+                    $(this).find('button:last').attr('disabled', 'disabled');
+                    $(this).find('button:last').text('Envoi en cours...');
+                });
+
+                $("select").select2();
+                $("input[type='date']").attr('type','text').mask("99/99/9999");
+                $('input[type="file"]').pixelFileInput({ placeholder: 'Aucun fichier...' });
+                $('div.alert-success').delay(3000).slideUp('slow');
+            });
         window.PixelAdmin.start(init);
     </script>
 {% endblock%}

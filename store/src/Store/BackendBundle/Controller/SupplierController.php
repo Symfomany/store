@@ -57,7 +57,6 @@ class SupplierController extends Controller{
     }
 
 
-
     /**
      * Page Action
      * Je recupere l'objet Request qui contient toutes mes données en GET, POST ...

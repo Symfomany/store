@@ -36,7 +36,6 @@
 
 
             $('#profile-tabs').tabdrop();
-            $("textarea").markdown({ iconlibrary: 'fa' });
             $("#leave-comment-form").expandingInput({
                 target: 'textarea',
                 hidden_content: '> div',
@@ -49,10 +48,57 @@
             $('.editinline').editable({
                 type: 'text'
             });
-        })
+
+            $('#edit_avatar').click(function(e){
+                e.preventDefault();
+                var $modal  = $('#modal_edit_picture');
+                $modal.find('> div').addClass('modal-dialog modal-sm animated flipInX');
+                $modal.modal('show');
+            });
+
+
+            $("#dropzonejs-example").dropzone({
+                url: "{{ path('store_backend_jeweler_mypicture') }}",
+                paramName: "file", // The name that will be used to transfer the file
+                maxFilesize: 0.5, // MB
+                addRemoveLinks : true,
+                dictResponseError: "Ne peux pas télécharger ce fichier!",
+                autoProcessQueue: true,
+                thumbnailWidth: 138,
+                thumbnailHeight: 120,
+
+                success: function(file, response) {
+                    var $modal  = $('#modal_edit_picture');
+                    $modal.modal('hide');
+                    location.reload();
+                },
+                resize: function(file) {
+                    var info = { srcX: 0, srcY: 0, srcWidth: file.width, srcHeight: file.height },
+                            srcRatio = file.width / file.height;
+                    if (file.height > this.options.thumbnailHeight || file.width > this.options.thumbnailWidth) {
+                        info.trgHeight = this.options.thumbnailHeight;
+                        info.trgWidth = info.trgHeight * srcRatio;
+                        if (info.trgWidth > this.options.thumbnailWidth) {
+                            info.trgWidth = this.options.thumbnailWidth;
+                            info.trgHeight = info.trgWidth / srcRatio;
+                        }
+                    } else {
+                        info.trgHeight = file.height;
+                        info.trgWidth = file.width;
+                    }
+                    return info;
+                }
+            });
+
+
+        });
     </script>
 
 {% endblock %}
+
+
+
+
 
 {% block titlepage %}
     <i class="fa fa-user"></i> Mon compte
@@ -69,50 +115,27 @@
         <div class="profile-block">
             {% if app.user.image is not empty %}
             <div class="panel profile-photo">
-                <img src="{{ app.user.image }}" alt="" class="">
+                <img src="{{ asset('uploads/profil/' ~ app.user.id ~ "/" ~ app.user.image) }}" alt="" class="">
             </div><br>
             {% endif %}
-            <script>
-                init.push(function () {
-                    $("#dropzonejs-example").dropzone({
-                        url: "{{ path('store_backend_jeweler_mypicture') }}",
-                        paramName: "file", // The name that will be used to transfer the file
-                        maxFilesize: 0.5, // MB
-                        addRemoveLinks : true,
-                        dictResponseError: "Can't upload file!",
-                        autoProcessQueue: true,
-                        thumbnailWidth: 138,
-                        thumbnailHeight: 120,
-                        resize: function(file) {
-                            var info = { srcX: 0, srcY: 0, srcWidth: file.width, srcHeight: file.height },
-                                    srcRatio = file.width / file.height;
-                            if (file.height > this.options.thumbnailHeight || file.width > this.options.thumbnailWidth) {
-                                info.trgHeight = this.options.thumbnailHeight;
-                                info.trgWidth = info.trgHeight * srcRatio;
-                                if (info.trgWidth > this.options.thumbnailWidth) {
-                                    info.trgWidth = this.options.thumbnailWidth;
-                                    info.trgHeight = info.trgWidth / srcRatio;
-                                }
-                            } else {
-                                info.trgHeight = file.height;
-                                info.trgWidth = file.width;
-                            }
-                            return info;
-                        }
-                    });
-                });
-            </script>
-
-            <div id="dropzonejs-example" class="dropzone-box dz-clickable">
-                <div class="dz-default dz-message">
-                    Votre image ici
-                </div>
-                <form  id="dropzonejs-example">
-                </form>
+            <div class="row"><a href="" id="edit_avatar"><i class=" fa fa-pencil"></i> Editer ma photo</a></div><br>
+            <div id="modal_edit_picture" class="modal fade" tabindex="-1" role="dialog" style="display: none;">
+                <div>
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                            <h4 class="modal-title">Déposer votre image de présentation </h4>
+                        </div>
+                        <div class="modal-body">
+                            <div id="dropzonejs-example" class="dropzone-box dz-clickable">
+                                <div class="dz-default dz-message">
+                                    Votre image ici
+                                </div>
+                            </div>
+                        </div>
+                    </div><!-- / .modal-content -->
+                </div><!-- / .modal-dialog -->
             </div>
-
-
-
 
             <a href="#" class="btn btn-info"><i class="fa fa-heart"></i>&nbsp;&nbsp;{{  nblikes.nb|default('0') }}</a>&nbsp;&nbsp;
             <a href="#" class="btn btn-success"><i class="fa fa-random"></i>&nbsp;&nbsp;{{  nborders.nb|default('0') }}</a>&nbsp;&nbsp;

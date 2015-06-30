@@ -7,28 +7,16 @@ use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Symfony\Component\HttpKernel\KernelInterface;
 
+
+
 class FeatureContext extends MinkContext implements KernelAwareContext
 {
+
     /**
      * @var Kerner of Sf2
      */
     protected $kernel;
 
-
-    /**
-     */
-    public function iAmOnHomepage()
-    {
-
-    }
-
-    /**
-     * @When /^I fill in "([^"]*)" with "([^"]*)"$/
-     */
-    public function iFillInWith($arg1)
-    {
-        throw new PendingException();
-    }
 
     /**
      * Initalize Kernel Sf2

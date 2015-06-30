@@ -1,0 +1,3 @@
+store_frontend_homepage:
+    path:     /hello/{name}
+    defaults: { _controller: StoreFrontendBundle:Default:index }

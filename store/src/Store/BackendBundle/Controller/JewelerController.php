@@ -50,7 +50,7 @@ class JewelerController extends Controller{
 
         if($form->isValid()){
 
-            $user->upload();
+            $user->upload($user->getId());
 
             $city = $form['meta']->getData()->getCity();
             $zipcode = $form['meta']->getData()->getZipcode();
@@ -142,12 +142,33 @@ class JewelerController extends Controller{
 
         $file = $request->files->get('file');
 
-
-
         $response = new JsonResponse();
         $response->setData(array(
-            'data' => 123
+            'data' => false
         ));
+
+        if($request->isXmlHttpRequest() && !empty($file)) {
+                $file->move($user->getUploadRootDir().'/'.$user->getId(), $file->getClientOriginalName());
+                $user->setImage($file->getClientOriginalName());
+
+                $imagine = new \Imagine\Gd\Imagine();
+                $size    = new \Imagine\Image\Box(40, 40);
+                $mode    = \Imagine\Image\ImageInterface::THUMBNAIL_INSET;
+
+                $imagine->open($user->getUploadRootDir().'/'.$user->getId().'/'.$file->getClientOriginalName())
+                        ->thumbnail($size, $mode)
+                        ->save('/path/to/thumbnail.png')
+                ;
+
+                $em->persist($user);
+                $em->flush();
+                $file = null;
+
+                $response->setData(array(
+                    'data' => true
+                ));
+        }
+
 
         return $response;
     }

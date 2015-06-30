@@ -7,7 +7,9 @@
         <div>
             <div class="text-bg"><span class="text-slim">Bienvenue,</span> <span class="text-semibold">{{ app.user.username }}</span></div>
 
-           {% if app.user.image is not empty %} <img src="{{ app.user.image }}" alt="" class="">{% endif %}
+           {% if app.user.image is not empty %}
+               <img src="{{ asset('uploads/profil/' ~ app.user.id ~ "/" ~ app.user.image) }}" alt="" class="">
+           {% endif %}
             <div class="btn-group">
                 <a href="{{ path('store_backend_jeweler_mymessages') }}" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-envelope"></i></a>
                 <a href="{{ path('store_backend_jeweler_myaccount') }}" class="btn btn-xs btn-primary btn-outline dark"><i class="fa fa-user"></i></a>

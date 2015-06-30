@@ -11,7 +11,7 @@
     },
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "2.6.*",
+        "symfony/symfony": "2.7.*",
         "hwi/oauth-bundle": "dev-master",
         "doctrine/orm": "~2.2,>=2.2.3,<2.5",
         "doctrine/dbal": "<2.5",
@@ -30,8 +30,9 @@
         "cboden/ratchet": "^0.3.2",
         "react/zmq": "0.2.*|0.3.*",
         "behat/mink-extension": "^2.0",
-        "behat/mink-browserkit-driver": "^1.2"
-
+        "behat/mink-browserkit-driver": "^1.2",
+        "imagine/imagine": "*",
+        "abraham/twitteroauth": "*"
     },
     "require-dev": {
         "sensio/generator-bundle": "~2.3",

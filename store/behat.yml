@@ -11,10 +11,13 @@ default:
     Behat\MinkExtension:
         base_url: 'http://localhost/store/store/web/app_dev.php/'
         goutte: ~
+        default_session: 'symfony2'
         sessions:
-            default:
-                goutte: ~
-            selenium2:
-                selenium2:
-                    wd_host: http://localhost:4444/wd/hub
+          symfony2:
+            symfony2: ~
+          default:
+              goutte: ~
+          selenium2:
+              selenium2:
+                  wd_host: http://192.168.1.72:4444/wd/hub
 

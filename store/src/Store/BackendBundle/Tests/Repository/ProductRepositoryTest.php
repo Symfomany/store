@@ -30,15 +30,15 @@ class ProductRepositoryTest extends WebTestCase
     /**
      * Test getPostBuTitle
      */
-    public function testgetPostsByTitle()
-    {
-        $products = $this->em
-            ->getRepository('StoreBackendBundle:Product')
-            ->getProductByUser(1);
-
-        $this->assertCount(13, $products->getResult());
-
-    }
+//    public function testgetPostsByTitle()
+//    {
+//        $products = $this->em
+//            ->getRepository('StoreBackendBundle:Product')
+//            ->getProductByUser(1);
+//
+//        $this->assertCount(13, $products->getResult());
+//
+//    }
 
 
 

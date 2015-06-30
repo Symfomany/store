@@ -1070,7 +1070,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * Retourne le cheùin de mon image depuis l'entité
      * @return string
      */
-    protected function getUploadRootDir()
+    public function getUploadRootDir()
     {
         // le chemin absolu du répertoire où les documents uploadés doivent être sauvegardés
         return __DIR__.'/../../../../web/'.$this->getUploadDir();
@@ -1080,7 +1080,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * Retourne le dossier d'upload et sous dossier product
      * @return string
      */
-    protected function getUploadDir()
+    public function getUploadDir()
     {
         // on se débarrasse de « __DIR__ » afin de ne pas avoir de problème lorsqu'on affiche
         // le document/image dans la vue.
@@ -1092,7 +1092,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * Mecanisme d'upload
      * + déplacement du fichier uploadé dans le bon dossier
      */
-    public function upload()
+    public function upload($id)
     {
         // la propriété « file » peut être vide si le champ n'est pas requis
         if (null === $this->file) {
@@ -1105,7 +1105,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
         // Déplacer le fichier uploadé dans le bon répertoir
         // uploads/product/
-        $this->file->move($this->getUploadRootDir(), $this->file->getClientOriginalName());
+        $this->file->move($this->getUploadRootDir().'/'.$id, $this->file->getClientOriginalName());
 
         // je stocke le nom du fichier uploadé dans mon
         //attribut image
@@ -1113,5 +1113,38 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
         // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
         $this->file = null;
+    }
+
+    /**
+     * Get enabled
+     *
+     * @return boolean 
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * Set diaporama
+     *
+     * @param string $diaporama
+     * @return Jeweler
+     */
+    public function setDiaporama($diaporama)
+    {
+        $this->diaporama = $diaporama;
+
+        return $this;
+    }
+
+    /**
+     * Get diaporama
+     *
+     * @return string 
+     */
+    public function getDiaporama()
+    {
+        return $this->diaporama;
     }
 }
