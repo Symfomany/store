@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="9e2db0b8-c0da-4140-83f7-29e845fa7ad6" name="Default" comment="">
       <change type="DELETED" beforePath="$PROJECT_DIR$/store/app/sessions/sess_3d2f0d1a18d886fa9de1c2f26a4ba959" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/store/app/sessions/sess_3fko8jh9pkafnn9krhklmte8p0" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/store/app/sessions/sess_961cea99fac03d3269f01ef1af6e22a8" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/store/app/sessions/sess_b280bac2c3720ef240792b0baa17f376" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/store/app/sessions/sess_d6c6e82497f7af692eb78abf528fd8ea" afterPath="" />
@@ -2433,168 +2434,16 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/twig/twig/test/Twig/Tests/TokenStreamTest.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/twig/twig/test/Twig/Tests/escapingTest.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/twig/twig/test/bootstrap.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/web/uploads/profil/ange-cristal-boucles-d-oreilles.jpg" afterPath="$PROJECT_DIR$/store/web/uploads/profil/ange-cristal-boucles-d-oreilles.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/web/uploads/slider/cabochon-cristal-galactique-resille-bleu-roi-collier-chic.jpg" afterPath="$PROJECT_DIR$/store/web/uploads/slider/cabochon-cristal-galactique-resille-bleu-roi-collier-chic.jpg" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/Resources/java/compiler.jar" afterPath="$PROJECT_DIR$/store/app/Resources/java/compiler.jar" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/sessions/sess_10165877f232297795652931c159c1a4" afterPath="$PROJECT_DIR$/store/app/sessions/sess_10165877f232297795652931c159c1a4" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/sessions/sess_2302333fea33a485f3db540637d50353" afterPath="$PROJECT_DIR$/store/app/sessions/sess_2302333fea33a485f3db540637d50353" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/sessions/sess_89b4df27ddbfa24dacb151541a9decf2" afterPath="$PROJECT_DIR$/store/app/sessions/sess_89b4df27ddbfa24dacb151541a9decf2" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/sessions/sess_8cb3f6fbbc943f6ea3ebf4aeeb5fb150" afterPath="$PROJECT_DIR$/store/app/sessions/sess_8cb3f6fbbc943f6ea3ebf4aeeb5fb150" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/sessions/sess_c870f57a19c9a1fabe3ee4ca33f4d3b1" afterPath="$PROJECT_DIR$/store/app/sessions/sess_c870f57a19c9a1fabe3ee4ca33f4d3b1" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/sessions/sess_dafcd1ba9d7c1bfc613d52ee0f0489d0" afterPath="$PROJECT_DIR$/store/app/sessions/sess_dafcd1ba9d7c1bfc613d52ee0f0489d0" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/sessions/sess_db2c43324849ca709cd5b727908275e0" afterPath="$PROJECT_DIR$/store/app/sessions/sess_db2c43324849ca709cd5b727908275e0" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/.npmignore" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/.npmignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/.npmignore" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/.npmignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/uglify-to-browserify/.npmignore" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/uglify-to-browserify/.npmignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/.npmignore" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/.npmignore" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/.tern-port" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/.tern-port" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/.travis.yml" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/uglify-to-browserify/.travis.yml" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/uglify-to-browserify/.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/.travis.yml" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/.travis.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/web/css/5b3754b.css" afterPath="$PROJECT_DIR$/store/web/css/5b3754b.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/web/css/5b3754b_main_1.css" afterPath="$PROJECT_DIR$/store/web/css/5b3754b_main_1.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/AppKernel.php" afterPath="$PROJECT_DIR$/store/app/AppKernel.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/CHANGELOG.md" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/CHANGELOG.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Features/Context/FeatureContext.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Features/Context/FeatureContext.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Features/Jeweler.feature" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Features/Jeweler.feature" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Jeweler.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Jeweler.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/JewelerController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/JewelerController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/JewelerMeta.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/JewelerMeta.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/JewelerRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/JewelerRepository.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/LICENSE" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/async/LICENSE" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/async/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/LICENSE" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/node_modules/amdefine/LICENSE" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/node_modules/amdefine/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/uglify-to-browserify/LICENSE" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/uglify-to-browserify/LICENSE" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/LICENSE" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/LICENSE" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/FrontendBundle/Controller/DefaultController.php" afterPath="$PROJECT_DIR$/store/src/Store/FrontendBundle/Controller/DefaultController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Validator/Constraints/Location.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Validator/Constraints/Location.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/MainController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/MainController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Tests/Controller/MainControllerTest.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Tests/Controller/MainControllerTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/Makefile.dryice.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/Makefile.dryice.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Tests/Repository/ProductRepositoryTest.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Tests/Repository/ProductRepositoryTest.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Server/Pusher.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Server/Pusher.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/README.md" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/async/README.md" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/async/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/README.md" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/node_modules/amdefine/README.md" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/node_modules/amdefine/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/uglify-to-browserify/README.md" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/uglify-to-browserify/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/README.md" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/README.md" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Util/Satanize.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Util/Satanize.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/SecurityController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/SecurityController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Server/Server.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Server/Server.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/SupplierController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/SupplierController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/SymfonyRequirements.php" afterPath="$PROJECT_DIR$/store/app/SymfonyRequirements.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Factory/WsseFactory.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Factory/WsseFactory.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Authentification/Firewall/WsseListener.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Authentification/Firewall/WsseListener.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Authentification/Provider/WsseProvider.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Authentification/Provider/WsseProvider.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Authentification/Token/WsseUserToken.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Authentification/Token/WsseUserToken.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/_.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/_.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/node_modules/amdefine/amdefine.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/node_modules/amdefine/amdefine.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/array-set.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/array-set.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/assert-shim.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/assert-shim.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/ast.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/ast.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/base64-vlq.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/base64-vlq.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/base64.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/base64.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/behat.yml" afterPath="$PROJECT_DIR$/store/behat.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/binary-search.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/binary-search.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/bool.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/bool.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/boolean_double.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/boolean_double.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/boolean_single.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/boolean_single.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/async/component.json" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/async/component.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/composer.json" afterPath="$PROJECT_DIR$/store/composer.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/composer.lock" afterPath="$PROJECT_DIR$/store/composer.lock" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/compress.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/compress.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/config.json" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/config.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/count.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/count.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/count.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/count.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/dash.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/dash.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/default_hash.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/default_hash.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/default_singles.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/default_singles.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/demand_count.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/demand_count.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/web/assets/backend/stylesheets/tour/demo-style.css" afterPath="$PROJECT_DIR$/store/web/assets/backend/stylesheets/tour/demo-style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/deployment.xml" afterPath="$PROJECT_DIR$/.idea/deployment.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/divide.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/divide.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/Resources/TwigBundle/views/Exception/error.html.twig" afterPath="$PROJECT_DIR$/store/app/Resources/TwigBundle/views/Exception/error.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/Resources/TwigBundle/views/Exception/error403.html.twig" afterPath="$PROJECT_DIR$/store/app/Resources/TwigBundle/views/Exception/error403.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/Resources/TwigBundle/views/Exception/error404.html.twig" afterPath="$PROJECT_DIR$/store/app/Resources/TwigBundle/views/Exception/error404.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/Resources/TwigBundle/views/Exception/error500.html.twig" afterPath="$PROJECT_DIR$/store/app/Resources/TwigBundle/views/Exception/error500.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/help.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/help.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/implies.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/implies.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/implies_hash.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/implies_hash.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Main/index.html.twig" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Main/index.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/uglify-to-browserify/index.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/uglify-to-browserify/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/uglify-to-browserify/test/index.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/uglify-to-browserify/test/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/index.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/node_modules/amdefine/intercept.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/node_modules/amdefine/intercept.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/web/assets/backend/stylesheets/tour/joyride-2.1.css" afterPath="$PROJECT_DIR$/store/web/assets/backend/stylesheets/tour/joyride-2.1.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/layout_logout.html.twig" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/layout_logout.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/line_count.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/line_count.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/line_count_options.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/line_count_options.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/line_count_wrap.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/line_count_wrap.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Tag/list.html.twig" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Tag/list.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Partial/main_menu.html.twig" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Partial/main_menu.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Partial/main_navigation.html.twig" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Partial/main_navigation.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/mini-require.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/mini-require.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/lib/minimist.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/lib/minimist.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/web/assets/backend/stylesheets/tour/mobile.css" afterPath="$PROJECT_DIR$/store/web/assets/backend/stylesheets/tour/mobile.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/mocha.opts" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/mocha.opts" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/mozilla-ast.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/mozilla-ast.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Jeweler/myaccount.html.twig" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Jeweler/myaccount.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/tools/node.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/tools/node.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/nonopt.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/nonopt.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/output.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/output.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/package.json" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/async/package.json" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/async/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/package.json" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/node_modules/amdefine/package.json" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/node_modules/amdefine/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/uglify-to-browserify/package.json" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/uglify-to-browserify/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/package.json" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/package.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/parse.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/parse.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/parse.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/parse.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/parse_camelCase.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/parse_camelCase.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/parse_defaults.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/parse_defaults.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/parse_modified.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/parse_modified.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/prefix-source-map.jsm" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/prefix-source-map.jsm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/prefix-utils.jsm" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/prefix-utils.jsm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/requires_arg.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/requires_arg.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/README.md" afterPath="$PROJECT_DIR$/store/README.md" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/FrontendBundle/Resources/views/Default/index.html.twig" afterPath="$PROJECT_DIR$/store/src/Store/FrontendBundle/Resources/views/Default/index.html.twig" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/config/routing.yml" afterPath="$PROJECT_DIR$/store/app/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/config/routing.yml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/scope.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/scope.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/short.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/short.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/short.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/short.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/source-map-consumer.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/source-map-consumer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/source-map-generator.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/source-map-generator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/source-node.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/source-node.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/sourcemap.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/sourcemap.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/FrontendBundle/Resources/config/routing.yml" afterPath="$PROJECT_DIR$/store/src/Store/FrontendBundle/Resources/config/routing.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/config/services.yml" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/config/services.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/store.iml" afterPath="$PROJECT_DIR$/.idea/store.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/strict.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/strict.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/string.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/string.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Security/subscribe.html.twig" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Security/subscribe.html.twig" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/suffix-browser.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/suffix-browser.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/suffix-source-map.jsm" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/suffix-source-map.jsm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/suffix-utils.jsm" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/suffix-utils.jsm" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-api.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-api.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-array-set.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-array-set.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-base64-vlq.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-base64-vlq.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-base64.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-base64.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-binary-search.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-binary-search.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-dog-fooding.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-dog-fooding.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/test-prefix.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/test-prefix.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-source-map-consumer.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-source-map-consumer.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-source-map-generator.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-source-map-generator.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-source-node.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-source-node.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/test-suffix.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/build/test-suffix.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-util.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/test-util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/transform.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/transform.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/usage-options.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/usage-options.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/usage.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/usage.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/util.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/lib/source-map/util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/util.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/source-map/test/source-map/util.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/utils.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/lib/utils.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/whitespace.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/test/whitespace.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/lib/wordwrap.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/lib/wordwrap.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/xup.js" afterPath="$PROJECT_DIR$/store/node_modules/uglifyjs/node_modules/yargs/example/xup.js" />
     </list>
     <ignored path="store.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -2625,38 +2474,7 @@
     <favorites_list name="store" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/composer.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="1290">
-              <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="config.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/app/config/config.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="2910">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="parameters.yml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/store/app/config/parameters.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.14442916" vertical-offset="0" max-vertical-offset="727">
-              <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <leaf />
   </component>
   <component name="FindManager">
     <FindUsagesManager>
@@ -2669,18 +2487,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Product/list.html.twig" />
-        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/TagType.php" />
-        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Tag/new.html.twig" />
-        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/config/modules/tag.yml" />
-        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/TagController.php" />
-        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Tag/_form.html.twig" />
-        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Tag.php" />
-        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Tag/list.html.twig" />
-        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Slider/_form.html.twig" />
-        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/UserAddress.php" />
-        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Business.php" />
-        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Cart.php" />
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Order.php" />
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/User.php" />
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/OrderDetail.php" />
@@ -2698,14 +2504,12 @@
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Security/subscribe.html.twig" />
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Tests/Repository/ProductRepositoryTest.php" />
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Tests/Controller/MainControllerTest.php" />
-        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/MainController.php" />
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerSubscribeTwoType.php" />
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/layout_logout.html.twig" />
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerMetaLightType.php" />
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/JewelerMeta.php" />
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Security/subscribesteptwo.html.twig" />
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/config/routing.yml" />
-        <option value="$PROJECT_DIR$/store/app/config/routing.yml" />
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/SupplierController.php" />
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/JewelerRepository.php" />
         <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Main/index.html.twig" />
@@ -2720,6 +2524,20 @@
         <option value="$PROJECT_DIR$/store/app/AppKernel.php" />
         <option value="$PROJECT_DIR$/store/composer.json" />
         <option value="$PROJECT_DIR$/store/app/config/parameters.yml" />
+        <option value="$PROJECT_DIR$/store/README.md" />
+        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/Datas.php" />
+        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/XmlFormater.php" />
+        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/Output.php" />
+        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/HtmlFormater.php" />
+        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/JsonFormater.php" />
+        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/DatasDoctrineFactory.php" />
+        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/config/services.yml" />
+        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/MainController.php" />
+        <option value="$PROJECT_DIR$/store/src/Store/BackendBundle/Validator/Constraints/Location.php" />
+        <option value="$PROJECT_DIR$/store/src/Store/FrontendBundle/Resources/config/routing.yml" />
+        <option value="$PROJECT_DIR$/store/app/config/routing.yml" />
+        <option value="$PROJECT_DIR$/store/src/Store/FrontendBundle/Controller/DefaultController.php" />
+        <option value="$PROJECT_DIR$/store/src/Store/FrontendBundle/Resources/views/Default/index.html.twig" />
       </list>
     </option>
   </component>
@@ -2728,10 +2546,10 @@
   </component>
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
-    <option name="x" value="79" />
-    <option name="y" value="24" />
-    <option name="width" value="1521" />
-    <option name="height" value="876" />
+    <option name="x" value="158" />
+    <option name="y" value="87" />
+    <option name="width" value="1430" />
+    <option name="height" value="758" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -2788,6 +2606,20 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="web" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
@@ -2807,54 +2639,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="Store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BackendBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Store" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="BackendBundle" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -2872,11 +2656,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics" />
       <recent name="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Security" />
       <recent name="$PROJECT_DIR$/store/src/Store/BackendBundle/Form" />
       <recent name="$PROJECT_DIR$/store/bin" />
       <recent name="$PROJECT_DIR$/store/features/bootstrap" />
-      <recent name="$PROJECT_DIR$/store/src/Store/BackendBundle" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/store/features/bootstrap" />
@@ -2928,24 +2712,24 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="79" y="24" width="1521" height="876" extended-state="4" />
+    <frame x="158" y="87" width="1430" height="758" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3275862" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960477" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920793" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32960477" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24983345" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="PlantUML" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22550954" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.22237763" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920793" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3275862" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -2977,251 +2761,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Cart.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.22696011" vertical-offset="150" max-vertical-offset="2310">
-          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Business.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.21595599" vertical-offset="158" max-vertical-offset="4245">
-          <caret line="21" column="4" selection-start-line="21" selection-start-column="4" selection-end-line="21" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/UserAddress.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.480769" vertical-offset="1927" max-vertical-offset="3135">
-          <caret line="144" column="30" selection-start-line="144" selection-start-column="20" selection-end-line="144" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Order.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.480769" vertical-offset="1657" max-vertical-offset="4695">
-          <caret line="126" column="27" selection-start-line="126" selection-start-column="22" selection-end-line="126" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/OrderDetail.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-9.666667" vertical-offset="1823" max-vertical-offset="2550">
-          <caret line="137" column="34" selection-start-line="137" selection-start-column="34" selection-end-line="137" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Twig/Extensions/StoreBackendExtension.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.9259259" vertical-offset="960" max-vertical-offset="3495">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="74" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/User.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.480769" vertical-offset="4492" max-vertical-offset="6375">
-          <caret line="315" column="31" selection-start-line="315" selection-start-column="20" selection-end-line="315" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Message.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="9.375" vertical-offset="225" max-vertical-offset="4305">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/messages.fr.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="345">
-          <caret line="10" column="55" selection-start-line="10" selection-start-column="55" selection-end-line="10" selection-end-column="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Security/login.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.25" vertical-offset="180" max-vertical-offset="1185">
-          <caret line="38" column="27" selection-start-line="38" selection-start-column="27" selection-end-line="38" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/StoreBackendBundle.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="751">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/vendor/behat/behat/src/Behat/Behat/Context/SnippetAcceptingContext.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.30949107" vertical-offset="0" max-vertical-offset="727">
-          <caret line="21" column="10" selection-start-line="21" selection-start-column="10" selection-end-line="21" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/behat.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="435">
-          <caret line="19" column="20" selection-start-line="19" selection-start-column="20" selection-end-line="19" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Features/Context/FeatureContext.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-14.928572" vertical-offset="171" max-vertical-offset="1178">
-          <caret line="31" column="7" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Features/Jeweler.feature">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="285">
-          <caret line="13" column="18" selection-start-line="13" selection-start-column="18" selection-end-line="13" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Tests/Repository/ProductRepositoryTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-3.125" vertical-offset="0" max-vertical-offset="750">
-          <caret line="5" column="0" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Tests/Controller/MainControllerTest.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5254471" vertical-offset="8" max-vertical-offset="915">
-          <caret line="26" column="25" selection-start-line="26" selection-start-column="25" selection-end-line="26" selection-end-column="25" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/CmsController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37138927" vertical-offset="90" max-vertical-offset="3105">
-          <caret line="27" column="19" selection-start-line="27" selection-start-column="0" selection-end-line="28" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerSubscribeType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.61898214" vertical-offset="450" max-vertical-offset="2595">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/layout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-13.125" vertical-offset="1215" max-vertical-offset="2205">
-          <caret line="102" column="38" selection-start-line="88" selection-start-column="0" selection-end-line="102" selection-end-column="38" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/layout_simple.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1095">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/layout_logout.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-24.666666" vertical-offset="533" max-vertical-offset="1260">
-          <caret line="75" column="0" selection-start-line="75" selection-start-column="0" selection-end-line="75" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerMetaType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.6396149" vertical-offset="1260" max-vertical-offset="2655">
-          <caret line="119" column="11" selection-start-line="112" selection-start-column="7" selection-end-line="119" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Security/subscribe.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.375" vertical-offset="1536" max-vertical-offset="2250">
-          <caret line="127" column="22" selection-start-line="127" selection-start-column="22" selection-end-line="127" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerSubscribeTwoType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="6.875" vertical-offset="540" max-vertical-offset="2055">
-          <caret line="25" column="57" selection-start-line="25" selection-start-column="57" selection-end-line="25" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerMetaLightType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.291667" vertical-offset="908" max-vertical-offset="2070">
-          <caret line="81" column="28" selection-start-line="81" selection-start-column="23" selection-end-line="81" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Form/CategoryType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2445">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Groups.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.625" vertical-offset="195" max-vertical-offset="2145">
-          <caret line="16" column="14" selection-start-line="16" selection-start-column="14" selection-end-line="16" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Security/subscribesteptwo.html.twig">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-38.076923" vertical-offset="270" max-vertical-offset="2850">
-          <caret line="150" column="18" selection-start-line="150" selection-start-column="18" selection-end-line="150" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/config/routing.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="945">
-          <caret line="6" column="0" selection-start-line="6" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/app/config/routing.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="299" max-vertical-offset="1200">
-          <caret line="59" column="0" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/LayoutController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="32.833332" vertical-offset="788" max-vertical-offset="1545">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/JewelerMeta.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-4.673077" vertical-offset="5787" max-vertical-offset="9810">
-          <caret line="402" column="24" selection-start-line="379" selection-start-column="20" selection-end-line="379" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/JewelerRepository.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.416667" vertical-offset="908" max-vertical-offset="2295">
-          <caret line="74" column="47" selection-start-line="74" selection-start-column="47" selection-end-line="74" selection-end-column="47" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerType.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.010568" vertical-offset="0" max-vertical-offset="2475">
-          <caret line="55" column="46" selection-start-line="55" selection-start-column="46" selection-end-line="55" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/SupplierController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.23011364" vertical-offset="938" max-vertical-offset="4220">
@@ -3278,13 +2817,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/MainController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.061898213" vertical-offset="0" max-vertical-offset="1815">
-          <caret line="3" column="24" selection-start-line="3" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/store/app/console">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.19206145" vertical-offset="0" max-vertical-offset="781">
@@ -3311,9 +2843,85 @@
         <state />
       </provider>
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="698">
+        <state vertical-scroll-proportion="0.08595989" vertical-offset="0" max-vertical-offset="698">
+          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/ProductRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="2460">
+          <caret line="71" column="44" selection-start-line="61" selection-start-column="8" selection-end-line="71" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/XmlFormater.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="105" max-vertical-offset="270">
+          <caret line="7" column="20" selection-start-line="7" selection-start-column="20" selection-end-line="7" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/Output.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="300" max-vertical-offset="465">
+          <caret line="20" column="7" selection-start-line="20" selection-start-column="7" selection-end-line="20" selection-end-column="7" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/HtmlFormater.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="450" max-vertical-offset="585">
+          <caret line="30" column="5" selection-start-line="13" selection-start-column="3" selection-end-line="30" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/JsonFormater.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="585">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/config/services.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1830">
+          <caret line="19" column="66" selection-start-line="19" selection-start-column="66" selection-end-line="19" selection-end-column="66" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/DatasDoctrineFactory.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.375" vertical-offset="0" max-vertical-offset="1020">
+          <caret line="7" column="2" selection-start-line="7" selection-start-column="2" selection-end-line="7" selection-end-column="2" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/app/config/config_prod.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="637">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/app/config/config_dev.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="810">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/app/config/parameters.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="400">
+          <caret line="5" column="24" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/MainController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-9.75" vertical-offset="0" max-vertical-offset="2232">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
         </state>
       </provider>
     </entry>
@@ -3321,22 +2929,217 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-8.125" vertical-offset="0" max-vertical-offset="1290">
           <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
-          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Form/CategoryType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="35.625" vertical-offset="855" max-vertical-offset="2445">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Listener/ProductListener.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="26.25" vertical-offset="630" max-vertical-offset="1815">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Notification/Notification.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="20.625" vertical-offset="495" max-vertical-offset="1230">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="uml://PHP/\Store\BackendBundle\Statistics\Output">
+      <provider selected="true" editor-type-id="UmlEditorProvider">
+        <state>
+          <ID>PHP</ID>
+          <OriginalElement>\Store\BackendBundle\Statistics\Output</OriginalElement>
+          <nodes>
+            <node x="" y="">\Store\BackendBundle\Statistics\HtmlFormater</node>
+            <node x="" y="">\Store\BackendBundle\Statistics\Output</node>
+            <node x="" y="">\Store\BackendBundle\Statistics\JsonFormater</node>
+            <node x="" y="">\Store\BackendBundle\Statistics\XmlFormater</node>
+            <node x="" y="">\Store\BackendBundle\Statistics\DatasDoctrineFactory</node>
+          </nodes>
+          <notes />
+          <edges />
+          <settings layout="Hierarchic Group" zoom="1.0" x="126.0" y="126.0" />
+          <SelectedNodes />
+          <Categories />
+          <SCOPE>All</SCOPE>
+          <VISIBILITY>private</VISIBILITY>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Server/Server.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="765">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Util/Satanize.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="624">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Validator/Constraints/Location.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.25" vertical-offset="0" max-vertical-offset="465">
+          <caret line="10" column="4" selection-start-line="10" selection-start-column="4" selection-end-line="10" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Validator/Constraints/LocationValidator.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-20.0" vertical-offset="45" max-vertical-offset="1065">
+          <caret line="38" column="23" selection-start-line="38" selection-start-column="23" selection-end-line="38" selection-end-column="23" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/OrderRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8874388" vertical-offset="1157" max-vertical-offset="1770">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/BusinessRepository.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="637">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/store/app/config/config.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="2910">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2910">
+          <caret line="16" column="19" selection-start-line="16" selection-start-column="19" selection-end-line="16" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/app/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1260">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/FrontendBundle/Resources/config/routing.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="135">
+          <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/layout.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="41.25" vertical-offset="990" max-vertical-offset="2205">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/views/Category/edit.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.0" vertical-offset="0" max-vertical-offset="465">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="19" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/FrontendBundle/Resources/views/Default/index.html.twig">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.29021558" vertical-offset="0" max-vertical-offset="603">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/CategoryController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="2760">
+          <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/CmsController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="3105">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/app/config/parameters.yml">
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Category.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.14442916" vertical-offset="0" max-vertical-offset="727">
-          <caret line="7" column="31" selection-start-line="7" selection-start-column="31" selection-end-line="7" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="6945">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Cms.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="9375">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Form/CmsType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1845" max-vertical-offset="2940">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Provider/OAuthProvider.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="637">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Form/LoginType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.3670473" vertical-offset="225" max-vertical-offset="1590">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Listener/AuthentificationListener.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.5350734" vertical-offset="707" max-vertical-offset="1635">
+          <caret line="76" column="18" selection-start-line="76" selection-start-column="18" selection-end-line="76" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerType.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="1598" max-vertical-offset="2475">
+          <caret line="125" column="11" selection-start-line="125" selection-start-column="11" selection-end-line="125" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Twig/Extensions/StoreBackendExtension.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.02446982" vertical-offset="900" max-vertical-offset="3495">
+          <caret line="61" column="7" selection-start-line="61" selection-start-column="7" selection-end-line="61" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/FrontendBundle/Controller/DefaultController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.19575857" vertical-offset="0" max-vertical-offset="613">
+          <caret line="8" column="32" selection-start-line="8" selection-start-column="32" selection-end-line="8" selection-end-column="32" />
           <folding />
         </state>
       </provider>

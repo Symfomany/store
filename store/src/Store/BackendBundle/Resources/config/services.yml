@@ -14,6 +14,13 @@ services:
         # ARgument du constructeur de ma classe en service
         arguments: ["@session"]
 
+    # Datas
+    store.backend.datas:
+        # Classe avec Namespaces
+        class: Store\BackendBundle\Statistics\DatasDoctrineFactory
+        # ARgument du constructeur de ma classe en service
+        arguments: ["@doctrine.orm.entity_manager"]
+
 
     store.backend.validator.location:
         arguments: ["@doctrine.orm.entity_manager"]

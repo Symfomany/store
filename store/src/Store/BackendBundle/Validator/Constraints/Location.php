@@ -9,8 +9,6 @@ use Symfony\Component\Validator\Constraint;
 class Location extends Constraint {
 
 
-
-
     // Message qui apparaoit dans ma contrainte de validation
     public $message = "Votre ville n'existe pas. Veuillez choisir une ville ";
 

@@ -1,3 +1,9 @@
+MYSQL dump
+=====
+mysqldump -u root --password=djscrave store > ma_base.sql 
+
+
+
 store
 =====
 

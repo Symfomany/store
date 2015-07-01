@@ -4,7 +4,7 @@ store_frontend:
 
 store_backend_suscribe:
     defaults: { _controller: StoreBackendBundle:Security:subscribe }
-    path:   /
+    path:   /suscribe
 
 
 store_backend:

@@ -19,6 +19,9 @@ class MainController extends Controller{
      */
     public function indexAction(){
 
+        //dump(['message' => "coucou"]);
+
+//        exit(dump($this->get('store.backend.datas')));
 //        $finderProducts = $this->container->get('fos_elastica.finder.website.product');
 //
 //// Option 1. Returns all users who have example.net in any of their mapped fields
