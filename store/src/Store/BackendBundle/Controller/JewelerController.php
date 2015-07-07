@@ -37,9 +37,9 @@ class JewelerController extends Controller
         $nbcomm = $em->getRepository('StoreBackendBundle:Comment')->getCountByUser($user);
 
         $form = $this->createForm(new JewelerType(), $user, array(
-            'validation_groups' => 'edit',
-            'attr' => array('novalidate' => 'novalidate'),
-        ));
+        'validation_groups' => 'edit',
+        'attr' => array('novalidate' => 'novalidate'),
+    ));
 
         $form->handleRequest($request);
 
@@ -51,11 +51,11 @@ class JewelerController extends Controller
 
             if (!empty($city)) {
                 $coordonates = $em->getRepository('StoreBackendBundle:Villes')
-                    ->getCordonneesByCity($city);
+                ->getCordonneesByCity($city);
 
                 if (!$coordonates) {
                     $coordonates = $em->getRepository('StoreBackendBundle:Villes')
-                        ->getCordonneesByCity($zipcode);
+                    ->getCordonneesByCity($zipcode);
                 }
 
                 if (!empty($coordonates)) {
@@ -69,9 +69,9 @@ class JewelerController extends Controller
             $em->flush();
 
             $this->get('session')->getFlashBag()->add(
-                'success',
-                'Votre profil a bien été mis à jour'
-            );
+            'success',
+            'Votre profil a bien été mis à jour'
+        );
 
             $this->redirectToRoute('store_backend_jeweler_myaccount');
         }
