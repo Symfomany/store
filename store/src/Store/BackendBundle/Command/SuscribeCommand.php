@@ -10,15 +10,15 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Création de jeweler
- * CRON task
+ * CRON task.
  */
-class SuscribeCommand extends ContainerAwareCommand {
-
-
+class SuscribeCommand extends ContainerAwareCommand
+{
     /**
-     * Secure command linbe with param true
+     * Secure command linbe with param true.
      */
-    protected function configure() {
+    protected function configure()
+    {
         $this->setName('backend:jeweler:create')
             ->setDescription("Remplissage d'utilisateur")
             ->addArgument('login', InputArgument::REQUIRED, 'Login ?')
@@ -32,11 +32,13 @@ class SuscribeCommand extends ContainerAwareCommand {
     }
 
     /**
-     *  Execute command
-     * @param \Symfony\Component\Console\Input\InputInterface $input
+     *  Execute command.
+     *
+     * @param \Symfony\Component\Console\Input\InputInterface   $input
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      */
-    protected function execute(InputInterface $input, OutputInterface $output) {
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
         $login = $input->getArgument('login');
         $email = $input->getArgument('email');
         $password = $input->getArgument('password');
@@ -57,10 +59,6 @@ class SuscribeCommand extends ContainerAwareCommand {
         $em->flush();
 
         $output->writeln("<info>Création de l'utilisateur effectué!</info>");
-        $output->writeln("<comment>Utilisateur prete a etre connecté: ".$jeweler->getUsername()." avec le role ROLE_JEWELER</comment>");
+        $output->writeln('<comment>Utilisateur prete a etre connecté: '.$jeweler->getUsername().' avec le role ROLE_JEWELER</comment>');
     }
-
-
 }
-
-?>

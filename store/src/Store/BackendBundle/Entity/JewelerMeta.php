@@ -7,7 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Store\BackendBundle\Validator\Constraints as StoreAssert;
 
 /**
- * JewelerMeta
+ * JewelerMeta.
  *
  * @ORM\Table(name="jeweler_meta", indexes={@ORM\Index(name="jeweler_id", columns={"jeweler_id"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\JewelerMetaRepository")
@@ -15,7 +15,7 @@ use Store\BackendBundle\Validator\Constraints as StoreAssert;
 class JewelerMeta
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -125,14 +125,14 @@ class JewelerMeta
     protected $latitude;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="optin", type="boolean", nullable=true)
      */
     protected $optin;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="last_activity", type="integer", nullable=true)
      */
@@ -192,7 +192,6 @@ class JewelerMeta
      */
     protected $jeweler;
 
-
     /**
      * @var \DateTime
      *
@@ -201,20 +200,19 @@ class JewelerMeta
     protected $diaporama;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
         $this->optin = false;
-        $this->delai = "48h.";
+        $this->delai = '48h.';
         $this->diaporama = serialize(array());
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer
+     * @return int
      */
     public function getId()
     {
@@ -222,9 +220,10 @@ class JewelerMeta
     }
 
     /**
-     * Set city
+     * Set city.
      *
      * @param string $city
+     *
      * @return JewelerMeta
      */
     public function setCity($city)
@@ -235,7 +234,7 @@ class JewelerMeta
     }
 
     /**
-     * Get city
+     * Get city.
      *
      * @return string
      */
@@ -245,9 +244,10 @@ class JewelerMeta
     }
 
     /**
-     * Set address
+     * Set address.
      *
      * @param string $address
+     *
      * @return JewelerMeta
      */
     public function setAddress($address)
@@ -258,7 +258,7 @@ class JewelerMeta
     }
 
     /**
-     * Get address
+     * Get address.
      *
      * @return string
      */
@@ -268,9 +268,10 @@ class JewelerMeta
     }
 
     /**
-     * Set phone
+     * Set phone.
      *
      * @param string $phone
+     *
      * @return JewelerMeta
      */
     public function setPhone($phone)
@@ -281,7 +282,7 @@ class JewelerMeta
     }
 
     /**
-     * Get phone
+     * Get phone.
      *
      * @return string
      */
@@ -291,9 +292,10 @@ class JewelerMeta
     }
 
     /**
-     * Set website
+     * Set website.
      *
      * @param string $website
+     *
      * @return JewelerMeta
      */
     public function setWebsite($website)
@@ -304,7 +306,7 @@ class JewelerMeta
     }
 
     /**
-     * Get website
+     * Get website.
      *
      * @return string
      */
@@ -314,9 +316,10 @@ class JewelerMeta
     }
 
     /**
-     * Set retour
+     * Set retour.
      *
      * @param string $retour
+     *
      * @return JewelerMeta
      */
     public function setRetour($retour)
@@ -327,7 +330,7 @@ class JewelerMeta
     }
 
     /**
-     * Get retour
+     * Get retour.
      *
      * @return string
      */
@@ -337,9 +340,10 @@ class JewelerMeta
     }
 
     /**
-     * Set propos
+     * Set propos.
      *
      * @param string $propos
+     *
      * @return JewelerMeta
      */
     public function setPropos($propos)
@@ -350,7 +354,7 @@ class JewelerMeta
     }
 
     /**
-     * Get propos
+     * Get propos.
      *
      * @return string
      */
@@ -360,9 +364,10 @@ class JewelerMeta
     }
 
     /**
-     * Set delai
+     * Set delai.
      *
      * @param string $delai
+     *
      * @return JewelerMeta
      */
     public function setDelai($delai)
@@ -373,7 +378,7 @@ class JewelerMeta
     }
 
     /**
-     * Get delai
+     * Get delai.
      *
      * @return string
      */
@@ -383,9 +388,10 @@ class JewelerMeta
     }
 
     /**
-     * Set longituide
+     * Set longituide.
      *
      * @param float $longituide
+     *
      * @return JewelerMeta
      */
     public function setLongitude($longitude)
@@ -396,7 +402,7 @@ class JewelerMeta
     }
 
     /**
-     * Get longituide
+     * Get longituide.
      *
      * @return float
      */
@@ -406,9 +412,10 @@ class JewelerMeta
     }
 
     /**
-     * Set latitude
+     * Set latitude.
      *
      * @param float $latitude
+     *
      * @return JewelerMeta
      */
     public function setLatitude($latitude)
@@ -419,7 +426,7 @@ class JewelerMeta
     }
 
     /**
-     * Get latitude
+     * Get latitude.
      *
      * @return float
      */
@@ -429,9 +436,10 @@ class JewelerMeta
     }
 
     /**
-     * Set optin
+     * Set optin.
      *
-     * @param boolean $optin
+     * @param bool $optin
+     *
      * @return JewelerMeta
      */
     public function setOptin($optin)
@@ -442,9 +450,9 @@ class JewelerMeta
     }
 
     /**
-     * Get optin
+     * Get optin.
      *
-     * @return boolean
+     * @return bool
      */
     public function getOptin()
     {
@@ -452,9 +460,10 @@ class JewelerMeta
     }
 
     /**
-     * Set lastActivity
+     * Set lastActivity.
      *
-     * @param integer $lastActivity
+     * @param int $lastActivity
+     *
      * @return JewelerMeta
      */
     public function setLastActivity($lastActivity)
@@ -465,9 +474,9 @@ class JewelerMeta
     }
 
     /**
-     * Get lastActivity
+     * Get lastActivity.
      *
-     * @return integer
+     * @return int
      */
     public function getLastActivity()
     {
@@ -475,9 +484,10 @@ class JewelerMeta
     }
 
     /**
-     * Set mention
+     * Set mention.
      *
      * @param string $mention
+     *
      * @return JewelerMeta
      */
     public function setMention($mention)
@@ -488,7 +498,7 @@ class JewelerMeta
     }
 
     /**
-     * Get mention
+     * Get mention.
      *
      * @return string
      */
@@ -498,9 +508,10 @@ class JewelerMeta
     }
 
     /**
-     * Set expedition
+     * Set expedition.
      *
      * @param string $expedition
+     *
      * @return JewelerMeta
      */
     public function setExpedition($expedition)
@@ -511,7 +522,7 @@ class JewelerMeta
     }
 
     /**
-     * Get expedition
+     * Get expedition.
      *
      * @return string
      */
@@ -521,9 +532,10 @@ class JewelerMeta
     }
 
     /**
-     * Set dawanda
+     * Set dawanda.
      *
      * @param string $dawanda
+     *
      * @return JewelerMeta
      */
     public function setDawanda($dawanda)
@@ -534,7 +546,7 @@ class JewelerMeta
     }
 
     /**
-     * Get dawanda
+     * Get dawanda.
      *
      * @return string
      */
@@ -544,9 +556,10 @@ class JewelerMeta
     }
 
     /**
-     * Set littlemarket
+     * Set littlemarket.
      *
      * @param string $littlemarket
+     *
      * @return JewelerMeta
      */
     public function setLittlemarket($littlemarket)
@@ -557,7 +570,7 @@ class JewelerMeta
     }
 
     /**
-     * Get littlemarket
+     * Get littlemarket.
      *
      * @return string
      */
@@ -567,9 +580,10 @@ class JewelerMeta
     }
 
     /**
-     * Set jeweler
+     * Set jeweler.
      *
      * @param \Store\BackendBundle\Entity\Jeweler $jeweler
+     *
      * @return JewelerMeta
      */
     public function setJeweler(\Store\BackendBundle\Entity\Jeweler $jeweler = null)
@@ -579,11 +593,11 @@ class JewelerMeta
         return $this;
     }
 
-
     /**
-     * Set zipcode
+     * Set zipcode.
      *
      * @param string $zipcode
+     *
      * @return JewelerMeta
      */
     public function setZipcode($zipcode)
@@ -594,7 +608,7 @@ class JewelerMeta
     }
 
     /**
-     * Get zipcode
+     * Get zipcode.
      *
      * @return string
      */
@@ -604,7 +618,7 @@ class JewelerMeta
     }
 
     /**
-     * Get jeweler
+     * Get jeweler.
      *
      * @return \Store\BackendBundle\Entity\Jeweler
      */
@@ -614,19 +628,18 @@ class JewelerMeta
     }
 
     /**
-     * Retourne le contenu
+     * Retourne le contenu.
      */
     public function __toString()
     {
         return $this->id;
     }
 
-
-
     /**
-     * Set diaporama
+     * Set diaporama.
      *
      * @param string $diaporama
+     *
      * @return JewelerMeta
      */
     public function setDiaporama($diaporama)
@@ -637,9 +650,9 @@ class JewelerMeta
     }
 
     /**
-     * Get diaporama
+     * Get diaporama.
      *
-     * @return string 
+     * @return string
      */
     public function getDiaporama()
     {

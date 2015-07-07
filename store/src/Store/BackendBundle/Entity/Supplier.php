@@ -4,13 +4,10 @@ namespace Store\BackendBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
 use Symfony\Component\Validator\Constraints as Assert;
-use Store\BackendBundle\Validator\Constraints as StoreAssert;
-
 
 /**
- * Supplier
+ * Supplier.
  *
  * @ORM\Table(name="supplier")
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\SupplierRepository")
@@ -18,7 +15,7 @@ use Store\BackendBundle\Validator\Constraints as StoreAssert;
 class Supplier
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -65,10 +62,9 @@ class Supplier
      */
     protected $image;
 
-
-
     /**
-     * Attribut qui représentera mon fichier uploadé
+     * Attribut qui représentera mon fichier uploadé.
+     *
      * @Assert\Image(
      *     minWidth = 100,
      *     maxWidth = 3000,
@@ -83,9 +79,8 @@ class Supplier
      */
     protected $file;
 
-    
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
@@ -116,7 +111,6 @@ class Supplier
      */
     protected $product;
 
-
     /**
      * @var \Product
      *
@@ -126,9 +120,9 @@ class Supplier
      * })
      */
     protected $jeweler;
-    
+
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -138,11 +132,10 @@ class Supplier
         $this->product = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -150,9 +143,10 @@ class Supplier
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return Supplier
      */
     public function setName($name)
@@ -163,9 +157,9 @@ class Supplier
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -173,9 +167,10 @@ class Supplier
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return Supplier
      */
     public function setDescription($description)
@@ -186,9 +181,9 @@ class Supplier
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -196,9 +191,10 @@ class Supplier
     }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param string $image
+     *
      * @return Supplier
      */
     public function setImage($image)
@@ -209,9 +205,9 @@ class Supplier
     }
 
     /**
-     * Get image
+     * Get image.
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -219,9 +215,10 @@ class Supplier
     }
 
     /**
-     * Set active
+     * Set active.
      *
-     * @param boolean $active
+     * @param bool $active
+     *
      * @return Supplier
      */
     public function setActive($active)
@@ -232,9 +229,9 @@ class Supplier
     }
 
     /**
-     * Get active
+     * Get active.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getActive()
     {
@@ -242,9 +239,10 @@ class Supplier
     }
 
     /**
-     * Set dateCreated
+     * Set dateCreated.
      *
      * @param \DateTime $dateCreated
+     *
      * @return Supplier
      */
     public function setDateCreated($dateCreated)
@@ -255,9 +253,9 @@ class Supplier
     }
 
     /**
-     * Get dateCreated
+     * Get dateCreated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -265,9 +263,10 @@ class Supplier
     }
 
     /**
-     * Set dateUpdated
+     * Set dateUpdated.
      *
      * @param \DateTime $dateUpdated
+     *
      * @return Supplier
      */
     public function setDateUpdated($dateUpdated)
@@ -278,18 +277,18 @@ class Supplier
     }
 
     /**
-     * Get dateUpdated
+     * Get dateUpdated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateUpdated()
     {
         return $this->dateUpdated;
     }
 
-
     /**
-     * Override to control all product
+     * Override to control all product.
+     *
      * @param ArrayCollection $products
      */
     public function setProduct(ArrayCollection $products)
@@ -300,7 +299,6 @@ class Supplier
 
         $this->product = $products;
     }
-
 
 //    /**
 //     * Add product
@@ -326,27 +324,28 @@ class Supplier
 //    }
 
     /**
-     * Get product
+     * Get product.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProduct()
     {
         return $this->product;
     }
 
-
     /**
-     * Retourne le title
+     * Retourne le title.
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->name;
     }
 
     /**
-     * Set jeweler
+     * Set jeweler.
      *
      * @param \Store\BackendBundle\Entity\Jeweler $jeweler
+     *
      * @return Supplier
      */
     public function setJeweler(\Store\BackendBundle\Entity\Jeweler $jeweler = null)
@@ -357,18 +356,18 @@ class Supplier
     }
 
     /**
-     * Get jeweler
+     * Get jeweler.
      *
-     * @return \Store\BackendBundle\Entity\Jeweler 
+     * @return \Store\BackendBundle\Entity\Jeweler
      */
     public function getJeweler()
     {
         return $this->jeweler;
     }
 
-
     /**
-     * Retourne le chemin absolue de mon image
+     * Retourne le chemin absolue de mon image.
+     *
      * @return null|string
      */
     public function getAbsolutePath()
@@ -376,9 +375,9 @@ class Supplier
         return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
     }
 
-
     /**
-     * Retourne le chemin de l'image depuis le dossier web
+     * Retourne le chemin de l'image depuis le dossier web.
+     *
      * @return null|string
      */
     public function getWebPath()
@@ -387,7 +386,8 @@ class Supplier
     }
 
     /**
-     * Retourne le cheùin de mon image depuis l'entité
+     * Retourne le cheùin de mon image depuis l'entité.
+     *
      * @return string
      */
     protected function getUploadRootDir()
@@ -397,7 +397,8 @@ class Supplier
     }
 
     /**
-     * Retourne le dossier d'upload et sous dossier product
+     * Retourne le dossier d'upload et sous dossier product.
+     *
      * @return string
      */
     protected function getUploadDir()
@@ -406,8 +407,6 @@ class Supplier
         // le document/image dans la vue.
         return 'uploads/supplier';
     }
-
-
 
     /**
      * @return mixed
@@ -427,7 +426,7 @@ class Supplier
 
     /**
      * Mecanisme d'upload
-     * + déplacement du fichier uploadé dans le bon dossier
+     * + déplacement du fichier uploadé dans le bon dossier.
      */
     public function upload()
     {
@@ -451,5 +450,4 @@ class Supplier
         // « nettoie » la propriété « file » comme vous n'en aurez plus besoin
         $this->file = null;
     }
-
 }

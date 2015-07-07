@@ -2,43 +2,39 @@
 
 namespace Store\BackendBundle\Form;
 
-
 use Store\BackendBundle\Repository\ProductRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 
 /**
  * Le suffixe Type est Obligatoire pour mes classe Formulaires
  * Class SupplierType
- * Formulaire de création de produit
- * @package Store\BackendBundle\Form
+ * Formulaire de création de produit.
  */
 class SupplierType extends AbstractType
 {
-
     /**
-     * @var $user
+     * @var
      */
     protected $user;
 
-
     /**
-     * User param
+     * User param.
+     *
      * @param $user
      */
-    public function __construct($user = null){
+    public function __construct($user = null)
+    {
         $this->user = $user;
     }
 
-
     /**
-     * Methode qui va consrtuire mon formulaire
+     * Methode qui va consrtuire mon formulaire.
+     *
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -48,62 +44,59 @@ class SupplierType extends AbstractType
         // le 3eme argument c'est ùmes options à mon chamos
         $builder->add('name', null, array(
             'label' => 'Nom du fournisseur', //label de mon chmpa
-            'required'  => true,
+            'required' => true,
             'attr' => array(
                 'class' => 'form-control',
-                'pattern' => '[a-zA-Z0-9- ]{5,}'
-            )
+                'pattern' => '[a-zA-Z0-9- ]{5,}',
+            ),
         ));
 
         $builder->add('file', 'file', array(
             'label' => 'Image de la catégorie',
-            'required'  => false,
+            'required' => false,
             'attr' => array(
                 'class' => 'form-control',
                 'accept' => 'image/*',
-                'capture' => 'capture'
-            )
+                'capture' => 'capture',
+            ),
         ));
 
         $builder->add('description', null, array(
-            'label' => "Longue description",
-            'required'  => true,
+            'label' => 'Longue description',
+            'required' => true,
             'attr' => array(
                 'class' => 'form-control',
                 'placeholder' => 'Description longue du bijoux',
-            )
+            ),
         ));
 
         $builder->add('product', 'entity',
-            array (
+            array(
                 'label' => 'Produits associés',
                 'class' => 'StoreBackendBundle:Product',
                 'multiple' => true, // choix multiple
                 'by_reference' => false, // to handle setProduct() new method in entity
-                'query_builder' => function(ProductRepository $er)
-                {
+                'query_builder' => function (ProductRepository $er) {
                     return $er->getProductByUserBuilder($this->user);
                 },
             ));
 
         $builder->add('active', null, array(
-            'label' => "Catégorie active ?",
-            'required'  => false,
+            'label' => 'Catégorie active ?',
+            'required' => false,
         ));
 
         $builder->add('envoyer', 'submit', array(
             'attr' => array(
-                'class' => 'btn btn-primary btn-sm'
-            )
+                'class' => 'btn btn-primary btn-sm',
+            ),
         ));
-
-
     }
-
 
     /**
      * Cette methode me permet de lié mon formulaire à moin entité Product
-     * CAR mon formulaire enregistre un produit dans la table product
+     * CAR mon formulaire enregistre un produit dans la table product.
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -115,7 +108,8 @@ class SupplierType extends AbstractType
     }
 
     /**
-     * Methode déprécié pour lier un formulaire à une entité
+     * Methode déprécié pour lier un formulaire à une entité.
+     *
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -126,38 +120,12 @@ class SupplierType extends AbstractType
     }
 
     /**
-     * Nom du formulaire
+     * Nom du formulaire.
+     *
      * @return string|void
      */
     public function getName()
     {
-        return "store_backend_supplier";
+        return 'store_backend_supplier';
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

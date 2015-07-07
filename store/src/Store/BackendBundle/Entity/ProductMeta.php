@@ -5,7 +5,7 @@ namespace Store\BackendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ProductMeta
+ * ProductMeta.
  *
  * @ORM\Table(name="product_meta", indexes={@ORM\Index(name="product_id", columns={"product_id"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\ProductMetaRepository")
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ProductMeta
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -71,7 +71,7 @@ class ProductMeta
     protected $note;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="view", type="integer", nullable=true)
      */
@@ -108,12 +108,10 @@ class ProductMeta
      */
     protected $product;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -121,9 +119,10 @@ class ProductMeta
     }
 
     /**
-     * Set weight
+     * Set weight.
      *
      * @param float $weight
+     *
      * @return ProductMeta
      */
     public function setWeight($weight)
@@ -134,9 +133,9 @@ class ProductMeta
     }
 
     /**
-     * Get weight
+     * Get weight.
      *
-     * @return float 
+     * @return float
      */
     public function getWeight()
     {
@@ -144,9 +143,10 @@ class ProductMeta
     }
 
     /**
-     * Set length
+     * Set length.
      *
      * @param float $length
+     *
      * @return ProductMeta
      */
     public function setLength($length)
@@ -157,9 +157,9 @@ class ProductMeta
     }
 
     /**
-     * Get length
+     * Get length.
      *
-     * @return float 
+     * @return float
      */
     public function getLength()
     {
@@ -167,9 +167,10 @@ class ProductMeta
     }
 
     /**
-     * Set width
+     * Set width.
      *
      * @param float $width
+     *
      * @return ProductMeta
      */
     public function setWidth($width)
@@ -180,9 +181,9 @@ class ProductMeta
     }
 
     /**
-     * Get width
+     * Get width.
      *
-     * @return float 
+     * @return float
      */
     public function getWidth()
     {
@@ -190,9 +191,10 @@ class ProductMeta
     }
 
     /**
-     * Set video
+     * Set video.
      *
      * @param string $video
+     *
      * @return ProductMeta
      */
     public function setVideo($video)
@@ -203,9 +205,9 @@ class ProductMeta
     }
 
     /**
-     * Get video
+     * Get video.
      *
-     * @return string 
+     * @return string
      */
     public function getVideo()
     {
@@ -213,9 +215,10 @@ class ProductMeta
     }
 
     /**
-     * Set extras
+     * Set extras.
      *
      * @param string $extras
+     *
      * @return ProductMeta
      */
     public function setExtras($extras)
@@ -226,9 +229,9 @@ class ProductMeta
     }
 
     /**
-     * Get extras
+     * Get extras.
      *
-     * @return string 
+     * @return string
      */
     public function getExtras()
     {
@@ -236,9 +239,10 @@ class ProductMeta
     }
 
     /**
-     * Set subtitle
+     * Set subtitle.
      *
      * @param string $subtitle
+     *
      * @return ProductMeta
      */
     public function setSubtitle($subtitle)
@@ -249,9 +253,9 @@ class ProductMeta
     }
 
     /**
-     * Get subtitle
+     * Get subtitle.
      *
-     * @return string 
+     * @return string
      */
     public function getSubtitle()
     {
@@ -259,9 +263,10 @@ class ProductMeta
     }
 
     /**
-     * Set note
+     * Set note.
      *
      * @param float $note
+     *
      * @return ProductMeta
      */
     public function setNote($note)
@@ -272,9 +277,9 @@ class ProductMeta
     }
 
     /**
-     * Get note
+     * Get note.
      *
-     * @return float 
+     * @return float
      */
     public function getNote()
     {
@@ -282,9 +287,10 @@ class ProductMeta
     }
 
     /**
-     * Set view
+     * Set view.
      *
-     * @param integer $view
+     * @param int $view
+     *
      * @return ProductMeta
      */
     public function setView($view)
@@ -295,9 +301,9 @@ class ProductMeta
     }
 
     /**
-     * Get view
+     * Get view.
      *
-     * @return integer 
+     * @return int
      */
     public function getView()
     {
@@ -305,9 +311,10 @@ class ProductMeta
     }
 
     /**
-     * Set metaKeyword
+     * Set metaKeyword.
      *
      * @param string $metaKeyword
+     *
      * @return ProductMeta
      */
     public function setMetaKeyword($metaKeyword)
@@ -318,9 +325,9 @@ class ProductMeta
     }
 
     /**
-     * Get metaKeyword
+     * Get metaKeyword.
      *
-     * @return string 
+     * @return string
      */
     public function getMetaKeyword()
     {
@@ -328,9 +335,10 @@ class ProductMeta
     }
 
     /**
-     * Set metaDescription
+     * Set metaDescription.
      *
      * @param string $metaDescription
+     *
      * @return ProductMeta
      */
     public function setMetaDescription($metaDescription)
@@ -341,9 +349,9 @@ class ProductMeta
     }
 
     /**
-     * Get metaDescription
+     * Get metaDescription.
      *
-     * @return string 
+     * @return string
      */
     public function getMetaDescription()
     {
@@ -351,9 +359,10 @@ class ProductMeta
     }
 
     /**
-     * Set metaTitle
+     * Set metaTitle.
      *
      * @param string $metaTitle
+     *
      * @return ProductMeta
      */
     public function setMetaTitle($metaTitle)
@@ -364,9 +373,9 @@ class ProductMeta
     }
 
     /**
-     * Get metaTitle
+     * Get metaTitle.
      *
-     * @return string 
+     * @return string
      */
     public function getMetaTitle()
     {
@@ -374,9 +383,10 @@ class ProductMeta
     }
 
     /**
-     * Set product
+     * Set product.
      *
      * @param \Store\BackendBundle\Entity\Product $product
+     *
      * @return ProductMeta
      */
     public function setProduct(\Store\BackendBundle\Entity\Product $product = null)
@@ -387,20 +397,20 @@ class ProductMeta
     }
 
     /**
-     * Get product
+     * Get product.
      *
-     * @return \Store\BackendBundle\Entity\Product 
+     * @return \Store\BackendBundle\Entity\Product
      */
     public function getProduct()
     {
         return $this->product;
     }
 
-
     /**
-     * Retourne le title
+     * Retourne le title.
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->id;
     }
 }

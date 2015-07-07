@@ -5,7 +5,7 @@ namespace Store\BackendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * UserAddress
+ * UserAddress.
  *
  * @ORM\Table(name="user_address", indexes={@ORM\Index(name="user_id", columns={"user_id"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\UserAddressRepository")
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class UserAddress
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -36,7 +36,7 @@ class UserAddress
     protected $type;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="zipcode", type="integer", nullable=true)
      */
@@ -59,19 +59,18 @@ class UserAddress
      */
     protected $user;
 
-
     /**
-     * Constructor
+     * Constructor.
      */
-    public function __construct(){
-
+    public function __construct()
+    {
         $this->type = 1;
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -79,9 +78,10 @@ class UserAddress
     }
 
     /**
-     * Set city
+     * Set city.
      *
      * @param string $city
+     *
      * @return UserAddress
      */
     public function setCity($city)
@@ -92,9 +92,9 @@ class UserAddress
     }
 
     /**
-     * Get city
+     * Get city.
      *
-     * @return string 
+     * @return string
      */
     public function getCity()
     {
@@ -102,9 +102,10 @@ class UserAddress
     }
 
     /**
-     * Set zipcode
+     * Set zipcode.
      *
-     * @param integer $zipcode
+     * @param int $zipcode
+     *
      * @return UserAddress
      */
     public function setZipcode($zipcode)
@@ -115,9 +116,9 @@ class UserAddress
     }
 
     /**
-     * Get zipcode
+     * Get zipcode.
      *
-     * @return integer 
+     * @return int
      */
     public function getZipcode()
     {
@@ -125,9 +126,10 @@ class UserAddress
     }
 
     /**
-     * Set address
+     * Set address.
      *
      * @param string $address
+     *
      * @return UserAddress
      */
     public function setAddress($address)
@@ -138,9 +140,9 @@ class UserAddress
     }
 
     /**
-     * Get address
+     * Get address.
      *
-     * @return string 
+     * @return string
      */
     public function getAddress()
     {
@@ -148,9 +150,10 @@ class UserAddress
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \Store\BackendBundle\Entity\User $user
+     *
      * @return UserAddress
      */
     public function setUser(\Store\BackendBundle\Entity\User $user = null)
@@ -161,27 +164,28 @@ class UserAddress
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \Store\BackendBundle\Entity\User 
+     * @return \Store\BackendBundle\Entity\User
      */
     public function getUser()
     {
         return $this->user;
     }
 
-
     /**
-     * Retourne le title
+     * Retourne le title.
      */
-    public function __toString(){
-        return $this->zipcode. " ". $this->address;
+    public function __toString()
+    {
+        return $this->zipcode.' '.$this->address;
     }
 
     /**
-     * Set type
+     * Set type.
      *
-     * @param integer $type
+     * @param int $type
+     *
      * @return UserAddress
      */
     public function setType($type)
@@ -192,9 +196,9 @@ class UserAddress
     }
 
     /**
-     * Get type
+     * Get type.
      *
-     * @return integer 
+     * @return int
      */
     public function getType()
     {

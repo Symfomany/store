@@ -2,20 +2,18 @@
 
 namespace Store\BackendBundle\Entity;
 
-
-
 use Symfony\Component\Security\Core\Role\RoleInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
-
 /**
- * Class Group
+ * Class Group.
+ *
  * @ORM\Entity
  * @ORM\Table(name="groups")
  */
-class Groups  implements RoleInterface {
-
+class Groups  implements RoleInterface
+{
     /**
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id()
@@ -38,8 +36,6 @@ class Groups  implements RoleInterface {
      */
     protected $jeweler;
 
-
-
     // ... getters and setters for each property
 
     /**
@@ -50,17 +46,15 @@ class Groups  implements RoleInterface {
         return $this->role;
     }
 
-
-
     public function __construct()
     {
         $this->jeweler = new ArrayCollection();
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -68,9 +62,10 @@ class Groups  implements RoleInterface {
     }
 
     /**
-     * Set name
+     * Set name.
      *
      * @param string $name
+     *
      * @return JewelerGroup
      */
     public function setName($name)
@@ -81,9 +76,9 @@ class Groups  implements RoleInterface {
     }
 
     /**
-     * Get name
+     * Get name.
      *
-     * @return string 
+     * @return string
      */
     public function getName()
     {
@@ -91,9 +86,10 @@ class Groups  implements RoleInterface {
     }
 
     /**
-     * Set role
+     * Set role.
      *
      * @param string $role
+     *
      * @return JewelerGroup
      */
     public function setRole($role)
@@ -103,11 +99,11 @@ class Groups  implements RoleInterface {
         return $this;
     }
 
-
     /**
-     * Add jeweler
+     * Add jeweler.
      *
      * @param \Store\BackendBundle\Entity\Jeweler $jeweler
+     *
      * @return JewelerGroup
      */
     public function addJeweler(\Store\BackendBundle\Entity\Jeweler $jeweler)
@@ -118,7 +114,7 @@ class Groups  implements RoleInterface {
     }
 
     /**
-     * Remove jeweler
+     * Remove jeweler.
      *
      * @param \Store\BackendBundle\Entity\Jeweler $jeweler
      */
@@ -128,9 +124,9 @@ class Groups  implements RoleInterface {
     }
 
     /**
-     * Get jeweler
+     * Get jeweler.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getJeweler()
     {

@@ -3,24 +3,23 @@
 namespace Store\BackendBundle\Statistics;
 
 /**
- * Interface Output
- * @package Store\BackendBundle\Statistics
+ * Interface Output.
  */
-interface Output{
-
+interface Output
+{
     /**
-     * Rendering in format
+     * Rendering in format.
+     *
      * @param $data
+     *
      * @return mixed
      */
     public function render($data);
 
     /**
-     * Export for HTTP|CLI
+     * Export for HTTP|CLI.
+     *
      * @return mixed
      */
     public function export();
-
-
-
 }

@@ -5,7 +5,7 @@ namespace Store\BackendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Comment
+ * Comment.
  *
  * @ORM\Table(name="comment", indexes={@ORM\Index(name="product_id", columns={"product_id", "user_id"}), @ORM\Index(name="IDX_9474526C4584665A", columns={"product_id"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\CommentRepository")
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Comment
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -22,7 +22,7 @@ class Comment
     protected $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="note", type="integer", nullable=true)
      */
@@ -36,7 +36,7 @@ class Comment
     protected $content;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="state", type="integer", nullable=true)
      */
@@ -58,7 +58,7 @@ class Comment
      * })
      */
     protected $product;
-    
+
     /**
      * @var \User
      *
@@ -69,30 +69,30 @@ class Comment
      */
     protected $user;
 
-
     /**
-     * Constructor
+     * Constructor.
      */
-    public function __construct(){
+    public function __construct()
+    {
         $this->state = 1;
         $this->dateCreated = new \DateTime('now');
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
         return $this->id;
     }
 
-
     /**
-     * Set note
+     * Set note.
      *
-     * @param integer $note
+     * @param int $note
+     *
      * @return Comment
      */
     public function setNote($note)
@@ -103,9 +103,9 @@ class Comment
     }
 
     /**
-     * Get note
+     * Get note.
      *
-     * @return integer 
+     * @return int
      */
     public function getNote()
     {
@@ -113,9 +113,10 @@ class Comment
     }
 
     /**
-     * Set content
+     * Set content.
      *
      * @param string $content
+     *
      * @return Comment
      */
     public function setContent($content)
@@ -126,9 +127,9 @@ class Comment
     }
 
     /**
-     * Get content
+     * Get content.
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -136,9 +137,10 @@ class Comment
     }
 
     /**
-     * Set state
+     * Set state.
      *
-     * @param integer $state
+     * @param int $state
+     *
      * @return Comment
      */
     public function setState($state)
@@ -149,9 +151,9 @@ class Comment
     }
 
     /**
-     * Get state
+     * Get state.
      *
-     * @return integer 
+     * @return int
      */
     public function getState()
     {
@@ -159,9 +161,10 @@ class Comment
     }
 
     /**
-     * Set dateCreated
+     * Set dateCreated.
      *
      * @param \DateTime $dateCreated
+     *
      * @return Comment
      */
     public function setDateCreated($dateCreated)
@@ -172,9 +175,9 @@ class Comment
     }
 
     /**
-     * Get dateCreated
+     * Get dateCreated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -182,9 +185,10 @@ class Comment
     }
 
     /**
-     * Set product
+     * Set product.
      *
      * @param \Store\BackendBundle\Entity\Product $product
+     *
      * @return Comment
      */
     public function setProduct(\Store\BackendBundle\Entity\Product $product = null)
@@ -195,9 +199,9 @@ class Comment
     }
 
     /**
-     * Get product
+     * Get product.
      *
-     * @return \Store\BackendBundle\Entity\Product 
+     * @return \Store\BackendBundle\Entity\Product
      */
     public function getProduct()
     {
@@ -205,9 +209,10 @@ class Comment
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \Store\BackendBundle\Entity\User $user
+     *
      * @return Comment
      */
     public function setUser(\Store\BackendBundle\Entity\User $user = null)
@@ -218,9 +223,9 @@ class Comment
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \Store\BackendBundle\Entity\User 
+     * @return \Store\BackendBundle\Entity\User
      */
     public function getUser()
     {
@@ -228,9 +233,10 @@ class Comment
     }
 
     /**
-     * Retourne le contenu
+     * Retourne le contenu.
      */
-    public function __toString(){
+    public function __toString()
+    {
         $this->content;
     }
 }

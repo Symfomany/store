@@ -2,44 +2,39 @@
 
 namespace Store\BackendBundle\Form;
 
-
-use Doctrine\ORM\EntityRepository;
 use Store\BackendBundle\Entity\Product;
-use Store\BackendBundle\Repository\CategoryRepository;
 use Store\BackendBundle\Repository\ProductRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-
 /**
  * Class CmsType
- * Formulaire de création de produit
- * @package Store\BackendBundle\Form
+ * Formulaire de création de produit.
  */
 class CmsType extends AbstractType
 {
-
     /**
-     * @var $user
+     * @var
      */
     protected $user;
 
-
     /**
-     * User param
+     * User param.
+     *
      * @param $user
      */
-    public function __construct($user = null){
+    public function __construct($user = null)
+    {
         $this->user = $user;
     }
 
     /**
-     * Methode qui va consrtuire mon formulaire
+     * Methode qui va consrtuire mon formulaire.
+     *
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -49,58 +44,58 @@ class CmsType extends AbstractType
         // le 3eme argument c'est ùmes options à mon chamos
         $builder->add('title', null, array(
             'label' => 'Titre de votre page', //label de mon chmpa
-            'required'  => true,
+            'required' => true,
             'attr' => array(
                 'class' => 'form-control',
                  'placeholder' => 'Mettre un titre soigné',
-                'pattern' => '[a-zA-Z0-9- ]{5,}'
-            )
+                'pattern' => '[a-zA-Z0-9- ]{5,}',
+            ),
         ));
         $builder->add('file', 'file', array(
             'label' => 'Image de présentation',
-            'required'  => false,
+            'required' => false,
             'attr' => array(
                 'class' => 'form-control',
                 'accept' => 'image/*',
-                'capture' => 'capture'
-            )
+                'capture' => 'capture',
+            ),
         ));
         $builder->add('video', 'text', array(
             'label' => 'Vidéo de présentation',
-            'required'  => false,
+            'required' => false,
             'attr' => array(
                 'class' => 'form-control',
                 'placeholder' => 'cms.form.placeholder.video',
-            )
+            ),
         ));
         $builder->add('summary', null, array(
-            'label' => "Petit résumé",
-            'required'  => true,
+            'label' => 'Petit résumé',
+            'required' => true,
             'attr' => array(
                 'class' => 'form-control',
                 'rows' => 6,
                 'placeholder' => 'Petit résumé du bijoux',
-                )
+                ),
         ));
         $builder->add('description', null, array(
-            'label' => "Longue description",
-            'required'  => true,
+            'label' => 'Longue description',
+            'required' => true,
             'attr' => array(
                 'class' => 'form-control',
                 'rows' => 15,
                 'placeholder' => 'Description longue du bijoux',
-                )
+                ),
         ));
         $builder->add('state', 'choice', array(
-            'label' => "Etat",
-            'choices'   => array("1" => 'Inactif',"2" => 'En cours de relecture', "3" => 'Actif'),
-            'required'  => true, // liste déroulante obligatoire
-            'preferred_choices' => array("En cours de relecture"), // champs choisi par défault
+            'label' => 'Etat',
+            'choices' => array('1' => 'Inactif', '2' => 'En cours de relecture', '3' => 'Actif'),
+            'required' => true, // liste déroulante obligatoire
+            'preferred_choices' => array('En cours de relecture'), // champs choisi par défault
             'attr' => array(
                 'class' => 'form-control',
-            )
+            ),
         ));
-        $builder->add('dateActive', 'datetime', array (
+        $builder->add('dateActive', 'datetime', array(
             'label' => "Date d'activation",
             'attr' => array(
                 'class' => 'form-control',
@@ -112,31 +107,28 @@ class CmsType extends AbstractType
         ));
 
         $builder->add('product', 'entity',
-            array (
+            array(
                 'label' => 'Produits associés',
                 'class' => 'StoreBackendBundle:Product',
                 'multiple' => true, // choix multiple
                 'by_reference' => false, // to handle setProduct() new method in entity
-                'query_builder' => function(ProductRepository $er)
-                {
+                'query_builder' => function (ProductRepository $er) {
                     return $er->getProductByUserBuilder($this->user);
                 },
             ));
 
-
         $builder->add('envoyer', 'submit', array(
-            'label' => "cms.form.send",
+            'label' => 'cms.form.send',
             'attr' => array(
-                'class' => 'btn btn-primary btn-sm'
-            )
+                'class' => 'btn btn-primary btn-sm',
+            ),
         ));
-
     }
-
 
     /**
      * Cette methode me permet de lié mon formulaire à moin entité Product
-     * CAR mon formulaire enregistre un produit dans la table product
+     * CAR mon formulaire enregistre un produit dans la table product.
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -148,51 +140,25 @@ class CmsType extends AbstractType
     }
 
     /**
-     * Methode déprécié pour lier un formulaire à une entité
+     * Methode déprécié pour lier un formulaire à une entité.
+     *
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
         $resolver->setDefaults(array(
             'data_class' => 'Store\BackendBundle\Entity\Cms',
-            'translation_domain' => 'cms'
+            'translation_domain' => 'cms',
         ));
     }
 
-
     /**
-     * Nom du formulaire
+     * Nom du formulaire.
+     *
      * @return string|void
      */
     public function getName()
     {
-        return "store_backend_cms";
+        return 'store_backend_cms';
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

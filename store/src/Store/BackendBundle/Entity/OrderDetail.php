@@ -5,15 +5,13 @@ namespace Store\BackendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * OrderDetail
+ * OrderDetail.
  *
  * @ORM\Table(name="order_detail")
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\OrderDetailRepository")
  */
 class OrderDetail
 {
-
-
     /**
      * @var \Order
      * @ORM\Id
@@ -35,33 +33,32 @@ class OrderDetail
     protected $product;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="quantity", type="integer", nullable=true)
      */
     protected $quantity;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="price", type="float", nullable=true)
      */
     protected $price;
 
-
-
     /**
-     * Constructor
+     * Constructor.
      */
-    public function __construct(){
+    public function __construct()
+    {
         $this->quantity = 1;
     }
 
-
     /**
-     * Set quantity
+     * Set quantity.
      *
-     * @param integer $quantity
+     * @param int $quantity
+     *
      * @return OrderDetail
      */
     public function setQuantity($quantity)
@@ -72,9 +69,9 @@ class OrderDetail
     }
 
     /**
-     * Get quantity
+     * Get quantity.
      *
-     * @return integer 
+     * @return int
      */
     public function getQuantity()
     {
@@ -82,9 +79,10 @@ class OrderDetail
     }
 
     /**
-     * Set price
+     * Set price.
      *
      * @param float $price
+     *
      * @return OrderDetail
      */
     public function setPrice($price)
@@ -95,9 +93,9 @@ class OrderDetail
     }
 
     /**
-     * Get price
+     * Get price.
      *
-     * @return float 
+     * @return float
      */
     public function getPrice()
     {
@@ -105,9 +103,10 @@ class OrderDetail
     }
 
     /**
-     * Set order
+     * Set order.
      *
      * @param \Store\BackendBundle\Entity\Order $order
+     *
      * @return OrderDetail
      */
     public function setOrder(\Store\BackendBundle\Entity\Order $order = null)
@@ -118,9 +117,9 @@ class OrderDetail
     }
 
     /**
-     * Get order
+     * Get order.
      *
-     * @return \Store\BackendBundle\Entity\Order 
+     * @return \Store\BackendBundle\Entity\Order
      */
     public function getOrder()
     {
@@ -128,9 +127,10 @@ class OrderDetail
     }
 
     /**
-     * Set product
+     * Set product.
      *
      * @param \Store\BackendBundle\Entity\Product $product
+     *
      * @return OrderDetail
      */
     public function setProduct(\Store\BackendBundle\Entity\Product $product = null)
@@ -141,9 +141,9 @@ class OrderDetail
     }
 
     /**
-     * Get product
+     * Get product.
      *
-     * @return \Store\BackendBundle\Entity\Product 
+     * @return \Store\BackendBundle\Entity\Product
      */
     public function getProduct()
     {
@@ -151,14 +151,12 @@ class OrderDetail
     }
 
     /**
-     * Get product
+     * Get product.
      *
      * @return \Store\BackendBundle\Entity\Product
      */
     public function getLine()
     {
-        return $this->getQuantity() . " ". $this->getProduct()->getTitle(). " : " . $this->getPrice() ."€";
+        return $this->getQuantity().' '.$this->getProduct()->getTitle().' : '.$this->getPrice().'€';
     }
-
-
 }

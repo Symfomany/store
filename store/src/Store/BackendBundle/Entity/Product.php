@@ -5,12 +5,11 @@ namespace Store\BackendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 use Store\BackendBundle\Validator\Constraints as StoreAssert;
-
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-
 /**
- * Product
+ * Product.
+ *
  * @ORM\Table(name="product", indexes={@ORM\Index(name="jeweler_id", columns={"jeweler_id"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\ProductRepository")
  * @UniqueEntity(fields="ref", message="Votre référence de bijoux est déjà existant",  groups={"new"})
@@ -20,7 +19,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class Product
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -142,7 +141,7 @@ class Product
     protected $quantity;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
@@ -159,21 +158,21 @@ class Product
     protected $dateActive;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="cover", type="boolean", nullable=true)
      */
     protected $cover;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="shop", type="boolean", nullable=true)
      */
     protected $shop;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="position", type="integer", nullable=true)
      */
@@ -255,6 +254,7 @@ class Product
      *      maxMessage = "Vous ne pouvez pas spécifier plus de {{ limit }} page associée",
      *      groups={"new", "edit"}
      * )
+     *
      * @var \Doctrine\Common\Collections\Collection
      * @ORM\ManyToMany(targetEntity="Cms", inversedBy="product")
      * @ORM\JoinTable(name="product_cms",
@@ -292,7 +292,7 @@ class Product
      *      maxMessage = "Vous ne pouvez pas spécifier plus de {{ limit }} tag associés",
      *      groups={"edit"}
      * )
-    * @ORM\ManyToMany(targetEntity="Tag", inversedBy="product")
+     * @ORM\ManyToMany(targetEntity="Tag", inversedBy="product")
      * @ORM\JoinTable(name="product_tag",
      *   joinColumns={
      *     @ORM\JoinColumn(name="product_id", referencedColumnName="id")
@@ -305,17 +305,15 @@ class Product
     protected $tag;
 
     /**
-     * @var boolean
+     * @var bool
      * @ORM\OneToOne(targetEntity="ProductMeta", mappedBy="product")
      **/
     protected $meta;
 
     /**
      * @ORM\OneToMany(targetEntity="Slider", mappedBy="product")
-     *
      */
     protected $slide;
-
 
     /**
      * @var \Doctrine\Common\Collections\Collection
@@ -332,15 +330,14 @@ class Product
      */
     protected $likes;
 
-
     /**
      * @ORM\Column(name="imagepresentation", type="string", nullable=true)
      */
     protected $imagepresentation;
 
-
     /**
-     * Attribut qui représentera mon fichier uploadé
+     * Attribut qui représentera mon fichier uploadé.
+     *
      * @Assert\Image(
      *     minWidth = 100,
      *     maxWidth = 3000,
@@ -355,10 +352,9 @@ class Product
      */
     protected $file;
 
-
     /**
      * Constructeur qui initialise les propriété de mon objet Product
-     * Initialisation de mes attributs de mon objet
+     * Initialisation de mes attributs de mon objet.
      */
     public function __construct()
     {
@@ -379,11 +375,10 @@ class Product
         $this->tag = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -391,9 +386,10 @@ class Product
     }
 
     /**
-     * Set ref
+     * Set ref.
      *
      * @param string $ref
+     *
      * @return Product
      */
     public function setRef($ref)
@@ -404,9 +400,9 @@ class Product
     }
 
     /**
-     * Get ref
+     * Get ref.
      *
-     * @return string 
+     * @return string
      */
     public function getRef()
     {
@@ -414,9 +410,10 @@ class Product
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
+     *
      * @return Product
      */
     public function setTitle($title)
@@ -427,9 +424,9 @@ class Product
     }
 
     /**
-     * Get title
+     * Get title.
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -437,9 +434,10 @@ class Product
     }
 
     /**
-     * Set summary
+     * Set summary.
      *
      * @param string $summary
+     *
      * @return Product
      */
     public function setSummary($summary)
@@ -450,9 +448,9 @@ class Product
     }
 
     /**
-     * Get summary
+     * Get summary.
      *
-     * @return string 
+     * @return string
      */
     public function getSummary()
     {
@@ -460,9 +458,10 @@ class Product
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return Product
      */
     public function setDescription($description)
@@ -473,9 +472,9 @@ class Product
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -483,9 +482,10 @@ class Product
     }
 
     /**
-     * Set composition
+     * Set composition.
      *
      * @param string $composition
+     *
      * @return Product
      */
     public function setComposition($composition)
@@ -496,9 +496,9 @@ class Product
     }
 
     /**
-     * Get composition
+     * Get composition.
      *
-     * @return string 
+     * @return string
      */
     public function getComposition()
     {
@@ -506,9 +506,10 @@ class Product
     }
 
     /**
-     * Set price
+     * Set price.
      *
      * @param float $price
+     *
      * @return Product
      */
     public function setPrice($price)
@@ -519,9 +520,9 @@ class Product
     }
 
     /**
-     * Get price
+     * Get price.
      *
-     * @return float 
+     * @return float
      */
     public function getPrice()
     {
@@ -529,9 +530,10 @@ class Product
     }
 
     /**
-     * Set taxe
+     * Set taxe.
      *
-     * @param integer $taxe
+     * @param int $taxe
+     *
      * @return Product
      */
     public function setTaxe($taxe)
@@ -542,9 +544,9 @@ class Product
     }
 
     /**
-     * Get taxe
+     * Get taxe.
      *
-     * @return integer 
+     * @return int
      */
     public function getTaxe()
     {
@@ -552,9 +554,10 @@ class Product
     }
 
     /**
-     * Set quantity
+     * Set quantity.
      *
-     * @param integer $quantity
+     * @param int $quantity
+     *
      * @return Product
      */
     public function setQuantity($quantity)
@@ -565,9 +568,9 @@ class Product
     }
 
     /**
-     * Get quantity
+     * Get quantity.
      *
-     * @return integer 
+     * @return int
      */
     public function getQuantity()
     {
@@ -575,9 +578,10 @@ class Product
     }
 
     /**
-     * Set active
+     * Set active.
      *
-     * @param boolean $active
+     * @param bool $active
+     *
      * @return Product
      */
     public function setActive($active)
@@ -588,9 +592,9 @@ class Product
     }
 
     /**
-     * Get active
+     * Get active.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getActive()
     {
@@ -598,9 +602,10 @@ class Product
     }
 
     /**
-     * Set dateActive
+     * Set dateActive.
      *
      * @param \DateTime $dateActive
+     *
      * @return Product
      */
     public function setDateActive($dateActive)
@@ -611,9 +616,9 @@ class Product
     }
 
     /**
-     * Get dateActive
+     * Get dateActive.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateActive()
     {
@@ -621,9 +626,10 @@ class Product
     }
 
     /**
-     * Set cover
+     * Set cover.
      *
-     * @param boolean $cover
+     * @param bool $cover
+     *
      * @return Product
      */
     public function setCover($cover)
@@ -634,9 +640,9 @@ class Product
     }
 
     /**
-     * Get cover
+     * Get cover.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getCover()
     {
@@ -644,9 +650,10 @@ class Product
     }
 
     /**
-     * Set shop
+     * Set shop.
      *
-     * @param boolean $shop
+     * @param bool $shop
+     *
      * @return Product
      */
     public function setShop($shop)
@@ -657,9 +664,9 @@ class Product
     }
 
     /**
-     * Get shop
+     * Get shop.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getShop()
     {
@@ -667,9 +674,10 @@ class Product
     }
 
     /**
-     * Set position
+     * Set position.
      *
-     * @param integer $position
+     * @param int $position
+     *
      * @return Product
      */
     public function setPosition($position)
@@ -680,9 +688,9 @@ class Product
     }
 
     /**
-     * Get position
+     * Get position.
      *
-     * @return integer 
+     * @return int
      */
     public function getPosition()
     {
@@ -690,9 +698,10 @@ class Product
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
+     *
      * @return Product
      */
     public function setSlug($slug)
@@ -703,9 +712,9 @@ class Product
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -713,9 +722,10 @@ class Product
     }
 
     /**
-     * Set dateCreated
+     * Set dateCreated.
      *
      * @param \DateTime $dateCreated
+     *
      * @return Product
      */
     public function setDateCreated($dateCreated)
@@ -726,9 +736,9 @@ class Product
     }
 
     /**
-     * Get dateCreated
+     * Get dateCreated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -736,9 +746,12 @@ class Product
     }
 
     /**
-     * Set dateUpdated
+     * Set dateUpdated.
+     *
      * @ORM\PreUpdate
+     *
      * @param \DateTime $dateUpdated
+     *
      * @return Product
      */
     public function setDateUpdated($dateUpdated)
@@ -749,9 +762,9 @@ class Product
     }
 
     /**
-     * Get dateUpdated
+     * Get dateUpdated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateUpdated()
     {
@@ -759,9 +772,10 @@ class Product
     }
 
     /**
-     * Set jeweler
+     * Set jeweler.
      *
      * @param \Store\BackendBundle\Entity\Jeweler $jeweler
+     *
      * @return Product
      */
     public function setJeweler(\Store\BackendBundle\Entity\Jeweler $jeweler = null)
@@ -772,9 +786,9 @@ class Product
     }
 
     /**
-     * Get jeweler
+     * Get jeweler.
      *
-     * @return \Store\BackendBundle\Entity\Jeweler 
+     * @return \Store\BackendBundle\Entity\Jeweler
      */
     public function getJeweler()
     {
@@ -782,9 +796,10 @@ class Product
     }
 
     /**
-     * Add business
+     * Add business.
      *
      * @param \Store\BackendBundle\Entity\Product $business
+     *
      * @return Product
      */
     public function addBusiness(\Store\BackendBundle\Entity\Product $business)
@@ -795,7 +810,7 @@ class Product
     }
 
     /**
-     * Remove business
+     * Remove business.
      *
      * @param \Store\BackendBundle\Entity\Product $business
      */
@@ -805,9 +820,9 @@ class Product
     }
 
     /**
-     * Get business
+     * Get business.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getBusiness()
     {
@@ -815,14 +830,15 @@ class Product
     }
 
     /**
-     * Add category
+     * Add category.
      *
      * @param \Store\BackendBundle\Entity\Category $category
+     *
      * @return Product
      */
     public function addCategory(\Store\BackendBundle\Entity\Category $category)
     {
-        if(!$this->category->contains($category)){
+        if (!$this->category->contains($category)) {
             $this->category[] = $category;
         }
 
@@ -830,7 +846,7 @@ class Product
     }
 
     /**
-     * Remove category
+     * Remove category.
      *
      * @param \Store\BackendBundle\Entity\Category $category
      */
@@ -840,9 +856,9 @@ class Product
     }
 
     /**
-     * Get category
+     * Get category.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCategory()
     {
@@ -850,14 +866,15 @@ class Product
     }
 
     /**
-     * Add cms
+     * Add cms.
      *
      * @param \Store\BackendBundle\Entity\Cms $cms
+     *
      * @return Product
      */
     public function addCms(\Store\BackendBundle\Entity\Cms $cms)
     {
-        if(!$this->cms->contains($cms)) {
+        if (!$this->cms->contains($cms)) {
             $this->cms[] = $cms;
         }
 
@@ -865,7 +882,7 @@ class Product
     }
 
     /**
-     * Remove cms
+     * Remove cms.
      *
      * @param \Store\BackendBundle\Entity\Cms $cms
      */
@@ -875,9 +892,9 @@ class Product
     }
 
     /**
-     * Get cms
+     * Get cms.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getCms()
     {
@@ -885,21 +902,23 @@ class Product
     }
 
     /**
-     * Add supplier
+     * Add supplier.
      *
      * @param \Store\BackendBundle\Entity\Supplier $supplier
+     *
      * @return Product
      */
     public function addSupplier(\Store\BackendBundle\Entity\Supplier $supplier)
     {
-        if(!$this->supplier->contains($supplier)) {
+        if (!$this->supplier->contains($supplier)) {
             $this->supplier[] = $supplier;
         }
+
         return $this;
     }
 
     /**
-     * Remove supplier
+     * Remove supplier.
      *
      * @param \Store\BackendBundle\Entity\Supplier $supplier
      */
@@ -909,9 +928,9 @@ class Product
     }
 
     /**
-     * Get supplier
+     * Get supplier.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSupplier()
     {
@@ -919,9 +938,10 @@ class Product
     }
 
     /**
-     * Add tag
+     * Add tag.
      *
      * @param \Store\BackendBundle\Entity\Tag $tag
+     *
      * @return Product
      */
     public function addTag(\Store\BackendBundle\Entity\Tag $tag)
@@ -932,7 +952,7 @@ class Product
     }
 
     /**
-     * Remove tag
+     * Remove tag.
      *
      * @param \Store\BackendBundle\Entity\Tag $tag
      */
@@ -942,9 +962,9 @@ class Product
     }
 
     /**
-     * Get tag
+     * Get tag.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getTag()
     {
@@ -952,9 +972,10 @@ class Product
     }
 
     /**
-     * Set meta
+     * Set meta.
      *
      * @param \Store\BackendBundle\Entity\ProductMeta $meta
+     *
      * @return Product
      */
     public function setMeta(\Store\BackendBundle\Entity\ProductMeta $meta = null)
@@ -965,9 +986,9 @@ class Product
     }
 
     /**
-     * Get meta
+     * Get meta.
      *
-     * @return \Store\BackendBundle\Entity\ProductMeta 
+     * @return \Store\BackendBundle\Entity\ProductMeta
      */
     public function getMeta()
     {
@@ -975,9 +996,10 @@ class Product
     }
 
     /**
-     * Retourne le title
+     * Retourne le title.
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->title;
     }
 
@@ -996,11 +1018,11 @@ class Product
      */
     protected $order;
 
-
     /**
-     * Set imagepresentation
+     * Set imagepresentation.
      *
      * @param string $imagepresentation
+     *
      * @return Product
      */
     public function setImagepresentation($imagepresentation)
@@ -1011,9 +1033,9 @@ class Product
     }
 
     /**
-     * Get imagepresentation
+     * Get imagepresentation.
      *
-     * @return string 
+     * @return string
      */
     public function getImagepresentation()
     {
@@ -1021,9 +1043,10 @@ class Product
     }
 
     /**
-     * Add product2
+     * Add product2.
      *
      * @param \Store\BackendBundle\Entity\Product $product2
+     *
      * @return Product
      */
     public function addProduct2(\Store\BackendBundle\Entity\Product $product2)
@@ -1034,7 +1057,7 @@ class Product
     }
 
     /**
-     * Remove product2
+     * Remove product2.
      *
      * @param \Store\BackendBundle\Entity\Product $product2
      */
@@ -1044,9 +1067,9 @@ class Product
     }
 
     /**
-     * Get product2
+     * Get product2.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProduct2()
     {
@@ -1054,9 +1077,10 @@ class Product
     }
 
     /**
-     * Add user
+     * Add user.
      *
      * @param \Store\BackendBundle\Entity\User $user
+     *
      * @return Product
      */
     public function addUser(\Store\BackendBundle\Entity\User $user)
@@ -1067,7 +1091,7 @@ class Product
     }
 
     /**
-     * Remove user
+     * Remove user.
      *
      * @param \Store\BackendBundle\Entity\User $user
      */
@@ -1077,9 +1101,9 @@ class Product
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getUser()
     {
@@ -1087,9 +1111,10 @@ class Product
     }
 
     /**
-     * Add order
+     * Add order.
      *
      * @param \Store\BackendBundle\Entity\Orders $order
+     *
      * @return Product
      */
     public function addOrder(\Store\BackendBundle\Entity\Order $order)
@@ -1100,7 +1125,7 @@ class Product
     }
 
     /**
-     * Remove order
+     * Remove order.
      *
      * @param \Store\BackendBundle\Entity\Orders $order
      */
@@ -1110,9 +1135,9 @@ class Product
     }
 
     /**
-     * Get order
+     * Get order.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getOrder()
     {
@@ -1120,7 +1145,8 @@ class Product
     }
 
     /**
-     * Retourne le chemin absolue de mon image
+     * Retourne le chemin absolue de mon image.
+     *
      * @return null|string
      */
     public function getAbsolutePath()
@@ -1128,9 +1154,9 @@ class Product
         return null === $this->imagepresentation ? null : $this->getUploadRootDir().'/'.$this->imagepresentation;
     }
 
-
     /**
-     * Retourne le chemin de l'image depuis le dossier web
+     * Retourne le chemin de l'image depuis le dossier web.
+     *
      * @return null|string
      */
     public function getWebPath()
@@ -1139,7 +1165,8 @@ class Product
     }
 
     /**
-     * Retourne le cheùin de mon image depuis l'entité
+     * Retourne le cheùin de mon image depuis l'entité.
+     *
      * @return string
      */
     protected function getUploadRootDir()
@@ -1149,7 +1176,8 @@ class Product
     }
 
     /**
-     * Retourne le dossier d'upload et sous dossier product
+     * Retourne le dossier d'upload et sous dossier product.
+     *
      * @return string
      */
     protected function getUploadDir()
@@ -1158,8 +1186,6 @@ class Product
         // le document/image dans la vue.
         return 'uploads/product';
     }
-
-
 
     /**
      * @return mixed
@@ -1179,7 +1205,7 @@ class Product
 
     /**
      * Mecanisme d'upload
-     * + déplacement du fichier uploadé dans le bon dossier
+     * + déplacement du fichier uploadé dans le bon dossier.
      */
     public function upload()
     {
@@ -1204,7 +1230,6 @@ class Product
         $this->file = null;
     }
 
-
     /**
      * @ORM\PostRemove()
      */
@@ -1215,11 +1240,11 @@ class Product
         }
     }
 
-
     /**
-     * Add cms
+     * Add cms.
      *
      * @param \Store\BackendBundle\Entity\Cms $cms
+     *
      * @return Product
      */
     public function addCm(\Store\BackendBundle\Entity\Cms $cms)
@@ -1230,7 +1255,7 @@ class Product
     }
 
     /**
-     * Remove cms
+     * Remove cms.
      *
      * @param \Store\BackendBundle\Entity\Cms $cms
      */
@@ -1240,14 +1265,15 @@ class Product
     }
 
     /**
-     * Add slide
+     * Add slide.
      *
      * @param \Store\BackendBundle\Entity\Slider $slide
+     *
      * @return Product
      */
     public function addSlide(\Store\BackendBundle\Entity\Slider $slide)
     {
-        if(!$this->slide->contains($slide)){
+        if (!$this->slide->contains($slide)) {
             $this->slide[] = $slide;
         }
 
@@ -1255,7 +1281,7 @@ class Product
     }
 
     /**
-     * Remove slide
+     * Remove slide.
      *
      * @param \Store\BackendBundle\Entity\Slider $slide
      */
@@ -1265,9 +1291,9 @@ class Product
     }
 
     /**
-     * Get slide
+     * Get slide.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getSlide()
     {
@@ -1275,9 +1301,10 @@ class Product
     }
 
     /**
-     * Add likes
+     * Add likes.
      *
      * @param \Store\BackendBundle\Entity\User $likes
+     *
      * @return Product
      */
     public function addLike(\Store\BackendBundle\Entity\User $likes)
@@ -1288,7 +1315,7 @@ class Product
     }
 
     /**
-     * Remove likes
+     * Remove likes.
      *
      * @param \Store\BackendBundle\Entity\User $likes
      */
@@ -1298,14 +1325,12 @@ class Product
     }
 
     /**
-     * Get likes
+     * Get likes.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getLikes()
     {
         return $this->likes;
     }
-
-
 }

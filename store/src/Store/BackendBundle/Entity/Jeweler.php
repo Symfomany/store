@@ -7,16 +7,14 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\Role\Role;
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
-
 use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
-
 use Symfony\Component\Validator\Context\ExecutionContextInterface;
-
 
 /**
  * Jeweler Class
- * Use AdvancedUserInterface
+ * Use AdvancedUserInterface.
+ *
  * @ORM\Table(name="jeweler", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\JewelerRepository")
  * @UniqueEntity(fields="username", message="Votre login est déjà existant", groups={"suscribe", "edit"})
@@ -26,7 +24,7 @@ use Symfony\Component\Validator\Context\ExecutionContextInterface;
 class Jeweler implements  AdvancedUserInterface, \Serializable
 {
     /**
-     * @var integer
+     * @var int
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
@@ -46,7 +44,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * @ORM\Column(name="email", type="string", length=150, nullable=true)
      */
     protected $email;
-    
+
     /**
      * @var string
      * @Assert\NotBlank(
@@ -117,14 +115,14 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     protected $image;
 
     /**
-     * @var integer
+     * @var int
      * @Assert\Choice(choices = {"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}, message = "Choisissez un type valide.",  groups={"edit"})
      * @ORM\Column(name="type", type="integer", nullable=true)
      */
     protected $type;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="enabled", type="boolean", nullable=true)
      */
@@ -152,7 +150,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     protected $emailCanonical;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="credentials_expired", type="boolean", nullable=true)
      */
@@ -180,7 +178,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     protected $passwordRequestedAt;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="fid", type="integer", nullable=true)
      */
@@ -194,28 +192,28 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     protected $slug;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="accountNonLocked", type="boolean", nullable=true)
      */
     protected $accountnonlocked;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="roles", type="string", nullable=true)
      */
     protected $roles;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="accountNonExpired", type="boolean", nullable=true)
      */
     protected $accountnonexpired;
 
     /**
-     * @var boolean
+     * @var bool
      * @Assert\Valid
      * @ORM\OneToOne(targetEntity="JewelerMeta", mappedBy="jeweler")
      **/
@@ -239,7 +237,6 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      * @ORM\Column(name="date_auth", type="datetime", nullable=true)
      */
     protected $dateAuth;
-    
 
     /**
      * @ORM\ManyToMany(targetEntity="Groups", inversedBy="jeweler")
@@ -251,13 +248,12 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      *     @ORM\JoinColumn(name="groups_id", referencedColumnName="id")
      *   }
      * )
-     *
      */
     protected $groups;
 
-
     /**
-     * Attribut qui représentera mon fichier uploadé
+     * Attribut qui représentera mon fichier uploadé.
+     *
      * @Assert\Image(
      *     minWidth = 100,
      *     maxWidth = 3000,
@@ -272,9 +268,8 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      */
     protected $file;
 
-
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -290,13 +285,12 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
         $this->salt = md5(uniqid(null, true));
         $this->token = sha1(uniqid(null, true).microtime());
         $this->groups = new ArrayCollection();
-
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -304,9 +298,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
+     *
      * @return Jeweler
      */
     public function setEmail($email)
@@ -317,9 +312,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get email
+     * Get email.
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -327,9 +322,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set password
+     * Set password.
      *
      * @param string $password
+     *
      * @return Jeweler
      */
     public function setPassword($password)
@@ -340,9 +336,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get password
+     * Get password.
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -350,9 +346,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
+     *
      * @return Jeweler
      */
     public function setTitle($title)
@@ -363,9 +360,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get title
+     * Get title.
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -373,9 +370,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return Jeweler
      */
     public function setDescription($description)
@@ -386,9 +384,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -396,9 +394,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param string $image
+     *
      * @return Jeweler
      */
     public function setImage($image)
@@ -409,9 +408,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get image
+     * Get image.
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -419,9 +418,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set type
+     * Set type.
      *
-     * @param integer $type
+     * @param int $type
+     *
      * @return Jeweler
      */
     public function setType($type)
@@ -432,9 +432,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get type
+     * Get type.
      *
-     * @return integer 
+     * @return int
      */
     public function getType()
     {
@@ -442,9 +442,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set enabled
+     * Set enabled.
      *
-     * @param boolean $enabled
+     * @param bool $enabled
+     *
      * @return Jeweler
      */
     public function setEnabled($enabled)
@@ -455,9 +456,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set salt
+     * Set salt.
      *
      * @param string $salt
+     *
      * @return Jeweler
      */
     public function setSalt($salt)
@@ -468,9 +470,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get salt
+     * Get salt.
      *
-     * @return string 
+     * @return string
      */
     public function getSalt()
     {
@@ -478,9 +480,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set token
+     * Set token.
      *
      * @param string $token
+     *
      * @return Jeweler
      */
     public function setToken($token)
@@ -491,9 +494,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get token
+     * Get token.
      *
-     * @return string 
+     * @return string
      */
     public function getToken()
     {
@@ -501,9 +504,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set emailCanonical
+     * Set emailCanonical.
      *
      * @param string $emailCanonical
+     *
      * @return Jeweler
      */
     public function setEmailCanonical($emailCanonical)
@@ -514,9 +518,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get emailCanonical
+     * Get emailCanonical.
      *
-     * @return string 
+     * @return string
      */
     public function getEmailCanonical()
     {
@@ -524,9 +528,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set credentialsExpired
+     * Set credentialsExpired.
      *
-     * @param boolean $credentialsExpired
+     * @param bool $credentialsExpired
+     *
      * @return Jeweler
      */
     public function setCredentialsExpired($credentialsExpired)
@@ -537,9 +542,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get credentialsExpired
+     * Get credentialsExpired.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getCredentialsExpired()
     {
@@ -547,9 +552,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set credentialsExpireAt
+     * Set credentialsExpireAt.
      *
      * @param \DateTime $credentialsExpireAt
+     *
      * @return Jeweler
      */
     public function setCredentialsExpireAt($credentialsExpireAt)
@@ -560,9 +566,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get credentialsExpireAt
+     * Get credentialsExpireAt.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getCredentialsExpireAt()
     {
@@ -570,9 +576,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set confirmationToken
+     * Set confirmationToken.
      *
      * @param string $confirmationToken
+     *
      * @return Jeweler
      */
     public function setConfirmationToken($confirmationToken)
@@ -583,9 +590,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get confirmationToken
+     * Get confirmationToken.
      *
-     * @return string 
+     * @return string
      */
     public function getConfirmationToken()
     {
@@ -593,9 +600,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set passwordRequestedAt
+     * Set passwordRequestedAt.
      *
      * @param string $passwordRequestedAt
+     *
      * @return Jeweler
      */
     public function setPasswordRequestedAt($passwordRequestedAt)
@@ -606,9 +614,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get passwordRequestedAt
+     * Get passwordRequestedAt.
      *
-     * @return string 
+     * @return string
      */
     public function getPasswordRequestedAt()
     {
@@ -616,9 +624,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set fid
+     * Set fid.
      *
-     * @param integer $fid
+     * @param int $fid
+     *
      * @return Jeweler
      */
     public function setFid($fid)
@@ -629,9 +638,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get fid
+     * Get fid.
      *
-     * @return integer 
+     * @return int
      */
     public function getFid()
     {
@@ -639,9 +648,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set slug
+     * Set slug.
      *
      * @param string $slug
+     *
      * @return Jeweler
      */
     public function setSlug($slug)
@@ -652,9 +662,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get slug
+     * Get slug.
      *
-     * @return string 
+     * @return string
      */
     public function getSlug()
     {
@@ -662,9 +672,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set accountnonlocked
+     * Set accountnonlocked.
      *
-     * @param boolean $accountnonlocked
+     * @param bool $accountnonlocked
+     *
      * @return Jeweler
      */
     public function setAccountnonlocked($accountnonlocked)
@@ -675,9 +686,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get accountnonlocked
+     * Get accountnonlocked.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getAccountnonlocked()
     {
@@ -685,9 +696,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set accountnonexpired
+     * Set accountnonexpired.
      *
-     * @param boolean $accountnonexpired
+     * @param bool $accountnonexpired
+     *
      * @return Jeweler
      */
     public function setAccountnonexpired($accountnonexpired)
@@ -698,9 +710,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get accountnonexpired
+     * Get accountnonexpired.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getAccountnonexpired()
     {
@@ -708,9 +720,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set dateCreated
+     * Set dateCreated.
      *
      * @param \DateTime $dateCreated
+     *
      * @return Jeweler
      */
     public function setDateCreated($dateCreated)
@@ -721,9 +734,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get dateCreated
+     * Get dateCreated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -731,9 +744,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set meta
+     * Set meta.
      *
      * @param \Store\BackendBundle\Entity\JewelerMeta $meta
+     *
      * @return Jeweler
      */
     public function setMeta(\Store\BackendBundle\Entity\JewelerMeta $meta = null)
@@ -744,9 +758,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get meta
+     * Get meta.
      *
-     * @return \Store\BackendBundle\Entity\JewelerMeta 
+     * @return \Store\BackendBundle\Entity\JewelerMeta
      */
     public function getMeta()
     {
@@ -772,7 +786,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      */
     public function getRoles()
     {
-//        return array('ROLE_JEWELER');
+        //        return array('ROLE_JEWELER');
         //e retourne mon attrribut groups en tableau :
         // ArrayCollection => Array
         return $this->groups->toArray();
@@ -796,11 +810,12 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
      */
     public function eraseCredentials()
     {
-        return null;
+        return;
     }
 
     /**
-     * Mis en session par le Token
+     * Mis en session par le Token.
+     *
      * @see \Serializable::serialize()
      */
     public function serialize()
@@ -811,18 +826,19 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Extraction des données mise en ession
+     * Extraction des données mise en ession.
+     *
      * @see \Serializable::unserialize()
      */
     public function unserialize($serialized)
     {
-        list (
-            $this->id,
-            ) = unserialize($serialized);
+        list(
+            $this->id) = unserialize($serialized);
     }
 
     /**
      * @param UserInterface $user
+     *
      * @return bool
      */
     public function isEqualTo(UserInterface $user)
@@ -831,9 +847,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set username
+     * Set username.
      *
      * @param string $username
+     *
      * @return Jeweler
      */
     public function setUsername($username)
@@ -845,7 +862,8 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
     /**
      * Verification is Account is not expired
-     * Si le compte n'est pas expiré
+     * Si le compte n'est pas expiré.
+     *
      * @return bool
      */
     public function isAccountNonExpired()
@@ -853,7 +871,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
         $datecreated = $this->dateCreated;
         $dateoldyear = new \DateTime('-1 year');
 
-        if($datecreated < $dateoldyear ){
+        if ($datecreated < $dateoldyear) {
             return false;
         }
 
@@ -862,7 +880,8 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
     /**
      * Verification is Account is not locked
-     * SI le compte n'est pas verouillé
+     * SI le compte n'est pas verouillé.
+     *
      * @return bool
      */
     public function isAccountNonLocked()
@@ -872,7 +891,8 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
     /**
      * Verification account  credentials is not expired
-     * Si c'est droit on expirés
+     * Si c'est droit on expirés.
+     *
      * @return bool
      */
     public function isCredentialsNonExpired()
@@ -882,7 +902,8 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
 
     /**
      * Verification account is not enabled
-     * Si l'utilisateur a activer son compte
+     * Si l'utilisateur a activer son compte.
+     *
      * @return bool|int
      */
     public function isEnabled()
@@ -891,19 +912,20 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Convertis un objet jeweler en chaine de charactères
+     * Convertis un objet jeweler en chaine de charactères.
+     *
      * @return string
      */
-    public function __toString(){
-
+    public function __toString()
+    {
         return $this->title;
     }
 
-
     /**
-     * Set roles
+     * Set roles.
      *
      * @param string $roles
+     *
      * @return Jeweler
      */
     public function setRoles($roles)
@@ -913,12 +935,11 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
         return $this;
     }
 
-
-
     /**
-     * Add groups
+     * Add groups.
      *
      * @param \Store\BackendBundle\Entity\Groups $groups
+     *
      * @return Jeweler
      */
     public function addGroup(\Store\BackendBundle\Entity\Groups $groups)
@@ -929,7 +950,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Remove groups
+     * Remove groups.
      *
      * @param \Store\BackendBundle\Entity\Groups $groups
      */
@@ -939,16 +960,14 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get groups
+     * Get groups.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getGroups()
     {
         return $this->groups;
     }
-
-
 
     /**
      * @Assert\Callback(groups={"suscribe"})
@@ -957,7 +976,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     public function validate(ExecutionContextInterface $context)
     {
         $val = $this->getUsername();
-        if(!empty($val)) {
+        if (!empty($val)) {
             if (($this->getUsername() == $this->getPassword())) {
                 $context->addViolationAt(
                     'username',
@@ -969,7 +988,7 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
         }
 
         $val = $this->getEmail();
-        if(!empty($val)) {
+        if (!empty($val)) {
             if (($this->getUsername()  == $this->getEmail())) {
                 $context->addViolationAt(
                     'email',
@@ -979,13 +998,13 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
                 );
             }
         }
-
     }
 
     /**
-     * Set dateAuth
+     * Set dateAuth.
      *
      * @param \DateTime $dateAuth
+     *
      * @return Jeweler
      */
     public function setDateAuth($dateAuth)
@@ -996,9 +1015,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get dateAuth
+     * Get dateAuth.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateAuth()
     {
@@ -1006,9 +1025,12 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set dateUpdated
+     * Set dateUpdated.
+     *
      * @ORM\PreUpdate
+     *
      * @param \DateTime $dateUpdated
+     *
      * @return Product
      */
     public function setDateUpdated($dateUpdated)
@@ -1019,15 +1041,14 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get dateUpdated
+     * Get dateUpdated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateUpdated()
     {
         return $this->dateUpdated;
     }
-
 
     /**
      * @return mixed
@@ -1045,10 +1066,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
         $this->file = $file;
     }
 
-
-
     /**
-     * Retourne le chemin absolue de mon image
+     * Retourne le chemin absolue de mon image.
+     *
      * @return null|string
      */
     public function getAbsolutePath()
@@ -1056,9 +1076,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
         return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
     }
 
-
     /**
-     * Retourne le chemin de l'image depuis le dossier web
+     * Retourne le chemin de l'image depuis le dossier web.
+     *
      * @return null|string
      */
     public function getWebPath()
@@ -1067,7 +1087,8 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Retourne le cheùin de mon image depuis l'entité
+     * Retourne le cheùin de mon image depuis l'entité.
+     *
      * @return string
      */
     public function getUploadRootDir()
@@ -1077,7 +1098,8 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Retourne le dossier d'upload et sous dossier product
+     * Retourne le dossier d'upload et sous dossier product.
+     *
      * @return string
      */
     public function getUploadDir()
@@ -1087,10 +1109,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
         return 'uploads/profil';
     }
 
-
     /**
      * Mecanisme d'upload
-     * + déplacement du fichier uploadé dans le bon dossier
+     * + déplacement du fichier uploadé dans le bon dossier.
      */
     public function upload($id)
     {
@@ -1116,9 +1137,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get enabled
+     * Get enabled.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getEnabled()
     {
@@ -1126,9 +1147,10 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Set diaporama
+     * Set diaporama.
      *
      * @param string $diaporama
+     *
      * @return Jeweler
      */
     public function setDiaporama($diaporama)
@@ -1139,9 +1161,9 @@ class Jeweler implements  AdvancedUserInterface, \Serializable
     }
 
     /**
-     * Get diaporama
+     * Get diaporama.
      *
-     * @return string 
+     * @return string
      */
     public function getDiaporama()
     {

@@ -6,7 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * Slider
+ * Slider.
  *
  * @ORM\Table(name="slider", indexes={@ORM\Index(name="product_id", columns={"product_id"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\SliderRepository")
@@ -14,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Slider
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -35,7 +35,7 @@ class Slider
      *      maxMessage = "Votre légende ne peut pas être plus long que {{ limit }} caractères",
      *      groups={"new", "edit"}
      * )
-    * @ORM\Column(name="caption", type="text", nullable=true)
+     * @ORM\Column(name="caption", type="text", nullable=true)
      */
     protected $caption;
 
@@ -44,9 +44,9 @@ class Slider
      */
     protected $image;
 
-
     /**
-     * Attribut qui représentera mon fichier uploadé
+     * Attribut qui représentera mon fichier uploadé.
+     *
      * @Assert\Image(
      *     minWidth = 100,
      *     maxWidth = 3000,
@@ -62,14 +62,14 @@ class Slider
     protected $file;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="position", type="integer", nullable=true)
      */
     protected $position;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
@@ -85,9 +85,8 @@ class Slider
      */
     protected $product;
 
-
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -95,9 +94,9 @@ class Slider
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -105,9 +104,10 @@ class Slider
     }
 
     /**
-     * Set caption
+     * Set caption.
      *
      * @param string $caption
+     *
      * @return Slider
      */
     public function setCaption($caption)
@@ -118,9 +118,9 @@ class Slider
     }
 
     /**
-     * Get caption
+     * Get caption.
      *
-     * @return string 
+     * @return string
      */
     public function getCaption()
     {
@@ -128,9 +128,10 @@ class Slider
     }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param string $image
+     *
      * @return Slider
      */
     public function setImage($image)
@@ -141,9 +142,9 @@ class Slider
     }
 
     /**
-     * Get image
+     * Get image.
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -151,9 +152,10 @@ class Slider
     }
 
     /**
-     * Set position
+     * Set position.
      *
-     * @param integer $position
+     * @param int $position
+     *
      * @return Slider
      */
     public function setPosition($position)
@@ -164,9 +166,9 @@ class Slider
     }
 
     /**
-     * Get position
+     * Get position.
      *
-     * @return integer 
+     * @return int
      */
     public function getPosition()
     {
@@ -174,9 +176,10 @@ class Slider
     }
 
     /**
-     * Set active
+     * Set active.
      *
-     * @param boolean $active
+     * @param bool $active
+     *
      * @return Slider
      */
     public function setActive($active)
@@ -187,9 +190,9 @@ class Slider
     }
 
     /**
-     * Get active
+     * Get active.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getActive()
     {
@@ -197,26 +200,26 @@ class Slider
     }
 
     /**
-     * Get product
+     * Get product.
      *
-     * @return \Store\BackendBundle\Entity\Product 
+     * @return \Store\BackendBundle\Entity\Product
      */
     public function getProduct()
     {
         return $this->product;
     }
 
-
     /**
-     * Retourne le title
+     * Retourne le title.
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->caption;
     }
 
-
     /**
-     * Retourne le chemin absolue de mon image
+     * Retourne le chemin absolue de mon image.
+     *
      * @return null|string
      */
     public function getAbsolutePath()
@@ -224,9 +227,9 @@ class Slider
         return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
     }
 
-
     /**
-     * Retourne le chemin de l'image depuis le dossier web
+     * Retourne le chemin de l'image depuis le dossier web.
+     *
      * @return null|string
      */
     public function getWebPath()
@@ -235,7 +238,8 @@ class Slider
     }
 
     /**
-     * Retourne le cheùin de mon image depuis l'entité
+     * Retourne le cheùin de mon image depuis l'entité.
+     *
      * @return string
      */
     protected function getUploadRootDir()
@@ -245,7 +249,8 @@ class Slider
     }
 
     /**
-     * Retourne le dossier d'upload et sous dossier product
+     * Retourne le dossier d'upload et sous dossier product.
+     *
      * @return string
      */
     protected function getUploadDir()
@@ -254,8 +259,6 @@ class Slider
         // le document/image dans la vue.
         return 'uploads/slider';
     }
-
-
 
     /**
      * @return mixed
@@ -275,7 +278,7 @@ class Slider
 
     /**
      * Mecanisme d'upload
-     * + déplacement du fichier uploadé dans le bon dossier
+     * + déplacement du fichier uploadé dans le bon dossier.
      */
     public function upload()
     {
@@ -301,9 +304,10 @@ class Slider
     }
 
     /**
-     * Set product
+     * Set product.
      *
      * @param \Store\BackendBundle\Entity\Product $product
+     *
      * @return Slider
      */
     public function setProduct(\Store\BackendBundle\Entity\Product $product = null)

@@ -1,13 +1,10 @@
 <?php
 
-
 namespace Store\BackendBundle\Statistics;
 
-
 /**
- * Class XmlFormater
- * @package Store\BackendBundle\Statistics
+ * Class XmlFormater.
  */
-class XmlFormater{
-
+class XmlFormater
+{
 }

@@ -1,4 +1,5 @@
 <?php
+
 // src/Acme/DemoBundle/Security/Firewall/WsseListener.php
 namespace Store\BackendBundle\Security\Authentification\Firewall;
 
@@ -13,8 +14,7 @@ use Symfony\Component\Security\Core\Authentication\AuthenticationManagerInterfac
 /**
  * Le listener est chargé de transmettre les requêtes au pare-feu et d'appeler le fournisseur d'authentification
  * Ce listener vérifie l'en-tête X-WSSE attendu dans la réponse, fait correspondre la valeur retournée pour l'information WSSE attendue, crée un token utilisant cette information, et passe le token au gestionnaire d'authentification
- * Class WsseListener
- * @package Store\BackendBundle\Security\Authentification\Firewall
+ * Class WsseListener.
  */
 class WsseListener implements ListenerInterface
 {
@@ -31,7 +31,7 @@ class WsseListener implements ListenerInterface
     {
         $request = $event->getRequest();
 
-        /**
+        /*
          * Prépare a requete a envoyé au Parefeu
          */
         $wsseRegex = '/UsernameToken Username="([^"]+)", PasswordDigest="([^"]+)", Nonce="([^"]+)", Created="([^"]+)"/';
@@ -39,15 +39,15 @@ class WsseListener implements ListenerInterface
             return;
         }
 
-        /**
+        /*
          * Création d'un Token pour l'utilisateur
          */
         $token = new WsseUserToken();
         $token->setUser($matches[1]);
 
-        $token->digest   = $matches[2];
-        $token->nonce    = $matches[3];
-        $token->created  = $matches[4];
+        $token->digest = $matches[2];
+        $token->nonce = $matches[3];
+        $token->created = $matches[4];
 
         try {
             $authToken = $this->authenticationManager->authenticate($token);
@@ -65,7 +65,6 @@ class WsseListener implements ListenerInterface
             $response = new Response();
             $response->setStatusCode(403);
             $event->setResponse($response);
-
         }
     }
 }

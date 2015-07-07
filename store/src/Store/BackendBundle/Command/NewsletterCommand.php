@@ -10,27 +10,28 @@ use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  * Création de jeweler
- * CRON task
+ * CRON task.
  */
-class NewsletterCommand extends ContainerAwareCommand {
-
-
+class NewsletterCommand extends ContainerAwareCommand
+{
     /**
-     * Secure command linbe with param true
+     * Secure command linbe with param true.
      */
-    protected function configure() {
+    protected function configure()
+    {
         $this->setName('backend:jeweler:newsletter')
             ->setDescription("Remplissage d'utilisateur")
             ->addArgument('mode', InputArgument::REQUIRED, 'Mot de passe?');
-
     }
 
     /**
-     *  Execute command
-     * @param \Symfony\Component\Console\Input\InputInterface $input
+     *  Execute command.
+     *
+     * @param \Symfony\Component\Console\Input\InputInterface   $input
      * @param \Symfony\Component\Console\Output\OutputInterface $output
      */
-    protected function execute(InputInterface $input, OutputInterface $output) {
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
         $mode = $input->getArgument('mode');
 
         //récupérer le service de doctrine manager
@@ -41,19 +42,14 @@ class NewsletterCommand extends ContainerAwareCommand {
         //récupérer le service d'encodage de symfony 2
         $email = $this->getContainer()->get('store.backend.email');
 
-        foreach($liste as $user){
-            $email->sendparam($user, "julien@meetserious.com", "StoreBackendBundle:Email:newsletter.html.twig",
+        foreach ($liste as $user) {
+            $email->sendparam($user, 'julien@meetserious.com', 'StoreBackendBundle:Email:newsletter.html.twig',
                 '1er Newsletter', $user->getEmail());
         }
 
-        $logger =  $this->getContainer()->get('logger');
+        $logger = $this->getContainer()->get('logger');
         $logger->info('Nous avons envoyé la newsletter');
 
-        $output->writeln("<info>Newsletter envoyée!</info>");
-
+        $output->writeln('<info>Newsletter envoyée!</info>');
     }
-
-
 }
-
-?>

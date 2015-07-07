@@ -4,11 +4,10 @@ namespace Store\BackendBundle\Doctrine\Extensions;
 
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
 use Doctrine\ORM\Query\Parser;
-use Doctrine\ORM\Query\SqlWalker;
 use Doctrine\ORM\Query\Lexer;
 
 /**
- * DateDiffFunction ::= "DATEDIFF" "(" ArithmeticPrimary "," ArithmeticPrimary ")"
+ * DateDiffFunction ::= "DATEDIFF" "(" ArithmeticPrimary "," ArithmeticPrimary ")".
  */
 class DateDiff extends FunctionNode
 {
@@ -27,12 +26,9 @@ class DateDiff extends FunctionNode
 
     public function getSql(\Doctrine\ORM\Query\SqlWalker $sqlWalker)
     {
-        return 'DATEDIFF(' .
-        $this->firstDateExpression->dispatch($sqlWalker) . ', ' .
-        $this->secondDateExpression->dispatch($sqlWalker) .
+        return 'DATEDIFF('.
+        $this->firstDateExpression->dispatch($sqlWalker).', '.
+        $this->secondDateExpression->dispatch($sqlWalker).
         ')'; // (7)
     }
-
-
 }
-

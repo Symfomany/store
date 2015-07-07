@@ -5,7 +5,7 @@ namespace Store\BackendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * ProductImage
+ * ProductImage.
  *
  * @ORM\Table(name="product_image", indexes={@ORM\Index(name="product_id", columns={"product_id"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\ProductImageRepository")
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class ProductImage
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -45,12 +45,10 @@ class ProductImage
      */
     protected $product;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -58,9 +56,10 @@ class ProductImage
     }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param string $image
+     *
      * @return ProductImage
      */
     public function setImage($image)
@@ -71,9 +70,9 @@ class ProductImage
     }
 
     /**
-     * Get image
+     * Get image.
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -81,9 +80,10 @@ class ProductImage
     }
 
     /**
-     * Set imageThumb
+     * Set imageThumb.
      *
      * @param string $imageThumb
+     *
      * @return ProductImage
      */
     public function setImageThumb($imageThumb)
@@ -94,9 +94,9 @@ class ProductImage
     }
 
     /**
-     * Get imageThumb
+     * Get imageThumb.
      *
-     * @return string 
+     * @return string
      */
     public function getImageThumb()
     {
@@ -104,9 +104,10 @@ class ProductImage
     }
 
     /**
-     * Set product
+     * Set product.
      *
      * @param \Store\BackendBundle\Entity\Product $product
+     *
      * @return ProductImage
      */
     public function setProduct(\Store\BackendBundle\Entity\Product $product = null)
@@ -117,20 +118,20 @@ class ProductImage
     }
 
     /**
-     * Get product
+     * Get product.
      *
-     * @return \Store\BackendBundle\Entity\Product 
+     * @return \Store\BackendBundle\Entity\Product
      */
     public function getProduct()
     {
         return $this->product;
     }
 
-
     /**
-     * Retourne le title
+     * Retourne le title.
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->image;
     }
 }

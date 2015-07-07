@@ -4,7 +4,7 @@ namespace Store\BackendBundle\Tests\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class MainControllerTest extends WebTestCase
 {
     public function testIndex()
     {
@@ -21,14 +21,13 @@ class DefaultControllerTest extends WebTestCase
 
         // Fill in the form xand submit it
         $form = $crawler->selectButton('Envoyer')->form(array(
-            'title'  => 'Mon titre ba bla... loool',
-            'email'  => 'juju@yahoo.fr',
-            'username'  => 'jujuliloumont',
-            'password[mdp]'  => 'testalpha120',
-            'password[mdp_conf]'  => 'testalpha120',
+            'title' => 'Mon titre ba bla... loool',
+            'email' => 'juju@yahoo.fr',
+            'username' => 'jujuliloumont',
+            'password[mdp]' => 'testalpha120',
+            'password[mdp_conf]' => 'testalpha120',
         ));
         $client->submit($form);
-
 
 //        $alert = $crawler->filter('html:contains(".alert-danger")');
 //
@@ -50,6 +49,5 @@ class DefaultControllerTest extends WebTestCase
 //        $this->assertGreaterThan(0, $crawler->filter('html:contains("Authentification")')->count());
 //        $this->assertGreaterThan(0, $crawler->filter('html:contains("Connectez-vous à votre compte")')->count());
 //        $this->assertGreaterThan(1, $crawler->filter('html:contains("Keep me logged in")')->count());
-
     }
 }

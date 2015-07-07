@@ -3,10 +3,10 @@
 namespace Store\BackendBundle\Email;
 
 /**
- * Email Service Class
+ * Email Service Class.
  */
-class Email {
-
+class Email
+{
     /**
      * @var \Swift_Mailer Swift Mailer
      */
@@ -21,25 +21,26 @@ class Email {
      * Constructeur de ma classe Email
      * J'ai besoin du service swift mailer et
      * du service Twig
-     * En arguments: je récupère Swift Mailer,
+     * En arguments: je récupère Swift Mailer,.
      */
     public function __construct(\Swift_Mailer $mailer,
-                                \Twig_Environment $twig){
+                                \Twig_Environment $twig)
+    {
         $this->mailer = $mailer; //je stoque mon
         $this->twig = $twig; //je stoque mon
     }
 
-
     /**
-     *  Send E-Mail
+     *  Send E-Mail.
+     *
      * @param type $user
      * @param type $templating
      */
-    public function sendparam($user = null,$sender = 'julien@meetserious.com',
-                         $templating = null,$subject = "Bienvenue sur ALittleJewerly",
-                         $to = null, $content = "") {
-
-        if(!$to && method_exists($user, 'getEmail')){
+    public function sendparam($user = null, $sender = 'julien@meetserious.com',
+                         $templating = null, $subject = 'Bienvenue sur ALittleJewerly',
+                         $to = null, $content = '')
+    {
+        if (!$to && method_exists($user, 'getEmail')) {
             $to = $user->getEmail();
         }
 
@@ -56,9 +57,4 @@ class Email {
 
         $this->mailer->send($message);
     }
-
-
-
 }
-
-?>

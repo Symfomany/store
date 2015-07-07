@@ -6,9 +6,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
- * Tag
+ * Tag.
  *
  * @ORM\Table(name="tag")
  * @UniqueEntity(fields="word", message="Votre mots-clef est déjà existant")
@@ -17,7 +16,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Tag
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -46,18 +45,17 @@ class Tag
     protected $product;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
         $this->product = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -65,9 +63,10 @@ class Tag
     }
 
     /**
-     * Set word
+     * Set word.
      *
      * @param string $word
+     *
      * @return Tag
      */
     public function setWord($word)
@@ -78,9 +77,9 @@ class Tag
     }
 
     /**
-     * Get word
+     * Get word.
      *
-     * @return string 
+     * @return string
      */
     public function getWord()
     {
@@ -88,9 +87,10 @@ class Tag
     }
 
     /**
-     * Add product
+     * Add product.
      *
      * @param \Store\BackendBundle\Entity\Product $product
+     *
      * @return Tag
      */
     public function addProduct(\Store\BackendBundle\Entity\Product $product)
@@ -101,7 +101,7 @@ class Tag
     }
 
     /**
-     * Remove product
+     * Remove product.
      *
      * @param \Store\BackendBundle\Entity\Product $product
      */
@@ -111,20 +111,20 @@ class Tag
     }
 
     /**
-     * Get product
+     * Get product.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProduct()
     {
         return $this->product;
     }
 
-
     /**
-     * Retourne le mot clefs
+     * Retourne le mot clefs.
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->word;
     }
 }

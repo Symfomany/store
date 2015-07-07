@@ -8,47 +8,46 @@ use Store\BackendBundle\Entity\Order;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-
 /**
- * Class OrderController
- * @package Store\BackendBundle\Controller
+ * Class OrderController.
  */
-class OrderController extends Controller{
-
-
+class OrderController extends Controller
+{
     /**
-     * List my orders
+     * List my orders.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction(Request $request){
+    public function listAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
 
         $orders = $em->getRepository('StoreBackendBundle:Order')->getOrderByUser($user);
 
         //paginate to bundle
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $orders,
             $request->query->get('page', 1)/*page number*/,
             5/*limit per page*/
         );
 
-
         return $this->render('StoreBackendBundle:Order:list.html.twig', array(
-            'orders' => $pagination
+            'orders' => $pagination,
         ));
     }
 
-
     /**
-     * Modify State of Order
+     * Modify State of Order.
+     *
      * @param $id
      * @Security("is_granted('', id)")
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function stateAction(Order $order, $state){
-
+    public function stateAction(Order $order, $state)
+    {
         $em = $this->getDoctrine()->getManager();
         $order->setState($state);
         $em->persist($order);
@@ -62,11 +61,4 @@ class OrderController extends Controller{
 
         return $this->redirectToRoute('store_backend_order_list');
     }
-
-
 }
-
-
-
-
-

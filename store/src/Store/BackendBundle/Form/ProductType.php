@@ -2,45 +2,40 @@
 
 namespace Store\BackendBundle\Form;
 
-
-use Doctrine\ORM\EntityRepository;
 use Store\BackendBundle\Entity\Product;
 use Store\BackendBundle\Repository\CategoryRepository;
-use Store\BackendBundle\Repository\ProductRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
-
 
 /**
  * Le suffixe Type est Obligatoire pour mes classe Formulaires
  * Class ProductType
- * Formulaire de création de produit
- * @package Store\BackendBundle\Form
+ * Formulaire de création de produit.
  */
 class ProductType extends AbstractType
 {
-
     /**
-     * @var $user
+     * @var
      */
     protected $user;
 
-
     /**
-     * User param
+     * User param.
+     *
      * @param $user
      */
-    public function __construct($user = null){
+    public function __construct($user = null)
+    {
         $this->user = $user;
     }
 
     /**
-     * Methode qui va consrtuire mon formulaire
+     * Methode qui va consrtuire mon formulaire.
+     *
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -50,117 +45,115 @@ class ProductType extends AbstractType
         // le 3eme argument c'est ùmes options à mon chamos
         $builder->add('title', null, array(
             'label' => 'Titre du bijou', //label de mon chmpa
-            'required'  => true,
+            'required' => true,
             'attr' => array(
                 'class' => 'form-control',
                 'placeholder' => 'Mettre un titre soigné',
-                'pattern' => '[a-zA-Z0-9- ]{5,}'
-            )
+                'pattern' => '[a-zA-Z0-9- ]{5,}',
+            ),
         ));
         $builder->add('ref', null, array(
             'label' => 'Référence du bijou',
-            'required'  => true,
+            'required' => true,
             'attr' => array(
                 'class' => 'form-control',
                 'placeholder' => 'AA-XX',
-            )
+            ),
         ));
 
         $builder->add('file', 'file', array(
             'label' => 'Image de couverture',
-            'required'  => false,
+            'required' => false,
             'attr' => array(
                 'class' => 'form-control',
                 'accept' => 'image/*',
-                'capture' => 'capture'
-            )
+                'capture' => 'capture',
+            ),
         ));
 
-
         $builder->add('summary', null, array(
-            'label' => "Petit résumé décrivant succintement le bijou",
-            'required'  => true,
+            'label' => 'Petit résumé décrivant succintement le bijou',
+            'required' => true,
             'attr' => array(
                     'class' => 'form-control',
                     'placeholder' => 'Décrivez en quelques mots le bijou',
-             )
+             ),
         ));
         $builder->add('description', null, array(
-            'label' => "Longue description complète du bijou",
-            'required'  => true,
+            'label' => 'Longue description complète du bijou',
+            'required' => true,
             'attr' => array(
                 'class' => 'form-control',
                 'rows' => 15,
                 'placeholder' => 'Soignez une longue description complète du bijou',
-            )
+            ),
         ));
         $builder->add('composition', null, array(
-            'label' => "Composition du bijou",
-            'required'  => true,
+            'label' => 'Composition du bijou',
+            'required' => true,
             'attr' => array(
                 'class' => 'form-control',
                 'placeholder' => 'Composition du bijou',
-            )
+            ),
         ));
         $builder->add('price', 'money', array(
-            'label' => "Prix HT en €",
-            'required'  => true,
+            'label' => 'Prix HT en €',
+            'required' => true,
             'attr' => array(
                 'class' => 'form-control',
                 'placeholder' => 'Prix en €',
-            )
+            ),
         ));
         $builder->add('taxe', 'choice', array(
-            'choices'   => array('2.1' => '2.1','5' => '5', '10' => '10', '19.6' => '19.6', '20' => '20'),
-            'required'  => true, // liste déroulante obligatoire
+            'choices' => array('2.1' => '2.1', '5' => '5', '10' => '10', '19.6' => '19.6', '20' => '20'),
+            'required' => true, // liste déroulante obligatoire
             'preferred_choices' => array('20'), // champs choisi par défault
-            'label' => "Taxe appliquée",
+            'label' => 'Taxe appliquée',
             'attr' => array(
                 'class' => 'form-control',
-            )
+            ),
         ));
         $builder->add('quantity', 'number', array(
-            'required'  => true,
-            'label' => "Quantité en stock",
+            'required' => true,
+            'label' => 'Quantité en stock',
             'attr' => array(
                 'class' => 'form-control',
-                'pattern' => '[0-9]{1,4}'
-            )
+                'pattern' => '[0-9]{1,4}',
+            ),
         ));
         $builder->add('active', null, array(
-            'label' => "Bijou activé dans la boutique?"
+            'label' => 'Bijou activé dans la boutique?',
         ));
         $builder->add('cover', null, array(
-            'label' => "Bijou mis en avant sur ma page d'accueil dans la boutique?"
+            'label' => "Bijou mis en avant sur ma page d'accueil dans la boutique?",
         ));
         $builder->add('cms', null, array(
-            'label' => "Page(s) associée(s) au bijou",
+            'label' => 'Page(s) associée(s) au bijou',
             'multiple' => true, // choix multiple
             'expanded' => true, // checkbox plutot que liste déroulante
             'attr' => array(
-            )
+            ),
         ));
 
         $builder->add('category', 'entity',
-            array (
+            array(
                 'label' => 'Catégorie associées à votre bijou',
                 'class' => 'StoreBackendBundle:Category',
                 'property' => 'title',
                 'multiple' => true, // choix multiple
                 'expanded' => true, // checkbox plutot que liste déroulante
-                'query_builder' => function(CategoryRepository $er)
-                {
+                'query_builder' => function (CategoryRepository $er) {
                     return $er->getCategoryByUserBuilder($this->user);
                 },
             ));
         $builder->add('supplier', null, array(
-            'label' => "Fournisseur(s) associé(s) au bijou",
+            'label' => 'Fournisseur(s) associé(s) au bijou',
             'multiple' => true, // choix multiple
             'expanded' => true, // checkbox plutot que liste déroulante
             'attr' => array(
-            )
+            ),
         ));
-        $builder->add('dateActive', 'datetime', array (
+        $builder->add('dateActive', 'datetime', array(
             'label' => "Date d'activation de la vente",
             'attr' => array(
                 'class' => 'form-control',
@@ -171,24 +164,23 @@ class ProductType extends AbstractType
             'pattern' => '{{ day }}/{{ month }}/{{ year }',
         ));
         $builder->add('tag', null, array(
-            'label' => "Mot(s)-clefs associé(s) au bijou",
+            'label' => 'Mot(s)-clefs associé(s) au bijou',
             'attr' => array(
                 'class' => 'form-control',
-            )
+            ),
         ));
         $builder->add('envoyer', 'submit', array(
-            'label' => "Enregistrer ce bijou",
+            'label' => 'Enregistrer ce bijou',
             'attr' => array(
-                'class' => 'btn btn-primary btn-sm'
-            )
+                'class' => 'btn btn-primary btn-sm',
+            ),
         ));
-
     }
-
 
     /**
      * Cette methode me permet de lié mon formulaire à moin entité Product
-     * CAR mon formulaire enregistre un produit dans la table product
+     * CAR mon formulaire enregistre un produit dans la table product.
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -200,7 +192,8 @@ class ProductType extends AbstractType
     }
 
     /**
-     * Methode déprécié pour lier un formulaire à une entité
+     * Methode déprécié pour lier un formulaire à une entité.
+     *
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -210,40 +203,13 @@ class ProductType extends AbstractType
         ));
     }
 
-
     /**
-     * Nom du formulaire
+     * Nom du formulaire.
+     *
      * @return string|void
      */
     public function getName()
     {
-        return "store_backend_product";
+        return 'store_backend_product';
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

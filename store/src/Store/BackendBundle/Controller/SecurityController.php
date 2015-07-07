@@ -13,23 +13,23 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\SecurityContext;
 
 /**
- * Class SecurityController
- * @package Store\BackendBundle\Controller
+ * Class SecurityController.
  */
-class SecurityController extends Controller{
-
+class SecurityController extends Controller
+{
     /**
-     * Page Login
+     * Page Login.
      */
-    public function loginAction(Request $request){
+    public function loginAction(Request $request)
+    {
 
-        /**
+        /*
          * On interroge le mecanisme de sécutité de Symfony 2 en session
          * Qui vérifie le bon login et le bon mot de passe en sécurité
          */
         $session = $request->getSession();
 
-        $form =  $this->createForm(new LoginType());
+        $form = $this->createForm(new LoginType());
 
         $form->handleRequest($request);
 
@@ -41,23 +41,22 @@ class SecurityController extends Controller{
             $session->remove(SecurityContext::AUTHENTICATION_ERROR);
         }
 
-
         // je retourne la vue login de mon dossier Security
         return $this->render('StoreBackendBundle:Security:login.html.twig',
             array(
                 'last_username' => $session->get(SecurityContext::LAST_USERNAME),
-                'error'         => $error,
-                'form' => $form->createView()
+                'error' => $error,
+                'form' => $form->createView(),
             ));
-
     }
 
-
     /**
-     * Suscribe a Jeweler
+     * Suscribe a Jeweler.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function confirmationAction(Request $request, $id, $token){
+    public function confirmationAction(Request $request, $id, $token)
+    {
         $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
 
         $user = $em->getRepository('StoreBackendBundle:Jeweler')->findOneBy(
@@ -66,34 +65,36 @@ class SecurityController extends Controller{
             'id' => $id,
         ));
 
-        if($user){
-            if($user->getEnabled() == 0)
+        if ($user) {
+            if ($user->getEnabled() == 0) {
                 $user->setEnabled(true);
-                $em->persist($user);
-                $em->flush();
+            }
+            $em->persist($user);
+            $em->flush();
 
             $this->get('session')->getFlashBag()->add(
                 'info',
                 "Bravo, vous avez activé votre compte ! Vous pouvez vous connecter sur l'outil d'administration"
             );
-
         }
 
         $this->get('session')->getFlashBag()->add(
             'danger',
-            "Mauvais compte . Veuillez nous contacter"
+            'Mauvais compte . Veuillez nous contacter'
         );
 
         return $this->redirectToRoute('store_backend_security_login'); //redirection selon la route
     }
 
     /**
-     * Suscribe a Jeweler
+     * Suscribe a Jeweler.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function subscribeAction(Request $request){
+    public function subscribeAction(Request $request)
+    {
         //je crée un nouveau jeweler
-        $jeweler =  new Jeweler();
+        $jeweler = new Jeweler();
 
         //Je crée mon formulaire d'inscription au jeweler que j'associe à mon nouveau jeweler
         $form = $this->createForm(new JewelerSubscribeType(), $jeweler, array(
@@ -101,15 +102,15 @@ class SecurityController extends Controller{
             'attr' => array(
                 'method' => 'post',
                 'novalidate' => 'novalidate',
-                'action' => $this->generateUrl('store_backend_security_subscribe')
-            )
+                'action' => $this->generateUrl('store_backend_security_subscribe'),
+            ),
         ));
 
         // Je lie le formulaire à la requete
         $form->handleRequest($request);
 
         // je valide mon formulaire
-        if($form->isValid()){
+        if ($form->isValid()) {
 
             //1. je récupere la valeur mon champ password
             $password = $form['password']->getData();
@@ -147,31 +148,28 @@ class SecurityController extends Controller{
 
             $this->get('store.backend.email')->sendparam(
                 $jeweler, 'ecrindebijoux@gmail.com',
-                'StoreBackendBundle:Email:subscribe.html.twig', "[ALittleJewerly] Confirmation de votre compte",
+                'StoreBackendBundle:Email:subscribe.html.twig', '[ALittleJewerly] Confirmation de votre compte',
                 $jeweler->getEmail()
             );
 
             return $this->redirectToRoute('store_backend_security_subscribe_steptwo'); //redirection selon la route
         }
 
-
         return $this->render('StoreBackendBundle:Security:subscribe.html.twig',
             array(
-                'form' => $form->createView()
+                'form' => $form->createView(),
             )
         );
     }
 
-
     /**
-     * Suscribe a Jeweler
+     * Suscribe a Jeweler.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function diaporamaAction(Request $request)
     {
-
-        if($request->isXmlHttpRequest()) {
-
+        if ($request->isXmlHttpRequest()) {
             $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
 
             $id = $this->get('session')->get('iduser');
@@ -191,7 +189,7 @@ class SecurityController extends Controller{
 
             $file = $request->files->get('file');
 
-            if(!isset($diaporamas[$file->getClientSize()])){
+            if (!isset($diaporamas[$file->getClientSize()])) {
                 $diaporamas[$file->getClientSize()] = $file->getClientOriginalName();
                 $file->move($jeweler->getUploadRootDir().'/'.$id, $file->getClientOriginalName());
                 $file = null;
@@ -205,35 +203,37 @@ class SecurityController extends Controller{
 
             $response = new JsonResponse();
             $response->setData(array(
-                'data' => true
+                'data' => true,
             ));
 
             return $response;
         }
         $response = new JsonResponse();
         $response->setData(array(
-            'data' => false
+            'data' => false,
         ));
+
         return $response;
     }
 
     /**
-     * Suscribe a Jeweler
+     * Suscribe a Jeweler.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function subscribeStepTwoAction(Request $request){
-
+    public function subscribeStepTwoAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
 
         $id = $this->get('session')->get('iduser');
 
-        if(!$id){
+        if (!$id) {
             return $this->redirectToRoute('store_backend_suscribe');
         }
 
         $jeweler = $em->getRepository('StoreBackendBundle:Jeweler')->find($id);
 
-        if(!$jeweler){
+        if (!$jeweler) {
             return $this->redirectToRoute('store_backend_suscribe');
         }
 
@@ -246,23 +246,22 @@ class SecurityController extends Controller{
         $form->handleRequest($request);
 
         // je valide mon formulaire
-        if($form->isValid()){
-
+        if ($form->isValid()) {
             $jeweler->upload($jeweler->getId());
 
             $city = $form['meta']->getData()->getCity();
             $zipcode = $form['meta']->getData()->getZipcode();
 
-            if(!empty($city)){
+            if (!empty($city)) {
                 $coordonates = $em->getRepository('StoreBackendBundle:Villes')
                     ->getCordonneesByCity($city);
 
-                if(!$coordonates){
+                if (!$coordonates) {
                     $coordonates = $em->getRepository('StoreBackendBundle:Villes')
                         ->getCordonneesByCity($zipcode);
                 }
 
-                if(!empty($coordonates)){
+                if (!empty($coordonates)) {
                     $jeweler->getMeta()->setLongitude($coordonates['longitude']);
                     $jeweler->getMeta()->setLatitude($coordonates['latitude']);
                 }
@@ -279,23 +278,14 @@ class SecurityController extends Controller{
                 'info',
                 "Vous devez activer votre compte pour pouvoir se connecter sur l'outil d'administration"
             );
+
             return $this->redirectToRoute('store_backend_security_login'); //redirection selon la route
         }
 
-
-
         return $this->render('StoreBackendBundle:Security:subscribesteptwo.html.twig',
             array(
-                'form' => $form->createView()
+                'form' => $form->createView(),
             )
         );
     }
-
-
-
 }
-
-
-
-
-

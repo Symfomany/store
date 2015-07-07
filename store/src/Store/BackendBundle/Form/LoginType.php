@@ -2,53 +2,50 @@
 
 namespace Store\BackendBundle\Form;
 
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Class LoginType
- * @package Store\BackendBundle\Form
+ * Class LoginType.
  */
 class LoginType extends AbstractType
 {
     /**
-     * Methode qui va consrtuire mon formulaire
+     * Methode qui va consrtuire mon formulaire.
+     *
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-
         $builder->add('_username', null, array(
-            'required'  => true,
+            'required' => true,
             'attr' => array(
                 'class' => 'form-control input-lg',
                 'placeholder' => 'Login ou Email',
                 'pattern' => '.{3,}',
-                'autocomplete' => "off",
-            )
+                'autocomplete' => 'off',
+            ),
         ));
 
         $builder->add('_password', 'password', array(
-            'required'  => true,
+            'required' => true,
             'attr' => array(
                 'class' => 'form-control input-lg',
                 'rows' => 8,
-                'autocomplete' => "off",
+                'autocomplete' => 'off',
                 'placeholder' => '*******',
-                'pattern' => '.{3,}'
-            )
+                'pattern' => '.{3,}',
+            ),
         ));
-
     }
 
     /**
      * Cette methode me permet de lié mon formulaire à moin entité Product
-     * CAR mon formulaire enregistre un produit dans la table product
+     * CAR mon formulaire enregistre un produit dans la table product.
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -58,7 +55,8 @@ class LoginType extends AbstractType
         ));
     }
     /**
-     * Methode déprécié pour lier un formulaire à une entité
+     * Methode déprécié pour lier un formulaire à une entité.
+     *
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -67,38 +65,12 @@ class LoginType extends AbstractType
         ));
     }
     /**
-     * Nom du formulaire
+     * Nom du formulaire.
+     *
      * @return string|void
      */
     public function getName()
     {
-        return "";
+        return '';
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

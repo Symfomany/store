@@ -4,18 +4,15 @@ namespace Store\BackendBundle\Tests\Repository;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-
 class ProductRepositoryTest extends WebTestCase
 {
-
     /**
      * @var \Doctrine\ORM\EntityManager
      */
     protected $em;
 
-
     /**
-     * Setup Doctrine Entity Manger
+     * Setup Doctrine Entity Manger.
      */
     public function setUp()
     {
@@ -26,8 +23,7 @@ class ProductRepositoryTest extends WebTestCase
         $this->em = static::$kernel->getContainer()->get('doctrine.orm.entity_manager');
     }
 
-
-    /**
+    /*
      * Test getPostBuTitle
      */
 //    public function testgetPostsByTitle()
@@ -39,7 +35,4 @@ class ProductRepositoryTest extends WebTestCase
 //        $this->assertCount(13, $products->getResult());
 //
 //    }
-
-
-
 }

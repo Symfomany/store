@@ -5,7 +5,7 @@ namespace Store\BackendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Business
+ * Business.
  *
  * @ORM\Table(name="business")
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\BusinessRepository")
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Business
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -22,7 +22,7 @@ class Business
     protected $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="type", type="integer", nullable=true)
      */
@@ -42,9 +42,8 @@ class Business
      */
     protected $message;
 
-
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
@@ -60,7 +59,6 @@ class Business
      */
     protected $dateCreated;
 
-
     /**
      * @var \Doctrine\Common\Collections\Collection
      *
@@ -68,11 +66,11 @@ class Business
      */
     protected $product;
 
-
     /**
-     * Initialize my object
+     * Initialize my object.
      */
-    public function __construct(){
+    public function __construct()
+    {
         $this->dateExpired = new \DateTime('now');
         $this->dateCreated = new \DateTime('now');
         $this->type = 1;
@@ -82,9 +80,9 @@ class Business
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -92,9 +90,10 @@ class Business
     }
 
     /**
-     * Set type
+     * Set type.
      *
-     * @param integer $type
+     * @param int $type
+     *
      * @return Business
      */
     public function setType($type)
@@ -105,9 +104,9 @@ class Business
     }
 
     /**
-     * Get type
+     * Get type.
      *
-     * @return integer 
+     * @return int
      */
     public function getType()
     {
@@ -115,9 +114,10 @@ class Business
     }
 
     /**
-     * Set amount
+     * Set amount.
      *
      * @param float $amount
+     *
      * @return Business
      */
     public function setAmount($amount)
@@ -128,9 +128,9 @@ class Business
     }
 
     /**
-     * Get amount
+     * Get amount.
      *
-     * @return float 
+     * @return float
      */
     public function getAmount()
     {
@@ -138,9 +138,10 @@ class Business
     }
 
     /**
-     * Set message
+     * Set message.
      *
      * @param string $message
+     *
      * @return Business
      */
     public function setMessage($message)
@@ -151,9 +152,9 @@ class Business
     }
 
     /**
-     * Get message
+     * Get message.
      *
-     * @return string 
+     * @return string
      */
     public function getMessage()
     {
@@ -161,9 +162,10 @@ class Business
     }
 
     /**
-     * Set dateExpired
+     * Set dateExpired.
      *
      * @param \DateTime $dateExpired
+     *
      * @return Business
      */
     public function setDateExpired($dateExpired)
@@ -174,9 +176,9 @@ class Business
     }
 
     /**
-     * Get dateExpired
+     * Get dateExpired.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateExpired()
     {
@@ -184,9 +186,10 @@ class Business
     }
 
     /**
-     * Set active
+     * Set active.
      *
-     * @param boolean $active
+     * @param bool $active
+     *
      * @return Business
      */
     public function setActive($active)
@@ -197,21 +200,20 @@ class Business
     }
 
     /**
-     * Get active
+     * Get active.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getActive()
     {
         return $this->active;
     }
 
-
-
     /**
-     * Set dateCreated
+     * Set dateCreated.
      *
      * @param \DateTime $dateCreated
+     *
      * @return Business
      */
     public function setDateCreated($dateCreated)
@@ -222,9 +224,9 @@ class Business
     }
 
     /**
-     * Get dateCreated
+     * Get dateCreated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -232,9 +234,10 @@ class Business
     }
 
     /**
-     * Add product
+     * Add product.
      *
      * @param \Store\BackendBundle\Entity\Product $product
+     *
      * @return Business
      */
     public function addProduct(\Store\BackendBundle\Entity\Product $product)
@@ -245,7 +248,7 @@ class Business
     }
 
     /**
-     * Remove product
+     * Remove product.
      *
      * @param \Store\BackendBundle\Entity\Product $product
      */
@@ -255,23 +258,22 @@ class Business
     }
 
     /**
-     * Get product
+     * Get product.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProduct()
     {
         return $this->product;
     }
 
-
     /**
-     * Retourne le montant
+     * Retourne le montant.
+     *
      * @return float|int
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->amount;
     }
-
-
 }

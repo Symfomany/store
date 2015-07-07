@@ -5,7 +5,7 @@ namespace Store\BackendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Comment
+ * Comment.
  *
  * @ORM\Table(name="message", indexes={@ORM\Index(name="jeweler_id", columns={"user_id", "user_id"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\MessageRepository")
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Message
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -22,7 +22,7 @@ class Message
     protected $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="title", type="string", nullable=true)
      */
@@ -36,7 +36,7 @@ class Message
     protected $content;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="state", type="integer", nullable=true)
      */
@@ -68,30 +68,30 @@ class Message
      */
     protected $user;
 
-
     /**
-     * Constructor
+     * Constructor.
      */
-    public function __construct(){
+    public function __construct()
+    {
         $this->state = 1;
         $this->dateCreated = new \DateTime('now');
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
         return $this->id;
     }
 
-
     /**
-     * Set note
+     * Set note.
      *
-     * @param integer $note
+     * @param int $note
+     *
      * @return Comment
      */
     public function setNote($note)
@@ -102,9 +102,9 @@ class Message
     }
 
     /**
-     * Get note
+     * Get note.
      *
-     * @return integer 
+     * @return int
      */
     public function getNote()
     {
@@ -112,9 +112,10 @@ class Message
     }
 
     /**
-     * Set content
+     * Set content.
      *
      * @param string $content
+     *
      * @return Comment
      */
     public function setContent($content)
@@ -125,9 +126,9 @@ class Message
     }
 
     /**
-     * Get content
+     * Get content.
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -135,9 +136,10 @@ class Message
     }
 
     /**
-     * Set state
+     * Set state.
      *
-     * @param integer $state
+     * @param int $state
+     *
      * @return Comment
      */
     public function setState($state)
@@ -148,9 +150,9 @@ class Message
     }
 
     /**
-     * Get state
+     * Get state.
      *
-     * @return integer 
+     * @return int
      */
     public function getState()
     {
@@ -158,9 +160,10 @@ class Message
     }
 
     /**
-     * Set dateCreated
+     * Set dateCreated.
      *
      * @param \DateTime $dateCreated
+     *
      * @return Comment
      */
     public function setDateCreated($dateCreated)
@@ -171,9 +174,9 @@ class Message
     }
 
     /**
-     * Get dateCreated
+     * Get dateCreated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -181,9 +184,10 @@ class Message
     }
 
     /**
-     * Set product
+     * Set product.
      *
      * @param \Store\BackendBundle\Entity\Product $product
+     *
      * @return Comment
      */
     public function setProduct(\Store\BackendBundle\Entity\Product $product = null)
@@ -194,9 +198,9 @@ class Message
     }
 
     /**
-     * Get product
+     * Get product.
      *
-     * @return \Store\BackendBundle\Entity\Product 
+     * @return \Store\BackendBundle\Entity\Product
      */
     public function getProduct()
     {
@@ -204,9 +208,10 @@ class Message
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
+     *
      * @return Message
      */
     public function setTitle($title)
@@ -217,9 +222,9 @@ class Message
     }
 
     /**
-     * Get title
+     * Get title.
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -227,9 +232,10 @@ class Message
     }
 
     /**
-     * Set jeweler
+     * Set jeweler.
      *
      * @param \Store\BackendBundle\Entity\Jeweler $jeweler
+     *
      * @return Message
      */
     public function setJeweler(\Store\BackendBundle\Entity\Jeweler $jeweler = null)
@@ -240,9 +246,9 @@ class Message
     }
 
     /**
-     * Get jeweler
+     * Get jeweler.
      *
-     * @return \Store\BackendBundle\Entity\Jeweler 
+     * @return \Store\BackendBundle\Entity\Jeweler
      */
     public function getJeweler()
     {
@@ -250,9 +256,10 @@ class Message
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \Store\BackendBundle\Entity\User $user
+     *
      * @return Message
      */
     public function setUser(\Store\BackendBundle\Entity\User $user = null)
@@ -263,9 +270,9 @@ class Message
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \Store\BackendBundle\Entity\User 
+     * @return \Store\BackendBundle\Entity\User
      */
     public function getUser()
     {
@@ -273,9 +280,10 @@ class Message
     }
 
     /**
-     * Retourne le title
+     * Retourne le title.
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->title;
     }
 }

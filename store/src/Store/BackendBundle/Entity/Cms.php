@@ -4,15 +4,12 @@ namespace Store\BackendBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-
 use Symfony\Component\Validator\Constraints as Assert;
 use Store\BackendBundle\Validator\Constraints as StoreAssert;
-
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
-
 /**
- * Cms
+ * Cms.
  *
  * @ORM\Table(name="cms", indexes={@ORM\Index(name="jeweler_id", columns={"jeweler_id"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\CmsRepository")
@@ -22,7 +19,7 @@ use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 class Cms
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -74,15 +71,14 @@ class Cms
      */
     protected $description;
 
-
     /**
      * @ORM\Column(name="image", type="string", nullable=true)
      */
     protected $image;
 
-
     /**
-     * Attribut qui représentera mon fichier uploadé
+     * Attribut qui représentera mon fichier uploadé.
+     *
      * @Assert\Image(
      *     minWidth = 100,
      *     maxWidth = 3000,
@@ -97,7 +93,6 @@ class Cms
      */
     protected $file;
 
-
     /**
      * @var string
      * @Assert\Regex(pattern="/(<iframe.*?>.*?<\/iframe>)/",
@@ -109,7 +104,7 @@ class Cms
     protected $video;
 
     /**
-     * @var integer
+     * @var int
      * @Assert\Choice(choices = {"0","1","2"},
      *                message = "Choisissez un état valide",
      *                groups={"new", "edit"}
@@ -119,7 +114,7 @@ class Cms
     protected $state;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
@@ -171,7 +166,7 @@ class Cms
     protected $product;
 
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -184,11 +179,10 @@ class Cms
         $this->product = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -196,9 +190,10 @@ class Cms
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
+     *
      * @return Cms
      */
     public function setTitle($title)
@@ -209,9 +204,9 @@ class Cms
     }
 
     /**
-     * Get title
+     * Get title.
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -219,9 +214,10 @@ class Cms
     }
 
     /**
-     * Set summary
+     * Set summary.
      *
      * @param string $summary
+     *
      * @return Cms
      */
     public function setSummary($summary)
@@ -232,9 +228,9 @@ class Cms
     }
 
     /**
-     * Get summary
+     * Get summary.
      *
-     * @return string 
+     * @return string
      */
     public function getSummary()
     {
@@ -242,9 +238,10 @@ class Cms
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return Cms
      */
     public function setDescription($description)
@@ -255,9 +252,9 @@ class Cms
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -265,9 +262,10 @@ class Cms
     }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param string $image
+     *
      * @return Cms
      */
     public function setImage($image)
@@ -278,9 +276,9 @@ class Cms
     }
 
     /**
-     * Get image
+     * Get image.
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
@@ -288,9 +286,10 @@ class Cms
     }
 
     /**
-     * Set video
+     * Set video.
      *
      * @param string $video
+     *
      * @return Cms
      */
     public function setVideo($video)
@@ -301,9 +300,9 @@ class Cms
     }
 
     /**
-     * Get video
+     * Get video.
      *
-     * @return string 
+     * @return string
      */
     public function getVideo()
     {
@@ -311,9 +310,10 @@ class Cms
     }
 
     /**
-     * Set state
+     * Set state.
      *
-     * @param integer $state
+     * @param int $state
+     *
      * @return Cms
      */
     public function setState($state)
@@ -324,9 +324,9 @@ class Cms
     }
 
     /**
-     * Get state
+     * Get state.
      *
-     * @return integer 
+     * @return int
      */
     public function getState()
     {
@@ -334,9 +334,10 @@ class Cms
     }
 
     /**
-     * Set active
+     * Set active.
      *
-     * @param boolean $active
+     * @param bool $active
+     *
      * @return Cms
      */
     public function setActive($active)
@@ -347,9 +348,9 @@ class Cms
     }
 
     /**
-     * Get active
+     * Get active.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getActive()
     {
@@ -357,9 +358,10 @@ class Cms
     }
 
     /**
-     * Set dateActive
+     * Set dateActive.
      *
      * @param \DateTime $dateActive
+     *
      * @return Cms
      */
     public function setDateActive($dateActive)
@@ -370,9 +372,9 @@ class Cms
     }
 
     /**
-     * Get dateActive
+     * Get dateActive.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateActive()
     {
@@ -380,9 +382,12 @@ class Cms
     }
 
     /**
-     * Set dateUpdated
+     * Set dateUpdated.
+     *
      * @ORM\PreUpdate
+     *
      * @param \DateTime $dateUpdated
+     *
      * @return Product
      */
     public function setDateUpdated($dateUpdated)
@@ -393,9 +398,9 @@ class Cms
     }
 
     /**
-     * Get dateUpdated
+     * Get dateUpdated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateUpdated()
     {
@@ -403,9 +408,10 @@ class Cms
     }
 
     /**
-     * Set dateCreated
+     * Set dateCreated.
      *
      * @param \DateTime $dateCreated
+     *
      * @return Cms
      */
     public function setDateCreated($dateCreated)
@@ -416,9 +422,9 @@ class Cms
     }
 
     /**
-     * Get dateCreated
+     * Get dateCreated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -426,9 +432,10 @@ class Cms
     }
 
     /**
-     * Set jeweler
+     * Set jeweler.
      *
      * @param \Store\BackendBundle\Entity\Jeweler $jeweler
+     *
      * @return Cms
      */
     public function setJeweler(\Store\BackendBundle\Entity\Jeweler $jeweler = null)
@@ -439,9 +446,9 @@ class Cms
     }
 
     /**
-     * Get jeweler
+     * Get jeweler.
      *
-     * @return \Store\BackendBundle\Entity\Jeweler 
+     * @return \Store\BackendBundle\Entity\Jeweler
      */
     public function getJeweler()
     {
@@ -473,7 +480,8 @@ class Cms
 
 
     /**
-     * Override to control all product
+     * Override to control all product.
+     *
      * @param ArrayCollection $products
      */
     public function setProduct(ArrayCollection $products)
@@ -485,11 +493,10 @@ class Cms
         $this->product = $products;
     }
 
-
     /**
-     * Get product
+     * Get product.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProduct()
     {
@@ -497,9 +504,10 @@ class Cms
     }
 
     /**
-     * Set view
+     * Set view.
      *
-     * @param integer $view
+     * @param int $view
+     *
      * @return Cms
      */
     public function setView($view)
@@ -510,9 +518,9 @@ class Cms
     }
 
     /**
-     * Get view
+     * Get view.
      *
-     * @return integer 
+     * @return int
      */
     public function getView()
     {
@@ -520,16 +528,16 @@ class Cms
     }
 
     /**
-     * Retourne le titre
+     * Retourne le titre.
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->title;
     }
 
-
-
     /**
-     * Retourne le chemin absolue de mon image
+     * Retourne le chemin absolue de mon image.
+     *
      * @return null|string
      */
     public function getAbsolutePath()
@@ -537,9 +545,9 @@ class Cms
         return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
     }
 
-
     /**
-     * Retourne le chemin de l'image depuis le dossier web
+     * Retourne le chemin de l'image depuis le dossier web.
+     *
      * @return null|string
      */
     public function getWebPath()
@@ -548,7 +556,8 @@ class Cms
     }
 
     /**
-     * Retourne le cheùin de mon image depuis l'entité
+     * Retourne le cheùin de mon image depuis l'entité.
+     *
      * @return string
      */
     protected function getUploadRootDir()
@@ -558,7 +567,8 @@ class Cms
     }
 
     /**
-     * Retourne le dossier d'upload et sous dossier product
+     * Retourne le dossier d'upload et sous dossier product.
+     *
      * @return string
      */
     protected function getUploadDir()
@@ -567,7 +577,6 @@ class Cms
         // le document/image dans la vue.
         return 'uploads/cms';
     }
-
 
     /**
      * @return mixed
@@ -587,7 +596,7 @@ class Cms
 
     /**
      * Mecanisme d'upload
-     * + déplacement du fichier uploadé dans le bon dossier
+     * + déplacement du fichier uploadé dans le bon dossier.
      */
     public function upload()
     {
@@ -621,5 +630,4 @@ class Cms
             @unlink($file);
         }
     }
-
 }

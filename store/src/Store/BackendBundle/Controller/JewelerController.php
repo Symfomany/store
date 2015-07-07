@@ -9,21 +9,18 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 
-
 /**
- * Class JewelerController
- * @package Store\BackendBundle\Controller
+ * Class JewelerController.
  */
-class JewelerController extends Controller{
-
-
+class JewelerController extends Controller
+{
     /**
-     * My Account
+     * My Account.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function myaccountAction(Request $request){
-
-
+    public function myaccountAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
 
         $user = $this->getUser();
@@ -39,32 +36,29 @@ class JewelerController extends Controller{
         $nbcms = $em->getRepository('StoreBackendBundle:CMS')->getCountByUser($user);
         $nbcomm = $em->getRepository('StoreBackendBundle:Comment')->getCountByUser($user);
 
-
-
         $form = $this->createForm(new JewelerType(), $user, array(
             'validation_groups' => 'edit',
-            'attr' => array('novalidate' => 'novalidate')
+            'attr' => array('novalidate' => 'novalidate'),
         ));
 
         $form->handleRequest($request);
 
-        if($form->isValid()){
-
+        if ($form->isValid()) {
             $user->upload($user->getId());
 
             $city = $form['meta']->getData()->getCity();
             $zipcode = $form['meta']->getData()->getZipcode();
 
-            if(!empty($city)){
+            if (!empty($city)) {
                 $coordonates = $em->getRepository('StoreBackendBundle:Villes')
                     ->getCordonneesByCity($city);
 
-                if(!$coordonates){
+                if (!$coordonates) {
                     $coordonates = $em->getRepository('StoreBackendBundle:Villes')
                         ->getCordonneesByCity($zipcode);
                 }
 
-                if(!empty($coordonates)){
+                if (!empty($coordonates)) {
                     $user->getMeta()->setLongitude($coordonates['longitude']);
                     $user->getMeta()->setLatitude($coordonates['latitude']);
                 }
@@ -93,29 +87,27 @@ class JewelerController extends Controller{
                 'nborders' => $nborders,
                 'nbsuppliers' => $nbsuppliers,
                 'likes' => $likes,
-                'form' => $form->createView()
+                'form' => $form->createView(),
             ));
     }
 
-
-
-
-
     /**
-     * My parameters
+     * My parameters.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function myparametersAction(){
-
+    public function myparametersAction()
+    {
         return $this->render('StoreBackendBundle:Jeweler:myparameters.html.twig');
     }
 
     /**
-     * My parameters
+     * My parameters.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function mymessagesAction(){
-
+    public function mymessagesAction()
+    {
         $em = $this->getDoctrine()->getManager();
 
         //récupérer l'utilisateur courant connecté
@@ -125,16 +117,17 @@ class JewelerController extends Controller{
             ->getLastMessagesByUser($user, 15);
 
         return $this->render('StoreBackendBundle:Jeweler:mymessages.html.twig', array(
-            'messages' => $messages
+            'messages' => $messages,
         ));
     }
 
     /**
-     * My picture
+     * My picture.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function mypictureAction(Request $request){
-
+    public function mypictureAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
 
         //récupérer l'utilisateur courant connecté
@@ -144,40 +137,31 @@ class JewelerController extends Controller{
 
         $response = new JsonResponse();
         $response->setData(array(
-            'data' => false
+            'data' => false,
         ));
 
-        if($request->isXmlHttpRequest() && !empty($file)) {
-                $file->move($user->getUploadRootDir().'/'.$user->getId(), $file->getClientOriginalName());
-                $user->setImage($file->getClientOriginalName());
+        if ($request->isXmlHttpRequest() && !empty($file)) {
+            $file->move($user->getUploadRootDir().'/'.$user->getId(), $file->getClientOriginalName());
+            $user->setImage($file->getClientOriginalName());
 
-                $imagine = new \Imagine\Gd\Imagine();
-                $size    = new \Imagine\Image\Box(40, 40);
-                $mode    = \Imagine\Image\ImageInterface::THUMBNAIL_INSET;
+            $imagine = new \Imagine\Gd\Imagine();
+            $size = new \Imagine\Image\Box(40, 40);
+            $mode = \Imagine\Image\ImageInterface::THUMBNAIL_INSET;
 
-                $imagine->open($user->getUploadRootDir().'/'.$user->getId().'/'.$file->getClientOriginalName())
+            $imagine->open($user->getUploadRootDir().'/'.$user->getId().'/'.$file->getClientOriginalName())
                         ->thumbnail($size, $mode)
                         ->save('/path/to/thumbnail.png')
                 ;
 
-                $em->persist($user);
-                $em->flush();
-                $file = null;
+            $em->persist($user);
+            $em->flush();
+            $file = null;
 
-                $response->setData(array(
-                    'data' => true
+            $response->setData(array(
+                    'data' => true,
                 ));
         }
 
-
         return $response;
     }
-
-
-
 }
-
-
-
-
-

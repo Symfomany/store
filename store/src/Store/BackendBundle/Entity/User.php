@@ -3,12 +3,10 @@
 namespace Store\BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
- * User
+ * User.
  *
  * @ORM\Table(name="user", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})})
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\UserRepository")
@@ -16,7 +14,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class User
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -25,7 +23,7 @@ class User
     protected $id;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
@@ -81,7 +79,7 @@ class User
     protected $password;
 
     /**
-     * @var integer
+     * @var int
      */
     protected $fid;
 
@@ -96,7 +94,6 @@ class User
      */
     protected $phone;
 
-
     /**
      * @var \Product
      *
@@ -104,9 +101,8 @@ class User
      */
     protected $address;
 
-
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -116,9 +112,9 @@ class User
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -126,9 +122,10 @@ class User
     }
 
     /**
-     * Set active
+     * Set active.
      *
-     * @param boolean $active
+     * @param bool $active
+     *
      * @return User
      */
     public function setActive($active)
@@ -139,9 +136,9 @@ class User
     }
 
     /**
-     * Get active
+     * Get active.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getActive()
     {
@@ -149,9 +146,10 @@ class User
     }
 
     /**
-     * Set lastLogin
+     * Set lastLogin.
      *
      * @param \DateTime $lastLogin
+     *
      * @return User
      */
     public function setLastLogin($lastLogin)
@@ -162,9 +160,9 @@ class User
     }
 
     /**
-     * Get lastLogin
+     * Get lastLogin.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getLastLogin()
     {
@@ -172,9 +170,10 @@ class User
     }
 
     /**
-     * Set dateCreated
+     * Set dateCreated.
      *
      * @param \DateTime $dateCreated
+     *
      * @return User
      */
     public function setDateCreated($dateCreated)
@@ -185,9 +184,9 @@ class User
     }
 
     /**
-     * Get dateCreated
+     * Get dateCreated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -195,9 +194,10 @@ class User
     }
 
     /**
-     * Set dateUpdated
+     * Set dateUpdated.
      *
      * @param \DateTime $dateUpdated
+     *
      * @return User
      */
     public function setDateUpdated($dateUpdated)
@@ -208,9 +208,9 @@ class User
     }
 
     /**
-     * Get dateUpdated
+     * Get dateUpdated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateUpdated()
     {
@@ -218,9 +218,10 @@ class User
     }
 
     /**
-     * Set firstname
+     * Set firstname.
      *
      * @param string $firstname
+     *
      * @return User
      */
     public function setFirstname($firstname)
@@ -231,9 +232,9 @@ class User
     }
 
     /**
-     * Get firstname
+     * Get firstname.
      *
-     * @return string 
+     * @return string
      */
     public function getFirstname()
     {
@@ -241,9 +242,10 @@ class User
     }
 
     /**
-     * Set lastname
+     * Set lastname.
      *
      * @param string $lastname
+     *
      * @return User
      */
     public function setLastname($lastname)
@@ -254,9 +256,9 @@ class User
     }
 
     /**
-     * Get lastname
+     * Get lastname.
      *
-     * @return string 
+     * @return string
      */
     public function getLastname()
     {
@@ -264,9 +266,10 @@ class User
     }
 
     /**
-     * Set email
+     * Set email.
      *
      * @param string $email
+     *
      * @return User
      */
     public function setEmail($email)
@@ -277,9 +280,9 @@ class User
     }
 
     /**
-     * Get email
+     * Get email.
      *
-     * @return string 
+     * @return string
      */
     public function getEmail()
     {
@@ -287,9 +290,10 @@ class User
     }
 
     /**
-     * Set password
+     * Set password.
      *
      * @param string $password
+     *
      * @return User
      */
     public function setPassword($password)
@@ -300,9 +304,9 @@ class User
     }
 
     /**
-     * Get password
+     * Get password.
      *
-     * @return string 
+     * @return string
      */
     public function getPassword()
     {
@@ -310,29 +314,30 @@ class User
     }
 
     /**
-     * Humanize this user
-     * @return string
-     */
-    public function getHumanize(){
-
-        return $this->getFirstname() . " " . $this->getLastname();
-    }
-
-    /**
-     * Humanize this user
-     * @return string
-     */
-    public function getFullAddress(){
-
-        return $this->getAddress()[0]->getAddress() . " " . $this->getAddress()[0]->getZipcode() . " ". $this->getAddress()[0]->getCity();
-    }
-
-
-
-    /**
-     * Set fid
+     * Humanize this user.
      *
-     * @param integer $fid
+     * @return string
+     */
+    public function getHumanize()
+    {
+        return $this->getFirstname().' '.$this->getLastname();
+    }
+
+    /**
+     * Humanize this user.
+     *
+     * @return string
+     */
+    public function getFullAddress()
+    {
+        return $this->getAddress()[0]->getAddress().' '.$this->getAddress()[0]->getZipcode().' '.$this->getAddress()[0]->getCity();
+    }
+
+    /**
+     * Set fid.
+     *
+     * @param int $fid
+     *
      * @return User
      */
     public function setFid($fid)
@@ -343,28 +348,28 @@ class User
     }
 
     /**
-     * Get fid
+     * Get fid.
      *
-     * @return integer 
+     * @return int
      */
     public function getFid()
     {
         return $this->fid;
     }
 
-
     /**
-     * Retourne le nom et prenom
+     * Retourne le nom et prenom.
      */
-    public function __toString(){
-
-        return $this->firstname ." ". $this->lastname;
+    public function __toString()
+    {
+        return $this->firstname.' '.$this->lastname;
     }
 
     /**
-     * Set phone
+     * Set phone.
      *
      * @param string $phone
+     *
      * @return User
      */
     public function setPhone($phone)
@@ -375,9 +380,9 @@ class User
     }
 
     /**
-     * Get phone
+     * Get phone.
      *
-     * @return string 
+     * @return string
      */
     public function getPhone()
     {
@@ -385,9 +390,10 @@ class User
     }
 
     /**
-     * Add address
+     * Add address.
      *
      * @param \Store\BackendBundle\Entity\UserAdress $address
+     *
      * @return User
      */
     public function addAddress(\Store\BackendBundle\Entity\UserAddress $address)
@@ -398,7 +404,7 @@ class User
     }
 
     /**
-     * Remove address
+     * Remove address.
      *
      * @param \Store\BackendBundle\Entity\UserAdress $address
      */
@@ -408,9 +414,9 @@ class User
     }
 
     /**
-     * Get address
+     * Get address.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getAddress()
     {

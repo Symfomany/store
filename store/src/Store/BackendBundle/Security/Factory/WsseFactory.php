@@ -1,4 +1,5 @@
 <?php
+
 // src/Acme/DemoBundle/DependencyInjection/Security/Factory/WsseFactory.php
 namespace Store\BackendBundle\Security\Factory;
 
@@ -10,8 +11,7 @@ use Symfony\Bundle\SecurityBundle\DependencyInjection\Security\Factory\SecurityF
 
 /**
  * Classe liant le token personnalisé, un listener personnalisé, et un fournisseur personnalisé
- * Class WsseFactory
- * @package Store\BackendBundle\Security\Factory
+ * Class WsseFactory.
  */
 class WsseFactory implements SecurityFactoryInterface
 {

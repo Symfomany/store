@@ -3,13 +3,13 @@
 namespace Store\BackendBundle\Notification;
 
 use Symfony\Component\HttpFoundation\Session\Session;
+
 /**
  * Service de Notification
- * Class Notification
- * @package Store\BackendBundle\Notification
+ * Class Notification.
  */
-class Notification{
-
+class Notification
+{
     /**
      * @var session
      */
@@ -17,10 +17,10 @@ class Notification{
 
     /**
      * Constructeur qui recevra
-     * mon service session
+     * mon service session.
      */
-    public function __construct(Session $session){
-
+    public function __construct(Session $session)
+    {
         $this->session = $session;
     }
 
@@ -31,11 +31,12 @@ class Notification{
      *  + $message: le message de notre notification
      *  + $nature: product | cms | categorie
      *  + $criticity:  success - danger - warning - info
-     * nature: 0 mon compte,  1 product , 2 categories, 3 cms, 4 fournisseurs
+     * nature: 0 mon compte,  1 product , 2 categories, 3 cms, 4 fournisseurs.
      */
     public function notify($id,  $message,
                            $nature = 'product',
-                           $criticity = "success"){
+                           $criticity = 'success')
+    {
 
         // 1. Nous récupérons dans une variable $tabsession
         // le tableau de notifications par sa nature
@@ -49,29 +50,10 @@ class Notification{
         $tabsession[$id] = array(
                 'message' => $message,
                 'criticity' => $criticity,
-                'date' => new \DateTime("now"),
+                'date' => new \DateTime('now'),
         );
 
         // 3. nous enregistrons le tableau des notifications en session
-        $this->session->set($nature,$tabsession);
-
+        $this->session->set($nature, $tabsession);
     }
-
-
-
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-?>

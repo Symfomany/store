@@ -8,7 +8,7 @@ use Doctrine\ORM\Query\SqlWalker;
 use Doctrine\ORM\Query\Lexer;
 
 /**
- * class YEAR représente la fonction YEAR()
+ * class YEAR représente la fonction YEAR().
  */
 class Year extends FunctionNode
 {
@@ -26,11 +26,8 @@ class Year extends FunctionNode
     // Retourne le DQL en SQL
     public function getSql(SqlWalker $sqlWalker)
     {
-        return 'YEAR(' .
+        return 'YEAR('.
         $sqlWalker->walkArithmeticExpression($this->dateExpression).
         ')';
     }
-
-
 }
-

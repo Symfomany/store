@@ -10,16 +10,17 @@ use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Class LayoutController
- * Ce controlleur spécial contiendra mon action rendus par Twig
- * @package Store\BackendBundle\Controller
+ * Ce controlleur spécial contiendra mon action rendus par Twig.
  */
-class LayoutController extends Controller{
-
+class LayoutController extends Controller
+{
     /**
-     * Me retourne la liste de mes messages
+     * Me retourne la liste de mes messages.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function mymessagesAction(){
+    public function mymessagesAction()
+    {
 
         //je récupère l'Entité Manager
         $em = $this->getDoctrine()->getManager();
@@ -33,18 +34,18 @@ class LayoutController extends Controller{
 
         return $this->render('StoreBackendBundle:Partial:mymessages.html.twig',
             array(
-                'messages' => $messages
+                'messages' => $messages,
             )
         );
     }
 
-
-
     /**
-     * Me retourne la liste de mes commandes
+     * Me retourne la liste de mes commandes.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function myordersAction(){
+    public function myordersAction()
+    {
 
         //je récupère l'Entité Manager
         $em = $this->getDoctrine()->getManager();
@@ -58,16 +59,18 @@ class LayoutController extends Controller{
 
         return $this->render('StoreBackendBundle:Partial:myorders.html.twig',
             array(
-                'orders' => $orders
+                'orders' => $orders,
             )
         );
     }
 
     /**
-     * Me retourne la liste de mes commandes
+     * Me retourne la liste de mes commandes.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function ajaxCityAction(Request $request){
+    public function ajaxCityAction(Request $request)
+    {
 
         //je récupère l'Entité Manager
         $em = $this->getDoctrine()->getManager();
@@ -77,23 +80,13 @@ class LayoutController extends Controller{
         $villes = $em->getRepository('StoreBackendBundle:Villes')
             ->getCity($ville, 10);
 
-
         $tab = array();
-        foreach($villes as $ville){
+        foreach ($villes as $ville) {
             $tab[] = $ville['nom'];
         }
 
-       return new JsonResponse(
+        return new JsonResponse(
            array($tab)
        );
-
     }
-
-
-
 }
-
-
-
-
-

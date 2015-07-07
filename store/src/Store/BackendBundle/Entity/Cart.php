@@ -5,7 +5,7 @@ namespace Store\BackendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Cart
+ * Cart.
  *
  * @ORM\Table(name="cart")
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\CartRepository")
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Cart
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
@@ -31,7 +31,6 @@ class Cart
      */
     protected $user;
 
-
     /**
      * @var \DateTime
      *
@@ -46,21 +45,18 @@ class Cart
      */
     protected $dateCreated;
 
-
-
-
     /**
-     * Initialize my object
+     * Initialize my object.
      */
-    public function __construct(){
+    public function __construct()
+    {
         $this->dateCreated = new \DateTime('now');
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -68,9 +64,10 @@ class Cart
     }
 
     /**
-     * Set content
+     * Set content.
      *
      * @param string $content
+     *
      * @return Cart
      */
     public function setContent($content)
@@ -81,9 +78,9 @@ class Cart
     }
 
     /**
-     * Get content
+     * Get content.
      *
-     * @return string 
+     * @return string
      */
     public function getContent()
     {
@@ -91,9 +88,10 @@ class Cart
     }
 
     /**
-     * Set dateCreated
+     * Set dateCreated.
      *
      * @param \DateTime $dateCreated
+     *
      * @return Cart
      */
     public function setDateCreated($dateCreated)
@@ -104,20 +102,20 @@ class Cart
     }
 
     /**
-     * Get dateCreated
+     * Get dateCreated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
         return $this->dateCreated;
     }
 
-
     /**
-     * Set user
+     * Set user.
      *
      * @param \Store\BackendBundle\Entity\User $user
+     *
      * @return Cart
      */
     public function setUser(\Store\BackendBundle\Entity\User $user = null)
@@ -128,9 +126,9 @@ class Cart
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \Store\BackendBundle\Entity\User 
+     * @return \Store\BackendBundle\Entity\User
      */
     public function getUser()
     {
@@ -138,11 +136,12 @@ class Cart
     }
 
     /**
-     * Retourne le contenu
+     * Retourne le contenu.
+     *
      * @return \DateTime
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->content;
     }
-
 }

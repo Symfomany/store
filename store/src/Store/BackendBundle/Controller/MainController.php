@@ -7,17 +7,16 @@ namespace Store\BackendBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 
-
 /**
- * Class MainController
- * @package Store\BackendBundle\Controller
+ * Class MainController.
  */
-class MainController extends Controller{
-
+class MainController extends Controller
+{
     /**
-     * Page Dashboard on Backend
+     * Page Dashboard on Backend.
      */
-    public function indexAction(){
+    public function indexAction()
+    {
 
         //dump(['message' => "coucou"]);
 
@@ -101,19 +100,10 @@ class MainController extends Controller{
             )));
         $response->setETag(md5($response->getContent()));
 
-
 // définit l'âge max des caches privés ou des caches partagés
         $response->setMaxAge(600);
-
 
         // je retourne la vue index de mon dossier Main
         return $response;
     }
-
-
 }
-
-
-
-
-

@@ -1,4 +1,5 @@
 <?php
+
 // src/Acme/DemoBundle/Security/Authentication/Token/WsseUserToken.php
 namespace Store\BackendBundle\Security\Authentification\Token;
 
@@ -8,8 +9,7 @@ use Symfony\Component\Security\Core\Authentication\Token\AbstractToken;
  * Un token représente les données d'authentification de l'utilisateur présentes dans la requête
  * Une fois qu'une requête est authentifiée, le token conserve les données de l'utilisateur, et délivre ces données au travers du contexte de sécurité.
  *  Cela permettra de passer toutes les informations pertinentes à votre fournisseur d'authentification.
- * Class WsseUserToken
- * @package Store\BackendBundle\Security\Authentication\Token
+ * Class WsseUserToken.
  */
 class WsseUserToken extends AbstractToken
 {
@@ -29,7 +29,8 @@ class WsseUserToken extends AbstractToken
     public $nonce;
 
     /**
-     * Constructor
+     * Constructor.
+     *
      * @param array $roles
      */
     public function __construct(array $roles = array())
@@ -41,7 +42,8 @@ class WsseUserToken extends AbstractToken
     }
 
     /**
-     * get Credentials
+     * get Credentials.
+     *
      * @return string
      */
     public function getCredentials()

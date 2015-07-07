@@ -2,27 +2,22 @@
 
 namespace Store\BackendBundle\Form;
 
-
-use Store\BackendBundle\Repository\ProductRepository;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-
 /**
  * Class TagType
- * Formulaire de création de tag
- * @package Store\BackendBundle\Form
+ * Formulaire de création de tag.
  */
 class TagType extends AbstractType
 {
-
     /**
-     * Methode qui va consrtuire mon formulaire
+     * Methode qui va consrtuire mon formulaire.
+     *
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
@@ -32,26 +27,24 @@ class TagType extends AbstractType
         // le 3eme argument c'est ùmes options à mon chamos
         $builder->add('word', null, array(
             'label' => 'Mots-clef', //label de mon chmpa
-            'required'  => true,
+            'required' => true,
             'attr' => array(
                 'class' => 'form-control',
-                'pattern' => '[a-zA-Z0-9.- ]{3,}'
-            )
+                'pattern' => '[a-zA-Z0-9.- ]{3,}',
+            ),
         ));
 
         $builder->add('envoyer', 'submit', array(
             'attr' => array(
-                'class' => 'btn btn-primary btn-sm'
-            )
+                'class' => 'btn btn-primary btn-sm',
+            ),
         ));
-
-
     }
-
 
     /**
      * Cette methode me permet de lié mon formulaire à moin entité Product
-     * CAR mon formulaire enregistre un produit dans la table product
+     * CAR mon formulaire enregistre un produit dans la table product.
+     *
      * @param OptionsResolver $resolver
      */
     public function configureOptions(OptionsResolver $resolver)
@@ -63,7 +56,8 @@ class TagType extends AbstractType
     }
 
     /**
-     * Methode déprécié pour lier un formulaire à une entité
+     * Methode déprécié pour lier un formulaire à une entité.
+     *
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -74,38 +68,12 @@ class TagType extends AbstractType
     }
 
     /**
-     * Nom du formulaire
+     * Nom du formulaire.
+     *
      * @return string|void
      */
     public function getName()
     {
-        return "store_backend_tag";
+        return 'store_backend_tag';
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

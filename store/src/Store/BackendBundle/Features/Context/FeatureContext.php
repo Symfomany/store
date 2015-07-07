@@ -1,25 +1,21 @@
 <?php
+
 namespace Store\BackendBundle\Features\Context;
 
-
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\MinkExtension\Context\MinkContext;
 use Behat\Symfony2Extension\Context\KernelAwareContext;
 use Symfony\Component\HttpKernel\KernelInterface;
 
-
-
 class FeatureContext extends MinkContext implements KernelAwareContext
 {
-
     /**
      * @var Kerner of Sf2
      */
     protected $kernel;
 
-
     /**
-     * Initalize Kernel Sf2
+     * Initalize Kernel Sf2.
+     *
      * @param KernelInterface $kernelInterface
      */
     public function setKernel(KernelInterface $kernelInterface)
@@ -33,6 +29,7 @@ class FeatureContext extends MinkContext implements KernelAwareContext
     public function iCanAccessServiceContainer()
     {
         $container = $this->kernel->getContainer();
+
         return $container->getParameter('whatever');
     }
 

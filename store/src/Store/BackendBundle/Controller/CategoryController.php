@@ -14,19 +14,18 @@ use Symfony\Component\Security\Acl\Domain\UserSecurityIdentity;
 use Symfony\Component\Security\Acl\Permission\MaskBuilder;
 use Symfony\Component\Security\Core\Exception\AccessDeniedException;
 
-
 /**
- * Class CategoryController
- * @package Store\BackendBundle\Controller
+ * Class CategoryController.
  */
-class CategoryController extends Controller{
-
-
+class CategoryController extends Controller
+{
     /**
-     * List my categories
+     * List my categories.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction(Request $request){
+    public function listAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
 
         //récupérer l'utilisateur courant connecté
@@ -36,7 +35,7 @@ class CategoryController extends Controller{
             ->getCategoryByUser($user);
 
         //paginate to bundle
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $categories,
             $request->query->get('page', 1)/*page number*/,
@@ -44,16 +43,17 @@ class CategoryController extends Controller{
         );
 
         return $this->render('StoreBackendBundle:Category:list.html.twig', array(
-            'categories' => $pagination
+            'categories' => $pagination,
         ));
     }
 
     /**
-     * New category page
+     * New category page.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function newAction(Request $request){
-
+    public function newAction(Request $request)
+    {
         $category = new Category();
 
         $user = $this->getUser();
@@ -61,19 +61,18 @@ class CategoryController extends Controller{
         $category->setJeweler($user); //j'associe mon jeweler 1 à mon produit
 
         // je crée un formulaire de produit
-        $form = $this->createForm(new CategoryType($user),$category,  array(
+        $form = $this->createForm(new CategoryType($user), $category,  array(
             'validation_groups' => 'new',
             'attr' => array(
                 'method' => 'post',
                 'novalidate' => 'novalidate',
-                'action' => $this->generateUrl('store_backend_category_new')
-            )
+                'action' => $this->generateUrl('store_backend_category_new'),
+            ),
         ));
 
         $form->handleRequest($request);
 
-        if($form->isValid()){
-
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
 
             // j'upload mon fichier en faisant appel a la methode upload()
@@ -100,45 +99,46 @@ class CategoryController extends Controller{
                 'success',
                 'Votre catégorie a bien été crée'
             );
+
             return $this->redirectToRoute('store_backend_category_list'); //redirection selon la route
         }
 
         return $this->render('StoreBackendBundle:Category:new.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ));
     }
 
     /**
-     * New category page
+     * New category page.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editAction(Request $request, Category $id){
-
+    public function editAction(Request $request, Category $id)
+    {
         $authChecker = $this->get('security.authorization_checker');
 
         // check for edit access
-        if (false === $authChecker->isGranted('EDIT', $id))
-        {
+        if (false === $authChecker->isGranted('EDIT', $id)) {
             throw new AccessDeniedException();
         }
 
         // je crée un formulaire de produit
-        $form = $this->createForm(new CategoryType(1),$id,  array(
+        $form = $this->createForm(new CategoryType(1), $id,  array(
             'validation_groups' => 'new',
             'attr' => array(
                 'method' => 'post',
                 'novalidate' => 'novalidate',
-                'action' => $this->generateUrl('store_backend_category_edit', array('id' => $id->getId()))
-            )
+                'action' => $this->generateUrl('store_backend_category_edit', array('id' => $id->getId())),
+            ),
         ));
 
         $form->handleRequest($request);
 
-        if($form->isValid()){
+        if ($form->isValid()) {
             // j'upload mon fichier en faisant appel a la methode upload()
             $id->upload();
 
-                $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
+            $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
                 $em->persist($id); //j'enregistre mon objet product dans doctrine
                 $em->flush(); //j'envoi ma requete d'insert à ma table product
 
@@ -147,21 +147,22 @@ class CategoryController extends Controller{
                     'Votre catégorie a bien été modifiée'
                 );
 
-                return $this->redirectToRoute('store_backend_category_list'); //redirection selon la route
+            return $this->redirectToRoute('store_backend_category_list'); //redirection selon la route
         }
 
         return $this->render('StoreBackendBundle:Category:edit.html.twig', array(
             'form' => $form->createView(),
-            'category' => $id
+            'category' => $id,
         ));
     }
 
-
     /**
-     * Action de suppression
+     * Action de suppression.
+     *
      * @Security("is_granted('', id)")
      */
-    public function removeAction(Category $id){
+    public function removeAction(Category $id)
+    {
 
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
@@ -175,12 +176,5 @@ class CategoryController extends Controller{
         );
 
         return $this->redirectToRoute('store_backend_category_list');
-
     }
-
 }
-
-
-
-
-

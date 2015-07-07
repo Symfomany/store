@@ -7,17 +7,16 @@ use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
- * Class OwnerVoter: qui va voter si l'utilisateur est permis de faire une action
- *
- * @package Store\BackendBundle\Security\Authorization\Voter
+ * Class OwnerVoter: qui va voter si l'utilisateur est permis de faire une action.
  */
 class OwnerVoter implements VoterInterface
 {
-
     /**
      * Get Attribute of User
-     * Cette methode me permet de récuoérer le ou les attribut(s) envoyés depuis mon contronlleur
+     * Cette methode me permet de récuoérer le ou les attribut(s) envoyés depuis mon contronlleur.
+     *
      * @param string $attribute
+     *
      * @return bool
      */
     public function supportsAttribute($attribute)
@@ -26,8 +25,10 @@ class OwnerVoter implements VoterInterface
     }
 
     /**
-     * Me permet de faire des restrictions sur l'utilisation de ce Voter
+     * Me permet de faire des restrictions sur l'utilisation de ce Voter.
+     *
      * @param string $class
+     *
      * @return bool
      */
     public function supportsClass($class)
@@ -38,16 +39,17 @@ class OwnerVoter implements VoterInterface
     /**
      * LE PLUS IMPORTANT
      * Mecanisme que l'on implémente pour voter les droits
-     * et permissions de l'utilisateur
+     * et permissions de l'utilisateur.
      *
      * @param TokenInterface $token
-     * @param null|object $object
-     * @param array $attributes
+     * @param null|object    $object
+     * @param array          $attributes
+     *
      * @return int
      */
     public function vote(TokenInterface $token, $object, array $attributes)
     {
-    /**
+        /*
      * VoterInterface::ACCESS_DENIED: Acces non permis (403)
      * VoterInterface::ACCESS_GRANTED: Acces authorisée
      * VoterInterface::ACCESS_ABSTAIN: S'abstenir de voter sur le mecanisme
@@ -62,7 +64,7 @@ class OwnerVoter implements VoterInterface
         }
 
         //si le jeweler id est égale à l'id de l'utilisateur
-        if(method_exists($object,'getJeweler')){
+        if (method_exists($object, 'getJeweler')) {
             if ($object->getJeweler()->getId() == $user->getId()) {
                 return VoterInterface::ACCESS_GRANTED; //ecces permis
             }

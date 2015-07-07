@@ -2,20 +2,20 @@
 
 namespace Store\BackendBundle\Util;
 
-
 /**
- * Class Satanize
- * @package Store\BackendBundle\Validator\Constraints
+ * Class Satanize.
  */
 class Satanize
 {
-
     /**
-     * Slugify
+     * Slugify.
+     *
      * @param null $ville
+     *
      * @return mixed
      */
-    public static function slugify($ville = null){
+    public static function slugify($ville = null)
+    {
 
         # 2 tableaux avec accents
         $a = array('À','Á','Â','Ã','Ä','Å','Æ','Ç','È','É','Ê','Ë','Ì','Í','Î','Ï','Ð','Ñ','Ò','Ó','Ô','Õ','Ö','Ø','Ù','Ú','Û','Ü','Ý','ß','à','á','â','ã','ä','å','æ','ç','è','é','ê','ë','ì','í','î','ï','ñ','ò','ó','ô','õ','ö','ø','ù','ú','û','ü','ý','ÿ','A','a','A','a','A','a','C','c','C','c','C','c','C','c','D','d','Ð','d','E','e','E','e','E','e','E','e','E','e','G','g','G','g','G','g','G','g','H','h','H','h','I','i','I','i','I','i','I','i','I','i','?','?','J','j','K','k','L','l','L','l','L','l','?','?','L','l','N','n','N','n','N','n','?','O','o','O','o','O','o','Œ','œ','R','r','R','r','R','r','S','s','S','s','S','s','Š','š','T','t','T','t','T','t','U','u','U','u','U','u','U','u','U','u','U','u','W','w','Y','y','Ÿ','Z','z','Z','z','Ž','ž','?','ƒ','O','o','U','u','A','a','I','i','O','o','U','u','U','u','U','u','U','u','U','u','?','?','?','?','?','?');
@@ -26,7 +26,4 @@ class Satanize
 
         return $ville;
     }
-
-
-
 }

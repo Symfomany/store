@@ -2,48 +2,48 @@
 
 namespace Store\BackendBundle\Doctrine\Extensions;
 
-
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
 use Doctrine\ORM\Query\Parser;
 use Doctrine\ORM\Query\SqlWalker;
 use Doctrine\ORM\Query\Lexer;
 
-
 /**
- * Class DateFormat
- * @package Store\BackendBundle\Doctrine\Extensions
+ * Class DateFormat.
  */
 class DateFormat extends FunctionNode
 {
     /**
-     * @var $dateExpression
+     * @var
      */
     protected $dateExpression;
 
     /**
-     * @var $formatChar
+     * @var
      */
     protected $formatChar;
 
     /**
-     * get SQL Format
+     * get SQL Format.
+     *
      * @param SqlWalker $sqlWalker
+     *
      * @return string
      */
-    public function getSql(SqlWalker $sqlWalker) {
-
+    public function getSql(SqlWalker $sqlWalker)
+    {
         return 'DATE_FORMAT('.
-        $sqlWalker->walkArithmeticExpression($this->dateExpression) .
+        $sqlWalker->walkArithmeticExpression($this->dateExpression).
         ','.
         $sqlWalker->walkStringPrimary($this->formatChar).
         ')';
     }
     /**
-     * Parsing date
+     * Parsing date.
+     *
      * @param Parser $parser
      */
-    public function parse(Parser $parser) {
-
+    public function parse(Parser $parser)
+    {
         $parser->match(Lexer::T_IDENTIFIER);
         $parser->match(Lexer::T_OPEN_PARENTHESIS);
 
@@ -52,11 +52,5 @@ class DateFormat extends FunctionNode
 
         $this->formatChar = $parser->StringPrimary();
         $parser->match(Lexer::T_CLOSE_PARENTHESIS);
-
-
     }
-
-
-
 }
-

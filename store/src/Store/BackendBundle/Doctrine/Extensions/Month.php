@@ -24,11 +24,8 @@ class Month extends FunctionNode
 
     public function getSql(SqlWalker $sqlWalker)
     {
-        return 'MONTH(' .
+        return 'MONTH('.
         $sqlWalker->walkArithmeticExpression($this->dateExpression).
         ')';
     }
-
-
 }
-

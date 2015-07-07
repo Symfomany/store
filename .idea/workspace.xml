@@ -2434,7 +2434,118 @@
       <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/twig/twig/test/Twig/Tests/TokenStreamTest.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/twig/twig/test/Twig/Tests/escapingTest.php" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/vendor/twig/twig/test/bootstrap.php" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/autoload.php" afterPath="$PROJECT_DIR$/store/app/autoload.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/app/sessions/sess_3kml1uihhv33se7ikldsv2j9q0" afterPath="$PROJECT_DIR$/store/app/sessions/sess_3kml1uihhv33se7ikldsv2j9q0" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Listener/AuthentificationListener.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Listener/AuthentificationListener.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Business.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Business.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/BusinessRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/BusinessRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Cart.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Cart.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/CartRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/CartRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Category.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Category.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/CategoryController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/CategoryController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/CategoryRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/CategoryRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/CategoryType.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/CategoryType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Cms.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Cms.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/CmsController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/CmsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/CmsRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/CmsRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/CmsType.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/CmsType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Comment.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Comment.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/CommentRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/CommentRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/DependencyInjection/Configuration.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/DependencyInjection/Configuration.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/FrontendBundle/DependencyInjection/Configuration.php" afterPath="$PROJECT_DIR$/store/src/Store/FrontendBundle/DependencyInjection/Configuration.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/DatasDoctrineFactory.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/DatasDoctrineFactory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Doctrine/Extensions/DateDiff.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Doctrine/Extensions/DateDiff.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Doctrine/Extensions/DateFormat.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Doctrine/Extensions/DateFormat.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Email/Email.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Email/Email.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Features/Context/FeatureContext.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Features/Context/FeatureContext.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Groups.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Groups.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/HtmlFormater.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/HtmlFormater.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Jeweler.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Jeweler.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/JewelerController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/JewelerController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/JewelerMeta.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/JewelerMeta.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerMetaLightType.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerMetaLightType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/JewelerMetaRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/JewelerMetaRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerMetaType.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerMetaType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/JewelerRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/JewelerRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerSubscribeTwoType.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerSubscribeTwoType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerSubscribeType.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerSubscribeType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerType.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/JewelerType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/JsonFormater.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/JsonFormater.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/LayoutController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/LayoutController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/DataFixtures/ORM/LoadCategoryData.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/DataFixtures/ORM/LoadCategoryData.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Validator/Constraints/Location.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Validator/Constraints/Location.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Validator/Constraints/LocationValidator.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Validator/Constraints/LocationValidator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/LoginType.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/LoginType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/MainController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/MainController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Tests/Controller/MainControllerTest.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Tests/Controller/MainControllerTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Message.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Message.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/MessageRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/MessageRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Doctrine/Extensions/Month.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Doctrine/Extensions/Month.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Command/NewsletterCommand.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Command/NewsletterCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Notification/Notification.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Notification/Notification.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Provider/OAuthProvider.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Provider/OAuthProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Order.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Order.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/OrderController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/OrderController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/OrderDetail.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/OrderDetail.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/OrderDetailRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/OrderDetailRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/OrderRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/OrderRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/Output.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/Output.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Authorization/Voter/OwnerVoter.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Authorization/Voter/OwnerVoter.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Product.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Product.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/ProductImage.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/ProductImage.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/ProductImageRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/ProductImageRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Listener/ProductListener.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Listener/ProductListener.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/ProductMeta.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/ProductMeta.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/ProductMetaRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/ProductMetaRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/ProductRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/ProductRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Tests/Repository/ProductRepositoryTest.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Tests/Repository/ProductRepositoryTest.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/ProductType.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/ProductType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/ProduitController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/ProduitController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Server/Pusher.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Server/Pusher.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Doctrine/Extensions/Round.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Doctrine/Extensions/Round.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Util/Satanize.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Util/Satanize.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/SecurityController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/SecurityController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Server/Server.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Server/Server.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Slider.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Slider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/SliderController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/SliderController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/SliderRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/SliderRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/SliderType.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/SliderType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/StaticsController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/StaticsController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/StoreBackendBundle.en.yml" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/StoreBackendBundle.en.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/StoreBackendBundle.fr.yml" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/StoreBackendBundle.fr.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/StoreBackendBundle.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/StoreBackendBundle.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/DependencyInjection/StoreBackendExtension.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/DependencyInjection/StoreBackendExtension.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Twig/Extensions/StoreBackendExtension.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Twig/Extensions/StoreBackendExtension.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/FrontendBundle/DependencyInjection/StoreFrontendExtension.php" afterPath="$PROJECT_DIR$/store/src/Store/FrontendBundle/DependencyInjection/StoreFrontendExtension.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Validator/Constraints/StripTagLength.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Validator/Constraints/StripTagLength.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Validator/Constraints/StripTagLengthValidator.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Validator/Constraints/StripTagLengthValidator.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Supplier.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Supplier.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/SupplierController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/SupplierController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/SupplierRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/SupplierRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/SupplierType.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/SupplierType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Command/SuscribeCommand.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Command/SuscribeCommand.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Tag.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Tag.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/TagController.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/TagController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/TagRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/TagRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/TagType.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Form/TagType.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Doctrine/Extensions/Truncate.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Doctrine/Extensions/Truncate.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/User.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/UserAddress.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/UserAddress.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/UserAddressRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/UserAddressRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/UserRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/UserRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Villes.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Villes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/VillesRepository.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/VillesRepository.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Factory/WsseFactory.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Factory/WsseFactory.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Authentification/Firewall/WsseListener.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Authentification/Firewall/WsseListener.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Authentification/Provider/WsseProvider.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Authentification/Provider/WsseProvider.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Authentification/Token/WsseUserToken.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Security/Authentification/Token/WsseUserToken.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/XmlFormater.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Statistics/XmlFormater.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Doctrine/Extensions/Year.php" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Doctrine/Extensions/Year.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/cms.en.yml" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/cms.en.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/cms.fr.yml" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/cms.fr.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/messages.en.yml" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/messages.en.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/messages.fr.yml" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/messages.fr.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/validators.en.yml" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/validators.en.yml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/validators.fr.yml" afterPath="$PROJECT_DIR$/store/src/Store/BackendBundle/Resources/translations/validators.fr.yml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="store.iws" />
@@ -2467,65 +2578,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="ProduitController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/ProduitController.php">
+      <file leaf-file-name="CategoryController.php" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/CategoryController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1935" max-vertical-offset="3930">
-              <caret line="134" column="11" selection-start-line="125" selection-start-column="7" selection-end-line="134" selection-end-column="11" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ProductType.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Form/ProductType.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="3825">
-              <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
-              <folding>
-                <element signature="e#45#79#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Product.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Product.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-17.244898" vertical-offset="2590" max-vertical-offset="19755">
-              <caret line="229" column="6" selection-start-line="229" selection-start-column="6" selection-end-line="229" selection-end-column="6" />
-              <folding>
-                <element signature="e#46#78#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="composer.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/composer.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="2.9183674" vertical-offset="442" max-vertical-offset="1978">
-              <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="security.yml" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/store/app/config/security.yml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.25041735" vertical-offset="150" max-vertical-offset="2575">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Cms.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Cms.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="1295" max-vertical-offset="9375">
-              <caret line="104" column="54" selection-start-line="102" selection-start-column="4" selection-end-line="104" selection-end-column="54" />
+            <state vertical-scroll-proportion="0.02124646" vertical-offset="225" max-vertical-offset="2670">
+              <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
               <folding />
             </state>
           </provider>
@@ -2604,9 +2661,9 @@
   <component name="PhpWorkspaceProjectConfiguration" backward_compatibility_performed="true" />
   <component name="ProjectFrameBounds">
     <option name="x" value="59" />
-    <option name="y" value="52" />
-    <option name="width" value="1093" />
-    <option name="height" value="758" />
+    <option name="y" value="-4" />
+    <option name="width" value="1541" />
+    <option name="height" value="904" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -2634,6 +2691,7 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -2716,13 +2774,24 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="app" />
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Store" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="BackendBundle" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="Controller" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -2763,9 +2832,6 @@
     <configuration default="true" type="NodeJSConfigurationType" factoryName="Node.js" working-dir="">
       <method />
     </configuration>
-    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="5c62952c-f629-4c92-b45d-23e5173cd147" server_name="Store">
-      <method />
-    </configuration>
     <configuration default="true" type="js.build_tools.gulp" factoryName="Gulp.js">
       <node-options />
       <gulpfile />
@@ -2773,6 +2839,9 @@
       <arguments />
       <pass-parent-envs>true</pass-parent-envs>
       <envs />
+      <method />
+    </configuration>
+    <configuration default="true" type="PhpUnitRemoteRunConfigurationType" factoryName="PHPUnit on Server" server_id="5c62952c-f629-4c92-b45d-23e5173cd147" server_name="Store">
       <method />
     </configuration>
     <list size="0" />
@@ -2791,8 +2860,8 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="59" y="52" width="1093" height="758" extended-state="0" />
-    <editor active="false" />
+    <frame x="59" y="-4" width="1541" height="904" extended-state="6" />
+    <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
@@ -2802,7 +2871,7 @@
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24983345" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Remote Host" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2808783" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.28033745" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32920793" sideWeight="0.5" order="8" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
@@ -2883,13 +2952,13 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/store/README.md">
-      <provider editor-type-id="MarkdownPreviewEditor">
-        <state />
-      </provider>
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.08595989" vertical-offset="0" max-vertical-offset="698">
           <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
         </state>
+      </provider>
+      <provider editor-type-id="MarkdownPreviewEditor">
+        <state />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Repository/ProductRepository.php">
@@ -2990,8 +3059,8 @@
           <OriginalElement>\Store\BackendBundle\Statistics\Output</OriginalElement>
           <nodes>
             <node x="" y="">\Store\BackendBundle\Statistics\HtmlFormater</node>
-            <node x="" y="">\Store\BackendBundle\Statistics\JsonFormater</node>
             <node x="" y="">\Store\BackendBundle\Statistics\Output</node>
+            <node x="" y="">\Store\BackendBundle\Statistics\JsonFormater</node>
             <node x="" y="">\Store\BackendBundle\Statistics\XmlFormater</node>
             <node x="" y="">\Store\BackendBundle\Statistics\DatasDoctrineFactory</node>
           </nodes>
@@ -3082,13 +3151,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/CategoryController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="180" max-vertical-offset="2760">
-          <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/CmsController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="630" max-vertical-offset="3105">
@@ -3173,36 +3235,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/ProduitController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1935" max-vertical-offset="3930">
-          <caret line="134" column="11" selection-start-line="125" selection-start-column="7" selection-end-line="134" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Form/ProductType.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="405" max-vertical-offset="3825">
-          <caret line="42" column="28" selection-start-line="42" selection-start-column="28" selection-end-line="42" selection-end-column="28" />
+        <state vertical-scroll-proportion="-4.591837" vertical-offset="330" max-vertical-offset="3315">
+          <caret line="37" column="28" selection-start-line="37" selection-start-column="28" selection-end-line="37" selection-end-column="28" />
           <folding>
-            <element signature="e#45#79#0#PHP" expanded="true" />
+            <marker date="1436280037145" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Cms.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1295" max-vertical-offset="9375">
-          <caret line="104" column="54" selection-start-line="102" selection-start-column="4" selection-end-line="104" selection-end-column="54" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="1280" max-vertical-offset="9555">
+          <caret line="99" column="54" selection-start-line="99" selection-start-column="54" selection-end-line="99" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Entity/Product.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.244898" vertical-offset="2590" max-vertical-offset="19755">
-          <caret line="229" column="6" selection-start-line="229" selection-start-column="6" selection-end-line="229" selection-end-column="6" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="2575" max-vertical-offset="20130">
+          <caret line="228" column="6" selection-start-line="228" selection-start-column="6" selection-end-line="228" selection-end-column="6" />
           <folding>
             <element signature="e#46#78#0#PHP" expanded="true" />
           </folding>
@@ -3211,16 +3265,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/store/composer.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="2.9183674" vertical-offset="442" max-vertical-offset="1978">
-          <caret line="13" column="31" selection-start-line="13" selection-start-column="31" selection-end-line="13" selection-end-column="31" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="165" max-vertical-offset="1275">
+          <caret line="11" column="16" selection-start-line="11" selection-start-column="16" selection-end-line="11" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/store/app/config/security.yml">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.25041735" vertical-offset="150" max-vertical-offset="2575">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="1545">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/ProduitController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.10623229" vertical-offset="1920" max-vertical-offset="3765">
+          <caret line="137" column="50" selection-start-line="137" selection-start-column="50" selection-end-line="137" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/store/src/Store/BackendBundle/Controller/CategoryController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.02124646" vertical-offset="225" max-vertical-offset="2670">
+          <caret line="24" column="7" selection-start-line="24" selection-start-column="7" selection-end-line="24" selection-end-column="7" />
           <folding />
         </state>
       </provider>

@@ -2,7 +2,6 @@
 
 namespace Store\BackendBundle\DataFixtures\ORM;
 
-
 use Doctrine\Common\DataFixtures\FixtureInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 use Store\BackendBundle\Entity\Category;
@@ -11,8 +10,7 @@ use Store\BackendBundle\Entity\Product;
 /**
  * Cette classe me permettra de charger des catégories
  * en base de données
- * Class LoadCategoryData
- * @package Store\BackendBundle\DataFixtures\ORM
+ * Class LoadCategoryData.
  */
 class LoadCategoryData implements FixtureInterface
 {
@@ -52,45 +50,9 @@ class LoadCategoryData implements FixtureInterface
         $product->setActive(true);
         $product->setCover(true);
 
-
         $manager->persist($product);
         $manager->persist($categorie);
         $manager->persist($categorie2);
         $manager->flush();
-
-
-
     }
-
-
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

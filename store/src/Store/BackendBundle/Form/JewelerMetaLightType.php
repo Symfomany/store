@@ -2,94 +2,91 @@
 
 namespace Store\BackendBundle\Form;
 
-
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-
-use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
 /**
- * Class JewelerMetaType
- * @package Store\BackendBundle\Form
+ * Class JewelerMetaType.
  */
 class JewelerMetaLightType extends AbstractType
 {
     /**
-     * Methode qui va consrtuire mon formulaire
+     * Methode qui va consrtuire mon formulaire.
+     *
      * @param FormBuilderInterface $builder
-     * @param array $options
+     * @param array                $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('address', null, array(
-            'required'  => true,
+            'required' => true,
             'label' => "<i class='fa fa-map-marker'></i> Adresse",
             'attr' => array(
                 'class' => 'form-control',
                 'placeholder' => '14 Rue Mandar',
-            )
+            ),
         ));
         $builder->add('zipcode', null, array(
-            'required'  => true,
+            'required' => true,
             'label' => "<i class='fa fa-map-marker'></i> CP",
             'attr' => array(
                 'class' => 'form-control',
                 'placeholder' => '75002',
-            )
+            ),
         ));
         $builder->add('city', null, array(
-            'required'  => true,
+            'required' => true,
             'label' => "<i class='fa fa-map-marker'></i> Ville",
             'attr' => array(
                 'class' => 'form-control',
                 'placeholder' => 'Paris',
-            )
+            ),
         ));
         $builder->add('dawanda', 'url', array(
             'label' => '<i class="fa fa-link"></i> Boutique sur Dawanda',
-            'required'  => false,
+            'required' => false,
             'attr' => array(
                 'class' => 'form-control',
-                'placeholder' => "http://fr.dawanda.com/shop/HairFlowersAtelier"
-            )
+                'placeholder' => 'http://fr.dawanda.com/shop/HairFlowersAtelier',
+            ),
         ));
-        $builder->add('littlemarket', "url", array(
+        $builder->add('littlemarket', 'url', array(
             'label' => '<i class="fa fa-link"></i> Boutique sur ALittleMarket',
-            'required'  => true,
+            'required' => true,
             'attr' => array(
                 'class' => 'form-control',
-                'placeholder' => "http://www.alittlemarket.com/boutique/ecrindebijoux-1882123.html"
-            )
+                'placeholder' => 'http://www.alittlemarket.com/boutique/ecrindebijoux-1882123.html',
+            ),
         ));
-        $builder->add('retour', "textarea", array(
-            'required'  => true,
+        $builder->add('retour', 'textarea', array(
+            'required' => true,
             'label' => '<i class="fa fa-retweet"></i> Retour de produit',
             'attr' => array(
                 'class' => 'form-control',
                 'placeholder' => 'Retour et Expédition',
-            )
+            ),
         ));
-        $builder->add('mention', "textarea", array(
-            'required'  => true,
+        $builder->add('mention', 'textarea', array(
+            'required' => true,
             'label' => '><i class="fa fa-legal"></i> Mentions Légales',
             'attr' => array(
                 'class' => 'form-control',
-                'placeholder' => "Mentions Légales",
-            )
+                'placeholder' => 'Mentions Légales',
+            ),
         ));
 
-        $builder->add('optin', "checkbox", array(
-            'required'  => true,
-            'label' =>  "J'accèpte de recevoir la newsletter",
+        $builder->add('optin', 'checkbox', array(
+            'required' => true,
+            'label' => "J'accèpte de recevoir la newsletter",
             'attr' => array(
-            )
+            ),
         ));
-
     }
 
     /**
-     * Methode déprécié pour lier un formulaire à une entité
+     * Methode déprécié pour lier un formulaire à une entité.
+     *
      * @param OptionsResolverInterface $resolver
      */
     public function setDefaultOptions(OptionsResolverInterface $resolver)
@@ -99,38 +96,12 @@ class JewelerMetaLightType extends AbstractType
         ));
     }
     /**
-     * Nom du formulaire
+     * Nom du formulaire.
+     *
      * @return string|void
      */
     public function getName()
     {
-        return "store_backend_jewelermeta";
+        return 'store_backend_jewelermeta';
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

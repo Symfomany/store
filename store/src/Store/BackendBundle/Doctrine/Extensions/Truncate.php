@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Store\BackendBundle\Doctrine\Extensions;
 
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
@@ -28,13 +27,10 @@ class Truncate extends FunctionNode
 
     public function getSql(SqlWalker $sqlWalker)
     {
-        return 'TRUNCATE(' .
+        return 'TRUNCATE('.
             $sqlWalker->walkArithmeticExpression($this->nb).
-            ",".
+            ','.
             $sqlWalker->walkArithmeticExpression($this->format).
         ')';
     }
-
-
 }
-

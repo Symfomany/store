@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Store\BackendBundle\Doctrine\Extensions;
 
 use Doctrine\ORM\Query\AST\Functions\FunctionNode;
@@ -25,11 +24,8 @@ class Round extends FunctionNode
 
     public function getSql(SqlWalker $sqlWalker)
     {
-        return 'ROUND(' .
+        return 'ROUND('.
             $sqlWalker->walkArithmeticExpression($this->nb).
         ')';
     }
-
-
 }
-

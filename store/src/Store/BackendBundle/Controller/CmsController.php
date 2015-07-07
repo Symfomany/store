@@ -9,26 +9,24 @@ use Store\BackendBundle\Form\CmsType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-
 /**
- * Class CmsController
- * @package Store\BackendBundle\Controller
+ * Class CmsController.
  */
-class CmsController extends Controller{
-
-
+class CmsController extends Controller
+{
     /**
-     * List my cms
+     * List my cms.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function listAction(Request $request){
-
+    public function listAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
         $user = $this->getUser();
         $cms = $em->getRepository('StoreBackendBundle:Cms')->getCmsByUser($user);
 
         //paginate to bundle
-        $paginator  = $this->get('knp_paginator');
+        $paginator = $this->get('knp_paginator');
         $pagination = $paginator->paginate(
             $cms,
             $request->query->get('page', 1)/*page number*/,
@@ -36,17 +34,17 @@ class CmsController extends Controller{
         );
 
         return $this->render('StoreBackendBundle:Cms:list.html.twig', array(
-            'cms' => $pagination
+            'cms' => $pagination,
         ));
     }
 
-
     /**
-     * New category page
+     * New category page.
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function newAction(Request $request){
-
+    public function newAction(Request $request)
+    {
         $cms = new Cms();
         $user = $this->getUser();
 
@@ -54,18 +52,18 @@ class CmsController extends Controller{
         $cms->setJeweler($user); //j'associe mon jeweler 1 à mon produit
 
         // je crée un formulaire de produit
-        $form = $this->createForm(new CmsType($user),$cms,  array(
+        $form = $this->createForm(new CmsType($user), $cms,  array(
             'validation_groups' => 'new',
             'attr' => array(
                 'method' => 'post',
                 'novalidate' => 'novalidate',
-                'action' => $this->generateUrl('store_backend_cms_new')
-            )
+                'action' => $this->generateUrl('store_backend_cms_new'),
+            ),
         ));
 
         $form->handleRequest($request);
 
-        if($form->isValid()){
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
 
             // j'upload mon fichier en faisant appel a la methode upload()
@@ -78,22 +76,24 @@ class CmsController extends Controller{
                 'success',
                 $this->get('translator')->trans('cms.flashdatas.add')
             );
+
             return $this->redirectToRoute('store_backend_cms_list'); //redirection selon la route
         }
 
         return $this->render('StoreBackendBundle:Cms:new.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ));
     }
 
-
     /**
-     * New category page
+     * New category page.
+     *
      * @Security("is_granted('', id)")
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
-    public function editAction(Request $request, Cms $id){
-
+    public function editAction(Request $request, Cms $id)
+    {
         $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
 
         // je crée un formulaire de produit
@@ -102,13 +102,13 @@ class CmsController extends Controller{
             'attr' => array(
                 'method' => 'post',
                 'novalidate' => 'novalidate',
-                'action' => $this->generateUrl('store_backend_cms_edit', array('id' => $id->getId()))
-            )
+                'action' => $this->generateUrl('store_backend_cms_edit', array('id' => $id->getId())),
+            ),
         ));
 
         $form->handleRequest($request);
 
-        if($form->isValid()){
+        if ($form->isValid()) {
             // j'upload mon fichier en faisant appel a la methode upload()
             $id->upload();
 
@@ -119,22 +119,23 @@ class CmsController extends Controller{
                 'success',
                 $this->get('translator')->trans('cms.flashdatas.edit')
             );
+
             return $this->redirectToRoute('store_backend_cms_list'); //redirection selon la route
         }
 
         return $this->render('StoreBackendBundle:Cms:edit.html.twig', array(
-            'form' => $form->createView()
+            'form' => $form->createView(),
         ));
     }
 
-
-
     /**
-     * Action d'activation d'une page CMS
+     * Action d'activation d'une page CMS.
+     *
      * @param $id
      * @Security("is_granted('', id)")
      */
-    public function activateAction(Cms $id, $action){
+    public function activateAction(Cms $id, $action)
+    {
         $em = $this->getDoctrine()->getManager();
         $id->setActive($action);
         $em->persist($id);
@@ -143,20 +144,20 @@ class CmsController extends Controller{
         //message flash
         $this->get('session')->getFlashBag()->add(
             'success',
-            $this->get('translator')->trans('cms.flashdatas.activate', array(),'cms')
+            $this->get('translator')->trans('cms.flashdatas.activate', array(), 'cms')
         );
-
 
         return $this->redirectToRoute('store_backend_cms_list');
     }
 
-
     /**
-     * Action de suppression
+     * Action de suppression.
+     *
      * @param $id
      * @Security("is_granted('', id)")
      */
-    public function stateAction(Cms $id, $action){
+    public function stateAction(Cms $id, $action)
+    {
         $em = $this->getDoctrine()->getManager();
         $id->setState($action);
         $em->persist($id);
@@ -170,17 +171,17 @@ class CmsController extends Controller{
         return $this->redirectToRoute('store_backend_cms_list');
     }
 
-
     /**
-     * Action de suppression
+     * Action de suppression.
+     *
      * @param $id
      * @Security("is_granted('', id)")
      */
-    public function removeAction(Cms $id){
+    public function removeAction(Cms $id)
+    {
 
         // recupere le manager de doctrine :  Le conteneur d'objets de Doctrine
         $em = $this->getDoctrine()->getManager();
-
 
         $em->remove($id);
         $em->flush();
@@ -191,14 +192,5 @@ class CmsController extends Controller{
         );
 
         return $this->redirectToRoute('store_backend_cms_list');
-
     }
-
-
-
 }
-
-
-
-
-

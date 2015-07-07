@@ -5,23 +5,21 @@ namespace Store\BackendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Tag
+ * Tag.
  *
  * @ORM\Table(name="villes")
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\VillesRepository")
  */
 class Villes
 {
-    
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     protected $id;
-
 
     /**
      * @var string
@@ -58,12 +56,10 @@ class Villes
      */
     protected $latitude;
 
-
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -71,9 +67,10 @@ class Villes
     }
 
     /**
-     * Set nom
+     * Set nom.
      *
      * @param string $nom
+     *
      * @return Villes
      */
     public function setNom($nom)
@@ -84,9 +81,9 @@ class Villes
     }
 
     /**
-     * Get nom
+     * Get nom.
      *
-     * @return string 
+     * @return string
      */
     public function getNom()
     {
@@ -94,9 +91,10 @@ class Villes
     }
 
     /**
-     * Set cp
+     * Set cp.
      *
      * @param string $cp
+     *
      * @return Villes
      */
     public function setCp($cp)
@@ -107,9 +105,9 @@ class Villes
     }
 
     /**
-     * Get cp
+     * Get cp.
      *
-     * @return string 
+     * @return string
      */
     public function getCp()
     {
@@ -117,9 +115,10 @@ class Villes
     }
 
     /**
-     * Set longitude
+     * Set longitude.
      *
      * @param float $longitude
+     *
      * @return Villes
      */
     public function setLongitude($longitude)
@@ -130,9 +129,9 @@ class Villes
     }
 
     /**
-     * Get longitude
+     * Get longitude.
      *
-     * @return float 
+     * @return float
      */
     public function getLongitude()
     {
@@ -140,9 +139,10 @@ class Villes
     }
 
     /**
-     * Set latitude
+     * Set latitude.
      *
      * @param float $latitude
+     *
      * @return Villes
      */
     public function setLatitude($latitude)
@@ -153,9 +153,9 @@ class Villes
     }
 
     /**
-     * Get latitude
+     * Get latitude.
      *
-     * @return float 
+     * @return float
      */
     public function getLatitude()
     {
@@ -163,9 +163,10 @@ class Villes
     }
 
     /**
-     * Set maj
+     * Set maj.
      *
      * @param string $maj
+     *
      * @return Villes
      */
     public function setMaj($maj)
@@ -176,9 +177,9 @@ class Villes
     }
 
     /**
-     * Get maj
+     * Get maj.
      *
-     * @return string 
+     * @return string
      */
     public function getMaj()
     {

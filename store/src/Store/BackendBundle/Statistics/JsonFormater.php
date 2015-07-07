@@ -1,19 +1,17 @@
 <?php
 
-
 namespace Store\BackendBundle\Statistics;
 
-
 /**
- * Class JsonFormater
- * @package Store\BackendBundle\Statistics
+ * Class JsonFormater.
  */
-class JsonFormater implements Output{
-
-
+class JsonFormater implements Output
+{
     /**
-     * Rendering in format
+     * Rendering in format.
+     *
      * @param $data
+     *
      * @return mixed
      */
     public function render($data)
@@ -22,13 +20,12 @@ class JsonFormater implements Output{
     }
 
     /**
-     * Export for HTTP|CLI
+     * Export for HTTP|CLI.
+     *
      * @return mixed
      */
     public function export()
     {
         // TODO: Implement export() method.
     }
-
-
 }

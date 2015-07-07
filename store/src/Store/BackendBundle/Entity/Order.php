@@ -5,7 +5,7 @@ namespace Store\BackendBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Order
+ * Order.
  *
  * @ORM\Table(name="orders")
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\OrderRepository")
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
 class Order
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -22,7 +22,7 @@ class Order
     protected $id;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="address", type="text", nullable=true)
      */
@@ -83,11 +83,11 @@ class Order
      */
     protected $detail;
 
-
     /**
-     * Constructor
+     * Constructor.
      */
-    public function __construct(){
+    public function __construct()
+    {
         $date = new \DateTime('+2 days');
         $this->date = $date->format('Y-m-d');
         $this->dateCreated = new \DateTime('now');
@@ -95,9 +95,9 @@ class Order
     }
 
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -105,9 +105,10 @@ class Order
     }
 
     /**
-     * Set address
+     * Set address.
      *
      * @param string $address
+     *
      * @return Order
      */
     public function setAddress($address)
@@ -118,9 +119,9 @@ class Order
     }
 
     /**
-     * Get address
+     * Get address.
      *
-     * @return string 
+     * @return string
      */
     public function getAddress()
     {
@@ -128,9 +129,10 @@ class Order
     }
 
     /**
-     * Set date
+     * Set date.
      *
      * @param \DateTime $date
+     *
      * @return Order
      */
     public function setDate($date)
@@ -141,9 +143,9 @@ class Order
     }
 
     /**
-     * Get date
+     * Get date.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDate()
     {
@@ -151,9 +153,10 @@ class Order
     }
 
     /**
-     * Set $state
+     * Set $state.
      *
-     * @param integer $state
+     * @param int $state
+     *
      * @return Order
      */
     public function setState($state)
@@ -164,9 +167,9 @@ class Order
     }
 
     /**
-     * Get state
+     * Get state.
      *
-     * @return integer 
+     * @return int
      */
     public function getState()
     {
@@ -174,9 +177,10 @@ class Order
     }
 
     /**
-     * Set dateCreated
+     * Set dateCreated.
      *
      * @param \DateTime $dateCreated
+     *
      * @return Order
      */
     public function setDateCreated($dateCreated)
@@ -187,9 +191,9 @@ class Order
     }
 
     /**
-     * Get dateCreated
+     * Get dateCreated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -197,9 +201,10 @@ class Order
     }
 
     /**
-     * Set user
+     * Set user.
      *
      * @param \Store\BackendBundle\Entity\User $user
+     *
      * @return Order
      */
     public function setUser(\Store\BackendBundle\Entity\User $user = null)
@@ -210,9 +215,9 @@ class Order
     }
 
     /**
-     * Get user
+     * Get user.
      *
-     * @return \Store\BackendBundle\Entity\User 
+     * @return \Store\BackendBundle\Entity\User
      */
     public function getUser()
     {
@@ -220,9 +225,10 @@ class Order
     }
 
     /**
-     * Set jeweler
+     * Set jeweler.
      *
      * @param \Store\BackendBundle\Entity\Jeweler $jeweler
+     *
      * @return Order
      */
     public function setJeweler(\Store\BackendBundle\Entity\Jeweler $jeweler = null)
@@ -233,9 +239,9 @@ class Order
     }
 
     /**
-     * Get jeweler
+     * Get jeweler.
      *
-     * @return \Store\BackendBundle\Entity\Jeweler 
+     * @return \Store\BackendBundle\Entity\Jeweler
      */
     public function getJeweler()
     {
@@ -243,9 +249,10 @@ class Order
     }
 
     /**
-     * Set total
+     * Set total.
      *
      * @param float $total
+     *
      * @return Order
      */
     public function setTotal($total)
@@ -256,9 +263,9 @@ class Order
     }
 
     /**
-     * Get total
+     * Get total.
      *
-     * @return float 
+     * @return float
      */
     public function getTotal()
     {
@@ -266,9 +273,10 @@ class Order
     }
 
     /**
-     * Add detail
+     * Add detail.
      *
      * @param \Store\BackendBundle\Entity\OrderDetail $detail
+     *
      * @return Order
      */
     public function addDetail(\Store\BackendBundle\Entity\OrderDetail $detail)
@@ -279,7 +287,7 @@ class Order
     }
 
     /**
-     * Remove detail
+     * Remove detail.
      *
      * @param \Store\BackendBundle\Entity\OrderDetail $detail
      */
@@ -289,9 +297,9 @@ class Order
     }
 
     /**
-     * Get detail
+     * Get detail.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getDetail()
     {
@@ -299,9 +307,10 @@ class Order
     }
 
     /**
-     * Retourne le title
+     * Retourne le title.
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->id;
     }
 }

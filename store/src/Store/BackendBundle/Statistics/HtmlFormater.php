@@ -1,19 +1,17 @@
 <?php
 
-
 namespace Store\BackendBundle\Statistics;
 
-
 /**
- * Class HtmlFormater
- * @package Store\BackendBundle\Statistics
+ * Class HtmlFormater.
  */
-class HtmlFormater implements Output{
-
-
+class HtmlFormater implements Output
+{
     /**
-     * Rendering in format
+     * Rendering in format.
+     *
      * @param $data
+     *
      * @return mixed
      */
     public function render($data)
@@ -22,13 +20,12 @@ class HtmlFormater implements Output{
     }
 
     /**
-     * Export for HTTP|CLI
+     * Export for HTTP|CLI.
+     *
      * @return mixed
      */
     public function export()
     {
         // TODO: Implement export() method.
     }
-
-
 }

@@ -1,4 +1,5 @@
 <?php
+
 // src/Acme/DemoBundle/Security/Authentication/Provider/WsseProvider.php
 namespace Store\BackendBundle\Security\Authentification\Provider;
 
@@ -9,11 +10,9 @@ use Symfony\Component\Security\Core\Exception\AuthenticationException;
 use Symfony\Component\Security\Core\Exception\NonceExpiredException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 
-
 /**
  * Le fournisseur d'authentification va effectuer la vérification du WsseUserToken. C'est-à-dire que le fournisseur va vérifier que la valeur de l'en-tête Created est valide dans les cinq minutes, que la valeur de l'en-tête Nonce est unique dans les cinq minutes, et que la valeur de l'en-tête PasswordDigest correspond au mot de passe de l'utilisateur.
- * Class WsseProvider
- * @package Store\BackendBundle\Security\Authentication\Provider
+ * Class WsseProvider.
  */
 class WsseProvider implements AuthenticationProviderInterface
 {
@@ -21,24 +20,25 @@ class WsseProvider implements AuthenticationProviderInterface
     private $cacheDir;
 
     /**
-     * Use provider & cache
+     * Use provider & cache.
+     *
      * @param UserProviderInterface $userProvider
      * @param $cacheDir
      */
     public function __construct(UserProviderInterface $userProvider, $cacheDir)
     {
         $this->userProvider = $userProvider;
-        $this->cacheDir     = $cacheDir;
+        $this->cacheDir = $cacheDir;
     }
 
     /**
      * @param TokenInterface $token
-     * AUthentification via le token
+     *                              AUthentification via le token
+     *
      * @return WsseUserToken
      */
     public function authenticate(TokenInterface $token)
     {
-
         $user = $this->userProvider->loadUserByUsername($token->getUsername());
 
         if ($user && $this->validateDigest($token->digest, $token->nonce, $token->created, $user->getPassword())) {

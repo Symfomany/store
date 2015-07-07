@@ -6,9 +6,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Validator\Constraints as Assert;
 
-
 /**
- * Category
+ * Category.
  *
  * @ORM\Table(name="category")
  * @ORM\Entity(repositoryClass="Store\BackendBundle\Repository\CategoryRepository")
@@ -16,7 +15,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 class Category
 {
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="id", type="integer", nullable=false)
      * @ORM\Id
@@ -59,14 +58,14 @@ class Category
     protected $description;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="position", type="integer", nullable=true)
      */
     protected $position;
 
     /**
-     * @var boolean
+     * @var bool
      *
      * @ORM\Column(name="active", type="boolean", nullable=true)
      */
@@ -99,9 +98,9 @@ class Category
      */
     protected $image;
 
-
     /**
-     * Attribut qui représentera mon fichier uploadé
+     * Attribut qui représentera mon fichier uploadé.
+     *
      * @Assert\Image(
      *     minWidth = 100,
      *     maxWidth = 3000,
@@ -116,9 +115,8 @@ class Category
      */
     protected $file;
 
-    
     /**
-     * Constructor
+     * Constructor.
      */
     public function __construct()
     {
@@ -126,11 +124,10 @@ class Category
         $this->active = true;
     }
 
-
     /**
-     * Get id
+     * Get id.
      *
-     * @return integer 
+     * @return int
      */
     public function getId()
     {
@@ -138,9 +135,10 @@ class Category
     }
 
     /**
-     * Set title
+     * Set title.
      *
      * @param string $title
+     *
      * @return Category
      */
     public function setTitle($title)
@@ -151,9 +149,9 @@ class Category
     }
 
     /**
-     * Get title
+     * Get title.
      *
-     * @return string 
+     * @return string
      */
     public function getTitle()
     {
@@ -161,9 +159,10 @@ class Category
     }
 
     /**
-     * Set description
+     * Set description.
      *
      * @param string $description
+     *
      * @return Category
      */
     public function setDescription($description)
@@ -174,9 +173,9 @@ class Category
     }
 
     /**
-     * Get description
+     * Get description.
      *
-     * @return string 
+     * @return string
      */
     public function getDescription()
     {
@@ -184,9 +183,10 @@ class Category
     }
 
     /**
-     * Set position
+     * Set position.
      *
-     * @param integer $position
+     * @param int $position
+     *
      * @return Category
      */
     public function setPosition($position)
@@ -197,9 +197,9 @@ class Category
     }
 
     /**
-     * Get position
+     * Get position.
      *
-     * @return integer 
+     * @return int
      */
     public function getPosition()
     {
@@ -207,9 +207,10 @@ class Category
     }
 
     /**
-     * Set active
+     * Set active.
      *
-     * @param boolean $active
+     * @param bool $active
+     *
      * @return Category
      */
     public function setActive($active)
@@ -220,9 +221,9 @@ class Category
     }
 
     /**
-     * Get active
+     * Get active.
      *
-     * @return boolean 
+     * @return bool
      */
     public function getActive()
     {
@@ -230,9 +231,9 @@ class Category
     }
 
     /**
-     * Get product
+     * Get product.
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return \Doctrine\Common\Collections\Collection
      */
     public function getProduct()
     {
@@ -240,7 +241,8 @@ class Category
     }
 
     /**
-     * Override to control all product
+     * Override to control all product.
+     *
      * @param ArrayCollection $products
      */
     public function setProduct(ArrayCollection $products)
@@ -251,7 +253,6 @@ class Category
 
         $this->product = $products;
     }
-
 
 //    /**
 //     * Add product
@@ -278,9 +279,10 @@ class Category
 
 
     /**
-     * Set jeweler
+     * Set jeweler.
      *
      * @param \Store\BackendBundle\Entity\Jeweler $jeweler
+     *
      * @return Category
      */
     public function setJeweler(\Store\BackendBundle\Entity\Jeweler $jeweler = null)
@@ -291,34 +293,33 @@ class Category
     }
 
     /**
-     * Get jeweler
+     * Get jeweler.
      *
-     * @return \Store\BackendBundle\Entity\Jeweler 
+     * @return \Store\BackendBundle\Entity\Jeweler
      */
     public function getJeweler()
     {
         return $this->jeweler;
     }
 
-
     /**
-     * Retourne le titre
+     * Retourne le titre.
      */
-    public function __toString(){
+    public function __toString()
+    {
         return $this->title;
     }
-
 
     /**
      * @var \DateTime
      */
     protected $dateCreated;
 
-
     /**
-     * Set dateCreated
+     * Set dateCreated.
      *
      * @param \DateTime $dateCreated
+     *
      * @return Category
      */
     public function setDateCreated($dateCreated)
@@ -329,9 +330,9 @@ class Category
     }
 
     /**
-     * Get dateCreated
+     * Get dateCreated.
      *
-     * @return \DateTime 
+     * @return \DateTime
      */
     public function getDateCreated()
     {
@@ -339,9 +340,10 @@ class Category
     }
 
     /**
-     * Set image
+     * Set image.
      *
      * @param string $image
+     *
      * @return Category
      */
     public function setImage($image)
@@ -352,18 +354,18 @@ class Category
     }
 
     /**
-     * Get image
+     * Get image.
      *
-     * @return string 
+     * @return string
      */
     public function getImage()
     {
         return $this->image;
     }
 
-
     /**
-     * Retourne le chemin absolue de mon image
+     * Retourne le chemin absolue de mon image.
+     *
      * @return null|string
      */
     public function getAbsolutePath()
@@ -371,9 +373,9 @@ class Category
         return null === $this->image ? null : $this->getUploadRootDir().'/'.$this->image;
     }
 
-
     /**
-     * Retourne le chemin de l'image depuis le dossier web
+     * Retourne le chemin de l'image depuis le dossier web.
+     *
      * @return null|string
      */
     public function getWebPath()
@@ -382,7 +384,8 @@ class Category
     }
 
     /**
-     * Retourne le cheùin de mon image depuis l'entité
+     * Retourne le cheùin de mon image depuis l'entité.
+     *
      * @return string
      */
     protected function getUploadRootDir()
@@ -392,7 +395,8 @@ class Category
     }
 
     /**
-     * Retourne le dossier d'upload et sous dossier product
+     * Retourne le dossier d'upload et sous dossier product.
+     *
      * @return string
      */
     protected function getUploadDir()
@@ -401,7 +405,6 @@ class Category
         // le document/image dans la vue.
         return 'uploads/category';
     }
-
 
     /**
      * @return mixed
@@ -421,7 +424,7 @@ class Category
 
     /**
      * Mecanisme d'upload
-     * + déplacement du fichier uploadé dans le bon dossier
+     * + déplacement du fichier uploadé dans le bon dossier.
      */
     public function upload()
     {
@@ -455,5 +458,4 @@ class Category
             @unlink($file);
         }
     }
-
 }

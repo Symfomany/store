@@ -8,33 +8,31 @@ use Store\BackendBundle\Form\TagType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 
-
 /**
- * Class TagsController
- * @package Store\BackendBundle\Controller
+ * Class TagsController.
  */
-class TagController extends Controller{
-
+class TagController extends Controller
+{
     /**
-     * Liste de mes tags
+     * Liste de mes tags.
      */
-    public function listAction(){
-
+    public function listAction()
+    {
         $em = $this->getDoctrine()->getManager();
         $tags = $em->getRepository('StoreBackendBundle:Tag')->findAll();
 
         return $this->render('StoreBackendBundle:Tag:list.html.twig',
             array(
-                "tags" => $tags
+                'tags' => $tags,
             )
         );
     }
 
     /**
-     * AKout d'un tag
+     * AKout d'un tag.
      */
-    public function newAction(Request $request){
-
+    public function newAction(Request $request)
+    {
         $em = $this->getDoctrine()->getManager();
 
         $tag = new Tag();
@@ -42,8 +40,7 @@ class TagController extends Controller{
 
         $form->handleRequest($request);
 
-        if($form->isValid()){
-
+        if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager(); //je récupère le manager de Doctrine
             $em->persist($tag); //j'enregistre mon objet product dans doctrine
             $em->flush(); //j'envoi ma requete d'insert à ma table product
@@ -60,16 +57,8 @@ class TagController extends Controller{
 
         return $this->render('StoreBackendBundle:Tag:new.html.twig',
             array(
-                "form" => $form->createView()
+                'form' => $form->createView(),
             )
         );
     }
-
-
-
 }
-
-
-
-
-
