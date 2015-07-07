@@ -28,7 +28,6 @@
         "friendsofsymfony/elastica-bundle": "~3.2@dev",
         "gregwar/captcha-bundle": "^1.0",
         "cboden/ratchet": "^0.3.2",
-        "react/zmq": "0.2.*|0.3.*",
         "behat/mink-extension": "^2.0",
         "behat/mink-browserkit-driver": "^1.2",
         "imagine/imagine": "*",
